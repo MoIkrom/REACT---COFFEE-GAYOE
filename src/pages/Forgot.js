@@ -29,14 +29,16 @@ class Forgot extends Component {
                     </button>
                   </div>
                 </div>
-                <p className={styles["text-here"]}>
-                  Click here if you didn't receive any link <br />
-                  in 2 minutes
-                </p>
-                <div className="d-flex justify-content-center">
-                  <button className={styles["btn-b"]}>Resend Link</button>
+                <div className={`container ${styles["cont-text-here"]}`}>
+                  <p className={styles["text-here"]}>
+                    Click here if you didn't receive any link <br />
+                    in 2 minutes
+                  </p>
+                  <div className="d-flex justify-content-center">
+                    <button className={styles["btn-b"]}>Resend Link</button>
+                  </div>
+                  <p className={styles["minute"]}>01:54</p>
                 </div>
-                <p className={styles["minute"]}>01:54</p>
               </form>
             </div>
           </section>

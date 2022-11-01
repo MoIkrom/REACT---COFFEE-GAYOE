@@ -43,15 +43,15 @@ _Coffee Gayoe is a authentic coffee from Aceh with natural proccess . A strong a
 
 <table border="2">
     <div align="center">
-        <img width="300" height="300" src="./src/assets/github/home.png">
-        <img width="300" height="300" src="./src/assets/github/login.png">
-        <img width="300" height="300" src="./src/assets/github/register.png">
-        <img width="300" height="300" src="./src/assets/github/product.png">
-        <img width="300" height="300" src="./src/assets/github/detail.png">
-        <img width="300" height="300" src="./src/assets/github/payment.png">
-        <img width="300" height="300" src="./src/assets/github/profile.png">
-        <img width="300" height="300" src="./src/assets/github/forgot.png">
-        <img width="300" height="300" src="./src/assets/github/history.png">
+        <img width="300" height="300" src="../src/assets/github/home.png">
+        <img width="300" height="300" src="../src/assets/github/login.png">
+        <img width="300" height="300" src="../src/assets/github/register.png">
+        <img width="300" height="300" src="../src/assets/github/product.png">
+        <img width="300" height="300" src="../src/assets/github/detail.png">
+        <img width="300" height="300" src="../src/assets/github/payment.png">
+        <img width="300" height="300" src="../src/assets/github/profile.png">
+        <img width="300" height="300" src="../src/assets/github/forgot.png">
+        <img width="300" height="300" src="../src/assets/github/history.png">
     </div>
 </table>
 
