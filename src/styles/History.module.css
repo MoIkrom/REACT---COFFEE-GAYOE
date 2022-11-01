@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Rubik:wght@400;500;700&display=swap");
+
+*,
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+.main-content {
+  height: 900px;
+}
+.jumb-title {
+  background-image: url(../assets/images/history-bg.png);
+  background-size: cover;
+  height: 900px;
+}
+
+.cont-title {
+  position: relative;
+  align-items: center;
+  top: 100px;
+}
+
+.title {
+  font-family: rubik;
+  font-style: bold;
+  font-weight: 700;
+  line-height: 47.4px;
+  font-size: 40px;
+  line-height: 100%;
+  vertical-align: Top;
+  color: #ffffff;
+  text-align: center;
+}
+
+.sub-title {
+  font-family: rubik;
+  font-style: regular;
+  font-weight: 400;
+  line-height: 47.4px;
+  font-size: 18px;
+  line-height: 100%;
+  vertical-align: Top;
+  color: #ffffff;
+  text-align: center;
+  position: relative;
+  top: 5px;
+}
+/* End Main */
+
+/* star Card */
+.cont-sec {
+  position: relative;
+  top: -660px;
+}
+
+/* Footer */
+.footer {
+  padding: 0px;
+}

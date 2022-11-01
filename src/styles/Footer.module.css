@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Rubik:wght@400;500;700&display=swap");
+
+footer {
+  background: #f8f8f8;
+  padding-top: 100px;
+}
+
+.footer-left img {
+  width: 30px;
+  height: 30px;
+  margin-top: -5px;
+  margin-right: 5px;
+}
+
+.footer-title-left {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+  color: #0b132a;
+}
+
+.footer-left p {
+  margin: 15px 100px 0px 0px;
+  text-align: justify;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 30px;
+  color: #4f5665;
+}
+
+.footer-left .copyright {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+  text-align: center;
+  color: #afb5c0;
+}
+
+.icon-footer a {
+  margin: 0px 15px 0px 0px;
+}
+
+.icon-footer img {
+  width: 69px;
+  height: 67px;
+  margin-top: 15px;
+  margin-bottom: -4px;
+  margin-left: -21px;
+}
+#cont-footer-right {
+  margin: auto;
+  justify-content: space-between;
+  margin-left: 300px;
+  margin-top: 0px;
+}
+#list-footer {
+  padding-bottom: 10px;
+}
+.footer-right span {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 30px;
+  color: #0b132a;
+  /* margin-left: 10px; */
+  margin-right: 100px;
+}
+
+.footer-right-link span {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+  color: #4f5665;
+}
+#preview {
+  width: 350px;
+}

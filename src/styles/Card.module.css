@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Rubik:wght@400;500;700&display=swap");
+
+.card-style {
+  height: 68%;
+  border-radius: 20px;
+}
+.item-content {
+  position: relative;
+  top: 13px;
+  left: 22px;
+}
+.images {
+  height: 80px;
+  width: 80px;
+  border-radius: 50px;
+  position: relative;
+  top: -2px;
+}
+.title-card {
+  font-family: poppins;
+  font-style: bold;
+  font-weight: 700;
+  line-height: 47.4px;
+  font-size: 20px;
+  line-height: 100%;
+  vertical-align: Top;
+  color: #000000;
+  text-align: left;
+}
+.price-card {
+  text-align: left;
+  color: #895537;
+  font-family: rubik;
+  font-style: Regular;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 30px;
+  line-height: 100%;
+  vertical-align: Top;
+}
+.desc-card {
+  position: relative;
+  top: -70px;
+  left: 100px;
+  width: 250px;
+}

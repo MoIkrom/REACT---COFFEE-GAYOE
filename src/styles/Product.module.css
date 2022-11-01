@@ -1,0 +1,319 @@
+* {
+  font-family: "Rubik", sans-serif;
+}
+
+/* CSS Navbar */
+.left-nav span {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #0b132a;
+}
+
+.center-nav a {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #4f5665;
+}
+
+.center-nav a:hover {
+  transform: scale(1.5);
+  color: #9e684b;
+}
+
+.nav-product span {
+  border-bottom: 2px solid #6a4029;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 24px;
+  color: #6a4029;
+}
+
+.nav-product span a {
+  text-decoration: none;
+  color: #6a4029;
+}
+
+.nav-product span:hover {
+  transform: scale(1.3);
+  color: #6a4029;
+}
+
+.product-left {
+  width: 30%;
+}
+
+.product-right {
+  width: 70%;
+}
+
+.title-promo {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 30px;
+  color: #6a4029;
+}
+
+.desc-promo {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+  color: #000000;
+}
+
+.description-promo > span {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 21px;
+  color: #000000;
+}
+
+.description-promo > p {
+  font-family: "rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: #000000;
+  padding-top: 3px;
+}
+
+.promo-one {
+  width: 335px;
+  height: 500px;
+  background: #88b788;
+  border-radius: 20px;
+}
+.coupon-card {
+  background-color: #ffcb65;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  position: relative;
+  top: 25px;
+}
+
+.beef {
+  border-radius: 67px;
+  position: relative;
+  top: 30px;
+}
+.beef:hover {
+  border-radius: 67px;
+  position: relative;
+  top: 30px;
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+  /* -webkit-transition: 0.4s ease;
+  /* transition: 0.4s ease; */
+  /* width: 150px; */
+}
+
+.off {
+  width: 245px;
+  text-align: center;
+  position: relative;
+  top: 10px;
+}
+.card-text-1 {
+  font-family: Poppins;
+  font-style: Bold;
+  font-weight: 700;
+  font-size: 22px;
+  color: #000000;
+  text-align: center;
+  position: relative;
+  top: 30px;
+  margin: 30px;
+}
+.cont-promos {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+.promo-two {
+  width: 335px;
+  height: 109px;
+  background: #f5c361;
+  border-radius: 20px;
+}
+
+.promo-four {
+  width: 335px;
+  height: 109px;
+  background: #c59378;
+  border-radius: 20px;
+}
+
+.apply-coupon {
+  width: 85%;
+  height: 50px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 26px;
+  color: #ffffff;
+  background: #6a4029;
+  border-radius: 20px;
+  border: none;
+}
+.apply-coupon:hover {
+  width: 85%;
+  height: 50px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 26px;
+  color: #ffffff;
+  background: #6a4029;
+  border-radius: 20px;
+  border: none;
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.apply-coupon:hover {
+  background-color: #805742;
+}
+
+.noted span {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  color: #4f5665;
+}
+
+.noted p {
+  margin: 5px 0;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #4f5665;
+}
+
+.list-content {
+  margin-top: 120px !important;
+  margin-block: -10%;
+  gap: 7%;
+}
+.code-text-2 {
+  font-family: Poppins;
+  font-style: Regular;
+  font-size: 12px;
+  line-height: 12px;
+  line-height: 101%;
+  vertical-align: Top;
+  color: #000000;
+  margin-bottom: 30px;
+}
+.code-text-1 {
+  font-family: Poppins;
+  font-style: Regular;
+  font-size: 33px;
+  font-weight: 700;
+  line-height: 12px;
+  line-height: 101%;
+  vertical-align: Top;
+  color: #000000;
+  margin-bottom: 30px;
+}
+
+/* CSS Footer */
+footer {
+  background: #f8f8f8;
+}
+
+.footer-left img {
+  width: 20px;
+  height: 20px;
+  margin-top: -5px;
+  margin-right: 5px;
+}
+
+.footer-title-left {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #0b132a;
+}
+
+.footer-left p {
+  margin: 15px 100px 0px 0px;
+  text-align: justify;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 30px;
+  color: #4f5665;
+}
+
+.footer-left .copyright {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+  text-align: center;
+  color: #afb5c0;
+}
+
+.icon-footer a {
+  margin: 0px 15px 0px 0px;
+}
+
+.icon-footer img {
+  width: 35px;
+  height: 35px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  background-color: #6a4029;
+  border-radius: 20px;
+}
+
+.footer-right span {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 30px;
+  color: #0b132a;
+}
+
+.footer-right-link span {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+  color: #4f5665;
+}

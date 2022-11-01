@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Rubik:wght@400;500;700&display=swap");
+
+.content-product {
+  cursor: pointer;
+  margin-bottom: 12%;
+  width: 150px;
+  height: 233px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  align-items: center;
+  box-shadow: 0 0 3px #9f9f9f;
+  box-shadow: 0px 30px 60px 0px #3939391a;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+}
+
+.list-product-image {
+  top: -57px;
+  left: 11px;
+  width: 125px;
+  position: absolute;
+  height: 125px;
+  overflow: hidden;
+  border-radius: 70px;
+}
+.list-product-image:hover {
+  top: -57px;
+  left: 11px;
+  width: 125px;
+  position: absolute;
+  height: 125px;
+  overflow: hidden;
+  border-radius: 70px;
+  -webkit-border-radius: 70px;
+  -webkit-border-radius: 70px;
+  -moz-border-radius: 70px;
+  -ms-border-radius: 70px;
+  -o-border-radius: 70px;
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.label-promo {
+  position: absolute;
+  background-color: white;
+  font-size: 20px;
+  height: 32px;
+  width: 70px;
+  top: -22px;
+  right: -35px;
+  padding: 1px;
+  color: #000000;
+  font-weight: bolder;
+  font-family: "Poppins";
+  border-radius: 15px;
+  text-align: center;
+  align-items: center;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+.title {
+  margin-top: 60px;
+  color: #000000;
+  /* padding-right: 100px; */
+  font-family: "Poppins";
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 23px;
+  /* margin-left: 90%; */
+  height: 120px;
+}
+
+.price {
+  font-weight: bold;
+  color: #6a4029;
+}
