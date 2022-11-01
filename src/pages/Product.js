@@ -16,7 +16,7 @@ import CardProduct from "../Component/List_Product";
 import tomato from "../assets/images/tomato.png";
 import wings from "../assets/images/Chicken-Wings.png";
 import hezelnut from "../assets/images/Hezelnut.png";
-import fire from "../assets/images/fire-wings.png";
+import fire from "../assets/images/Chicken-Wings.png";
 import beef from "../assets/images/beef-spagheti.png";
 
 class Product extends Component {

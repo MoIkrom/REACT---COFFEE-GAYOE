@@ -7,7 +7,7 @@ import withNavigate from "../utils/withNavigate";
 import { Link } from "react-router-dom";
 
 // Import Images
-import background from "../assets/images/home.png";
+import background from "../assets/images/login-bg.png";
 import logo from "../assets/images/coffee-logo.png";
 import google from "../assets/images/google-logo-png-suite-everything-you-need-know-about-google-newest-0 2.png";
 

@@ -7,7 +7,7 @@ import styles from "../styles/Navbar.module.css";
 // import image
 import icon_coffee from "../assets/images/coffee-logo.png";
 import icon_search from "../assets/images/search.png";
-import icon_chat from "../assets/images/logo-chat.png";
+import icon_chat from "../assets/images/chat.png";
 import icon_profile from "../assets/images/parker.jpeg";
 
 function Navbar() {

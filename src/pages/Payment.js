@@ -10,7 +10,7 @@ import styles from "../styles/Payment.module.css";
 
 // import image
 import payment_image_1 from "../assets/images/Hezelnut.png";
-import payment_image_2 from "../assets/images/fire-wings.png";
+import payment_image_2 from "../assets/images/Chicken-Wings.png";
 import icon_card from "../assets/images/card-py.png";
 import icon_cod from "../assets/images/cod.png";
 import icon_bank from "../assets/images/bank.png";
