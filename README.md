@@ -41,18 +41,14 @@ _Coffee Gayoe is a authentic coffee from Aceh with natural proccess . A strong a
 
 ## Screenshots App
 
-<table border="2">
-    <div align="center">
-        <img width="300" height="300" src="../src/assets/github/home.png">
-        <img width="300" height="300" src="../src/assets/github/login.png">
-        <img width="300" height="300" src="../src/assets/github/register.png">
-        <img width="300" height="300" src="../src/assets/github/product.png">
-        <img width="300" height="300" src="../src/assets/github/detail.png">
-        <img width="300" height="300" src="../src/assets/github/payment.png">
-        <img width="300" height="300" src="../src/assets/github/profile.png">
-        <img width="300" height="300" src="../src/assets/github/forgot.png">
-        <img width="300" height="300" src="../src/assets/github/history.png">
-    </div>
-</table>
+![Screenshot (87)](https://user-images.githubusercontent.com/104162292/199145349-7a8347d1-0df8-47d3-acbd-b2d169086013.png)
+![Screenshot (88)](https://user-images.githubusercontent.com/104162292/199145358-6489588a-9537-453e-8cf6-f187c5686b8d.png)
+![Screenshot (89)](https://user-images.githubusercontent.com/104162292/199145360-8316cfd4-23ee-4dd1-866e-a52871af25a4.png)
+![Screenshot (91)](https://user-images.githubusercontent.com/104162292/199145362-17cb8ac3-4c8e-4cd9-baaa-aab6a1ee31f7.png)
+![Screenshot (92)](https://user-images.githubusercontent.com/104162292/199145363-963a7a76-f9dd-4591-98ce-bd10a374fdcd.png)
+![Screenshot (93)](https://user-images.githubusercontent.com/104162292/199145364-1e263bb1-7a84-4c35-a854-b0b377bfd388.png)
+![Screenshot (94)](https://user-images.githubusercontent.com/104162292/199145371-0985af15-e395-48c7-83b6-5b3693b57f09.png)
+![Screenshot (95)](https://user-images.githubusercontent.com/104162292/199145374-d927f472-c691-4a59-82f1-e62f0006ddda.png)
+![Screenshot (96)](https://user-images.githubusercontent.com/104162292/199145375-06bdd181-0b46-4cea-a3a1-68631cb24d1d.png)
 
 <p align="center"><sub><b>&copy;2022 @Coffee Gayoe☕</b></sub></p>
