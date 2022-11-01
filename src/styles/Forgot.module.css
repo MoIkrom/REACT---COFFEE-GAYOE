@@ -27,6 +27,9 @@ body {
   border-radius: 10px;
   padding: 10px;
   border: none;
+  position: relative;
+  left: -11px;
+  top: 30px;
 }
 
 .btn-b {
@@ -38,15 +41,16 @@ body {
   color: #ffffff;
   position: relative;
   top: 100px;
-  width: 300px;
+  width: 210px;
+  left: -12px;
 }
 .send {
   position: relative;
-  top: -7px;
+  top: 22px;
   border-radius: 10px;
   width: 250px;
   height: 55px;
-  left: -20px;
+  left: -4px;
   border: none;
 }
 .text-here {
@@ -62,10 +66,12 @@ body {
   color: #ffffff;
   position: relative;
   top: 100px;
+  left: -11px;
 }
 .minute {
   position: relative;
   top: 120px;
+  left: -11px;
   text-align: center;
   color: #ffffff;
   font-family: Poppins;
@@ -74,4 +80,9 @@ body {
   font-weight: 700;
   line-height: 45px;
   line-height: 100%;
+}
+
+.cont-text-here {
+  position: relative;
+  top: 180px;
 }
