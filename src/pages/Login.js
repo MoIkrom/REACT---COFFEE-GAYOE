@@ -8,7 +8,7 @@ import axios from "axios";
 // import { TabTitle } from "../utils/General-funct.js";
 
 // Import Images
-import background from "../assets/images/login-bg.png";
+import background from "../assets/images/login-bg-1.png";
 import logo from "../assets/images/coffee-logo.png";
 import google from "../assets/images/google-logo-png-suite-everything-you-need-know-about-google-newest-0 2.png";
 
