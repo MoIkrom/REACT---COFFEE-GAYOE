@@ -13,27 +13,30 @@ import CardProduct from "../Component/List_Product";
 
 // import image
 
-import tomato from "../assets/images/tomato.png";
-import wings from "../assets/images/Chicken-Wings.png";
-import hezelnut from "../assets/images/Hezelnut.png";
-import fire from "../assets/images/Chicken-Wings.png";
+// import tomato from "../assets/images/tomato.png";
+// import wings from "../assets/images/Chicken-Wings.png";
+// import hezelnut from "../assets/images/Hezelnut.png";
+// import fire from "../assets/images/Chicken-Wings.png";
 import beef from "../assets/images/beef-spagheti.png";
 
 class Product extends Component {
   state = {
     products: [],
-    url: `http://localhost:8080/api/v1/product`,
-    food: `http://localhost:5000/api/product/?category=foods`,
-    coffee: `http://localhost:5000/api/product/?category=coffee`,
-    non_coffee: `http://localhost:5000/api/product/?category=non_coffee`,
-    addons: `http://localhost:5000/api/product/?category=add-on`,
+    url: `${process.env.REACT_APP_BACKEND_HOST}api/v1/product`,
+    // url: `http://localhost:8080/api/v1/product`,
+    // food: `http://localhost:5000/api/product/?category=foods`,
+    // coffee: `http://localhost:5000/api/product/?category=coffee`,
+    // non_coffee: `http://localhost:5000/api/product/?category=non_coffee`,
+    // addons: `http://localhost:5000/api/product/?category=add-on`,
   };
   componentDidMount() {
     axios
       .get(this.state.url)
       .then((res) => {
-        // this.setState({ products: res.result });
-        console.log(res.data.result);
+        // console.log(res.data.data);
+        this.setState({
+          products: res.data.data,
+        });
       })
       .catch((err) => console.log(err));
   }
@@ -99,8 +102,11 @@ class Product extends Component {
 
             <section className="container-fluid text-center ps-5 ms-4">
               <div className={`row ${styles["list-content"]} justify-content-start ${styles["gap-Row"]} ${styles["position-settings"]}`}>
-                <CardProduct title="Veggie tomato mix" price="IDR 34000" discount="10%" image={tomato} />
-                <CardProduct title="Chicken EIngs" price="IDR 24000" discount="10%" image={wings} />
+                {this.state.products.map((products) => (
+                  <CardProduct title={products.product_name} price={products.price} image={products.image} discount="10%" />
+                ))}
+
+                {/* <CardProduct title="Chicken EIngs" price="IDR 24000" discount="10%" image={wings} />
                 <CardProduct title="Ice Cream Hezelnut" price="IDR 30000" discount="15%" image={hezelnut} />
                 <CardProduct title="Fire Chicken" price="IDR 25000" discount="10%" image={fire} />
                 <CardProduct title="Veggie tomato mix" price="IDR 34000" discount="10%" image={tomato} />
@@ -110,11 +116,19 @@ class Product extends Component {
                 <CardProduct title="Veggie tomato mix" price="IDR 34000" discount="10%" image={tomato} />
                 <CardProduct title="Chicken EIngs" price="IDR 24000" discount="10%" image={wings} />
                 <CardProduct title="Ice Cream Hezelnut" price="IDR 30000" discount="15%" image={hezelnut} />
-                <CardProduct title="Fire Chicken" price="IDR 25000" discount="10%" image={fire} />
+                <CardProduct title="Fire Chicken" price="IDR 25000" discount="10%" image={fire} /> */}
               </div>
             </section>
           </aside>
         </section>
+        {/* <section className=" text-center row d-flex justify-content-between flex-wrap">
+          <div className={` ${styles["list-content"]} d-flex flex-wrap col-12`}>
+            {this.state.products.map((products) => (
+              <CardProduct title={products.product_name} price={products.price} image={products.image} />
+              // <CardProduct title={products.product_name} price={products.price} image={products.image} size={products.size} />
+            ))}
+          </div>
+        </section> */}
         <footer>
           <Footer />
         </footer>
