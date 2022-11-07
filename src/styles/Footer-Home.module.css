@@ -7,7 +7,7 @@ footer {
 }
 
 .cont-footer {
-  padding-top: 100px;
+  padding-top: 170px;
 }
 
 .footer-left img {
@@ -60,10 +60,9 @@ footer {
 }
 #cont-footer-right {
   margin: auto;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  margin-left: 300px;
   margin-top: 0px;
-  position: relative;
-  left: 120px;
 }
 #list-footer {
   padding-bottom: 10px;
@@ -130,5 +129,21 @@ footer {
     /* justify-content: space-between; */
     /* margin-left: 300px; */
     /* margin-top: 0px; */
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #cont-footer-right {
+    margin: 0px;
+    width: 21rem;
+    position: relative;
+    left: 5rem;
+  }
+  .fr {
+    margin-left: -21px;
+  }
+  #preview {
+    font-size: 16px;
+    width: 16rem;
   }
 }

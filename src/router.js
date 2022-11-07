@@ -8,6 +8,10 @@ import Forgot from "./pages/Forgot";
 import History from "./pages/History";
 import Payment from "./pages/Payment";
 import Detail from "./pages/Detail";
+import NewProduct from "./pages/NewProduct";
+import NewPromo from "./pages/NewPromo";
+import EditPromo from "./pages/EditPromo";
+
 const router = createBrowserRouter([
   // { path: "/", element: <App />, errorElement: <Error /> },
   { path: "/", element: <Home /> },
@@ -19,6 +23,9 @@ const router = createBrowserRouter([
   { path: "/history", element: <History /> },
   { path: "/detail", element: <Detail /> },
   { path: "/payment", element: <Payment /> },
+  { path: "/newproduct", element: <NewProduct /> },
+  { path: "/newpromo", element: <NewPromo /> },
+  { path: "/editpromo", element: <EditPromo /> },
 ]);
 
 export default router;

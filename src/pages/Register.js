@@ -15,6 +15,10 @@ import google from "../assets/images/google-logo-png-suite-everything-you-need-k
 //   TabTitle("Register - Coffee Gayoe");
 
 class Register extends Component {
+  state = {
+    isPwdShown: true,
+  };
+
   render() {
     return (
       <Fragment>
@@ -46,7 +50,19 @@ class Register extends Component {
                   </form>
                   <form>
                     <label className={styles["input-text"]}>Password :</label> <br />
-                    <input className={styles["input-login"]} type="text" placeholder="Enter your password" />
+                    <input className={styles["input-login"]} type={this.state.isPwdShown ? "text" : "password"} placeholder="Enter your password" />
+                    <p>
+                      Show Password{" "}
+                      <input
+                        type="checkbox"
+                        defaultChecked={true}
+                        onChange={() => {
+                          this.setState((prevState) => ({
+                            isPwdShown: prevState.isPwdShown ? false : true,
+                          }));
+                        }}
+                      ></input>{" "}
+                    </p>
                   </form>
                   <form>
                     <label className={styles["input-text"]}>Phone Number :</label> <br />

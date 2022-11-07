@@ -4,6 +4,7 @@ import styles from "../styles/Profile.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
+import withNavigate from "../utils/withNavigate";
 
 // Import Image
 import profile from "../assets/images/parker.jpeg";
@@ -14,7 +15,7 @@ class Profile extends Component {
   render() {
     return (
       <Fragment>
-        <header>
+        <header className={styles["header"]}>
           <Navbar />
         </header>
         <main className={styles["jumbotron"]}>
@@ -101,14 +102,14 @@ class Profile extends Component {
               <button type="button" className={`btn ${styles["btn-size"]} ${styles["btn-3"]}`}>
                 Edit Password
               </button>
-              <button type="button" className={`btn ${styles["btn-size"]} ${styles["btn-3"]}`}>
+              <button type="button" className={`btn ${styles["btn-size"]} ${styles["btn-3"]}`} onClick={() => this.props.navigate("/login")}>
                 Log Out
               </button>
             </div>
           </div>
         </main>
 
-        <footer>
+        <footer className={styles["footer-cont"]}>
           <Footer />
         </footer>
       </Fragment>
@@ -116,4 +117,6 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+const componentProfile = withNavigate(Profile);
+
+export default componentProfile;

@@ -8,6 +8,10 @@ body {
   /* background-color: #f8f8f8; */
 }
 
+.header {
+  max-width: 1440px;
+  margin: 10px;
+}
 .main-content {
   justify-content: center;
   /* background-image:  */
@@ -15,6 +19,7 @@ body {
   background-size: cover;
   height: 640px;
   width: 100%;
+  max-width: 1440px;
 }
 /* .comment-user */
 .btn {
@@ -169,6 +174,7 @@ body {
 /* Start Section review */
 .review {
   padding-top: 100px;
+  max-width: 1440px;
 }
 #review-cont {
   margin-top: 90px;
@@ -180,6 +186,7 @@ body {
 
 #section-prove {
   margin-top: 40px;
+  max-width: 1440px;
 }
 #proved {
   font-family: Rubik;
@@ -249,6 +256,7 @@ body {
 }
 #fav-menu-jumbotron {
   margin-top: 0px;
+  max-width: 1440px;
 }
 
 #title-favorite {
@@ -452,6 +460,10 @@ body {
   margin-top: 311px;
   width: 423px;
 }
+.cont-visit-us {
+  max-width: 1440px;
+}
+
 #visit-us {
   text-align: center;
   margin-top: 200px;
@@ -515,15 +527,19 @@ body {
 
 /* Start Loved by Costumer */
 
+.section-love-cost {
+  max-width: 1440px;
+}
 #loved-by-costumer {
   text-align: center;
   width: 551px;
   top: 50px;
+  margin: auto;
 }
 .story-cost {
   width: 550px;
   top: 6px;
-  /* bottom: 90px; */
+  margin: auto;
   text-align: center;
   position: relative;
 }
@@ -535,6 +551,9 @@ body {
 
 /* Start Profile */
 
+.section-comment {
+  max-width: 1440px;
+}
 #comment-user {
   gap: 140px;
   overflow: hidden;
@@ -573,12 +592,7 @@ body {
   left: 60px;
   font-size: 17px;
 }
-.header {
-  width: 330px;
-  height: 70px;
-  top: 16px;
-  position: relative;
-}
+
 .name-profile {
   text-align: center;
   font-family: Rubik;
@@ -603,7 +617,7 @@ body {
   position: relative;
 }
 .comment {
-  top: 17px;
+  top: -70px;
   left: 5px;
   width: 350px;
   position: relative;
@@ -613,6 +627,12 @@ body {
   left: 327px;
   position: relative;
   width: 40px;
+}
+.rating-kim {
+  width: 38px;
+  position: relative;
+  left: 245px;
+  top: -100px;
 }
 .star {
   top: -1px;
@@ -703,11 +723,6 @@ body {
 
 /*  Start Footer */
 
-#cont-footer {
-  margin-top: 80px;
-  padding: 0px;
-}
-
 #jum-footer {
   background-color: #f8f8f8;
 
@@ -771,10 +786,272 @@ body {
 }
 /* End Footer */
 
-/* @media only screen and (max-width: 768px) {
-  .navbar-brand {
-    margin-left: -80px;
+/* --------------------------------------------------------- */
+/* Responsive Breakpoint */
+
+/* /* sceen laptop */
+@media only screen and (max-width: 1024px) {
+  #teamwork {
+    height: 319px;
+    width: 321px;
+    margin: 0px 66px;
   }
+  #comment-user {
+    gap: 105px;
+    overflow: hidden;
+  }
+  .card-profile {
+    width: 299px;
+    border-radius: 10px;
+    height: 185px;
+  }
+  .comment {
+    margin: auto;
+    width: 273px;
+    font-size: 13px;
+  }
+  .rating {
+    width: 55px;
+    position: relative;
+    left: 224px;
+  }
+  .rating-kim {
+    width: 38px;
+    position: relative;
+    left: 245px;
+    top: -99px;
+  }
+  #huge-global {
+    margin-top: 150px;
+    width: 170%;
+  }
+  .col-prove {
+    width: 0%;
+    position: relative;
+    top: 0px;
+    left: 0px;
+  }
+
+  .review {
+    padding: 0px;
+    position: relative;
+    top: 118px;
+  }
+
+  #section-prove {
+    position: relative;
+    top: 100px;
+  }
+
+  #fav-menu-jumbotron {
+    margin-top: 0px;
+    position: relative;
+    top: 30px;
+  }
+  .cont-visit-us {
+    position: relative;
+    top: 100px;
+  }
+
+  #order-now {
+    position: relative;
+    left: 64px;
+  }
+
+  #order-now-2 {
+    position: relative;
+    left: 64px;
+  }
+  #order-now-3 {
+    position: relative;
+    left: 64px;
+  }
+  #see-promo {
+    position: relative;
+    margin: 0px;
+    top: 6rem;
+    width: 13rem;
+    left: 10rem;
+  }
+  .cont-love {
+    position: relative;
+    left: -4rem;
+  }
+}
+
+/* =============================================== */
+@media only screen and (max-width: 768px) {
+  .main-content {
+    justify-content: center;
+    background-size: cover;
+    height: 640px;
+    width: 102%;
+    max-width: 1440px;
+  }
+  .jumbotron {
+    background-size: 100%;
+    height: 640px;
+  }
+  #section-prove {
+    width: 102%;
+  }
+
+  #search {
+    margin: 0px;
+    position: relative;
+    top: 60px;
+    left: 40px;
+  }
+  #card-jumbotron {
+    position: relative;
+    top: 61px;
+    margin: 0px;
+  }
+  #staff {
+    position: relative;
+    top: 45px;
+  }
+  #teamwork {
+    position: relative;
+    left: 35px;
+    margin: 0px;
+  }
+
+  #proved {
+    font-family: Rubik;
+    font-style: medium;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 50px;
+    line-height: 121%;
+    vertical-align: Top;
+    text-align: left;
+    color: #0b132a;
+    padding: 5px;
+    width: 350px;
+  }
+
+  .ol-list-1 {
+    left: -40px;
+    position: relative;
+    font-size: 12px;
+    width: 14rem;
+  }
+  #price-1 {
+    position: relative;
+    left: 3px;
+  }
+  #price-2 {
+    position: relative;
+    left: 4px;
+  }
+  #price-3 {
+    position: relative;
+    left: 7px;
+  }
+
+  #order-now {
+    position: relative;
+    left: 34px;
+  }
+  #order-now-2 {
+    position: relative;
+    left: 34px;
+  }
+  #order-now-3 {
+    position: relative;
+    left: 34px;
+  }
+
+  #explore {
+    font-family: Rubik;
+    font-style: Regular;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    line-height: 158%;
+    vertical-align: Top;
+    text-align: left;
+    color: #4f5665;
+    padding: 5px;
+    width: 350px;
+  }
+
+  #list-prove {
+    top: -11px;
+    font-size: 13px;
+    left: -10px;
+    position: relative;
+    font-size: 10px;
+    width: 355px;
+  }
+  .reddit {
+    top: 80px;
+  }
+  .discord {
+    top: 80px;
+  }
+
+  .cont-loved-cost {
+    position: relative;
+    top: 0px;
+    left: 0px;
+  }
+
+  #loved-by-costumer {
+    margin: 0px;
+    position: relative;
+    top: 0px;
+    margin-left: 72px;
+  }
+  #loved-cost {
+    position: relative;
+    left: -50px;
+  }
+
+  .story-cost {
+    margin-left: 72px;
+    margin-bottom: 0px;
+  }
+
+  #our-partner {
+    margin-left: 6rem;
+  }
+
+  #comment-user {
+    position: relative;
+    top: 2rem;
+    gap: 11rem;
+  }
+  #see-promo {
+    position: relative;
+    top: 6rem;
+    left: 7rem;
+    margin: 0px;
+    width: 10rem;
+  }
+  .col-kim {
+    display: none;
+  }
+
+  .arrow-position {
+    position: relative;
+    margin: 4px;
+    top: -10rem;
+    left: 10rem;
+  }
+
+  .scroll-cont {
+    position: relative;
+    top: -9rem;
+    margin: 0px;
+  }
+  #cont-footer {
+    width: 102%;
+  }
+}
+
+/*
   .navbar-light .navbar-toggler {
     color: rgba(0, 0, 0, 0.5);
     border-color: rgba(0, 0, 0, 0.1);
@@ -1040,24 +1317,14 @@ body {
   }
 } */
 
-/* Responsive Breakpoint */
-
-/* sceen laptop
-@media only screen and (max-width: 1024px) {
-  #teamwork {
-    height: 319px;
-    width: 321px;
-    margin: 0px 66px;
-  }
-  /* #col-proved {
+/* } */
+/* =============================================== */
+/* #col-proved {
   } */
 /* .col-6 {
     flex: 1;
   }
-  #huge-global {
-    margin-top: 150px;
-    width: 170%;
-  }
+  
   #our-partner {
     margin: 58px 0px 90px 145px;
     width: 230px;
@@ -1097,14 +1364,8 @@ body {
     margin: -15px 0px 17px -40px;
     text-align: center;
   }
-  #comment-user {
-    gap: 105px;
-  }
-  #card-profile {
-    width: 299px;
-    border-radius: 10px;
-    height: 185px;
-  }
+ 
+ 
   .header {
     width: 285px;
     height: 55px;
@@ -1132,15 +1393,15 @@ body {
     margin: -19px auto auto 58px;
     font-size: 11px;
   }
-  #rating {
-    width: 55px;
-    margin: -23px 0px 0px 231px;
-  }
-  #comment {
-    margin: 17px auto;
-    width: 273px;
+ 
+
+  .Home_comment__J3Dek {
+    top: 17px;
+    left: 5px;
+    width: 270px;
+    position: relative;
     font-size: 13px;
-  }
+}
   .arrow-position {
     width: 133px;
     margin: -193px auto 50px 876px;

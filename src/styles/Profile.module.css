@@ -7,6 +7,12 @@ body {
   /* background-color: #f8f8f8; */
 }
 
+.header {
+  max-width: 1440px;
+}
+.container {
+  max-width: 1440px;
+}
 .picture {
   width: 37px;
   height: 37px;
@@ -16,6 +22,7 @@ body {
   background-image: url(../assets/images/background-Coffee.png);
   background-size: cover;
   height: 1215px;
+  max-width: 1440px;
 }
 .display-4 {
   font-family: Rubik;
@@ -107,6 +114,16 @@ body {
   align-content: center;
   font-weight: 700;
   vertical-align: Top;
+}
+.btn-size:hover {
+  background-color: #ffba33;
+}
+.btn-2:hover {
+  background-color: #ffffff;
+}
+.no-underline {
+  text-decoration: none;
+  color: #6a4029;
 }
 .btn-2 {
   color: #6a4029;
@@ -583,4 +600,133 @@ body {
 }
 /* Media Query */
 @media only screen and (max-width: 768px) {
+  .card-img-top {
+    border-radius: 100px;
+    height: 92px;
+    width: 91px;
+    position: relative;
+    left: 70px;
+    top: 25px;
+  }
+
+  .card-body {
+    width: 310px;
+    /* gap: 34px; */
+    height: 287px;
+  }
+
+  /* mobile number{
+element.style {
+    overflow: hidden;
+    /* width: 107px; */
+  /* } */
+
+  .ordered {
+    font-family: Rubik;
+    font-style: Regular;
+    font-size: 12px;
+    line-height: 25px;
+    align-content: center;
+    font-weight: 400;
+    vertical-align: Top;
+    color: #4f5665;
+    position: relative;
+    left: 32px;
+    top: 51px;
+    width: 210px;
+  }
+
+  .card-email {
+    font-family: Rubik;
+    font-size: 10px;
+    line-height: 18px;
+    align-content: center;
+    font-weight: 400;
+    vertical-align: Top;
+    color: #4f5665;
+    position: relative;
+    left: 60px;
+    top: -5px;
+  }
+
+  .ordered {
+    font-family: Rubik;
+    font-style: Regular;
+    font-size: 12px;
+    line-height: 25px;
+    align-content: center;
+    font-weight: 400;
+    vertical-align: Top;
+    color: #4f5665;
+    position: relative;
+    left: 32px;
+    top: 34px;
+    width: 210px;
+  }
+  .card-body {
+    width: 237px;
+    /* gap: 34px; */
+    height: 287px;
+  }
+
+  .card-address {
+    width: 423px;
+    height: 288px;
+  }
+
+  .footer-cont {
+    padding: 0px;
+  }
+
+  .Profile_card-img-top__tPZxx {
+    border-radius: 100px;
+    height: 92px;
+    width: 92px;
+    position: relative;
+    left: 64px;
+    top: 25px;
+  }
+
+  .card-name {
+    left: 8px;
+  }
+
+  .cont-email {
+    font-size: 13px;
+    position: relative;
+    height: 35px;
+  }
+
+  .my-1 {
+    width: 90%;
+  }
+
+  .card-down {
+    height: 300px;
+  }
+  .title-name {
+    font-size: 14px;
+  }
+
+  .dis-name {
+    font-size: 13px;
+  }
+
+  .save-btn {
+    color: #ffffff;
+    text-align: center;
+    position: relative;
+    top: 40px;
+    left: 9px;
+    width: 232px;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .btn-size {
+    width: 205px;
+    /* margin-bottom: 20px; */
+    height: 39px;
+    position: relative;
+    top: 65px;
+  }
 }

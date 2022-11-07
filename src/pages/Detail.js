@@ -15,7 +15,7 @@ class Detail extends Component {
   render() {
     return (
       <Fragment>
-        <header>
+        <header className={`container ${styles["header"]}`}>
           <Navbar />
         </header>
         <section className={`container ${styles["cold-brew"]}`}>
@@ -87,7 +87,7 @@ class Detail extends Component {
           <button className={`btn btn-warning ${styles["btn-checkout"]}`}>Checkout</button>
         </div>
 
-        <footer>
+        <footer className={`container ${styles["footer"]}`}>
           <Footer />
         </footer>
       </Fragment>

@@ -41,13 +41,13 @@ class Product extends Component {
     return (
       <>
         {/* <!-- Start Navbar --> */}
-        <main classNameName="container-fluid bg-white">
+        <main className="container">
           <Navbar />
         </main>
         {/* <!-- End Navbar --> */}
 
         <hr></hr>
-        <section className="container-fluid d-flex flex-row flex-wrap">
+        <section className="container d-flex flex-row flex-wrap">
           <aside className={`${styles["product-left"]} d-flex flex-column align-items-center mb-5`}>
             <span className={`${styles["title-promo"]} text-center mt-4`}>Promo Today</span>
             <span className={`${styles["desc-promo"]} text-center mt-3 px-5`}>Coupons will be updated every weeks. Check them out!</span>
@@ -115,8 +115,9 @@ class Product extends Component {
             </section>
           </aside>
         </section>
-
-        <Footer />
+        <footer>
+          <Footer />
+        </footer>
       </>
     );
   }

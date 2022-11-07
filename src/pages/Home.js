@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import styles from "../styles/Home.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../Component/Navbar";
-import Footer from "../Component/Footer";
+import Footerhome from "../Component/Footer-Home";
 // import { TabTitle } from "../utils/General-funct.js";
 
 // Import Image
@@ -38,7 +38,7 @@ class Home extends Component {
   render() {
     return (
       <Fragment>
-        <header>
+        <header className={styles["header"]}>
           <Navbar />
         </header>
         <main className={styles["main-content"]}>
@@ -98,7 +98,7 @@ class Home extends Component {
               <div className={`col ${["col-prove"]}`}>
                 <img id={styles["teamwork"]} src={teamwork} alt="team-work" />
               </div>
-              <div className={`col ${styles["col-prove"]}`}>
+              <div className={`container col ${styles["col-prove"]}`}>
                 <h1 id={styles["proved"]}>We Provide Good Coffee and Healthy Meals</h1>
                 <p id={styles["explore"]}>You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
                 <ol id={styles["list-prove"]}>
@@ -132,7 +132,7 @@ class Home extends Component {
                     <img className={styles["image-menu"]} src={hezelnut} alt="Hezelnut-Latte" />
                     <h1 id={styles["title-menu"]}>Hazelnut Latte</h1>
                     <div className="container" id={styles["ingredient"]}>
-                      <ol>
+                      <ol className={styles["ol-list-1"]}>
                         <li id={styles["ingredient-list-1"]}>
                           <img src={checkorder} alt="checklist-order" /> &nbsp; Hazelnut Syrup
                         </li>
@@ -150,7 +150,7 @@ class Home extends Component {
                     <div className={styles["cont-price"]}>
                       <h1 id={styles["price-1"]}>IDR 25.000</h1>
 
-                      <button type="button" className="btn btn-outline-warning" id={styles["order-now"]}>
+                      <button type="button" className={`btn btn-outline-warning ${styles["btn-order"]} `} id={styles["order-now"]}>
                         Order Now
                       </button>
                     </div>
@@ -161,7 +161,7 @@ class Home extends Component {
                     <img className={styles["image-menu"]} src={Pinky} alt="Pinky-Promise" />
                     <h1 id={styles["title-menu"]}>Pinky Promise</h1>
                     <div className="container" id={styles["ingredient"]}>
-                      <ol id={styles["ingredient-list-2"]}>
+                      <ol className={styles["ol-list-1"]} id={styles["ingredient-list-2"]}>
                         <li id={styles["ingredient-list-1"]}>
                           <img src={checkorder} alt="checklist-order" /> &nbsp; 1 Shot of Coffee
                         </li>
@@ -181,7 +181,7 @@ class Home extends Component {
                     </div>
                     <div className={styles["cont-price-2"]}>
                       <h1 id={styles["price-2"]}>IDR 30.000</h1>
-                      <button type="button" className="btn btn-outline-warning" id={styles["order-now-2"]}>
+                      <button button type="button" className={`btn btn-outline-warning ${styles["btn-order"]} `} id={styles["order-now-2"]}>
                         Select
                       </button>
                     </div>
@@ -192,7 +192,7 @@ class Home extends Component {
                     <img className={styles["image-menu"]} src={wings} alt="Chicken-Wings" />
                     <h1 id={styles["title-menu"]}>Chicken-Wings</h1>
                     <div className="container" id={styles["ingredient"]}>
-                      <ol id={styles["ingredient-list-3"]}>
+                      <ol className={styles["ol-list-1"]} id={styles["ingredient-list-3"]}>
                         <li id={styles["ingredient-list-1"]}>
                           <img src={checkorder} alt="checklist-order" /> &nbsp; Wings
                         </li>
@@ -215,7 +215,7 @@ class Home extends Component {
                     </div>
                     <div className={styles["cont-price-3"]}>
                       <h1 id={styles["price-3"]}>IDR 40.000</h1>
-                      <button type="button" className="btn btn-outline-warning" id={styles["order-now-3"]}>
+                      <button type="button" className={`btn btn-outline-warning ${styles["btn-order"]} `} id={styles["order-now-3"]}>
                         Select
                       </button>
                     </div>
@@ -225,7 +225,7 @@ class Home extends Component {
             </div>
           </div>
         </section>
-        <section>
+        <section className={styles["cont-visit-us"]}>
           <div className="container" id={styles["cont-visit-us"]}>
             <h1 id={styles["visit-us"]}>Visit Our Store in the Spot on the Map Below</h1>
             <p id={styles["see-you"]}>See our store in every city on the spot and spen your good day there. See you soon!</p>
@@ -255,17 +255,13 @@ class Home extends Component {
             </div>
           </div>
         </section>
-        <section>
+        <section className={`container ${styles["section-love-cost"]}`}>
           <div className={`container ${styles["cont-loved-cost"]}`}>
-            <div className="row" id={styles["row-loved-cost"]}>
-              <div className="col-6">
-                <h1 id={styles["loved-by-costumer"]}>Loved by Thousands of Happy Customer</h1>
-                <p className={styles["story-cost"]}>These are the stories of our customers who have visited us with great pleasure.</p>
-              </div>
-            </div>
+            <h1 id={styles["loved-by-costumer"]}>Loved by Thousands of Happy Customer</h1>
+            <p className={styles["story-cost"]}>These are the stories of our customers who have visited us with great pleasure.</p>
           </div>
         </section>
-        <section>
+        <section className={`container ${styles["section-comment"]}`}>
           <div className={`container`}>
             <div className="row" id={styles["comment-user"]}>
               <div className="col-3 md-col-2">
@@ -302,14 +298,14 @@ class Home extends Component {
                   </div>
                 </div>
               </div>
-              <div className="col-3 md-col-2">
+              <div className={`col-3 md-col-2 ${styles["col-kim"]}`}>
                 <div className={`card ${styles["card-profile"]}`}>
                   <div className="container">
                     <div className={styles["header"]}>
                       <img className={styles["image-profile"]} src={kim} alt="Kim-Young-Jou" />
                       <h1 className={styles["name-kim"]}>Kim Young Jou</h1>
                       <p className={styles["from-kim"]}>Seoul, South Korea</p>
-                      <p className={styles["rating"]}>
+                      <p className={styles["rating-kim"]}>
                         4.5
                         <img className={styles["star"]} src={star} alt="Yellow-Star" />
                       </p>
@@ -353,8 +349,8 @@ class Home extends Component {
             </aside>
           </div>
         </section>
-        <footer>
-          <Footer />
+        <footer id={styles["cont-footer"]}>
+          <Footerhome />
         </footer>
       </Fragment>
     );

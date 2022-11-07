@@ -2,19 +2,20 @@ import React, { Component, Fragment } from "react";
 import styles from "../styles/Login.module.css";
 import Footer from "../Component/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import { TabTitle } from "../utils/General-funct.js";
 import withNavigate from "../utils/withNavigate";
 import { Link } from "react-router-dom";
+// import { TabTitle } from "../utils/General-funct.js";
 
 // Import Images
 import background from "../assets/images/login-bg.png";
 import logo from "../assets/images/coffee-logo.png";
 import google from "../assets/images/google-logo-png-suite-everything-you-need-know-about-google-newest-0 2.png";
 
-// const Login = () => {
-//   TabTitle("Login - Coffee Gayoe");
-
 class Login extends Component {
+  state = {
+    isPwdShown: true,
+  };
+
   render() {
     return (
       <Fragment>
@@ -46,9 +47,24 @@ class Login extends Component {
                   </form>
                   <form>
                     <label className={styles["input-text"]}>Password :</label> <br />
-                    <input className={styles["input-login"]} type="text" placeholder="Enter your password" />
+                    <input className={styles["input-login"]} type={this.state.isPwdShown ? "text" : "password"} placeholder="Enter your password" />
+                    <p>
+                      Show Password{" "}
+                      <input
+                        type="checkbox"
+                        defaultChecked={true}
+                        onChange={() => {
+                          this.setState((prevState) => ({
+                            isPwdShown: prevState.isPwdShown ? false : true,
+                          }));
+                        }}
+                      ></input>{" "}
+                    </p>
                   </form>
-                  <p className={styles["forgot-text"]}> Forgot Password ?</p>
+                  <p className={styles["forgot-text"]} onClick={() => this.props.navigate("/forgot")}>
+                    {" "}
+                    Forgot Password ?
+                  </p>
 
                   <button className={`btn btn-warning ${styles["btn-login"]}`} onClick={() => this.props.navigate("/profile")}>
                     {" "}
@@ -63,17 +79,6 @@ class Login extends Component {
                 </div>
               </div>
             </div>
-          </div>
-          <div className={`container ${styles["cont-card-promo"]}`}>
-            <section className={` card ${styles["card-promo"]}`}>
-              <div className={`container ${styles["cont-promo"]}`}>
-                <h1 className={styles["get-card"]}>Get your member card now!</h1>
-                <p>Let's join with our member and enjoy the deals.</p>
-                <span className={styles["create"]}>
-                  <button className={`btn btn-warning ${styles["button"]}`}>Create Now</button>
-                </span>
-              </div>
-            </section>
           </div>
         </main>
 

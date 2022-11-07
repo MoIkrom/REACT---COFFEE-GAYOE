@@ -1,12 +1,12 @@
 import React from "react";
-import styles from "../styles/Footer.module.css";
+import styles from "../styles/Footer-Home.module.css";
 
 import icon_instagram from "../assets/images/Instagram.png";
 import icon_facebook from "../assets/images/Facebook.png";
 import icon_twitter from "../assets/images/Twitter.png";
 import icon_coffee from "../assets/images/coffee-logo.png";
 
-function Footer() {
+function Footerhome() {
   return (
     <>
       <footer className={`container ${styles["cont-footer"]}`}>
@@ -61,4 +61,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default Footerhome;
