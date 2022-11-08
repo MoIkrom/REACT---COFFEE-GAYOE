@@ -115,11 +115,18 @@ footer {
   }
   #preview {
     margin: 0px;
+    font-size: 12px;
+    width: 191px;
   }
   /* #list-footer {
     position: relative;
     left: 10px;
   } */
+  #cont-footer-right {
+    margin: 0px !important;
+    position: relative;
+    left: 19rem;
+  }
 }
 
 /* Responsive Resolution 1024 */

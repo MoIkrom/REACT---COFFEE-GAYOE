@@ -65,7 +65,7 @@ function EditPromo() {
           <div className={`container`}>
             <div className={`row ${["detail-jumbotron"]}`}>
               <div className={`container ${styles["cont-email"]}`}>
-                <div className="container">
+                <div className={`container ${styles["cont-right"]}`}>
                   <div className={styles["placeholder"]}>
                     <p className={styles["title-name"]}> Name :</p>
                     <input className={styles["input"]} type="text" />
@@ -104,7 +104,7 @@ function EditPromo() {
                     </div>
                   </div>
                   <div className={styles["placeholder"]}>
-                    <p className={styles["title-name"]}>Input delivery methods :</p>
+                    <p className={`${styles["title-name"]} ${styles["input-delivery"]}`}>Input delivery methods :</p>
                     <p className={`${styles["input"]} ${styles["click-size"]}`} />
                     Click methods you want to use for this promo
                     <hr className={styles["my-1"]} />

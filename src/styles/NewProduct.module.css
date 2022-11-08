@@ -223,3 +223,39 @@ body {
   color: #4f5665;
 }
 /* end main content */
+
+@media only screen and (max-width: 768px) {
+  #cont-footer-right {
+    font-family: "Rubik";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 30px;
+    color: #0b132a;
+    margin: 0px;
+    position: relative;
+    left: 71px;
+    width: 100px;
+  }
+  .fr {
+    margin-right: 0px;
+    height: 70px;
+    width: 150px;
+    position: relative;
+    left: 0px;
+  }
+  #preview {
+    margin: 0px;
+    font-size: 12px;
+    width: 191px;
+  }
+  /* #list-footer {
+    position: relative;
+    left: 10px;
+  } */
+  #cont-footer-right {
+    margin: 0px !important;
+    position: relative;
+    left: 19rem;
+  }
+}

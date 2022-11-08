@@ -6,7 +6,11 @@ body {
   margin: 0;
   padding: 0;
 }
-
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .cont-footer {
   max-width: 1440px;
   margin: 0px;
@@ -343,3 +347,39 @@ body {
   color: #4f5665;
 }
 /* end main content */
+
+@media only screen and (max-width: 768px) {
+  .ellips {
+    position: relative;
+    left: -217px;
+    top: 65px;
+  }
+  .weight {
+    position: relative;
+    left: -268px;
+    top: 82px;
+  }
+  .input {
+    width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .btn-save-product {
+    width: 260px;
+  }
+  .title-name {
+    margin: 10px;
+  }
+  .jumbotron {
+    width: 300px;
+  }
+  .cont-right {
+    width: 300px;
+  }
+  .input-delivery {
+    margin-top: 90px;
+  }
+  .sect-1 {
+    margin-bottom: 280px;
+  }
+}

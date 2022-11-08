@@ -15,7 +15,7 @@ import google from "../assets/images/google-logo-png-suite-everything-you-need-k
 class Login extends Component {
   state = {
     // url: `http://localhost:8080/api/v1/auth`,
-    url: `${process.env.REACT_APP_BACKEND_HOST}/api/v1/auth`,
+    url: `${process.env.REACT_APP_BACKEND_HOST}api/v1/auth`,
     isPwdShown: false,
     email: "",
     password: "",
