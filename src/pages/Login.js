@@ -37,18 +37,11 @@ class Login extends Component {
         password: this.state.password,
       })
       .then((response) => {
-        console.log("login success");
-        console.log(response);
-        // const userData = {
-        //     token: response.data.result.data.token,
-        //     role: response.data.result.data.role,
-        // }
-        localStorage.setItem("token", response.data.result.data.token);
+        localStorage.setItem("email", response.data.result.data.email);
         localStorage.setItem("role", response.data.result.data.role);
-        // navigate("/");
+        localStorage.setItem("token", response.data.result.data.token);
       })
       .catch((err) => {
-        // alert("Email or Password is WRONG !!!");
         console.log(err);
       });
   };
@@ -86,7 +79,7 @@ class Login extends Component {
                     <label className={styles["input-text"]}>Password :</label> <br />
                     <input className={styles["input-login"]} type={this.state.isPwdShown ? "text" : "password"} placeholder="Enter your password" onChange={this.handlePasswords} />
                     <p>
-                      Show Password{" "}
+                      Show Password
                       <input
                         type="checkbox"
                         defaultChecked={false}

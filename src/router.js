@@ -11,21 +11,72 @@ import Detail from "./pages/Detail";
 import NewProduct from "./pages/NewProduct";
 import NewPromo from "./pages/NewPromo";
 import EditPromo from "./pages/EditPromo";
+import PrivateRoutes from "./Component/PrivateRoutes";
 
 const router = createBrowserRouter([
   // { path: "/", element: <App />, errorElement: <Error /> },
   { path: "/", element: <Home /> },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
-  { path: "/product", element: <Product /> },
-  { path: "/profile", element: <Profile /> },
+  {
+    path: "/profile",
+    element: (
+      <PrivateRoutes allowedRoles={["user", "admin"]}>
+        <Profile />
+      </PrivateRoutes>
+    ),
+  },
+  {
+    path: "/product",
+    element: (
+      <PrivateRoutes allowedRoles={["user", "admin"]}>
+        <Product />
+      </PrivateRoutes>
+    ),
+  },
   { path: "/forgot", element: <Forgot /> },
-  { path: "/history", element: <History /> },
-  { path: "/detail", element: <Detail /> },
+
+  {
+    path: "/history",
+    element: (
+      <PrivateRoutes allowedRoles={["user"]}>
+        <History />
+      </PrivateRoutes>
+    ),
+  },
+  {
+    path: "/detail-product",
+    element: (
+      <PrivateRoutes allowedRoles={["user", "admin"]}>
+        <Detail />
+      </PrivateRoutes>
+    ),
+  },
   { path: "/payment", element: <Payment /> },
-  { path: "/newproduct", element: <NewProduct /> },
-  { path: "/newpromo", element: <NewPromo /> },
-  { path: "/editpromo", element: <EditPromo /> },
+  {
+    path: "/new-product",
+    element: (
+      <PrivateRoutes allowedRoles={["admin"]}>
+        <NewProduct />
+      </PrivateRoutes>
+    ),
+  },
+  {
+    path: "/new-promo",
+    element: (
+      <PrivateRoutes allowedRoles={["admin"]}>
+        <NewPromo />
+      </PrivateRoutes>
+    ),
+  },
+  {
+    path: "/edit-promo",
+    element: (
+      <PrivateRoutes allowedRoles={["admin"]}>
+        <EditPromo />
+      </PrivateRoutes>
+    ),
+  },
 ]);
 
 export default router;

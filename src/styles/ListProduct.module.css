@@ -16,6 +16,12 @@
   -ms-border-radius: 30px;
   -o-border-radius: 30px;
 }
+.content-product:hover {
+  /* background-color: #6a4029; */
+  background-color: #ebe9d6;
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
 
 .list-product-image {
   top: -57px;
@@ -26,7 +32,7 @@
   overflow: hidden;
   border-radius: 70px;
 }
-.list-product-image:hover {
+/* .list-product-image:hover {
   top: -57px;
   left: 11px;
   width: 125px;
@@ -41,7 +47,7 @@
   -o-border-radius: 70px;
   -webkit-transform: scale(1.2);
   transform: scale(1.2);
-}
+} */
 
 .label-promo {
   position: absolute;

@@ -17,8 +17,11 @@ import google from "../assets/images/google-logo-png-suite-everything-you-need-k
 
 class Register extends Component {
   state = {
-    url: `${process.env.REACT_APP_BACKEND_HOST}/api/v1/users`,
+    url: `${process.env.REACT_APP_BACKEND_HOST}api/v1/users`,
     isPwdShown: false,
+    email: "",
+    password: "",
+    phone_number: "",
   };
   handleEmail = (e) => {
     this.setState({ email: e.target.value });
@@ -27,6 +30,10 @@ class Register extends Component {
   handlePasswords = (e) => {
     this.setState({ password: e.target.value });
   };
+  handlePhoneNumber = (e) => {
+    this.setState({ phone_number: e.target.value });
+  };
+
   handleApi = (e) => {
     e.preventDefault();
     console.log(this.state.email, this.state.password);
@@ -34,22 +41,17 @@ class Register extends Component {
       .post(this.state.url, {
         email: this.state.email,
         password: this.state.password,
+        phone_number: this.state.phone_number,
       })
       .then((response) => {
-        console.log("Register success");
-        console.log(response);
-        // const userData = {
-        //     token: response.data.result.data.token,
-        //     role: response.data.result.data.role,
-        // }
-        localStorage.setItem("token", response.data.result.data.token);
+        // localStorage.setItem("email", response.data.result.data.email);
         localStorage.setItem("role", response.data.result.data.role);
-        // navigate("/");
+        localStorage.setItem("token", response.data.result.data.token);
       })
       .catch((err) => {
-        // alert("Email or Password is WRONG !!!");
         console.log(err);
       });
+    // this.setState({ email: "", password: "", phone_number: "" });
   };
 
   render() {
@@ -79,11 +81,11 @@ class Register extends Component {
                 <div className={`container ${styles["cont-form-email"]} `}>
                   <form>
                     <label className={styles["input-text"]}>Email Address :</label> <br />
-                    <input className={styles["input-login"]} type="text" placeholder="Enter your email address" onChange={this.handleEmail} />
+                    <input className={styles["input-login"]} type="text" placeholder="Enter your email address" onChange={this.handleEmail} require />
                   </form>
                   <form>
                     <label className={styles["input-text"]}>Password :</label> <br />
-                    <input className={styles["input-login"]} type={this.state.isPwdShown ? "text" : "password"} placeholder="Enter your password" onChange={this.handlePasswords} />
+                    <input className={styles["input-login"]} type={this.state.isPwdShown ? "text" : "password"} placeholder="Enter your password" onChange={this.handlePasswords} require />
                     <p>
                       Show Password
                       <input
@@ -99,12 +101,12 @@ class Register extends Component {
                   </form>
                   <form>
                     <label className={styles["input-text"]}>Phone Number :</label> <br />
-                    <input className={styles["input-login"]} type="text" placeholder="Enter your phone number" />
+                    <input className={styles["input-login"]} type="text" placeholder="Enter your phone number" onChange={this.handlePhoneNumber} require />
                   </form>
                   <div className={`container ${styles["btn-google"]}`}>
-                    <button className={`btn btn-warning ${styles["btn-login"]}`} onClick={() => this.props.navigate("/login")}>
-                      {" "}
-                      Sign Up{" "}
+                    <button className={`btn btn-warning ${styles["btn-login"]}`}>
+                      {/* <button className={`btn btn-warning ${styles["btn-login"]}`} onClick={() => this.props.navigate("/login")}> */}
+                      Sign Up
                     </button>
                     <button className={`btn btn-outline-secondary ${styles["btn-login-2"]}`}>
                       <span>

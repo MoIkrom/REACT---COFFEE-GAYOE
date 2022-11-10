@@ -27,7 +27,7 @@ function Navbar() {
             <Link className={styles["no-underline"]} to={"/product"}>
               Product
             </Link>
-            <Link className={styles["no-underline"]} to={"/detail"}>
+            <Link className={styles["no-underline"]} to={"/detail-product"}>
               Your Cart
             </Link>
             <Link className={styles["no-underline"]} to={"/history"}>

@@ -53,7 +53,9 @@
 .product-right {
   width: 70%;
 }
-
+.cursor {
+  cursor: pointer;
+}
 .title-promo {
   font-family: "Rubik";
   font-style: normal;

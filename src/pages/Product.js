@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+// import withNavigate from "../utils/withNavigate";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import withParams from "../utils/withRouteParams";
+import withSearchParams from "../utils/withSearchParams";
 
 // import css
 import styles from "../styles/Product.module.css";
@@ -22,16 +25,22 @@ import beef from "../assets/images/beef-spagheti.png";
 class Product extends Component {
   state = {
     products: [],
-    url: `${process.env.REACT_APP_BACKEND_HOST}api/v1/product`,
-    // url: `http://localhost:8080/api/v1/product`,
-    // food: `http://localhost:5000/api/product/?category=foods`,
-    // coffee: `http://localhost:5000/api/product/?category=coffee`,
-    // non_coffee: `http://localhost:5000/api/product/?category=non_coffee`,
-    // addons: `http://localhost:5000/api/product/?category=add-on`,
+    favorite: `${process.env.REACT_APP_BACKEND_HOST}api/v1/product?sort=favorite&page=1&limit=12`,
+    food: `${process.env.REACT_APP_BACKEND_HOST}api/v1/product?category=food`,
+    coffee: `${process.env.REACT_APP_BACKEND_HOST}api/v1/product?category=Coffee`,
+    non_coffee: `${process.env.REACT_APP_BACKEND_HOST}api/v1/product?category=Non Coffee`,
+    addons: `${process.env.REACT_APP_BACKEND_HOST}api/v1/product?category=Add On`,
+    searchParams: {},
+  };
+
+  costing = (price) => {
+    return parseFloat(price)
+      .toFixed()
+      .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
   };
   componentDidMount() {
     axios
-      .get(this.state.url)
+      .get(this.state.favorite)
       .then((res) => {
         // console.log(res.data.data);
         this.setState({
@@ -40,6 +49,37 @@ class Product extends Component {
       })
       .catch((err) => console.log(err));
   }
+  onFavorite = () => {
+    axios
+      .get(this.state.favorite)
+      .then((res) => this.setState({ products: res.data.result.data }))
+      .catch((err) => console.log(err));
+  };
+
+  onCoffee = () => {
+    axios
+      .get(this.state.coffee)
+      .then((res) => this.setState({ products: res.data.data }))
+      .catch((err) => console.log(err));
+  };
+  onfood = () => {
+    axios
+      .get(this.state.food)
+      .then((res) => this.setState({ products: res.data.data }))
+      .catch((err) => console.log(err));
+  };
+  onNonCoffee = () => {
+    axios
+      .get(this.state.non_coffee)
+      .then((res) => this.setState({ products: res.data.data }))
+      .catch((err) => console.log(err));
+  };
+  onAddOns = () => {
+    axios
+      .get(this.state.addons)
+      .then((res) => this.setState({ products: res.data.data }))
+      .catch((err) => console.log(err));
+  };
   render() {
     return (
       <>
@@ -83,27 +123,97 @@ class Product extends Component {
 
           <aside className={`${styles["product-right"]} d-flex flex-column py-4`}>
             <div className={`${styles["nav-product"]} d-flex flex-row justify-content-around`}>
-              <span>
-                <Link to="">Favorite & Promo</Link>
+              <span
+                className={`${styles["cursor"]}`}
+                onClick={() => {
+                  this.onFavorite();
+                  this.setState(
+                    {
+                      searchParams: { sort: "favorite" },
+                    },
+
+                    () => {
+                      this.props.setSearchParams(this.state.searchParams);
+                    }
+                  );
+                }}
+              >
+                Favorite & Promo
               </span>
-              <span>
-                <Link to="">Coffee</Link>
+              <span
+                className={`${styles["cursor"]}`}
+                onClick={() => {
+                  this.onCoffee();
+                  this.setState(
+                    {
+                      searchParams: { sort: "coffee" },
+                    },
+
+                    () => {
+                      this.props.setSearchParams(this.state.searchParams);
+                    }
+                  );
+                }}
+              >
+                Coffee
               </span>
-              <span>
-                <Link to="">Non Coffee</Link>
+              <span
+                className={`${styles["cursor"]}`}
+                onClick={() => {
+                  this.onNonCoffee();
+                  this.setState(
+                    {
+                      searchParams: { sort: "non-coffee" },
+                    },
+
+                    () => {
+                      this.props.setSearchParams(this.state.searchParams);
+                    }
+                  );
+                }}
+              >
+                Non Coffee
               </span>
-              <span>
-                <Link to="">Foods</Link>
+              <span
+                className={`${styles["cursor"]}`}
+                onClick={() => {
+                  this.onfood();
+                  this.setState(
+                    {
+                      searchParams: { sort: "food" },
+                    },
+
+                    () => {
+                      this.props.setSearchParams(this.state.searchParams);
+                    }
+                  );
+                }}
+              >
+                Foods
               </span>
-              <span>
-                <Link to="">Add-on</Link>
+              <span
+                className={`${styles["cursor"]}`}
+                onClick={() => {
+                  this.onAddOns();
+                  this.setState(
+                    {
+                      searchParams: { sort: "add-ons" },
+                    },
+
+                    () => {
+                      this.props.setSearchParams(this.state.searchParams);
+                    }
+                  );
+                }}
+              >
+                Add-on
               </span>
             </div>
 
             <section className="container-fluid text-center ps-5 ms-4">
               <div className={`row ${styles["list-content"]} justify-content-start ${styles["gap-Row"]} ${styles["position-settings"]}`}>
                 {this.state.products.map((products) => (
-                  <CardProduct title={products.product_name} price={products.price} image={products.image} discount="10%" />
+                  <CardProduct title={products.product_name} price={`${"IDR"} ${this.costing(products.price)}`} image={products.image} discount="10%" />
                 ))}
 
                 {/* <CardProduct title="Chicken EIngs" price="IDR 24000" discount="10%" image={wings} />
@@ -137,4 +247,4 @@ class Product extends Component {
   }
 }
 
-export default Product;
+export default withSearchParams(withParams(Product));
