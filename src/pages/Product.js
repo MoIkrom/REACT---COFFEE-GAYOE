@@ -212,9 +212,21 @@ class Product extends Component {
 
             <section className="container-fluid text-center ps-5 ms-4">
               <div className={`row ${styles["list-content"]} justify-content-start ${styles["gap-Row"]} ${styles["position-settings"]}`}>
-                {this.state.products.map((products) => (
-                  <CardProduct title={products.product_name} price={`${"IDR"} ${this.costing(products.price)}`} image={products.image} discount="10%" />
-                ))}
+                {this.state.products.length > 0 ? (
+                  this.state.products.map((products) => {
+                    return <CardProduct title={products.product_name} price={`${"IDR"} ${this.costing(products.price)}`} image={products.image} discount="10%" />;
+                  })
+                ) : (
+                  <>
+                    <div className={styles["lds-ring"]}>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                    </div>
+                    <p className={styles["loading-text"]}>Loading</p>
+                  </>
+                )}
 
                 {/* <CardProduct title="Chicken EIngs" price="IDR 24000" discount="10%" image={wings} />
                 <CardProduct title="Ice Cream Hezelnut" price="IDR 30000" discount="15%" image={hezelnut} />
