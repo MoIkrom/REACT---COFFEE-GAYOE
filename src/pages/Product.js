@@ -3,6 +3,8 @@ import React, { Component } from "react";
 // import withNavigate from "../utils/withNavigate";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+// import Dropdown from "react-bootstrap/Dropdown";
+import Form from "react-bootstrap/Form";
 import withParams from "../utils/withRouteParams";
 import withSearchParams from "../utils/withSearchParams";
 
@@ -25,11 +27,13 @@ import beef from "../assets/images/beef-spagheti.png";
 class Product extends Component {
   state = {
     products: [],
-    favorite: `${process.env.REACT_APP_BACKEND_HOST}api/v1/product?sort=favorite&page=1&limit=12`,
-    food: `${process.env.REACT_APP_BACKEND_HOST}api/v1/product?category=food`,
-    coffee: `${process.env.REACT_APP_BACKEND_HOST}api/v1/product?category=Coffee`,
-    non_coffee: `${process.env.REACT_APP_BACKEND_HOST}api/v1/product?category=Non Coffee`,
-    addons: `${process.env.REACT_APP_BACKEND_HOST}api/v1/product?category=Add On`,
+    favorite: `${process.env.REACT_APP_BACKEND_HOST}api/v1/product?sort=favorite&sort=name&page=1&limit=4`,
+    food: `${process.env.REACT_APP_BACKEND_HOST}api/v1/product?category=food&sort=name&page=1&limit=4`,
+
+    coffee: `${process.env.REACT_APP_BACKEND_HOST}api/v1/product?category=Coffee&sort=name&page=1&limit=4`,
+    non_coffee: `${process.env.REACT_APP_BACKEND_HOST}api/v1/product?category=Non Coffee&sort=name&page=1&limit=4`,
+    addons: `${process.env.REACT_APP_BACKEND_HOST}api/v1/product?category=Add On&sort=name&page=1&limit=4`,
+    sort: `${process.env.REACT_APP_BACKEND_HOST}api/v1/product?sort=name&page=1&limit=4`,
     searchParams: {},
   };
 
@@ -38,6 +42,7 @@ class Product extends Component {
       .toFixed()
       .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
   };
+
   componentDidMount() {
     axios
       .get(this.state.favorite)
@@ -80,6 +85,14 @@ class Product extends Component {
       .then((res) => this.setState({ products: res.data.data }))
       .catch((err) => console.log(err));
   };
+
+  onSort = () => {
+    axios
+      .get(this.state.sort)
+      .then((res) => this.setState({ products: res.data.data }))
+      .catch((err) => console.log(err));
+  };
+
   render() {
     return (
       <>
@@ -209,6 +222,21 @@ class Product extends Component {
                 Add-on
               </span>
             </div>
+            <Form.Select className={styles["form-select"]} aria-label="Default select example">
+              <option className={styles["font-opt"]}> Sort by </option>
+              <option className={styles["font-opt"]} value="1">
+                Name
+              </option>
+              <option className={styles["font-opt"]} value="2">
+                Cheapest
+              </option>
+              <option className={styles["font-opt"]} value="3">
+                Pricy
+              </option>
+              <option className={styles["font-opt"]} value="4">
+                New Product
+              </option>
+            </Form.Select>
 
             <section className="container-fluid text-center ps-5 ms-4">
               <div className={`row ${styles["list-content"]} justify-content-start ${styles["gap-Row"]} ${styles["position-settings"]}`}>
@@ -241,6 +269,11 @@ class Product extends Component {
                 <CardProduct title="Fire Chicken" price="IDR 25000" discount="10%" image={fire} /> */}
               </div>
             </section>
+            <div className={`${styles["container"]} , ${styles["page"]}`}>
+              <button className={styles["btn-page"]}> prev</button>
+              <p className={styles["text-page"]}> Page 1 of 1</p>
+              <button className={styles["btn-page"]}> next</button>
+            </div>
           </aside>
         </section>
         {/* <section className=" text-center row d-flex justify-content-between flex-wrap">
