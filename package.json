@@ -29,7 +29,7 @@
       "react-app",
       "react-app/jest"
     ],
-    "parser": "react-scripts/node_modules/babel-eslint"
+    "parser": "react-scripts/node_modules/import {React},"
   },
   "browserslist": {
     "production": [
