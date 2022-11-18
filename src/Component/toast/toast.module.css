@@ -1,0 +1,9 @@
+.polite {
+  position: relative;
+  min-height: 200px;
+}
+.cont-toast {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

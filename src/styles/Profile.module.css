@@ -37,6 +37,10 @@ body {
   position: absolute;
   margin-top: 50px;
 }
+.cont-label {
+  display: flex;
+  flex-direction: column;
+}
 
 .card {
   position: absolute;
@@ -85,9 +89,6 @@ body {
   vertical-align: Top;
   color: #9f9f9f;
   margin-bottom: 10px;
-}
-.my-1 {
-  margin-bottom: 30px;
 }
 .save-btn {
   color: #ffffff;
@@ -207,9 +208,6 @@ body {
   position: relative;
   left: 20px;
 }
-.my-1 {
-  width: 270px;
-}
 .card-address {
   width: 700px;
   height: 350px;
@@ -291,7 +289,6 @@ body {
   color: #4f5665;
   position: relative;
   left: 48px;
-  top: 51px;
   width: 210px;
 }
 
@@ -342,10 +339,9 @@ body {
   margin-top: 4px;
 }
 .my-1 {
-  margin-top: -15px;
+  width: 270px;
   color: #000000;
   align-content: center;
-  /* width: 1px; */
   text-decoration: underline;
 }
 #mobile-number {
@@ -367,6 +363,33 @@ body {
 }
 .display-6 {
   width: 200px;
+}
+.hidden {
+  display: none;
+}
+.title-contact {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}
+.editicon {
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+  margin-left: 5rem;
+  position: relative;
+  top: -15px;
+}
+.cursor {
+  cursor: pointer;
+}
+.editicon-right {
+  position: relative;
+  top: 15px;
+  width: 35px;
+  right: 15px;
 }
 #background-jumbotron {
   background-image: none;
