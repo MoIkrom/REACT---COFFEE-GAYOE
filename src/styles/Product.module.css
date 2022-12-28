@@ -9,7 +9,9 @@
   line-height: 24px;
   color: #0b132a;
 }
-
+.navs {
+  padding: 10px;
+}
 .center-nav a {
   font-family: "Rubik";
   font-style: normal;
@@ -227,9 +229,10 @@
 }
 .page {
   position: relative;
-  top: 15rem;
+  top: 1rem;
   display: flex;
   justify-content: space-between;
+  left: -75px;
 }
 .loading {
   width: 100%;
@@ -238,6 +241,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+hr {
+  margin: 0 !important;
+}
+.btn-null {
+  background-color: #4f5665;
 }
 .btn-page {
   padding: 10px;

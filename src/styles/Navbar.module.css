@@ -4,6 +4,12 @@
   max-width: 1440px;
   /* margin-bottom: 10px; */
 }
+.left-nav {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  padding-left: 20px;
+}
 .left-nav span {
   font-family: "Rubik";
   font-style: normal;
@@ -12,26 +18,111 @@
   line-height: 24px;
   color: #0b132a;
 }
-
-.center-nav a {
-  font-family: "Rubik";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
-  color: #4f5665;
+.right-nav {
+  align-items: center;
+  gap: 25px;
+  width: 300px;
 }
 
-.center-nav a:hover {
-  transform: scale(1.5);
-  color: #9e684b;
+.center-nav {
+  gap: 2rem;
 }
 
 .no-underline {
   text-decoration: none;
   position: relative;
-
+  border: none;
+  background-color: #ffffff;
   padding: 10px 20px;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+}
+.no-underline:hover {
+  text-decoration: none;
+  position: relative;
+  border: none;
+  background-color: #ffffff;
+  padding: 10px 20px;
+  transform: scale(1.5);
+  color: #9e684b;
+}
+.login {
+  background-color: #ffba33;
+  border: none;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #6a4029;
+  height: 40px;
+  width: 130px;
+}
+.login:hover {
+  background-color: #ffba33;
+  border: none;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #6a4029;
+  height: 40px;
+  width: 130px;
+  transform: scale(1.1) !important;
+}
+.login:active {
+  background-color: #ffba33 !important;
+  border: none;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #6a4029;
+  height: 40px;
+  width: 130px;
+  transform: scale(1.1) !important;
+}
+.sign-up {
+  background-color: #6a4029;
+  border: none;
+  height: 40px;
+  width: 130px;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ffffff;
+}
+.sign-up:hover {
+  background-color: #6a4029;
+  border: none;
+  height: 40px;
+  width: 130px;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ffffff;
+  transform: scale(1.1) !important;
+}
+.sign-up:active {
+  background-color: #6a4029 !important;
+  border: none;
+  height: 40px;
+  width: 130px;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ffffff;
+  transform: scale(1.1) !important;
 }
 
 @media only screen and (max-width: 768px) {

@@ -15,6 +15,9 @@ body {
   background-size: cover;
   height: 900px;
 }
+.navs {
+  padding: 10px;
+}
 
 .cont-title {
   position: relative;

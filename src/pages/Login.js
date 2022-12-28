@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-// import { TabTitle } from "../utils/General-funct.js";
+import { TabTitle } from "../utils/General-funct.js";
 
 // Import Images
 import background from "../assets/images/login-bg-1.png";
@@ -19,6 +19,7 @@ import google from "../assets/images/google-logo-png-suite-everything-you-need-k
 
 // class Login extends Component {
 function Login({ navigate }) {
+  TabTitle("Login | Coffee Gayoe");
   // const dispatch = useDispatch();
   const [isPwdShown, setIsPwdShown] = useState(false);
   // const [isLoading, setIsLoading] = useState(false);

@@ -28,11 +28,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/product",
-    element: (
-      <PrivateRoutes allowedRoles={["user", "admin"]}>
-        <Product />
-      </PrivateRoutes>
-    ),
+    element: <Product />,
   },
   { path: "/forgot", element: <Forgot /> },
 
@@ -45,7 +41,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/detail-product",
+    path: "/detail-product/:id",
     element: (
       <PrivateRoutes allowedRoles={["user", "admin"]}>
         <Detail />

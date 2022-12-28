@@ -18,9 +18,9 @@ class History extends Component {
   render() {
     return (
       <Fragment>
-        <header>
+        <div className={`${styles["navs"]}`}>
           <Navbar />
-        </header>
+        </div>
         <main className={styles["main-content"]}>
           <div className={`jumbotron ${styles["jumb-title"]}`}>
             <div className={`container ${styles["cont-title"]}`}>
