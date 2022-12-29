@@ -48,7 +48,14 @@ const router = createBrowserRouter([
       </PrivateRoutes>
     ),
   },
-  { path: "/payment", element: <Payment /> },
+  {
+    path: "/cart",
+    element: (
+      <PrivateRoutes allowedRoles={["user"]}>
+        <Payment />
+      </PrivateRoutes>
+    ),
+  },
   {
     path: "/new-product",
     element: (

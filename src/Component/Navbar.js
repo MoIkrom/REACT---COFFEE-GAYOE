@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getProfile } from "../utils/api";
 
 // import css navbar
 import styles from "../styles/Navbar.module.css";
@@ -14,11 +15,11 @@ import styles from "../styles/Navbar.module.css";
 import icon_coffee from "../assets/images/coffee-logo.png";
 import icon_search from "../assets/images/search.png";
 import icon_chat from "../assets/images/chat.png";
-import icon_profile from "../assets/images/parker.jpeg";
+import icon_profile from "../assets/images/default-img.png";
 import Button from "react-bootstrap/Button";
 
 function Navbar() {
-  // const [email, setEmail] = useState("");
+  const [profile, setProfile] = useState("");
   const navigate = useNavigate();
   const toLogin = () => {
     navigate("/login");
@@ -33,7 +34,7 @@ function Navbar() {
     navigate("/");
   };
   const toDetailProduct = () => {
-    navigate("/detail-product");
+    navigate("/cart");
   };
   const toHistory = () => {
     navigate("/history");
@@ -45,9 +46,23 @@ function Navbar() {
       position: toast.POSITION.TOP_CENTER,
       autoClose: 2000,
     });
-
-    console.log("tidak masuk");
   };
+
+  const getProfileUser = () => {
+    const token = localStorage.getItem("token");
+    getProfile(token)
+      .then((res) => {
+        setProfile(res.data.result.result[0]);
+        console.log(res.data.result.result[0]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getProfileUser();
+  }, []);
 
   return (
     <>
@@ -92,7 +107,7 @@ function Navbar() {
               </a>
 
               <Link className={styles["no-underline"]} to={"/profile"}>
-                <img className="rounded-circle" src={icon_profile} alt="" widht="27px" height="27px" />
+                <img className="rounded-circle" src={profile.image === null ? icon_profile : profile.image} alt="" widht="50px" height="50px" />
               </Link>
             </div>
           )}

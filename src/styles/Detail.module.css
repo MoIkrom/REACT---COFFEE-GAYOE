@@ -7,6 +7,56 @@ body {
   padding: 0;
 }
 
+/* Start Loading */
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  left: 646px;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #ffcb65;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #ffcb65 transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loading-text {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 26px;
+  display: flex;
+  justify-content: center;
+}
+
+/* end Loading */
+
 .cold-brew {
   display: flex;
   justify-content: space-between;
@@ -47,31 +97,95 @@ body {
   font-weight: 400;
 }
 
+.cont-size {
+  background-color: #ffba33;
+  cursor: pointer;
+  width: 50px;
+  border-radius: 30px;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+}
+.cont-size:hover {
+  background-color: #6a4029;
+  cursor: pointer;
+  width: 50px;
+  border-radius: 30px;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+}
+.cont-sizes {
+  transform: scale(1.1);
+  cursor: pointer;
+  background-color: #6a4029;
+  color: #ffffff;
+  width: 50px;
+  border-radius: 30px;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+}
+.cont-size:visited {
+  transform: scale(1.1);
+  cursor: pointer;
+  background-color: #6a4029;
+  color: #ffffff;
+}
+.cursor {
+  cursor: pointer;
+}
+.cursors {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.blacks {
+  color: #000000;
+  font-weight: 700;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.blacks:hover {
+  color: #000000;
+  font-weight: 700;
+  font-size: 18px;
+}
+.box {
+  width: 40px;
+  height: 40px;
+}
 .bgyel {
   height: 50px;
   width: 50px;
   margin: 5px;
+  cursor: pointer;
 }
+
 .regular {
-  position: relative;
-  left: -39px;
-  top: 2px;
   font-size: 23px;
   font-weight: 700;
+  position: relative;
+  top: 8px;
 }
 .large {
-  position: relative;
-  left: -37px;
-  top: 2px;
   font-size: 23px;
   font-weight: 700;
+  position: relative;
+  top: 8px;
 }
 .xl {
-  position: relative;
-  left: -43px;
-  top: 2px;
   font-size: 23px;
   font-weight: 700;
+  position: relative;
+  top: 8px;
 }
 .choose {
   font-family: Poppins;
@@ -94,7 +208,6 @@ body {
   align-items: center;
   position: relative;
   top: 40px;
-  left: 20px;
 }
 
 /*  desc */
@@ -190,6 +303,30 @@ body {
   color: #ffffff;
   margin-right: 10px;
 }
+.btn-D {
+  background-color: #6a4029;
+  font-family: rubik;
+  font-style: medium;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  line-height: 139%;
+  vertical-align: Top;
+  color: #ffffff;
+  margin-right: 10px;
+}
+.btn-D:hover {
+  background-color: #6a4029;
+  font-family: rubik;
+  font-style: medium;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  line-height: 139%;
+  vertical-align: Top;
+  color: #ffffff;
+  margin-right: 10px;
+}
 .btn-del {
   font-family: rubik;
   font-style: medium;
@@ -201,6 +338,33 @@ body {
   color: #a3a3a3;
   margin-right: 10px;
 }
+.btn-dels {
+  font-family: rubik;
+  font-style: medium;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  line-height: 139%;
+  vertical-align: Top;
+  background-color: #6a4029;
+  margin-right: 10px;
+  color: #ffffff;
+}
+.btn-dels:hover {
+  color: #ffffff;
+  background-color: #6a4029;
+}
+.btn-del:hover {
+  font-family: rubik;
+  font-style: medium;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  line-height: 139%;
+  vertical-align: Top;
+  background-color: #6a4029;
+  margin-right: 10px;
+}
 .btn-P {
   font-family: rubik;
   font-style: medium;
@@ -210,6 +374,16 @@ body {
   line-height: 139%;
   vertical-align: Top;
   color: #a3a3a3;
+}
+.btn-P:hover {
+  font-family: rubik;
+  font-style: medium;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  line-height: 139%;
+  vertical-align: Top;
+  background-color: #6a4029;
 }
 .set-time {
   font-family: rubik;
@@ -241,6 +415,9 @@ body {
 }
 .card-down {
   border-radius: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 .image-coffee {
   border-radius: 70px;

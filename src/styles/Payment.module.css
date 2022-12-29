@@ -109,15 +109,16 @@
 }
 
 .icon_bank {
-  background-color: #6a4029;
+  height: 23px;
+  border-radius: 0px !important;
 }
 .icon_card {
-  background-color: #f47b0a;
+  height: 23px;
+  border-radius: 0px !important;
 }
 .icon_cod {
-  background-color: #ffba33;
-  height: 43px;
-  width: 43px;
+  height: 23px;
+  border-radius: 0px !important;
 }
 
 .address-detail {
@@ -188,7 +189,36 @@
   background-color: #362115;
   width: 20px;
 }
+.cursor {
+  cursor: pointer;
+}
 
+.checkedOuter {
+  width: 20;
+  height: 20;
+  border-color: "#6A4029";
+  border-width: 2;
+  border-radius: 100;
+  display: "flex";
+  justify-content: "center";
+  align-items: "center";
+}
+.checkedInner {
+  background-color: "#6A4029";
+  width: 10;
+  height: 10;
+  border-radius: 50;
+}
+.unchekedOuter {
+  width: 20;
+  height: 20;
+  border-color: "#9F9F9F";
+  border-width: 2;
+  border-radius: 100;
+  display: "flex";
+  justify-content: "center";
+  align-items: "center";
+}
 .confirm-pay {
   display: flex;
   justify-content: center;
@@ -237,7 +267,40 @@
   width: 100%;
 }
 
-.data-content-payment > span {
+.data-content-payment {
+  background-color: #f47b0a;
+  width: 51px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 49px;
+  border-radius: 10px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+.data-content-payment2 {
+  background-color: #6a4029;
+  width: 51px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 49px;
+  border-radius: 10px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+.data-content-payment3 {
+  background-color: #ffba33;
+  width: 51px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 49px;
+  border-radius: 10px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+.spans {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
@@ -247,6 +310,7 @@
 
 .styling-data-radio {
   margin: 10px 0;
+  padding-left: 20px;
 }
 
 .form-check-input[type="radio"] {

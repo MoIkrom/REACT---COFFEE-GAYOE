@@ -37,6 +37,10 @@ body {
   text-align: center;
 }
 
+.contHist {
+  overflow-x: hidden;
+  height: 575px;
+}
 .sub-title {
   font-family: rubik;
   font-style: regular;

@@ -13,15 +13,26 @@ export const signup = (body) => {
   return axios.post(URL, body);
 };
 
-export const getProfile = () => {
-  // const login = JSON.parse(localStorage.getItem("login"));
-  // const token = login.token;
-  // console.log(token);
+// Axios History
+export const historyTransaction = (token) => {
+  return axios.get(`${HOST}api/v1/transactions/history`, {
+    headers: {
+      "x-access-token": token,
+    },
+  });
+};
+// Axios Transactions
+export const transactions = (token, body) => {
+  return axios.post(`${HOST}api/v1/transactions`, body, {
+    headers: {
+      "x-access-token": token,
+    },
+  });
+};
 
-  const token = localStorage.getItem("token");
-
-  const URL = HOST + PREFIKS + "users";
-  return axios.get(URL, { header: { "x-access-token": token } });
+export const getProfile = (token) => {
+  const URL = HOST + PREFIKS + "users/profile";
+  return axios.get(URL, { headers: { "x-access-token": token } });
 
   // return axios.get(URL, {
   //   headers: {

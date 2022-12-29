@@ -13,7 +13,7 @@ function Card(props) {
         <div className="col">
           <div className={`card ${styles["card-style"]}`}>
             <div className={styles["item-content"]}>
-              <img className={styles["images"]} src={props.image} alt="tomato" />
+              <img className={styles["images"]} src={props.image} alt="Product_Image" />
               <div className={styles["desc-card"]}>
                 <h1 className={styles["title-card"]}>{props.title}</h1>
                 <p className={styles["price-card"]}>

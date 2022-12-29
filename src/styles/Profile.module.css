@@ -309,11 +309,7 @@ body {
   line-height: 38px;
   align-content: left;
   font-weight: 700;
-  /* padding: 10px; */
   color: #4f5665;
-  position: relative;
-  left: 22px;
-  top: 10px;
   margin-bottom: 20px;
 }
 .lead-2 {
@@ -370,9 +366,17 @@ body {
 .title-contact {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-content: center;
+  justify-content: space-around;
+  gap: 410px;
   align-items: center;
+  padding-top: 20px;
+}
+.edits {
+  margin: 0px;
+  font-family: poppins;
+  font-style: medium;
+  font-size: 18px;
+  color: #6a4029;
 }
 .editicon {
   display: flex;
@@ -386,13 +390,39 @@ body {
   cursor: pointer;
 }
 .editicon-right {
-  position: relative;
-  top: 15px;
   width: 35px;
-  right: 15px;
+}
+.editicon-down {
+  position: relative;
+  left: 144px;
+  top: -40px;
+  width: 52px;
 }
 #background-jumbotron {
   background-image: none;
+}
+.contedit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: -8px;
+  cursor: pointer;
+}
+.none {
+  display: none;
+}
+.tombolsave {
+  width: 100px;
+  position: relative;
+  left: 575px;
+  background: #5cb85c;
+  border: 1px solid;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  top: -30px;
 }
 
 .text-user {
