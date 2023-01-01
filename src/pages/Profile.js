@@ -7,6 +7,7 @@ import { TabTitle } from "../utils/General-funct.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import { useNavigate } from "react-router-dom";
 import { getProfile } from "../utils/api";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -16,7 +17,6 @@ import styles from "../styles/Profile.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
-import withNavigate from "../utils/withNavigate";
 import axios from "axios";
 
 import Button from "react-bootstrap/Button";
@@ -31,9 +31,14 @@ import icon_profile from "../assets/images/default-img.png";
 //   TabTitle("Profile - Coffee Gayoe");
 
 function Profile() {
-  TabTitle("History - Coffee Gayoe");
+  TabTitle("Profile - Coffee Gayoe");
+
+  const navigate = useNavigate();
+
   const [profile, setProfile] = useState("");
+  const [showModal, setShowModal] = useState(false);
   const [show, setShow] = useState(true);
+  const [show2, setShow2] = useState(true);
   const [showedit, setShowEdit] = useState(true);
   const [firstName, setFirstName] = useState(profile.firstname);
   const [lastName, setLastName] = useState(profile.lastname);
@@ -44,7 +49,7 @@ function Profile() {
   const [filePath, setFilePath] = useState(profile.image);
   const [image, setImage] = useState("");
   const [editPhoto, setEditPhoto] = useState(false);
-  const [address, setAddress] = useState(profile.addres);
+  // const [address, setAddress] = useState(profile.addres);
   const [edit, setEdit] = useState(false);
   const [deps, setDeps] = useState("");
   const [loading, setLoading] = useState(false);
@@ -52,11 +57,13 @@ function Profile() {
   const [disabled, setDisabled] = useState(true);
 
   const [isEdit, setIsEdit] = useState(true);
+  const [isEdit2, setIsEdit2] = useState(true);
   const [saved, setSaved] = useState(false);
   const [emailAddress, setEmailAddress] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
-  const [deliveryAddress, setDeliveryAddress] = useState("");
+  const [deliveryAddress, setDeliveryAddress] = useState(profile.addres);
   const [showInput, setShowInput] = useState(true);
+  const [historiedData, setHistoriedData] = useState("");
 
   const getProfileUser = () => {
     const token = localStorage.getItem("token");
@@ -68,9 +75,24 @@ function Profile() {
         console.log(err);
       });
   };
+  const dataHistory = () => {
+    const token = localStorage.getItem("token");
+    axios
+      .get(`https://coffee-gayoe.vercel.app/api/v1/transactions/history`, { headers: { "x-access-token": token } })
+      .then((res) => {
+        setHistoriedData(res.data.result.data);
+        console.log(res.data.result.data);
+        // console.log(`ini adalah data history: ${historiedData}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     getProfileUser();
+    dataHistory();
+    // console.log(profile.image);
   }, []);
 
   // editData => fungsi untuk memasukan data kedalam database ketika di click button save change
@@ -79,12 +101,12 @@ function Profile() {
     e.preventDefault();
     let formdata = new FormData();
     if (image) formdata.append("image", image);
-    // if (address) formdata.append("addres", address);
-    // if (displayName) formdata.append("displayname", displayName);
-    // if (phone_number) formdata.append("phone_number", phone_number);
-    // if (firstName) formdata.append("firstname", firstName);
-    // if (lastName) formdata.append("lastname", lastName);
-    // if (gender) formdata.append("gender", gender);
+    if (deliveryAddress) formdata.append("addres", deliveryAddress);
+    if (displayName) formdata.append("display_name", displayName);
+    if (phone_number) formdata.append("phone_number", phone_number);
+    if (firstName) formdata.append("firstname", firstName);
+    if (lastName) formdata.append("lastname", lastName);
+    if (gender) formdata.append("gender", gender);
     // for (var pair of formdata.entries()) {
     //   console.log(pair[0] + " - " + pair[1]);
     // }
@@ -96,9 +118,9 @@ function Profile() {
         setLoading(false);
         setEdit(true);
         window.location.reload();
-        console.log("uda di kirim");
       })
       .catch((err) => {
+        console.log(err.response.data.msg);
         toast.error(err, {
           position: toast.POSITION.TOP_RIGHT,
         });
@@ -108,14 +130,18 @@ function Profile() {
     // setBody({ ...body, delivery_address: e.target.value });
     setDeliveryAddress(e.target.value);
   };
+  // const handlelastname= (e) => {
+  //   // setBody({ ...body, delivery_address: e.target.value });
+  //   setDeliveryAddress(e.target.value);
+  // };
 
   // get value input
   const valueEmail = (e) => {
     setEmail(e.target.value);
   };
-  const valueAddress = (e) => {
-    setAddress(e.target.value);
-  };
+  // const valueAddress = (e) => {
+  //   setAddress(e.target.value);
+  // };
   const valuePhone_number = (e) => {
     setPhone_number(e.target.value);
   };
@@ -131,6 +157,7 @@ function Profile() {
   const valueGender = (e) => {
     setGender(e.target.value);
   };
+
   // const onEditContacts = () => {
   //   set(isEditContact: false });
   // };
@@ -158,29 +185,30 @@ function Profile() {
     });
   };
 
-  //   const handleLogout = () => {
-  //    axios
-  //      .delete(urlLogout, { headers: { "x-access-token": this.state.token } })
-  //      .then((response) => {
-  //        console.log(response.data);
-  //      })
-  //      .catch((err) => {
-  //        console.log(err);
-  //      });
-  //  };
+  // const handleLogout = () => {
+  //   axios
+  //     .delete(urlLogout, { headers: { "x-access-token": this.state.token } })
+  //     .then((response) => {
+  //       console.log(response.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
   const deleteToken = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("role");
   };
-  const handleClose = () => {
-    setShow(false);
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
-  const handleShow = () => {
-    setShow(true);
+  const handleShowModal = () => {
+    setShowModal(true);
   };
 
   //  onClickHandler = (to) => {
   //   navigate(to);
-  // };
+  // };set
 
   return (
     <>
@@ -191,181 +219,209 @@ function Profile() {
         <div className={`container`}>
           <h1 className={styles["text-user"]}>User Profile</h1>
         </div>
-        <section className={`container ${styles["cont-card"]}`}>
-          <div className={`card ${styles["card-body"]}`}>
-            <img className={styles["card-img-top"]} src={image !== "" ? image : profile.image === null ? icon_profile : profile.image} alt="profile_picture" />
-            <label className={styles.editicon} htmlFor="files" id="lable_file">
-              <img className={styles["cursor"]} src={icon_edit} alt="icon_edit" />
-            </label>
-            <input id="files" type="file" name="file" onChange={inputImage} className={styles.hidden} />
-            <div className={`container ${styles["detail-image"]}`}>
-              <p className={styles["card-name"]}>{profile.display_name}</p>
-              <p className={styles["card-email"]}>{profile.email}</p>
+        <div className={` container d-flex ${styles["cont-one"]} `}>
+          <section className={`container ${styles["cont-card"]}`}>
+            <div className={`card ${styles["card-body"]}`}>
+              <img className={styles["card-img-top"]} src={profile.image === null ? icon_profile : image !== "" ? image : profile.image} alt="profile_picture" />
+              <label className={styles.editicon} htmlFor="files" id="lable_file">
+                <img className={styles["cursor"]} src={icon_edit} alt="icon_edit" />
+              </label>
+              <input id="files" type="file" name="file" onChange={inputImage} className={styles.hidden} />
+              <div className={`container ${styles["detail-image"]}`}>
+                <p className={styles["card-name"]}>{profile.display_name}</p>
+                <p className={styles["card-email"]}>{profile.email}</p>
+              </div>
+
+              <p className={styles["ordered"]}>Has been ordered {historiedData.length} products</p>
             </div>
-
-            <p className={styles["ordered"]}>Has been ordered 15 products</p>
-          </div>
-          <div></div>
-          <div className={`card ${styles["card-address"]}`}>
-            <div className={styles["title-contact"]}>
-              <h2 className={styles["display-5"]}>contacts</h2>
-              <div
-                className={`${styles.contedit}`}
-                onClick={(e) => {
-                  setShow(false);
-                  e.preventDefault();
-                  setIsEdit(!isEdit);
-                }}
-              >
-                <img className={show === true ? `${styles["editicon-right"]} ${styles["cursor"]}` : `${styles.none}`} src={icon_edit} alt="icon_edit" />
-
-                <p className={show === true ? `${styles.edits} ${styles["cursor"]}` : `${styles.none}`}>Edit</p>
-              </div>
-            </div>
-
-            <form className={`container ${styles["cont-email"]}`}>
-              <div className={`container ${styles["cont-label"]}`}>
-                <label htmlFor="email">Email address :</label>
-                <input type="email" disabled value={profile.email} />
-                <hr className={styles["my-1"]} />
-              </div>
-
-              <div className={`container ${styles["cont-label"]}`}>
-                <label className={styles.label} htmlFor="phone_number">
-                  Mobile Number :
-                </label>
-                <input type="tel" disabled value={profile.phone_number} />
-                <hr className={styles["my-1"]} />
-              </div>
-            </form>
-
-            <div className={`container ${styles["cont-email"]}`}>
-              <div className={`container ${styles["cont-address"]}`}>
-                <label className={styles.label} htmlFor="phone_number">
-                  Delivery Address :
-                </label>
-                <input className={styles["street"]} type="text" onChange={handleAddress} disabled={isEdit} value={deliveryAddress} />
-                <hr className={styles["my-1"]} />
-              </div>
-            </div>
-            <p
-              className={show === true ? `${styles.none}` : `${styles["tombolsave"]} ${styles["cursor"]}`}
-              onClick={(e) => {
-                e.preventDefault();
-                setIsEdit(!isEdit);
-                setShow(true);
-              }}
-            >
-              Save
-            </p>
-          </div>
-        </section>
-        <div className={`container`}>
-          <div className={`card ${styles["card-down"]}`}>
-            <div className={`row ${["detail-jumbotron"]}`}>
-              <h1 className={styles["display-5"]}>Details</h1>
-              <div className={`${styles.contedit}`}>
-                <img
+            <div className={`card ${styles["card-address"]}`}>
+              <div className={styles["title-contactone"]}>
+                <h2 className={show === true ? styles["display-5"] : styles["contactshowone"]}>contacts</h2>
+                <div
+                  className={`${styles.contedit}`}
                   onClick={(e) => {
-                    setShowEdit(false);
+                    setShow(false);
                     e.preventDefault();
                     setIsEdit(!isEdit);
                   }}
-                  className={showedit === true ? `${styles["editicon-right"]} ${styles["cursor"]}` : `${styles.none}`}
-                  src={icon_edit}
-                  alt="icon_edit"
-                />
+                >
+                  <img className={show === true ? `${styles["editicon-right"]} ${styles["cursor"]}` : `${styles.none}`} src={icon_edit} alt="icon_edit" />
 
-                <p className={showedit === true ? `${styles.edits} ${styles["cursor"]}` : `${styles.none}`}>Edit</p>
+                  <p className={show === true ? `${styles.edits} ${styles["cursor"]}` : `${styles.none}`}>Edit</p>
+                </div>
               </div>
+
+              <form className={`container col-12 d-flex ${styles.contform}`}>
+                <div className={`container col-6 `}>
+                  <label className={styles.genderone} htmlFor="email">
+                    Email address :
+                  </label>
+                  <input className={`${styles.emailinput}`} type="email" disabled value={profile.email} />
+                </div>
+
+                <div className={`container ${styles["cont-label"]}`}>
+                  <label className={styles.genderone} htmlFor="phone_number">
+                    Mobile Number :
+                  </label>
+                  <input className={`${styles.emailinput}`} type="tel" disabled value={profile.phone_number} />
+                </div>
+              </form>
+
               <div className={`container ${styles["cont-email"]}`}>
-                <div className="container">
-                  <p className={styles["title-name"]}>Display name :</p>
-                  <p className={styles["dis-name"]}>{profile.display_name} </p>
-                  <hr className={styles["my-1"]} />
-                  <p className={styles["title-name"]}>First name :</p>
-                  <p className={styles["dis-name"]}>{profile.firstname} </p>
-                  <hr className={styles["my-1"]} />
-                  <p className={styles["title-name"]}>Last name :</p>
-                  <p className={styles["dis-name"]}>{profile.lastname} </p>
-                  <hr className={styles["my-1"]} />
-                </div>
-                <div className="container">
-                  {/* <p>DD/MM/YY</p>
-                  <p>24 / 06 /1987 </p>
-                  <hr className={styles["my-1"]} /> */}
-
-                  <div className="form-check">
-                    <input className="form-check-input" type="radio" value="Male" />
-                    <label className="form-check-label" for="male">
-                      Male
-                    </label>
-                  </div>
-                  <div className="form-check">
-                    <input className="form-check-input" type="radio" value="Female" />
-                    <label className="form-check-label" for="female">
-                      Female
-                    </label>
-                  </div>
+                <div className={`container ${styles["cont-address"]}`}>
+                  <label className={styles.genderone} htmlFor="phone_number">
+                    Delivery Address :
+                  </label>
+                  <input
+                    className={show === true ? styles["street"] : styles["streetoneshow"]}
+                    type="text"
+                    onChange={handleAddress}
+                    placeholder={show === true ? profile.addres : ""}
+                    // value={show === true ? profile.addres : }
+                    disabled={isEdit}
+                  />
                 </div>
               </div>
+              <p
+                className={show === true ? `${styles.none}` : `${styles["tombolsaveone"]} ${styles["cursor"]}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsEdit(!isEdit);
+                  setShow(true);
+                }}
+              >
+                Save
+              </p>
+            </div>
+          </section>
+          <div className={`${styles.contTwo}`}>
+            <div className={`card col-8`}>
+              <div className={styles["title-contact"]}>
+                <h2 className={show2 === true ? styles["display-5"] : styles["contactshow"]}>Details</h2>
+                <div
+                  className={`${styles.contedit}`}
+                  onClick={(e) => {
+                    setShow2(false);
+                    e.preventDefault();
+                    setIsEdit2(!isEdit2);
+                  }}
+                >
+                  <img className={show2 === true ? `${styles["editicon-right"]} ${styles["cursor"]}` : `${styles.none}`} src={icon_edit} alt="icon_edit" />
+
+                  <p className={show2 === true ? `${styles.edits} ${styles["cursor"]}` : `${styles.none}`}>Edit</p>
+                </div>
+              </div>
+              <div className={`d-flex gap-5`}>
+                <div className="col-7">
+                  <div className={`container ${styles[""]}`}>
+                    <div className={`container  ${styles["cont-display"]}`}>
+                      <label className={styles.gender} htmlFor="phone_number">
+                        Display Name :
+                      </label>
+                      <input className={show2 === true ? styles["streetshow"] : styles["streetshow"]} type="text" onChange={valueDisplayname} disabled={isEdit2} value={displayName} />
+                    </div>
+                  </div>
+                  <div className={`container ${styles[""]}`}>
+                    <div className={`container ${styles["cont-display"]}`}>
+                      <label className={styles.gender} htmlFor="phone_number">
+                        First Name :
+                      </label>
+                      <input className={show2 === true ? styles["streetshow"] : styles["streetshow"]} type="text" onChange={valueFirstname} disabled={isEdit2} value={firstName} />
+                    </div>
+                  </div>
+                  <div className={`container ${styles[""]}`}>
+                    <div className={`container ${styles["cont-display"]}`}>
+                      <label className={styles.gender} htmlFor="phone_number">
+                        Last Name :
+                      </label>
+                      <input className={show2 === true ? styles["streetshow"] : styles["streetshow"]} type="text" onChange={valueLastname} disabled={isEdit2} placeholder={show === true ? profile.lastName : ""} value={lastName} />
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <p className={`${styles.gender}`}> Gender : </p>
+                  <form
+                    className={`${styles["radio-payment"]} ${styles["cursor"]}`}
+                    onChange={(e) => {
+                      valueGender(e.target.value);
+                    }}
+                  >
+                    <div className={`form-check d-flex flex-row align-items-center ${styles["styling-data-radio"]}`}>
+                      <input className={`form-check-input ${styles.cursor}`} type="radio" value="Male" name="flexRadioDefault" />
+                      <label className="form-check-label" for="flexRadioDefault1"></label>
+                      <span className={`${styles.spans}`}>Male</span>
+                    </div>
+                    <div className={`form-check d-flex flex-row align-items-center ${styles["styling-data-radio"]}`}>
+                      <input className={`form-check-input ${styles.cursor}`} value="Female" type="radio" name="flexRadioDefault" />
+                      <label className="form-check-label" for="flexRadioDefault1"></label>
+                      <span className={`${styles.spans}`}>Female</span>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <p
+                className={show2 === true ? `${styles.none}` : `${styles["tombolsave"]} ${styles["cursor"]}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsEdit2(!isEdit2);
+                  setShow2(true);
+                }}
+              >
+                Save
+              </p>
+            </div>
+
+            <div className={`container ${styles["cont-btn"]}`}>
+              <h1 className={styles["save-btn"]}>Do you want to save the change?</h1>
+              <button type="button" className={`btn ${styles["btn-1"]}  ${styles["btn-size"]}`} onClick={editData}>
+                Save Change
+              </button>
+              <button type="button" className={`btn ${styles["btn-2"]} ${styles["btn-size"]}`}>
+                Cancel
+              </button>
+              <button type="button" className={`btn ${styles["btn-size"]} ${styles["btn-3"]}`}>
+                Edit Password
+              </button>
+              <button
+                type="button"
+                className={`btn ${styles["btn-size"]} ${styles["btn-3"]}`}
+                onClick={() => {
+                  handleShowModal();
+                }}
+              >
+                <p>Log Out</p>
+                <i className="bi bi-chevron-right"></i>
+              </button>
             </div>
           </div>
-          <div className={`container ${styles["cont-btn"]}`}>
-            <h1 className={styles["save-btn"]}>Do you want to save the change?</h1>
-            <button type="button" className={`btn ${styles["btn-1"]}  ${styles["btn-size"]}`} onClick={editData}>
-              Save Change
-            </button>
-            <button type="button" className={`btn ${styles["btn-2"]} ${styles["btn-size"]}`}>
-              Cancel
-            </button>
-            <button type="button" className={`btn ${styles["btn-size"]} ${styles["btn-3"]}`}>
-              Edit Password
-            </button>
-            <button
-              type="button"
-              className={`btn ${styles["btn-size"]} ${styles["btn-3"]}`}
-              onClick={() => {
-                handleShow();
-              }}
-            >
-              {/* <button type="button" className={`btn ${styles["btn-size"]} ${styles["btn-3"]}`} onClick={handleLogout}> */}
-              <p>Log Out</p>
-              <i className="bi bi-chevron-right"></i>
-            </button>
-          </div>
         </div>
-        {/* <Modal show={this.state.show} onHide={this.handleClose} backdrop="static" keyboard={false}>
+
+        {/* </div>  */}
+        <Modal show={showModal} onHide={handleCloseModal} backdrop="static" keyboard={false}>
           <Modal.Header closeButton>
             <Modal.Title>confirmation</Modal.Title>
           </Modal.Header>
           <Modal.Body>are you sure you want to log out?</Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" className="fw-bold text-bg-secondary text-white" onClick={this.handleClose}>
-              Yes
-            </Button>
             <Button
-              variant="success"
-              className="fw-bold text-bg-success text-white"
-              // onClick={() => {
-              //   this.SuccessToastMessage();
-              //   // this.handleLogout();
-              //   this.deleteToken();
-              //   setTimeout(() => {
-              //     this.props.navigate("/");
-              //   }, 1000);
-              // }}
+              variant="secondary"
+              className="fw-bold text-bg-secondary text-white"
               onClick={() => {
-                this.deleteToken();
+                deleteToken();
                 setTimeout(() => {
-                  this.props.navigate("/");
+                  navigate("/");
                 }, 1000);
               }}
             >
+              Yes
+            </Button>
+            <Button variant="success" className="fw-bold text-bg-success text-white" onClick={handleCloseModal}>
               No
             </Button>
           </Modal.Footer>
-        </Modal> */}
+        </Modal>
       </main>
 
       <footer className={styles["footer-cont"]}>
@@ -376,4 +432,4 @@ function Profile() {
   );
 }
 
-export default withNavigate(Profile);
+export default Profile;

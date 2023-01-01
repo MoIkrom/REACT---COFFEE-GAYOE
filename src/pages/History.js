@@ -11,6 +11,7 @@ import { historyTransaction } from "../utils/api.js";
 const History = () => {
   TabTitle("History - Coffee Gayoe");
   const [historied, setHistoried] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const getHistory = () => {
     const token = localStorage.getItem("token");
@@ -25,6 +26,7 @@ const History = () => {
 
   useEffect(() => {
     getHistory();
+    setLoading(false);
     // console.log(historied);
   }, []);
 
@@ -44,9 +46,19 @@ const History = () => {
           <div>
             <div className={` row ${styles.contHist} d-flex align-items-center justify-content-center`}>
               <div className="col-4">
-                {historied.map((e) => (
-                  <Card key={e.id} title={e.product_name} price={e.total} image={e.image} status={e.status} />
-                ))}
+                {loading ? (
+                  <>
+                    <div className={styles["lds-ring"]}>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                    </div>
+                    <p className={styles["loading-text"]}>Loading</p>
+                  </>
+                ) : (
+                  historied.map((e) => <Card key={e.id} title={e.product_name} price={e.total} image={e.image} status={e.status} />)
+                )}
               </div>
             </div>
           </div>

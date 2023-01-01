@@ -26,6 +26,7 @@ const Detail = ({ route }) => {
   const [quantity, setQuantity] = useState(1);
   const [value, setValue] = useState("1");
   const navigate = useNavigate();
+  const role = localStorage.getItem("role");
 
   const min = () => {
     setQuantity(quantity === 1 ? 1 : quantity - 1);
@@ -33,9 +34,18 @@ const Detail = ({ route }) => {
 
   const max = () => {
     setQuantity(quantity === 10 ? 10 : quantity + 1);
-    // console.log('tambah');
   };
 
+  const deleteProductByid = (id) => {
+    // setLoading(true);
+    axios
+      .delete(`https://coffee-gayoe.vercel.app/api/v1/product/${id}`)
+      .then((res) => {})
+
+      .catch((err) => {
+        console.log(err.response.data.msg);
+      });
+  };
   const getProductByid = (id) => {
     // setLoading(true);
     axios
@@ -77,6 +87,11 @@ const Detail = ({ route }) => {
       })
     );
     navigate("/cart");
+    window.scrollTo({
+      top: 100,
+      left: 100,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -182,12 +197,16 @@ const Detail = ({ route }) => {
               {product.product_name}
               <p className={styles["price"]}>{`${"Rp"} ${costing(product.price)}`}</p>
             </h1>
-
+          </div>
+          <div className={`container ${styles.buttongroup}`}>
             <button className={`btn btn-warning ${styles["btn-cart"]}`} onClick={handleRedux}>
               Add to Cart
             </button>
-            <br />
-            <button className={`btn btn-success ${styles["btn-staff"]}`}>Ask a Staff</button>
+            {/* <br /> */}
+            <button className={`btn btn-success ${styles["btn-staff"]}`}>{role === "user" ? "Ask a Staff" : "Edit Product"}</button>
+            <button className={role === "admin" ? `btn ${styles["btn-delete"]}` : `${styles.none}`} onClick={handleRedux}>
+              Delete Menu
+            </button>
           </div>
           <div className={`container ${styles["cont-card"]}`}>
             <div className={`card ${styles["card-down"]} d-flex`}>

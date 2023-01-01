@@ -1,5 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Rubik:wght@400;500;700&display=swap");
 
+.content-productsadmin {
+  cursor: pointer;
+  margin-bottom: 12%;
+  width: 150px;
+  height: 233px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  align-items: center;
+  box-shadow: 0 0 3px #9f9f9f;
+  box-shadow: 0px 30px 60px 0px #3939391a;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+}
+.edittext {
+  position: relative;
+  top: -99px;
+  left: -14px;
+  font-size: 10px;
+  font-weight: 700;
+  display: none;
+}
 .content-product {
   cursor: pointer;
   margin-bottom: 12%;
@@ -31,6 +55,19 @@
   height: 125px;
   overflow: hidden;
   border-radius: 70px;
+}
+.none {
+  display: none;
+}
+.edited {
+  width: 35px;
+  height: 35px;
+  position: relative;
+  top: -75px;
+  left: 40px;
+}
+.edited:hover {
+  transform: scale(1.1);
 }
 /* .list-product-image:hover {
   top: -57px;
@@ -85,4 +122,6 @@
 .price {
   font-weight: bold;
   color: #6a4029;
+  position: relative;
+  top: -65px;
 }

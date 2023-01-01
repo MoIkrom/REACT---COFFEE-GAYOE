@@ -69,6 +69,9 @@ body {
 .navs {
   padding: 10px;
 }
+.none {
+  display: none;
+}
 .image {
   border-radius: 200px;
   width: 300px;
@@ -238,12 +241,9 @@ body {
   left: 60px;
 }
 .btn-cart {
-  top: -99px;
-  left: 10px;
   height: 56px;
   border-radius: 10px;
   width: 290px;
-  position: relative;
   background-color: #6a4029;
   font-family: Poppins;
   font-style: medium;
@@ -255,13 +255,11 @@ body {
   color: #ffffff;
   border-color: #6a4029;
 }
-.btn-staff {
-  top: -69px;
-  left: 10px;
+.btn-delete {
   height: 56px;
   border-radius: 10px;
   width: 290px;
-  position: relative;
+  background-color: #000000;
   font-family: Poppins;
   font-style: medium;
   font-size: 19px;
@@ -270,6 +268,20 @@ body {
   line-height: 139%;
   vertical-align: Top;
   color: #ffffff;
+  border-color: #6a4029;
+}
+.btn-staff {
+  height: 56px;
+  border-radius: 10px;
+  width: 290px;
+  font-family: Poppins;
+  font-style: medium;
+  font-size: 19px;
+  line-height: 25px;
+  font-weight: 400;
+  line-height: 139%;
+  vertical-align: Top;
+  color: #6a4029;
   background-color: #ffba33;
   border-color: #ffba33;
 }
@@ -364,6 +376,14 @@ body {
   vertical-align: Top;
   background-color: #6a4029;
   margin-right: 10px;
+}
+.buttongroup {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  position: relative;
+  top: -100px;
+  gap: 20px;
 }
 .btn-P {
   font-family: rubik;

@@ -18,6 +18,7 @@ import styles from "../styles/Payment.module.css";
 import icon_card from "../assets/images/card-py.png";
 import icon_cod from "../assets/images/cod.png";
 import icon_bank from "../assets/images/bank.png";
+import foto from "../assets/images/image-none.jpg";
 
 const Payment = () => {
   TabTitle("Payment - Coffee Gayoe");
@@ -129,7 +130,13 @@ const Payment = () => {
         console.log(res);
         handleRemoveRedux();
         setLoading(false);
-        navigate("/product");
+
+        navigate("/history");
+        window.scrollTo({
+          top: 100,
+          left: 100,
+          behavior: "smooth",
+        });
       })
 
       .catch((err) => {
@@ -155,7 +162,7 @@ const Payment = () => {
                   <p>Order Summary</p>
                   {/* payment 1 */}
                   <div className={styles["payment-content"]}>
-                    <img src={products.image} alt="Payment1" width="100px" height="100px"></img>
+                    <img src={products.image === null ? foto : products.image} alt="Payment1" width="100px" height="100px"></img>
                     <div className={styles["payment-center"]}>
                       <p>{products.product_name}</p>
                       <p>x {products.qty}</p>
@@ -243,7 +250,21 @@ const Payment = () => {
                   </div>
                   <div className={styles["confirm-pay"]}>
                     <button onClick={handleTransactions}>
-                      <span>Confirm and Pay</span>
+                      <span>
+                        {loading ? (
+                          <>
+                            <div className={styles["lds-ring"]}>
+                              <div></div>
+                              <div></div>
+                              <div></div>
+                              <div></div>
+                            </div>
+                            <p className={styles["loading-text"]}>Payment on process ...</p>
+                          </>
+                        ) : (
+                          "Confirm and Pay"
+                        )}
+                      </span>
                     </button>
                   </div>
                 </div>

@@ -18,31 +18,34 @@ import CardProduct from "../Component/List_Product";
 
 // import image
 import beef from "../assets/images/beef-spagheti.png";
+import { setSelectionRange } from "@testing-library/user-event/dist/utils/index.js";
 
 function Product() {
   TabTitle("Product | Coffee Gayoe");
-
   const dispatch = useDispatch();
-  const [search, setSearch] = useState("");
-  const [navFav, setNavFav] = useState(false);
-  const [navPromo, setNavPromo] = useState(true);
-  const [navFood, setFood] = useState(true);
-  const [navCoff, setNavCoff] = useState(true);
-  const [navNonCoff, setNavNonCoff] = useState(true);
-  const [navadd, setNavadd] = useState(true);
-  const [category, setCategory] = useState("favorite");
-  const [sort, setSort] = useState("false");
+  const [none, setNone] = useState(false);
+  const [done, setDone] = useState(false);
+  const [value, setValue] = useState("");
+  const [notfound, setNotfound] = useState("");
   const [sorted, setSorted] = useState("");
   const [order, setOrder] = useState("false");
+  const [search, setSearch] = useState("");
+  const [navPromo, setNavPromo] = useState(false);
+  const [navFav, setNavFav] = useState(true);
+  const [navFood, setNavFood] = useState(false);
+  const [navCoff, setNavCoff] = useState(false);
+  const [navNonCoff, setNavNonCoff] = useState(false);
+  const [navadd, setNavadd] = useState(false);
+  const [category, setCategory] = useState("favorite");
+  const [sort, setSort] = useState("name");
   const [product, setProduct] = useState([]);
   const [page, setPage] = useState(1);
-  const [notfound, setNotfound] = useState("");
   const [loading, setLoading] = useState(true);
   const [show, setShow] = useState(false);
-  const [done, setDone] = useState(false);
   const [next, setNext] = useState("");
   const [prev, setPrev] = useState("");
-  const [value, setValue] = useState("");
+  const [currentPage, setCurrentPage] = useState("");
+  const [totalPage, setTotalPage] = useState("");
   const [type, setType] = useState("");
   const [meta, setMeta] = useState({});
 
@@ -54,7 +57,13 @@ function Product() {
   const paramsName = searchParams.get("name") || "";
   const paramsSort = searchParams.get("sort") || "name";
   const paramsOrder = searchParams.get("order") || "asc";
-  const paramsPage = searchParams.get("page") || "1";
+  const paramsPage = searchParams.get("page" || "1");
+
+  const role = localStorage.getItem("role");
+
+  function handleNext() {
+    navigate(`/product?sort=${paramsSort}&order=${paramsOrder}&page=${meta.currentPage + 1}`);
+  }
 
   const getAllproducts = (category, search, sort, order, page) => {
     setLoading(true);
@@ -63,7 +72,9 @@ function Product() {
         setProduct(res.data.data);
         setLoading(false);
         setMeta(res.data);
-        // console.log(res.data);
+        // setPrev(res.data.meta.prev);
+        setNext(res.data.meta.next);
+        setTotalPage(res.data.meta.totalPage);
       })
       .catch((err) => {
         console.log(err);
@@ -85,20 +96,80 @@ function Product() {
     navigate("/detail-product");
     console.log("masuk coy");
   };
-
-  useEffect(() => {
-    getFavoriteProducts();
-    setLoading(false);
-    setShow(true);
-  }, []);
   useEffect(() => {
     getAllproducts(paramsCategory, paramsName, paramsSort, paramsOrder, paramsPage);
+
+    // setCategory(category);
+    // console.log(meta);
   }, [searchParams, paramsCategory, paramsName, paramsOrder, paramsSort, paramsPage]);
+  useEffect(() => {
+    // getFavoriteProducts();
+    setLoading(false);
+    setShow(true);
+    setNavFav(false);
+    setNavCoff(true);
+    setNavNonCoff(true);
+    setNavFood(true);
+    setNavadd(true);
+    setPage(page);
+    setCategory(category);
+  }, [page, category]);
 
   const costing = (price) => {
     return parseFloat(price)
       .toFixed()
       .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+  };
+
+  const nav1 = () => {
+    setNavFav(false);
+    setNavCoff(true);
+    setNavNonCoff(true);
+    setNavFood(true);
+    setNavadd(true);
+    setPage(1);
+    setCategory("favorite");
+    setSort("name");
+  };
+  const nav2 = () => {
+    setNavFav(true);
+    setNavCoff(false);
+    setNavNonCoff(true);
+    setNavFood(true);
+    setNavadd(true);
+    setPage(1);
+    setCategory("coffee");
+    setSort(sort);
+  };
+  const nav3 = () => {
+    setNavFav(true);
+    setNavCoff(true);
+    setNavNonCoff(false);
+    setNavFood(true);
+    setNavadd(true);
+    setPage(1);
+    setCategory("non-coffee");
+    setSort(sort);
+  };
+  const nav4 = () => {
+    setNavFav(true);
+    setNavCoff(true);
+    setNavNonCoff(true);
+    setNavFood(false);
+    setNavadd(true);
+    setPage(1);
+    setCategory("food");
+    setSort(sort);
+  };
+  const nav5 = () => {
+    setNavFav(true);
+    setNavCoff(true);
+    setNavNonCoff(true);
+    setNavFood(true);
+    setNavadd(false);
+    setPage(1);
+    setCategory("add-on");
+    setSort(sort);
   };
 
   return (
@@ -142,47 +213,56 @@ function Product() {
         <aside className={`${styles["product-right"]} d-flex flex-column py-4`}>
           <div className={`${styles["nav-product"]} d-flex flex-row justify-content-around`}>
             <span
-              className={`${styles["cursor"]}`}
+              className={category === "favorite" ? `${styles["cursor"]} ${styles["border"]}` : `${styles["cursor"]} ${styles["nonborder "]}`}
               onClick={() => {
                 setCategory("favorite");
-                setSearchParams({ category: "favorite" });
+                setSearchParams({ category: "favorite", sort: `${sort}`, page: `${page}`, limit: 4 });
+                nav1();
+                setPage(1);
               }}
             >
               Favorite & Promo
             </span>
             <span
-              className={`${styles["cursor"]}`}
+              className={category === "coffee" ? `${styles["cursor"]} ${styles["border"]}` : `${styles["cursor"]} ${styles["nonborder "]}`}
               onClick={() => {
                 setCategory("coffee");
-                setSearchParams({ category: "coffee" });
+                setSearchParams({ category: "coffee", sort: `${sort}`, page: `${page}`, limit: 4 });
+                nav2();
+                setPage(1);
               }}
             >
               Coffee
             </span>
             <span
-              className={`${styles["cursor"]}`}
+              className={category === "non-coffee" ? `${styles["cursor"]} ${styles["border"]}` : `${styles["cursor"]} ${styles["nonborder "]}`}
               onClick={() => {
                 setCategory("non-coffee");
-                setSearchParams({ category: "non-coffee" });
+                setSearchParams({ category: "non-coffee", sort: `${sort}`, page: `${page}`, limit: 4 });
+                nav3();
+                setPage(1);
               }}
             >
               Non Coffee
             </span>
             <span
-              className={`${styles["cursor"]}`}
+              className={category === "food" ? `${styles["cursor"]} ${styles["border"]}` : `${styles["cursor"]}  ${styles["nonborder "]}`}
               onClick={() => {
                 setCategory("food");
-
-                setSearchParams({ category: "food" });
+                setSearchParams({ category: "food", sort: `${sort}`, page: `${page}`, limit: 4 });
+                nav4();
+                setPage(1);
               }}
             >
               Foods
             </span>
             <span
-              className={`${styles["cursor"]}`}
+              className={category === "add-on" ? `${styles["cursor"]} ${styles["border"]}` : `${styles["cursor"]} ${styles["nonborder "]}`}
               onClick={() => {
                 setCategory("add-on");
-                setSearchParams({ category: "add-on" });
+                setSearchParams({ category: "add-on", sort: `${sort}`, page: `${page}`, limit: 4 });
+                nav5();
+                setPage(1);
               }}
             >
               Add-on
@@ -201,7 +281,7 @@ function Product() {
                   setProduct(res.data.data);
                   setLoading(false);
                   setSearchParams({ category: category, sort: e.target.value, page: page, limit: 4 });
-
+                  setSort(e.target.value);
                   // console.log(res);
                   console.log(page);
                 })
@@ -215,6 +295,7 @@ function Product() {
               value="name"
               onSelect={() => {
                 setSearchParams("name");
+                setSort("name");
               }}
             >
               Name
@@ -224,6 +305,7 @@ function Product() {
               value="cheapest"
               onSelect={() => {
                 setSearchParams("cheapest");
+                setSort("cheapest");
               }}
             >
               Cheapest
@@ -233,6 +315,7 @@ function Product() {
               value="expensive"
               onSelect={() => {
                 setSearchParams("pricy");
+                setSort("pricy");
               }}
             >
               Pricy
@@ -242,6 +325,7 @@ function Product() {
               value="newest"
               onSelect={() => {
                 setSearchParams("new-product");
+                setSort("newest");
               }}
             >
               New Product
@@ -281,25 +365,87 @@ function Product() {
                 " "
               ) : product.length > 0 ? (
                 <div className={`${styles["container"]} , ${styles["page"]}`}>
-                  <button className={styles["btn-page"]}> prev</button>
-                  <p className={styles["text-page"]}> Page 1 of 1</p>
-                  <button className={styles["btn-page"]}> next</button>
+                  <button
+                    className={page === 1 ? styles["btn-pagenull"] : styles["btn-page"]}
+                    onClick={() => {
+                      // none(true);
+                      setCategory(category);
+                      axios
+                        .get(`https://coffee-gayoe.vercel.app/api/v1/product?category=${category}&sort=${sort}&page=${page - 1}&limit=4`)
+                        .then((res) => {
+                          setProduct(res.data.data);
+                          setLoading(false);
+                          setPage(page < 1 ? 1 : page - 1);
+                          setSearchParams({ category: `${category}`, sort: `${sort}`, page: `${page - 1}`, limit: 4 });
+                          setCategory(category);
+                          setSort(sort);
+                        })
+                        .catch((err) => console.log(err));
+                      window.scrollTo({
+                        top: 100,
+                        left: 100,
+                        behavior: "smooth",
+                      });
+                    }}
+                  >
+                    Prev
+                  </button>
+                  <p className={styles["text-page"]}>
+                    {" "}
+                    Page {page} of {totalPage}
+                  </p>
+                  <button
+                    className={next === null ? styles["btn-pagenull"] : styles["btn-page"]}
+                    onClick={
+                      // navigate(`/product?sort=${paramsSort}&order=${paramsOrder}&page=${meta.currentPage + 1}`)
+                      // console.log(next)
+
+                      () => {
+                        setCategory(category);
+                        axios
+                          .get(`https://coffee-gayoe.vercel.app/api/v1/product?category=${category}&sort=${sort}&page=${page + 1}&limit=4`)
+                          .then((res) => {
+                            setProduct(res.data.data);
+                            setLoading(false);
+                            setPage(page + 1);
+                            setSearchParams({ category: `${category}`, sort: `${sort}`, page: `${page + 1}`, limit: 4 });
+                            setSort(sort);
+                            setCategory(category);
+                          })
+                          .catch((err) => console.log(err));
+                        window.scrollTo({
+                          top: 100,
+                          left: 100,
+                          behavior: "smooth",
+                        });
+                      }
+                    }
+                  >
+                    Next
+                  </button>
                 </div>
               ) : (
                 ""
               )}
             </div>
+            {loading ? (
+              ""
+            ) : (
+              <div className={role === "admin" ? `d-flex justify-content-center ${styles.contbutton}` : `${styles.none}`}>
+                <button className={`${styles.addproduct}`}> Add New Product</button>
+              </div>
+            )}
+            {loading ? (
+              ""
+            ) : (
+              <div className={role === "admin" ? `d-flex justify-content-center ${styles.contbutton2}` : `${styles.none}`}>
+                <button className={`${styles.addproduct}`}> Add New Promo</button>
+              </div>
+            )}
           </section>
         </aside>
       </section>
-      {/* <section className=" text-center row d-flex justify-content-between flex-wrap">
-          <div className={` ${styles["list-content"]} d-flex flex-wrap col-12`}>
-            {this.state.products.map((products) => (
-              <CardProduct title={products.product_name} price={products.price} image={products.image} />
-              // <CardProduct title={products.product_name} price={products.price} image={products.image} size={products.size} />
-            ))}
-          </div>
-        </section> */}
+
       <footer>
         <Footer />
       </footer>

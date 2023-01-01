@@ -41,6 +41,7 @@ function Navbar() {
   };
 
   const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
   const toasted = () => {
     toast.error("You Have to Login First", {
       position: toast.POSITION.TOP_CENTER,
@@ -80,10 +81,10 @@ function Navbar() {
               Product
             </button>
             <button className={styles["no-underline"]} onClick={token === null ? toasted : toDetailProduct}>
-              Your Cart
+              {role === "admin" ? "Orders" : "Your Cart"}
             </button>
             <button className={styles["no-underline"]} onClick={token === null ? toasted : toHistory}>
-              History
+              {role === "admin" ? "Dashboard" : "History"}
             </button>
           </div>
 
@@ -106,8 +107,8 @@ function Navbar() {
                 <img clasName={styles.icon} src={icon_chat} alt="" widht="27px" height="27px" />
               </a>
 
-              <Link className={styles["no-underline"]} to={"/profile"}>
-                <img className="rounded-circle" src={profile.image === null ? icon_profile : profile.image} alt="" widht="50px" height="50px" />
+              <Link className={styles["no-underlinenavbar"]} to={role === "user" ? "/profile" : "/"}>
+                <img className="rounded-circle" src={role === "admin" ? icon_profile : profile.image === null ? icon_profile : profile.image} alt="" width="50px" height="50px" />
               </Link>
             </div>
           )}

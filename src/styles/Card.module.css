@@ -16,6 +16,24 @@
   position: relative;
   top: -2px;
 }
+.pending {
+  color: red;
+  font-family: poppins;
+  font-style: bold;
+  font-weight: 500;
+  line-height: 47.4px;
+  font-size: 18px;
+  line-height: 100%;
+}
+.paid {
+  color: #2ec047;
+  font-family: poppins;
+  font-style: bold;
+  font-weight: 500;
+  line-height: 47.4px;
+  font-size: 18px;
+  line-height: 100%;
+}
 .title-card {
   font-family: poppins;
   font-style: bold;
@@ -30,9 +48,10 @@
 .price-card {
   text-align: left;
   color: #895537;
-  font-family: rubik;
+  font-family: poppins;
   font-style: Regular;
-  font-size: 14px;
+  font-size: 18px;
+  padding-top: 5px;
   font-weight: 400;
   line-height: 30px;
   line-height: 100%;

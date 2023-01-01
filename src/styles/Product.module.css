@@ -27,13 +27,20 @@
 }
 
 .nav-product span {
-  border-bottom: 2px solid #6a4029;
   font-family: "Rubik";
   font-style: normal;
   font-weight: 700;
   font-size: 15px;
   line-height: 24px;
   color: #6a4029;
+}
+.border {
+  border-bottom: 2px solid #6a4029;
+  cursor: pointer;
+}
+.nonborder {
+  cursor: pointer;
+  border-bottom: none;
 }
 
 .nav-product span a {
@@ -44,6 +51,7 @@
 .nav-product span:hover {
   transform: scale(1.3);
   color: #6a4029;
+  border-bottom: 2px solid #6a4029;
 }
 
 .product-left {
@@ -231,8 +239,66 @@
   position: relative;
   top: 1rem;
   display: flex;
-  justify-content: space-between;
-  left: -75px;
+  left: 50px;
+}
+.none {
+  display: none;
+}
+.addproduct {
+  height: 50px;
+  width: 400px;
+  border-radius: 10px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 30px;
+  color: #ffffff;
+  background: #6a4029;
+  border: none;
+}
+.contbutton {
+  position: relative;
+  top: 155px;
+  position: relative;
+  top: 169px;
+  padding-bottom: 34px !important;
+}
+.btn-pagenull {
+  background-color: #a2a2a3;
+  color: white;
+  padding: 10px;
+  width: 100px;
+  border-radius: 10px;
+  font-family: "rubik";
+  font-style: bold;
+  font-weight: 500;
+  font-size: 17px;
+  border: none;
+  margin: auto 60px;
+  position: relative;
+  left: 40px;
+  cursor: not-allowed;
+}
+.btn-pagenull:hover {
+  background-color: #a2a2a3;
+  color: white;
+  padding: 10px;
+  width: 100px;
+  border-radius: 10px;
+  font-family: "rubik";
+  font-style: bold;
+  font-weight: 500;
+  font-size: 17px;
+  border: none;
+  margin: auto 60px;
+  position: relative;
+  left: 40px;
+  cursor: not-allowed;
+}
+.contbutton2 {
+  position: relative;
+  top: 155px;
 }
 .loading {
   width: 100%;
@@ -274,7 +340,6 @@ hr {
   top: 7px;
   left: 45px;
   font-family: "Poppins";
-  text-decoration: underline;
 }
 .noted p {
   margin: 5px 0;
@@ -312,6 +377,8 @@ hr {
   color: #000000;
   margin-bottom: 30px;
 }
+
+/* start Loading */
 
 .lds-ring {
   display: inline-block;
@@ -359,6 +426,7 @@ hr {
   position: relative;
   top: 10rem;
 }
+/* End Loading */
 
 /* CSS Footer */
 footer {

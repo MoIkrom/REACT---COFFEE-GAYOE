@@ -16,10 +16,8 @@ function Card(props) {
               <img className={styles["images"]} src={props.image} alt="Product_Image" />
               <div className={styles["desc-card"]}>
                 <h1 className={styles["title-card"]}>{props.title}</h1>
-                <p className={styles["price-card"]}>
-                  {props.price} <br />
-                  {props.status}
-                </p>
+                <p className={styles["price-card"]}>{props.price}</p>
+                <p className={props.status === "Pending" ? styles["pending"] : styles["paid"]}>{props.status}</p>
               </div>
             </div>
           </div>

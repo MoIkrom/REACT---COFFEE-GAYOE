@@ -13,16 +13,68 @@ body {
 .container {
   max-width: 1440px;
 }
+.cont-one {
+  flex-direction: column;
+}
+.contTwo {
+  display: flex;
+  position: relative;
+  top: 200px;
+  height: 330px;
+}
+.styling-data-radio {
+  gap: 3px;
+}
+.spans {
+  color: black;
+  font-family: Rubik;
+  font-style: Regular;
+  font-size: 18px;
+  line-height: 30px;
+}
 .picture {
   width: 37px;
   height: 37px;
   border-radius: 22px;
 }
+.contform {
+  padding: 0px 20px;
+}
+.genderone {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  color: #9f9f9f;
+  font-size: 18px;
+  line-height: 23px;
+  padding-bottom: 15px;
+}
+.emailinput {
+  width: 275px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: white;
+  padding-left: 6px;
+}
+.gender {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  color: #9f9f9f;
+  font-size: 18px;
+  line-height: 23px;
+}
 .jumbotron {
   background-image: url(../assets/images/background-Coffee.png);
   background-size: cover;
-  height: 1215px;
+  height: 1024px;
   max-width: 1440px;
+}
+.cont-display {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 30px;
 }
 .display-4 {
   font-family: Rubik;
@@ -69,7 +121,8 @@ body {
 .cont-address {
   position: relative;
   top: 70px;
-  height: 200px;
+  display: flex;
+  flex-direction: column;
 }
 .cont-name {
   display: flex;
@@ -93,8 +146,6 @@ body {
 .save-btn {
   color: #ffffff;
   text-align: center;
-  position: relative;
-  left: 36px;
   width: 373px;
   font-size: 25px;
 }
@@ -154,12 +205,8 @@ body {
 .cont-btn {
   display: flex;
   justify-content: center;
-  position: relative;
   flex-direction: column;
-  align-content: center;
-  align-items: flex-end;
-  position: relative;
-  top: -65px;
+  align-items: center;
 }
 .dis-name {
   font-family: rubik;
@@ -242,7 +289,24 @@ body {
   color: #ffffff;
 }
 .street {
-  width: 260px;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  background: white;
+  height: 31px;
+  height: 45px;
+  width: 275px;
+  padding-left: 5px;
+}
+.streetshow {
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  background: white;
+  height: 31px;
+  border-bottom: 1px solid lightgrey;
+  outline: none;
+  padding-left: 5px;
 }
 .card-name {
   font-family: Rubik;
@@ -363,13 +427,45 @@ body {
 .hidden {
   display: none;
 }
+.title-contactone {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 420px;
+  align-items: center;
+  padding-top: 20px;
+}
 .title-contact {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  gap: 410px;
+  gap: 520px;
   align-items: center;
   padding-top: 20px;
+}
+.contactshowone {
+  font-family: Poppins;
+  font-style: bold;
+  font-size: 25px;
+  line-height: 38px;
+  align-content: left;
+  font-weight: 700;
+  color: #4f5665;
+  margin-bottom: 20px;
+  position: relative;
+  left: -9px;
+}
+.contactshow {
+  font-family: Poppins;
+  font-style: bold;
+  font-size: 25px;
+  line-height: 38px;
+  align-content: left;
+  font-weight: 700;
+  color: #4f5665;
+  margin-bottom: 20px;
+  position: relative;
+  left: -9px;
 }
 .edits {
   margin: 0px;
@@ -406,23 +502,54 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
-  top: -8px;
   cursor: pointer;
 }
 .none {
   display: none;
 }
-.tombolsave {
+.streetoneshow {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: white;
+  height: 31px;
+  height: 45px;
+  width: 275px;
+  border-bottom: 2px solid lightgrey;
+  outline: none;
+  padding-left: 5px;
+}
+.tampil {
+  font-family: rubik;
+  font-weight: 500;
+  position: relative;
+  top: -30px;
+}
+.tombolsaveone {
   width: 100px;
   position: relative;
-  left: 575px;
-  background: #5cb85c;
-  border: 1px solid;
+  left: 560px;
+  background: #ffc107;
   border-radius: 5px;
   display: flex;
   justify-content: center;
-  top: -30px;
+  top: 50px;
+  line-height: 38px !important;
+  font-size: 19px;
+  font-weight: 500;
+}
+.tombolsave {
+  width: 100px;
+  position: relative;
+  left: 611px;
+  background: #ffc107;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  top: -60px;
+  line-height: 38px !important;
+  font-size: 19px;
+  font-weight: 500;
 }
 
 .text-user {
