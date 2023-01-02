@@ -220,12 +220,12 @@
 
 .form-select {
   width: 157px;
-  position: relative;
+  /* position: relative; */
   font-family: "poppins";
   font-style: normal;
   color: #4f5665;
-  left: 40px;
-  top: 18px;
+  /* left: 40px;
+  top: 18px; */
   /* background: rgb(248, 248, 248); */
 }
 .font-opt {
@@ -234,6 +234,15 @@
   font-weight: 500;
   font-size: 14px;
   color: #4f5665;
+}
+.contsearch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+  padding-left: 42px;
+  padding-right: 35px;
+  gap: 200px;
 }
 .page {
   position: relative;
@@ -427,7 +436,15 @@ hr {
   top: 10rem;
 }
 /* End Loading */
-
+.notfound-text {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 26px;
+  position: relative;
+  top: 10rem;
+}
 /* CSS Footer */
 footer {
   background: #f8f8f8;

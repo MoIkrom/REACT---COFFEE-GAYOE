@@ -7,6 +7,31 @@ body {
   padding: 0;
 }
 
+.none {
+  display: none;
+}
+.show {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+.conteye {
+  position: relative;
+  left: -46px;
+  top: 7px;
+}
+.contpwd {
+  display: flex;
+  align-items: center;
+  position: relative;
+  left: 1rem;
+}
+.shows {
+  width: 35px;
+  height: 30px;
+  cursor: pointer;
+  transform: scale(1.1);
+}
 .side-images {
   display: flex;
   flex: 1;

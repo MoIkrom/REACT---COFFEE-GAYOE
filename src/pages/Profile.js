@@ -110,9 +110,9 @@ function Profile() {
     // for (var pair of formdata.entries()) {
     //   console.log(pair[0] + " - " + pair[1]);
     // }
-
     axios
-      .patch(`https://coffee-gayoe.vercel.app/api/v1/users`, formdata, { headers: { "x-access-token": token, "Content-Type": "multipart/form-data" } })
+      .patch(`http://localhost:8080/api/v1/users`, formdata, { headers: { "x-access-token": token, "Content-Type": "multipart/form-data" } })
+      // .patch(`https://coffee-gayoe.vercel.app/api/v1/users`, formdata, { headers: { "x-access-token": token, "Content-Type": "multipart/form-data" } })
       .then(() => {
         SuccessMessage();
         setLoading(false);
@@ -196,8 +196,7 @@ function Profile() {
   //     });
   // };
   const deleteToken = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
+    localStorage.clear();
   };
   const handleCloseModal = () => {
     setShowModal(false);
@@ -205,10 +204,6 @@ function Profile() {
   const handleShowModal = () => {
     setShowModal(true);
   };
-
-  //  onClickHandler = (to) => {
-  //   navigate(to);
-  // };set
 
   return (
     <>
@@ -413,6 +408,11 @@ function Profile() {
                 setTimeout(() => {
                   navigate("/");
                 }, 1000);
+                window.scrollTo({
+                  top: 0,
+                  left: 0,
+                  behavior: "smooth",
+                });
               }}
             >
               Yes

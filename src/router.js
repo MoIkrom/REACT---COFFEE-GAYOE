@@ -12,12 +12,27 @@ import NewProduct from "./pages/NewProduct";
 import NewPromo from "./pages/NewPromo";
 import EditPromo from "./pages/EditPromo";
 import PrivateRoutes from "./Component/PrivateRoutes";
+import BackRoutes from "./Component/BackRoutes";
 
 const router = createBrowserRouter([
   // { path: "/", element: <App />, errorElement: <Error /> },
   { path: "/", element: <Home /> },
-  { path: "/login", element: <Login /> },
-  { path: "/register", element: <Register /> },
+  {
+    path: "/login",
+    element: (
+      <BackRoutes>
+        <Login />
+      </BackRoutes>
+    ),
+  },
+  {
+    path: "/register",
+    element: (
+      <BackRoutes>
+        <Register />
+      </BackRoutes>
+    ),
+  },
   {
     path: "/profile",
     element: (
@@ -30,7 +45,14 @@ const router = createBrowserRouter([
     path: "/product",
     element: <Product />,
   },
-  { path: "/forgot", element: <Forgot /> },
+  {
+    path: "/forgot-password",
+    element: (
+      <BackRoutes>
+        <Forgot />
+      </BackRoutes>
+    ),
+  },
 
   {
     path: "/history",

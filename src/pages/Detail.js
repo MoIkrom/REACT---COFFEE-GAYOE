@@ -9,6 +9,9 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import authAction from "../redux/action/auth";
 import { Link, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 // IMport Images
 import image from "../assets/images/detail-image.png";
@@ -28,6 +31,14 @@ const Detail = ({ route }) => {
   const navigate = useNavigate();
   const role = localStorage.getItem("role");
 
+  const [showModal, setShowModal] = useState(false);
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+  const handleShowModal = () => {
+    setShowModal(true);
+  };
+
   const min = () => {
     setQuantity(quantity === 1 ? 1 : quantity - 1);
   };
@@ -38,12 +49,20 @@ const Detail = ({ route }) => {
 
   const deleteProductByid = (id) => {
     // setLoading(true);
+    const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+    const url = window.location.pathname;
+    const idproduct = url.substring(url.lastIndexOf("/") + 1);
     axios
-      .delete(`https://coffee-gayoe.vercel.app/api/v1/product/${id}`)
-      .then((res) => {})
+      .delete(`https://coffee-gayoe.vercel.app/api/v1/product/${idproduct}`, { headers: { "x-access-token": token } }, role)
+      .then((res) => {
+        console.log(id);
+        console.log(res);
+      })
 
       .catch((err) => {
         console.log(err.response.data.msg);
+        console.log(idproduct);
       });
   };
   const getProductByid = (id) => {
@@ -204,7 +223,12 @@ const Detail = ({ route }) => {
             </button>
             {/* <br /> */}
             <button className={`btn btn-success ${styles["btn-staff"]}`}>{role === "user" ? "Ask a Staff" : "Edit Product"}</button>
-            <button className={role === "admin" ? `btn ${styles["btn-delete"]}` : `${styles.none}`} onClick={handleRedux}>
+            <button
+              className={role === "admin" ? `btn ${styles["btn-delete"]}` : `${styles.none}`}
+              onClick={() => {
+                handleShowModal();
+              }}
+            >
               Delete Menu
             </button>
           </div>
@@ -243,6 +267,40 @@ const Detail = ({ route }) => {
               Checkout
             </button>
           </div>
+          <ToastContainer />
+          <Modal show={showModal} onHide={handleCloseModal} backdrop="static" keyboard={false}>
+            <Modal.Header closeButton>
+              <Modal.Title>confirmation</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>are you sure you want Delete this Product ?</Modal.Body>
+            <Modal.Footer>
+              <Button
+                variant="secondary"
+                className="fw-bold text-bg-secondary text-white"
+                onClick={() => {
+                  deleteProductByid();
+                  toast.success("Delete Product Success", {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 3000,
+                  });
+                  handleCloseModal();
+                  setTimeout(() => {
+                    navigate("/product");
+                    window.scrollTo({
+                      top: 0,
+                      left: 0,
+                      behavior: "smooth",
+                    });
+                  }, 2000);
+                }}
+              >
+                Yes
+              </Button>
+              <Button variant="success" className="fw-bold text-bg-success text-white" onClick={handleCloseModal}>
+                No
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </>
       )}
 

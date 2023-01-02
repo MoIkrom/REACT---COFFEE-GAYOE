@@ -10,6 +10,9 @@ import axios from "axios";
 import { TabTitle } from "../utils/General-funct.js";
 
 // Import Images
+
+import eyeslash from "../assets/images/eyeslash2.png";
+import eye from "../assets/images/eye2.png";
 import background from "../assets/images/login-bg-1.png";
 import logo from "../assets/images/coffee-logo.png";
 import google from "../assets/images/google-logo-png-suite-everything-you-need-know-about-google-newest-0 2.png";
@@ -20,13 +23,6 @@ import google from "../assets/images/google-logo-png-suite-everything-you-need-k
 // class Register extends Component {
 function Register({ navigate }) {
   TabTitle("Register - Coffee Gayoe");
-  // state = {
-  //   url: `${process.env.REACT_APP_BACKEND_HOST}api/v1/users`,
-  //   isPwdShown: false,
-  //   email: "",
-  //   password: "",
-  //   phone_number: "",
-  // };
   const [email, setEmail] = useState("");
   const [phone_number, setphone_number] = useState("");
   const [password, setPassword] = useState("");
@@ -44,7 +40,6 @@ function Register({ navigate }) {
 
   const handleApi = (e) => {
     e.preventDefault();
-    // console.log(this.state.email, this.state.password);
     axios
       .post(`${process.env.REACT_APP_BACKEND_HOST}api/v1/users`, {
         email,
@@ -52,9 +47,6 @@ function Register({ navigate }) {
         phone_number,
       })
       .then((response) => {
-        // localStorage.setItem("email", response.data.result.data.email);
-        // localStorage.setItem("role", response.data.result.data.role);
-        // localStorage.setItem("token", response.data.result.data.token);
         toast.success("Sign Up success", {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 2000,
@@ -73,7 +65,6 @@ function Register({ navigate }) {
     navigate(to);
   };
 
-  // render() {
   return (
     <Fragment>
       <main className={styles["main-content"]}>
@@ -104,14 +95,16 @@ function Register({ navigate }) {
                   <label className={styles["input-text"]}>Email Address :</label> <br />
                   <input className={styles["input-login"]} type="text" placeholder="Enter your email address" onChange={handleEmail} require />
                 </form>
-                <form>
-                  <label className={styles["input-text"]}>Password :</label> <br />
-                  <input className={styles["input-login"]} type={isPwdShown ? "text" : "password"} placeholder="Enter your password" onChange={handlePassword} require />
-                  <p>
-                    Show Password
-                    <input type="checkbox" defaultChecked={false} onClick={() => setIsPwdShown(!isPwdShown)}></input>{" "}
-                  </p>
-                </form>
+                <div className={`${styles.contpwd}`}>
+                  <form>
+                    <label className={styles["input-text"]}>Password :</label> <br />
+                    <input className={styles["input-login"]} type={isPwdShown ? "text" : "password"} placeholder="Enter your password" onChange={handlePassword} require />
+                  </form>{" "}
+                  <div className={`${styles.conteye}`}>
+                    <img onClick={() => setIsPwdShown(true)} src={eyeslash} alt="/" className={isPwdShown === true ? `${styles.none}` : `${styles.show}`} />
+                    <img onClick={() => setIsPwdShown(false)} src={eye} alt="/" className={isPwdShown === false ? `${styles.none}` : `${styles.shows}`} />
+                  </div>
+                </div>
                 <form>
                   <label className={styles["input-text"]}>Phone Number :</label> <br />
                   <input className={styles["input-login"]} type="text" placeholder="Enter your phone number" onChange={handlePhoneNumber} require />
