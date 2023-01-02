@@ -249,7 +249,7 @@ function Product() {
           <div className={`${styles["nav-product"]} d-flex flex-row justify-content-around`}>
             <span
               className={category === "favorite" ? `${styles["cursor"]} ${styles["border"]}` : `${styles["cursor"]} ${styles["nonborder "]}`}
-              onClick={() => {
+              onClick={(e) => {
                 setCategory("favorite");
                 setSearchParams({ category: "favorite", search: `${search}`, sort: `${sort}`, page: `${page}`, limit: 4 });
                 nav1();
@@ -260,7 +260,7 @@ function Product() {
             </span>
             <span
               className={category === "coffee" ? `${styles["cursor"]} ${styles["border"]}` : `${styles["cursor"]} ${styles["nonborder "]}`}
-              onClick={() => {
+              onClick={(e) => {
                 setCategory("coffee");
                 setSearchParams({ category: "coffee", search: `${search}`, sort: `${sort}`, page: `${page}`, limit: 4 });
                 nav2();
@@ -271,7 +271,7 @@ function Product() {
             </span>
             <span
               className={category === "non-coffee" ? `${styles["cursor"]} ${styles["border"]}` : `${styles["cursor"]} ${styles["nonborder "]}`}
-              onClick={() => {
+              onClick={(e) => {
                 setCategory("non-coffee");
                 setSearchParams({ category: "non-coffee", search: `${search}`, sort: `${sort}`, page: `${page}`, limit: 4 });
                 nav3();
@@ -282,7 +282,7 @@ function Product() {
             </span>
             <span
               className={category === "food" ? `${styles["cursor"]} ${styles["border"]}` : `${styles["cursor"]}  ${styles["nonborder "]}`}
-              onClick={() => {
+              onClick={(e) => {
                 setCategory("food");
                 setSearchParams({ category: "food", search: `${search}`, sort: `${sort}`, page: `${page}`, limit: 4 });
                 nav4();
@@ -293,7 +293,7 @@ function Product() {
             </span>
             <span
               className={category === "add-on" ? `${styles["cursor"]} ${styles["border"]}` : `${styles["cursor"]} ${styles["nonborder "]}`}
-              onClick={() => {
+              onClick={(e) => {
                 setCategory("add-on");
                 setSearchParams({ category: "add-on", search: `${search}`, sort: `${sort}`, page: `${page}`, limit: 4 });
                 nav5();
