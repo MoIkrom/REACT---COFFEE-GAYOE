@@ -5,6 +5,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import authAction from "../redux/action/auth";
 
+import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { transactions } from "../utils/api.js";
 // import Navbar & Footer
@@ -44,7 +45,7 @@ const Payment = () => {
     return costing(price);
   };
   const getTax = () => {
-    let taxes = products.price / 10;
+    let taxes = (products.price * products.qty) / 10;
     return costing(taxes);
   };
   const getShipping = () => {
@@ -130,8 +131,11 @@ const Payment = () => {
         console.log(res);
         handleRemoveRedux();
         setLoading(false);
-
-        navigate("/history");
+        toast.success("Payment Success", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 2000,
+        });
+        setTimeout(() => navigate("/history"), 3000);
         window.scrollTo({
           top: 100,
           left: 100,
@@ -259,7 +263,7 @@ const Payment = () => {
                               <div></div>
                               <div></div>
                             </div>
-                            <p className={styles["loading-text"]}>Payment on process ...</p>
+                            <p className={styles["loading-text"]}>Payment on process . . . </p>
                           </>
                         ) : (
                           "Confirm and Pay"
@@ -272,6 +276,7 @@ const Payment = () => {
             </div>
           </div>
         </div>
+        <ToastContainer />
       </main>
 
       {/* <!-- Start Footer --> */}

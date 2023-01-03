@@ -143,7 +143,7 @@ function Product() {
         console.log(err.response.data.msg);
         setLoading(false);
       });
-  }, [category, search, sort]);
+  }, [category, search, sort, page]);
 
   const costing = (price) => {
     return parseFloat(price)

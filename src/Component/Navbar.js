@@ -7,6 +7,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getProfile } from "../utils/api";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 // import css navbar
 import styles from "../styles/Navbar.module.css";
@@ -16,11 +18,12 @@ import icon_coffee from "../assets/images/coffee-logo.png";
 import icon_search from "../assets/images/search.png";
 import icon_chat from "../assets/images/chat.png";
 import icon_profile from "../assets/images/default-img.png";
-import Button from "react-bootstrap/Button";
 
 function Navbar() {
   const [profile, setProfile] = useState("");
   const navigate = useNavigate();
+
+  const [showModal, setShowModal] = useState(false);
   const toLogin = () => {
     navigate("/login");
   };
@@ -65,6 +68,19 @@ function Navbar() {
     getProfileUser();
   }, []);
 
+  const deleteToken = () => {
+    localStorage.clear();
+    setTimeout(() => {
+      navigate("/");
+    }, 3000);
+  };
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+  const handleShowModal = () => {
+    setShowModal(true);
+  };
+
   return (
     <>
       <div className={styles["container"]}>
@@ -100,19 +116,59 @@ function Navbar() {
             </div>
           ) : (
             <div className={`${styles["right-nav"]} d-flex`}>
-              <a className="nav-link" href="/">
+              {/* <a className="nav-link" href="/">
                 <img clasName={styles.icon} src={icon_search} alt="" widht="27px" height="27px" />
-              </a>
+              </a> */}
               <a className="nav-link" href="/">
                 <img clasName={styles.icon} src={icon_chat} alt="" widht="27px" height="27px" />
               </a>
 
-              <Link className={styles["no-underlinenavbar"]} to={role === "user" ? "/profile" : "/"}>
-                <img className="rounded-circle" src={role === "admin" ? icon_profile : profile.image === null ? icon_profile : profile.image} alt="" width="50px" height="50px" />
-              </Link>
+              {role === "admin" ? (
+                <div>
+                  <button
+                    type="button"
+                    className={`btn ${styles["btn-size"]} ${styles["btn-3"]}`}
+                    onClick={() => {
+                      handleShowModal();
+                    }}
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <Link className={styles["no-underlinenavbar"]} to={role === "user" ? "/profile" : "/"}>
+                  <img className="rounded-circle" src={profile.image === null ? icon_profile : profile.image} alt="" width="50px" height="50px" />
+                </Link>
+              )}
             </div>
           )}
         </nav>
+        <Modal show={showModal} onHide={handleCloseModal} backdrop="static" keyboard={false}>
+          <Modal.Header closeButton>
+            <Modal.Title>confirmation</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>are you sure you want to log out?</Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="secondary"
+              className="fw-bold text-bg-secondary text-white"
+              onClick={() => {
+                handleCloseModal();
+                deleteToken();
+                window.scrollTo({
+                  top: 0,
+                  left: 0,
+                  behavior: "smooth",
+                });
+              }}
+            >
+              Yes
+            </Button>
+            <Button variant="success" className="fw-bold text-bg-success text-white" onClick={handleCloseModal}>
+              No
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
       <ToastContainer />
     </>

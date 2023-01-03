@@ -18,6 +18,20 @@
   line-height: 24px;
   color: #0b132a;
 }
+
+.btn-size {
+  background-color: #ffba33;
+  color: #6a4029;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+}
+.btn-size:hover {
+  background-color: #ffba33;
+  color: #6a4029;
+}
+
 .right-nav {
   align-items: center;
   gap: 25px;

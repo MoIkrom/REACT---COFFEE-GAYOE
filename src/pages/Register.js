@@ -28,6 +28,8 @@ function Register({ navigate }) {
   const [password, setPassword] = useState("");
   const [isPwdShown, setIsPwdShown] = useState(false);
 
+  const [loading, setLoading] = useState(false);
+
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -52,6 +54,7 @@ function Register({ navigate }) {
           autoClose: 2000,
         });
         setTimeout(() => navigate("/login"), 3000);
+        setLoading(false);
       })
       .catch((err) => {
         toast.error("Invalid Email/Phone Number", {
@@ -110,7 +113,26 @@ function Register({ navigate }) {
                   <input className={styles["input-login"]} type="text" placeholder="Enter your phone number" onChange={handlePhoneNumber} require />
                 </form>
                 <div className={`container ${styles["btn-google"]}`}>
-                  <button className={`btn btn-warning ${styles["btn-login"]}`}>Sign Up</button>
+                  <button
+                    className={`btn btn-warning ${styles["btn-login"]}`}
+                    onClick={() => {
+                      setLoading(true);
+                    }}
+                  >
+                    {loading ? (
+                      <>
+                        <div className={styles["lds-ring"]}>
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                        </div>
+                        <p className={styles["loading-text"]}>Loading . . .</p>
+                      </>
+                    ) : (
+                      "Sign Up"
+                    )}
+                  </button>
                   <ToastContainer />
                   <button className={`btn btn-outline-secondary ${styles["btn-login-2"]}`}>
                     <span>
