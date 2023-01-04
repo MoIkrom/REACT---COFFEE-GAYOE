@@ -525,6 +525,9 @@ body {
   position: relative;
   top: -30px;
 }
+.none {
+  display: none;
+}
 .tombolsaveone {
   width: 100px;
   position: relative;

@@ -111,13 +111,19 @@ function Profile() {
     //   console.log(pair[0] + " - " + pair[1]);
     // }
     axios
-      .patch(`http://localhost:8080/api/v1/users`, formdata, { headers: { "x-access-token": token, "Content-Type": "multipart/form-data" } })
-      // .patch(`https://coffee-gayoe.vercel.app/api/v1/users`, formdata, { headers: { "x-access-token": token, "Content-Type": "multipart/form-data" } })
+      .patch(`http://localhost:8080/api/v1/users/profile`, formdata, { headers: { "x-access-token": token, "Content-Type": "multipart/form-data" } })
+      // .patch(`https://coffee-gayoe.vercel.app/api/v1/users/profile`, formdata, { headers: { "x-access-token": token, "Content-Type": "multipart/form-data" } })
       .then(() => {
         SuccessMessage();
         setLoading(false);
         setEdit(true);
+        setTimeout(() => navigate("/profile"), 3000);
         window.location.reload();
+        // window.location.scrollTo({
+        //   top: 0,
+        //   left: 0,
+        //   behavior: "smooth",
+        // });
       })
       .catch((err) => {
         console.log(err.response.data.msg);
@@ -177,6 +183,7 @@ function Profile() {
   const SuccessMessage = () => {
     toast.success("Data Save Change !", {
       position: toast.POSITION.TOP_RIGHT,
+      autoClose: 2000,
     });
   };
   const LogoutMessage = () => {
@@ -217,7 +224,12 @@ function Profile() {
         <div className={` container d-flex ${styles["cont-one"]} `}>
           <section className={`container ${styles["cont-card"]}`}>
             <div className={`card ${styles["card-body"]}`}>
-              <img className={styles["card-img-top"]} src={profile.image === null ? icon_profile : image !== "" ? image : profile.image} alt="profile_picture" />
+              <img
+                className={styles["card-img-top"]}
+                src={profile.image === null ? icon_profile : image !== "" ? image : profile.image}
+                // src={profile.image}
+                alt="profile_picture"
+              />
               <label className={styles.editicon} htmlFor="files" id="lable_file">
                 <img className={styles["cursor"]} src={icon_edit} alt="icon_edit" />
               </label>
