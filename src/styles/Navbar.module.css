@@ -155,15 +155,38 @@
   .header {
     max-width: 1440px;
   }
+  .login {
+    font-size: 13px;
+    line-height: 19px;
+    color: #6a4029;
+    height: 37px;
+  }
 
   .py {
     padding-top: 1rem !important;
     padding-bottom: 1rem !important;
-    margin-left: 2rem;
   }
-
+  .right-nav {
+    align-items: center;
+    gap: 0px;
+    width: 160px;
+    position: relative;
+    top: 0px;
+  }
+  .center-nav {
+    gap: 15px;
+    position: relative;
+    left: 0px;
+  }
   .icon {
     display: none;
+  }
+  .no-underline {
+    padding: 0px;
+  }
+  .sign-up {
+    font-size: 12px;
+    height: 38px;
   }
 }
 
@@ -171,4 +194,13 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+@media only screen and (max-width: 425px) {
+  .center-nav {
+    display: none !important;
+  }
+  .right-nav {
+    display: none !important;
+  }
 }

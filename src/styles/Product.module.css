@@ -517,3 +517,65 @@ footer {
   line-height: 30px;
   color: #4f5665;
 }
+
+@media only screen and (max-width: 768px) {
+  .coupon-card {
+    position: relative;
+    width: 200px;
+  }
+  .desc-promo {
+    padding: 0px !important;
+  }
+  .off {
+    width: 185px;
+  }
+  .garis {
+    font-size: 12px;
+  }
+  .code-text-1 {
+    font-size: 28px;
+  }
+  .code-text-2 {
+    font-size: 11px;
+  }
+  .contsearch {
+    padding-left: 15px;
+    gap: 35px;
+  }
+  .form-select {
+    width: 115px;
+  }
+  .inputsearch {
+    left: 26px;
+  }
+  .contsection {
+    padding-left: 72px !important;
+  }
+  .lds-ring {
+    left: -161px;
+  }
+  .btn-pagenull {
+    margin: 0px !important;
+  }
+  .btn-page {
+    margin: 0px;
+  }
+  .page {
+    gap: 30px;
+    left: -55px !important;
+  }
+  .list-content {
+    gap: 15%;
+  }
+  .contbutton {
+    position: relative;
+    top: 107px;
+    padding-bottom: 11px;
+    left: -28px;
+  }
+  .contbutton2 {
+    position: relative;
+    top: 93px;
+    left: -29px;
+  }
+}

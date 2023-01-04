@@ -1,18 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
-
-// import { useDispatch, useSelector } from "react-redux";
-// import userActions from "../../redux/action/user";
 import { TabTitle } from "../utils/General-funct.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useNavigate } from "react-router-dom";
 import { getProfile } from "../utils/api";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-// import Button from "react-bootstrap/Button";
-// import Modal from "react-bootstrap/Modal";
 import styles from "../styles/Profile.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../Component/Navbar";
@@ -26,9 +19,6 @@ import Modal from "react-bootstrap/Modal";
 import icon_edit from "../assets/images/icon_editpencil.png";
 
 import icon_profile from "../assets/images/default-img.png";
-// import { render } from "@testing-library/react";
-// const Profile = () => {
-//   TabTitle("Profile - Coffee Gayoe");
 
 function Profile() {
   TabTitle("Profile - Coffee Gayoe");
@@ -39,30 +29,22 @@ function Profile() {
   const [showModal, setShowModal] = useState(false);
   const [show, setShow] = useState(true);
   const [show2, setShow2] = useState(true);
-  const [showedit, setShowEdit] = useState(true);
   const [firstName, setFirstName] = useState(profile.firstname);
   const [lastName, setLastName] = useState(profile.lastname);
   const [phone_number, setPhone_number] = useState(profile.phone_number);
   const [displayName, setDisplayName] = useState(profile.display_name);
   const [gender, setGender] = useState(profile.gender);
   const [email, setEmail] = useState(profile.email);
-  const [filePath, setFilePath] = useState(profile.image);
   const [image, setImage] = useState("");
-  const [editPhoto, setEditPhoto] = useState(false);
-  // const [address, setAddress] = useState(profile.addres);
   const [edit, setEdit] = useState(false);
   const [deps, setDeps] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [imgPrev, setImgPrev] = useState(null);
-  const [disabled, setDisabled] = useState(true);
 
   const [isEdit, setIsEdit] = useState(true);
   const [isEdit2, setIsEdit2] = useState(true);
   const [saved, setSaved] = useState(false);
-  const [emailAddress, setEmailAddress] = useState("");
-  const [mobileNumber, setMobileNumber] = useState("");
   const [deliveryAddress, setDeliveryAddress] = useState(profile.addres);
-  const [showInput, setShowInput] = useState(true);
   const [historiedData, setHistoriedData] = useState("");
 
   const getProfileUser = () => {
@@ -92,6 +74,7 @@ function Profile() {
   useEffect(() => {
     getProfileUser();
     dataHistory();
+    setLoading(false);
     // console.log(profile.image);
   }, []);
 
@@ -111,19 +94,18 @@ function Profile() {
     //   console.log(pair[0] + " - " + pair[1]);
     // }
     axios
-      .patch(`http://localhost:8080/api/v1/users/profile`, formdata, { headers: { "x-access-token": token, "Content-Type": "multipart/form-data" } })
-      // .patch(`https://coffee-gayoe.vercel.app/api/v1/users/profile`, formdata, { headers: { "x-access-token": token, "Content-Type": "multipart/form-data" } })
+      // .patch(`http://localhost:8080/api/v1/users/profile`, formdata, { headers: { "x-access-token": token, "Content-Type": "multipart/form-data" } })
+      .patch(`https://coffee-gayoe.vercel.app/api/v1/users/profile`, formdata, { headers: { "x-access-token": token, "Content-Type": "multipart/form-data" } })
       .then(() => {
         SuccessMessage();
-        setLoading(false);
+        setLoading(true);
         setEdit(true);
-        setTimeout(() => navigate("/profile"), 3000);
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: "smooth",
+        });
         window.location.reload();
-        // window.location.scrollTo({
-        //   top: 0,
-        //   left: 0,
-        //   behavior: "smooth",
-        // });
       })
       .catch((err) => {
         console.log(err.response.data.msg);
@@ -172,7 +154,10 @@ function Profile() {
     setImage(e.target.files[0]);
     setImgPrev(URL.createObjectURL(e.target.files[0]));
   };
-
+  const selectImage = () => {
+    if (!image) return profile.image;
+    return URL.createObjectURL(image);
+  };
   const inputImage = (event) => {
     if (event.target.files && event.target.files[0]) {
       setImage(URL.createObjectURL(event.target.files[0]));
@@ -183,12 +168,13 @@ function Profile() {
   const SuccessMessage = () => {
     toast.success("Data Save Change !", {
       position: toast.POSITION.TOP_RIGHT,
-      autoClose: 2000,
+      autoClose: 1000,
     });
   };
   const LogoutMessage = () => {
     toast.success("Logout Success !", {
       position: toast.POSITION.TOP_RIGHT,
+      autoClose: 1000,
     });
   };
 
@@ -212,13 +198,24 @@ function Profile() {
     setShowModal(true);
   };
 
+  const handleImages = () => {
+    if (profile.image !== null) {
+      return profile.image;
+    }
+
+    if (imgPrev !== "") {
+      return imgPrev;
+    }
+    return profile.image;
+  };
+
   return (
     <>
       <header className={styles["header"]}>
         <Navbar />
       </header>
       <main className={styles["jumbotron"]}>
-        <div className={`container`}>
+        <div className={`container ${styles.usertitle}`}>
           <h1 className={styles["text-user"]}>User Profile</h1>
         </div>
         <div className={` container d-flex ${styles["cont-one"]} `}>
@@ -226,19 +223,18 @@ function Profile() {
             <div className={`card ${styles["card-body"]}`}>
               <img
                 className={styles["card-img-top"]}
-                src={profile.image === null ? icon_profile : image !== "" ? image : profile.image}
-                // src={profile.image}
-                alt="profile_picture"
+                // src={profile.image === null ? icon_profile : imgPrev !== "" ? imgPrev : profile.image}
+                src={!image ? profile.image : imgPrev}
+                alt=""
               />
               <label className={styles.editicon} htmlFor="files" id="lable_file">
-                <img className={styles["cursor"]} src={icon_edit} alt="icon_edit" />
+                <img className={`${styles["cursor"]}  ${styles.pencils}`} src={icon_edit} alt="icon_edit" />
               </label>
-              <input id="files" type="file" name="file" onChange={inputImage} className={styles.hidden} />
+              <input id="files" type="file" name="file" onChange={handleImage} className={styles.hidden} />
               <div className={`container ${styles["detail-image"]}`}>
                 <p className={styles["card-name"]}>{profile.display_name}</p>
                 <p className={styles["card-email"]}>{profile.email}</p>
               </div>
-
               <p className={styles["ordered"]}>Has been ordered {historiedData.length} products</p>
             </div>
             <div className={`card ${styles["card-address"]}`}>
@@ -259,7 +255,7 @@ function Profile() {
               </div>
 
               <form className={`container col-12 d-flex ${styles.contform}`}>
-                <div className={`container col-6 `}>
+                <div className={`container col-6 ${styles.contemailform} `}>
                   <label className={styles.genderone} htmlFor="email">
                     Email address :
                   </label>
@@ -302,7 +298,7 @@ function Profile() {
             </div>
           </section>
           <div className={`${styles.contTwo}`}>
-            <div className={`card col-8`}>
+            <div className={`card col-8 ${styles.displaynames}`}>
               <div className={styles["title-contact"]}>
                 <h2 className={show2 === true ? styles["display-5"] : styles["contactshow"]}>Details</h2>
                 <div
@@ -318,8 +314,8 @@ function Profile() {
                   <p className={show2 === true ? `${styles.edits} ${styles["cursor"]}` : `${styles.none}`}>Edit</p>
                 </div>
               </div>
-              <div className={`d-flex gap-5`}>
-                <div className="col-7">
+              <div className={`d-flex gap-5 ${styles.fleks}`}>
+                <div className={`col-7 ${styles.col7}`}>
                   <div className={`container ${styles[""]}`}>
                     <div className={`container  ${styles["cont-display"]}`}>
                       <label className={styles.gender} htmlFor="phone_number">
@@ -346,7 +342,7 @@ function Profile() {
                   </div>
                 </div>
 
-                <div>
+                <div className={`${styles.divgender}`}>
                   <p className={`${styles.gender}`}> Gender : </p>
                   <form
                     className={`${styles["radio-payment"]} ${styles["cursor"]}`}
@@ -383,7 +379,19 @@ function Profile() {
             <div className={`container ${styles["cont-btn"]}`}>
               <h1 className={styles["save-btn"]}>Do you want to save the change?</h1>
               <button type="button" className={`btn ${styles["btn-1"]}  ${styles["btn-size"]}`} onClick={editData}>
-                Save Change
+                {loading ? (
+                  <>
+                    <div className={styles["lds-ring"]}>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                    </div>
+                    <p className={styles["loading-text"]}>Loading . . .</p>
+                  </>
+                ) : (
+                  " Save Change "
+                )}
               </button>
               <button type="button" className={`btn ${styles["btn-2"]} ${styles["btn-size"]}`}>
                 Cancel
@@ -398,8 +406,7 @@ function Profile() {
                   handleShowModal();
                 }}
               >
-                <p>Log Out</p>
-                <i className="bi bi-chevron-right"></i>
+                Log Out
               </button>
             </div>
           </div>

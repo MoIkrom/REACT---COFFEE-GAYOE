@@ -54,7 +54,7 @@ const Payment = () => {
   };
   const getTotal = () => {
     let price = products.price * products.qty;
-    let taxes = products.price / 10;
+    let taxes = (products.price * products.qty) / 10;
     let shipping = products.shiping === 2 ? 10000 : 0;
     let total = price + taxes + shipping;
     return costing(total);
@@ -200,7 +200,7 @@ const Payment = () => {
 
               <div className="col-md-5 col-sm-12 d-flex flex-column mb-5">
                 <div className="row d-flex flex-column">
-                  <div className="col-12">
+                  <div className={` col-12 ${styles.atas}`}>
                     <div className={styles["address-detail"]}>
                       <h2>Address</h2>
                       <p>edit</p>
@@ -213,7 +213,7 @@ const Payment = () => {
                       <p> {profile.phone_number}</p>
                     </div>
                   </div>
-                  <div className="col-12">
+                  <div className={` col-12 ${styles.bawah}`}>
                     <div className={styles["payment-method"]}>
                       <h2>Payment Method</h2>
                     </div>

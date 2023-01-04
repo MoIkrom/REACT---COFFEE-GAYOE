@@ -168,15 +168,62 @@ body {
   vertical-align: Top;
 }
 .btn-size:hover {
-  background-color: #ffba33;
+  background-color: #6a4029;
 }
 .btn-2:hover {
-  background-color: #ffffff;
+  background-color: #ffba33;
 }
 .no-underline {
   text-decoration: none;
   color: #6a4029;
 }
+
+/* Start Loading */
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  top: -6px;
+  left: 10px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  left: -70px;
+  top: 0px;
+  width: 30px;
+  height: 30px;
+  margin: 8px;
+  border: 5px solid #ffba33;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #ffba33 transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loading-text {
+  position: relative;
+  top: -77px;
+}
+/* End Loading */
+
 .btn-2 {
   color: #6a4029;
   background-color: #ffba33;
@@ -200,6 +247,24 @@ body {
   text-align: left;
   font-weight: 700;
   vertical-align: Top;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-3:hover {
+  color: #6a4029;
+  background-color: #ffffff;
+  font-family: Poppins;
+  font-style: Bold;
+  font-size: 18px;
+  line-height: 30px;
+  line-height: 121%;
+  text-align: left;
+  font-weight: 700;
+  vertical-align: Top;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cont-btn {
@@ -783,6 +848,26 @@ body {
 }
 /* Media Query */
 @media only screen and (max-width: 768px) {
+  .text-user {
+    top: 50px;
+    left: 15px;
+  }
+  .pencils {
+    width: 35px;
+    position: relative;
+    top: 10px;
+    left: -10px;
+  }
+  .cont-btn {
+    position: relative;
+    top: -45px;
+  }
+  .detail-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   .card-img-top {
     border-radius: 100px;
     height: 92px;
@@ -797,13 +882,23 @@ body {
     /* gap: 34px; */
     height: 287px;
   }
-
-  /* mobile number{
-element.style {
-    overflow: hidden;
-    /* width: 107px; */
-  /* } */
-
+  .contform {
+    padding: 0px;
+    display: flex !important;
+    flex-direction: column;
+    gap: 15px;
+    position: relative;
+    top: -10px;
+  }
+  .cont-address {
+    top: 0px;
+  }
+  .contemailform {
+    margin: 0px;
+  }
+  .emailinput {
+    width: 365px;
+  }
   .ordered {
     font-family: Rubik;
     font-style: Regular;
@@ -871,15 +966,37 @@ element.style {
   }
 
   .card-name {
-    left: 8px;
+    margin: 0px;
+    position: relative;
+    top: 0px;
+    left: 0px;
   }
-
+  .card-email {
+    top: 0px;
+    left: 0px;
+  }
+  .title-contactone {
+    gap: 214px;
+    align-items: center;
+    padding-top: 10px;
+  }
   .cont-email {
     font-size: 13px;
     position: relative;
     height: 35px;
+    margin: 0px;
+    padding: 0px;
+    top: 0px;
   }
-
+  .street {
+    width: 365px;
+  }
+  .title-contact {
+    gap: 243px;
+    align-items: center;
+    padding-top: 17px;
+    padding-bottom: 16px;
+  }
   .my-1 {
     width: 90%;
   }
@@ -911,5 +1028,148 @@ element.style {
     height: 39px;
     position: relative;
     top: 65px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .card-body {
+    height: 220px;
+  }
+  .card-name {
+    margin: 0px;
+    position: relative;
+    top: -10px;
+  }
+  .usertitle {
+    padding-top: 20px;
+  }
+  .detail-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .ordered {
+    top: -10px;
+  }
+  .card-email {
+    margin: 0px auto;
+    position: relative;
+    left: 0px;
+  }
+  .cont-one {
+    position: relative;
+    top: -26px;
+  }
+  .text-user {
+    top: 0px;
+  }
+  .cont-email {
+    margin: 0px;
+    padding: 0px;
+  }
+  .street {
+    width: 340px;
+    font-size: 16px;
+    padding-bottom: 7px;
+  }
+  .cont-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 30px;
+    gap: 50px;
+  }
+  .contTwo {
+    left: 11px;
+    width: 317px;
+    top: 50px;
+  }
+  .displaynames {
+    width: 230px;
+  }
+  .title-contact {
+    gap: 43px;
+    align-items: center;
+    padding-top: 10px;
+  }
+  .fleks {
+    display: flex !important;
+    flex-direction: column;
+    gap: 0px !important;
+  }
+  .col7 {
+    width: 230px;
+  }
+  .radio-payment {
+    display: flex;
+    position: relative;
+    top: -26px;
+    gap: 19px;
+  }
+  .cont-btn {
+    position: relative;
+    top: -41px;
+    left: 12px;
+  }
+  .save-btn {
+    width: 112px;
+    font-size: 14px;
+  }
+  .btn-size {
+    width: 120px;
+    font-size: 12px;
+    text-align: center;
+  }
+  .spans {
+    font-size: 14px;
+    line-height: 30px;
+    padding-top: 7px;
+  }
+  .gender {
+    font-size: 12px;
+  }
+  .cont-display {
+    padding: 0px 0px 10px 0px;
+  }
+  .divgender {
+    position: relative;
+    left: 13px;
+  }
+  .card-address {
+    width: 380px;
+    height: 288px;
+    padding-left: 2px;
+  }
+  .contform {
+    display: flex !important;
+    flex-direction: column;
+    padding: 0px !important;
+  }
+  .contemailform {
+    margin: 0px;
+  }
+  .emailinput {
+    width: 340px;
+  }
+  .cont-address {
+    top: 0px;
+  }
+  .genderone {
+    padding-bottom: 1px;
+    padding-top: 10px;
+    font-size: 15px;
+  }
+  .title-contactone {
+    gap: 180px;
+    align-items: center;
+    padding-top: 15px;
+  }
+  .usertitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

@@ -10,7 +10,7 @@ function Footer() {
   return (
     <>
       <footer className={`container ${styles["cont-footer"]}`}>
-        <div className="container d-flex  py-5">
+        <div className={`container d-flex  py-5 ${styles.footer1}`}>
           <aside className={styles["footer-left"]}>
             <img src={icon_coffee} alt="icon_coffee" />
             <span className={styles["footer-title-left"]}>Coffee Gayoe</span>
@@ -43,10 +43,10 @@ function Footer() {
               </div>
             </div>
             <div className={`d-flex flex-column me-5 ${styles["fr"]}`}>
-              <div className={`${styles["footer-right"]} d-flex flex-row mt-2 mb-3`}>
+              <div className={`${styles["footer-right"]}  ${styles.engage} d-flex flex-row mt-2 mb-3`}>
                 <span id={styles["list-footer"]}>Engage</span>
               </div>
-              <div className={`${styles["footer-right-link"]} d-flex flex-column`}>
+              <div className={`${styles["footer-right-link"]}  ${styles.listfooter} d-flex flex-column`}>
                 <span id={styles["list-footer"]}>Coffee Shop?</span>
                 <span id={styles["list-footer"]}>FAQ</span>
                 <span id={styles["list-footer"]}>About Us</span>

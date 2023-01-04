@@ -364,3 +364,25 @@
   border-radius: 50%;
   border: 2px solid #000000;
 }
+
+@media only screen and (max-width: 768px) {
+  .background-payment {
+    background-size: 170%;
+  }
+  .content-left-payment {
+    width: 372px;
+    height: 640px;
+  }
+  .atas {
+    position: relative;
+    top: -55px;
+  }
+  .bawah {
+    position: relative;
+    top: -90px;
+  }
+  .confirm-pay {
+    position: relative;
+    top: -106px;
+  }
+}

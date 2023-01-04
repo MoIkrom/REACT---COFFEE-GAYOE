@@ -228,7 +228,7 @@ function Product() {
               </p>
               <p className={styles["off"]}>Buy 1 Choco Oreo and get 20% off for Beef Spaghetti</p>
 
-              <p>-----------------------------------</p>
+              <p className={styles["garis"]}>-----------------------------------</p>
               <p className={styles["code-coupon"]}>COUPON CODE</p>
               <p className={styles["code-text-1"]}>FNPR15RG</p>
               <p className={styles["code-text-2"]}>Valid untill October 10th 2020</p>
@@ -373,14 +373,14 @@ function Product() {
                 New Product
               </option>
             </Form.Select>
-            <InputGroup className="mb-0" onChange={debounceOnChange}>
+            <InputGroup className={` mb-0 ${styles.inputsearch}`} onChange={debounceOnChange}>
               <Form.Control placeholder="Search Product" aria-label="Recipient's username" aria-describedby="basic-addon2" />
               <Button variant="outline-secondary" id="button-addon2">
                 Search
               </Button>
             </InputGroup>
           </div>
-          <section className="container-fluid text-center ps-5 ms-4">
+          <section className={`container-fluid text-center ps-5 ms-4 ${styles.contsection}`}>
             <div className={`row ${styles["list-content"]} justify-content-start ${styles["gap-Row"]} ${styles["position-settings"]}`}>
               {notfound === "Internal server Error" ? (
                 <p className={styles["notfound-text"]}>Product Not Found</p>

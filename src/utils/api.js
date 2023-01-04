@@ -8,6 +8,23 @@ export const login = (body) => {
   return axios.post(URL, body);
 };
 
+// Edit Profile
+export const editProfiles = (body) => {
+  // const token = localStorage.getItem("token");
+  const login = localStorage.getItem("token");
+  const token = login;
+  console.log(token);
+  const URL = `${process.env.REACT_APP_BACKEND_HOST}api/v1/users/profile`;
+  for (const pair of body.entries()) {
+    console.log(pair);
+  }
+  return axios.patch(URL, body, {
+    headers: {
+      "access-token": token,
+    },
+  });
+};
+
 export const signup = (body) => {
   const URL = HOST + PREFIKS + "users";
   return axios.post(URL, body);
