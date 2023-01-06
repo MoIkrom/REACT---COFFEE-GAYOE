@@ -105,38 +105,15 @@ function Product() {
     navigate("/detail-product");
     console.log("masuk coy");
   };
-  // useEffect(() => {
-  //   getAllproducts(paramsCategory, paramsName, paramsSort, paramsPage, paramsSearch);
-  //   setSearch(value);
-  //   // setCategory(category);
-  //   // console.log(meta);
-  // }, [paramsCategory, paramsName, paramsSort, paramsPage, paramsSearch, value]);
-  // useEffect(() => {
-  //   // getFavoriteProducts();
-  //   getAllproducts(paramsCategory, paramsName, paramsSort, paramsPage, paramsSearch);
-  //   setLoading(false);
-  //   setShow(true);
-  //   setNavFav(false);
-  //   setNavCoff(true);
-  //   setNavNonCoff(true);
-  //   setNavFood(true);
-  //   setNavadd(true);
-  //   setPage(page);
-  //   setCategory(category);
-  //   setSearch(search);
-  // }, [page, category, search]);
   useEffect(() => {
     setLoading(true);
     axios
       .get(`https://coffee-gayoe.vercel.app/api/v1/product?category=${category}&sort=${sort}&page=${page}&limit=4&search=${search}`)
       .then((res) => {
         setProduct(res.data.data);
-        // setProduct(res.data.data),
         setNotfound(search);
         setLoading(false);
         setTotalPage(res.data.meta.totalPage);
-        // console.log(res.data.meta.totalPage);
-        // console.log('data ke get lho....');
       })
       .catch((err) => {
         setNotfound(err.response.data.msg);
@@ -478,6 +455,8 @@ function Product() {
             </div>
             {loading ? (
               ""
+            ) : notfound === "Internal server Error" ? (
+              ""
             ) : (
               <div className={role === "admin" ? `d-flex justify-content-center ${styles.contbutton}` : `${styles.none}`}>
                 <button
@@ -497,6 +476,8 @@ function Product() {
               </div>
             )}
             {loading ? (
+              ""
+            ) : notfound === "Internal server Error" ? (
               ""
             ) : (
               <div className={role === "admin" ? `d-flex justify-content-center ${styles.contbutton2}` : `${styles.none}`}>
