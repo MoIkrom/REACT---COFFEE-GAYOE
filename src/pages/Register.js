@@ -62,6 +62,7 @@ function Register({ navigate }) {
           autoClose: 2000,
         });
         console.log(err);
+        setLoading(false);
       });
   };
   const onClickHandler = (to) => {

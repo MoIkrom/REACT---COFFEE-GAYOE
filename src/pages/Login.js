@@ -55,6 +55,7 @@ function Login({ navigate }) {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 2000,
         });
+        setLoading(false);
         console.log(err);
       });
   };
