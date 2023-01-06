@@ -82,7 +82,7 @@ function NewProduct() {
       });
   };
   const SuccessMessage = () => {
-    toast.success("Data Save Change !", {
+    toast.success("Success Create New Product !", {
       position: toast.POSITION.TOP_RIGHT,
       autoClose: 1000,
     });
