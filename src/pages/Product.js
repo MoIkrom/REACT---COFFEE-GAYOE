@@ -42,7 +42,7 @@ function Product() {
   const [navNonCoff, setNavNonCoff] = useState(false);
   const [navadd, setNavadd] = useState(false);
   const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("favorite");
+  const [category, setCategory] = useState("coffee");
   const [sort, setSort] = useState("name");
   const [product, setProduct] = useState([]);
   const [page, setPage] = useState(1);
