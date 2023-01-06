@@ -5,10 +5,12 @@ import Home from "./pages/Home";
 import Product from "./pages/Product";
 import Profile from "./pages/Profile";
 import Forgot from "./pages/Forgot";
+import EditPwd from "./pages/EditPwd";
 import History from "./pages/History";
 import Payment from "./pages/Payment";
 import Detail from "./pages/Detail";
 import NewProduct from "./pages/NewProduct";
+import EditProduct from "./pages/EditProduct";
 import NewPromo from "./pages/NewPromo";
 import EditPromo from "./pages/EditPromo";
 import PrivateRoutes from "./Component/PrivateRoutes";
@@ -53,6 +55,14 @@ const router = createBrowserRouter([
       </BackRoutes>
     ),
   },
+  {
+    path: "/profile/edit-password",
+    element: (
+      <PrivateRoutes>
+        <EditPwd />
+      </PrivateRoutes>
+    ),
+  },
 
   {
     path: "/history",
@@ -75,6 +85,14 @@ const router = createBrowserRouter([
     element: (
       <PrivateRoutes allowedRoles={["user"]}>
         <Payment />
+      </PrivateRoutes>
+    ),
+  },
+  {
+    path: "/detail-product/:id/edit-product",
+    element: (
+      <PrivateRoutes allowedRoles={["admin"]}>
+        <EditProduct />
       </PrivateRoutes>
     ),
   },

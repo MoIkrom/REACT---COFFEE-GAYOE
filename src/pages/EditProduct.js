@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+// import NewNavbar from "../Component/NewNavbar";
 import Navbar from "../Component/Navbar";
 import styles from "../styles/NewProduct.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -12,6 +13,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 import foto from "../assets/images/nofoto.jpg";
 import { Navigate, useNavigate } from "react-router-dom";
+import Product from "./Product";
 
 function NewProduct() {
   const [image, setImage] = useState("");
@@ -23,7 +25,44 @@ function NewProduct() {
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const [product, setProduct] = useState([]);
+  const url = window.location.pathname;
+  //   const id = url.substring(url.lastIndexOf("/") - 2);
+  //   const id =    url.split("/");
+  const id = url.split("/")[2];
+  const costing = (price) => {
+    return parseFloat(price)
+      .toFixed()
+      .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+  };
 
+  const getProductByid = (id) => {
+    console.log(id);
+    axios
+      .get(`https://coffee-gayoe.vercel.app/api/v1/product/${id}`)
+      .then((res) => {
+        setProduct(res.data.result.data[0]);
+        setLoading(false);
+        // console.log(res.data.result.data);
+      })
+
+      .catch((err) => {
+        console.log(err.response.data.msg);
+      });
+  };
+  useEffect(() => {
+    getProductByid(id);
+    setLoading(false);
+  }, [id]);
+
+  const handleCancel = () => {
+    setImage(product.image);
+    setProduct_name(product.product_name);
+    setPrice(product.price);
+    setStock(product.stock);
+    setCategory(product.category);
+    setDescription(product.description);
+  };
   const handleImage = (e) => {
     setImage(e.target.files[0]);
     setImgPrev(URL.createObjectURL(e.target.files[0]));
@@ -49,8 +88,7 @@ function NewProduct() {
     setDescription(e.target.value);
   };
 
-  const addProduct = (e) => {
-    console.log(image);
+  const editProduct = (e) => {
     setLoading(true);
     const token = localStorage.getItem("token");
     e.preventDefault();
@@ -62,7 +100,7 @@ function NewProduct() {
     if (category) formdata.append("category", category);
     if (description) formdata.append("description", description);
     axios
-      .post(`https://coffee-gayoe.vercel.app/api/v1/product`, formdata, { headers: { "x-access-token": token, "Content-Type": "multipart/form-data" } })
+      .patch(`https://coffee-gayoe.vercel.app/api/v1/product/${id}`, formdata, { headers: { "x-access-token": token, "Content-Type": "multipart/form-data" } })
       .then(() => {
         SuccessMessage();
         setLoading(false);
@@ -71,18 +109,19 @@ function NewProduct() {
           left: 0,
           behavior: "smooth",
         });
-        setTimeout(() => navigate("/product"), 3000);
+        setTimeout(() => navigate(`/product`), 2000);
       })
       .catch((err) => {
         console.log(err.response.data.msg);
 
-        toast.error(err, {
+        toast.error("Cannot Edit Product !", {
           position: toast.POSITION.TOP_RIGHT,
+          autoClose: 1000,
         });
       });
   };
   const SuccessMessage = () => {
-    toast.success("Data Save Change !", {
+    toast.success("Edit Product Success !", {
       position: toast.POSITION.TOP_RIGHT,
       autoClose: 1000,
     });
@@ -94,18 +133,19 @@ function NewProduct() {
       </header>
       <section className={`container ${styles["sect-1"]}`}>
         <p className="container">
-          Favorite & Promo <strong> &gt; Add new product</strong>
+          Product Detail <strong> &gt; Edit Product</strong>
         </p>
         <div className={`container ${styles["main"]}`}>
           <div className={`container ${styles[""]}`}>
-            <div className={`container {styles["image"]}`}>
+            <div className={loading ? `${styles["none"]}}` : `container ${styles["image"]}`}>
               <img
                 className={styles["images"]}
                 // src={foto}
-                src={!image ? foto : imgPrev}
+                src={!image ? product.image : imgPrev}
                 alt=""
               />
             </div>
+            {/* <div className="container d-flex row   "> */}
             <div className={`container $styles{["cont-btn"]}`}>
               <button className={`btn btn-dark mb-2 mt-2 ${styles["btn-checkout"]} ${styles["btn-up"]}`}>Take a picture</button>
               <button className={`btn btn-warning ${styles["btn-checkout"]} ${styles["btn-down"]}`}>
@@ -113,9 +153,10 @@ function NewProduct() {
                 <input id="files" type="file" name="file" className={styles.hiddenz} onChange={handleImage} />
               </button>
             </div>
-            <div className={`${styles["form-group"]} ${styles.top} ${styles["stock"]}`}>
+
+            <div className={`${styles["form-group"]} ${styles["stock"]}`}>
               <label className={styles["label"]}>Input stock :</label>
-              <input className={`form-control ${styles["hour"]}`} onChange={handleStock} placeholder="Input stock"></input>
+              <input className={`form-control ${styles["hour"]}`} onChange={handleStock} placeholder={product.stock}></input>
             </div>
           </div>
           <div className={`container`}>
@@ -124,52 +165,42 @@ function NewProduct() {
                 <div className="container">
                   <div className={styles["placeholder"]}>
                     <p className={styles["title-name"]}> Name :</p>
-                    <input className={styles["input"]} type="text" placeholder="Type product name min. 50 characters" onChange={handleProduct} />
+                    <input className={styles["input"]} type="text" placeholder={product.product_name} onChange={handleProduct} />
                   </div>
                   <div className={styles["placeholder"]}>
                     <p className={styles["title-name"]}> Category :</p>
-                    <input className={styles["input"]} type="text" placeholder="Type the categoty" onChange={handleCategory} />
+                    <input className={styles["input"]} type="text" placeholder={product.category} onChange={handleCategory} />
                   </div>
                   <div className={styles["placeholder"]}>
                     <p className={styles["title-name"]}> Price :</p>
-                    <input className={styles["input"]} type="text" placeholder="Type the price" onChange={handlePrice} />
+                    <input className={styles["input"]} type="text" placeholder={`${"Rp"} ${costing(product.price)}`} onChange={handlePrice} />
                   </div>
                   <div className={styles["placeholder"]}>
                     <p className={styles["title-name"]}>Description :</p>
-                    <input className={styles["input"]} type="text" placeholder="Describe your product min. 150 characters" onChange={handleDescription} />
+                    <input className={styles["input"]} type="text" placeholder={product.description} onChange={handleDescription} />
                   </div>
-                  {/* <div className={styles["placeholder"]}>
-                    <p className={styles["title-name"]}>Input product size :</p>
-                    <p className={styles["choosesize"]}>Click size you want to use for this product </p>
-                    <div className={styles["box-size"]}>
-                      <img src={bgyel} alt="]}/" />
-                      <p className={styles["size"]}>R</p>
-                      <img src={bgyel} alt="]}/" />
-                      <p className={`${styles["size"]} ${styles["size-2"]}`}>L</p>
-                      <img src={bgyel} alt="]}/" />
-                      <p className={`${styles["size"]} ${styles["size-3"]}`}>XL</p>
-                      <img className={styles["ellips"]} src={grey} alt="]}/" />
-                      <p className={styles["weight"]}>250gr</p>
-                      <img className={styles["ellips"]} src={grey} alt="]}/" />
-                      <p className={`${styles["weight"]} ${styles["weight-2"]}`}>300gr</p>
-                      <img className={styles["ellips"]} src={grey} alt="]}/" />
-                      <p className={`${styles["weight"]} ${styles["weight-3"]}`}>500gr</p>
-                    </div>
-                  </div>
-                  <div className={styles["placeholder"]}>
-                    <p className={styles["title-name"]}>Input delivery methods :</p>
-                    <p className={styles["method"]}>Click methods you want to use for this product</p>
-                    <button className={`btn btn-warning ${styles["btn-checkout"]} ${styles["btn-delivery"]}`}>Home Delivery</button> <button className={`btn btn-warning ${styles["btn-checkout"]} ${styles["btn-delivery"]}`}>Dine in</button>{" "}
-                    <button className={`btn ${styles["btn-checkout"]} ${styles["btn-delivery"]} ${styles["btn-delivery-3"]}`}>Take away</button>
-                  </div> */}
                 </div>
               </div>
             </div>
             <div className={styles["btn-save-product"]}>
-              <button className={`btn ${styles["btn-save"]} ${styles["btn-up-2"]}`} onClick={addProduct}>
-                Save Product
+              <button className={`btn ${styles["btn-save"]} ${styles["btn-up-2"]}`} onClick={editProduct}>
+                {loading ? (
+                  <>
+                    <div className={styles["lds-ring"]}>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                    </div>
+                    <p className={styles["loading-text"]}>Loading . . .</p>
+                  </>
+                ) : (
+                  " Save Product"
+                )}
               </button>
-              <button className={`btn ${styles["btn-save"]} ${styles["btn-down-2"]}`}>Cancel </button>
+              <button className={`btn ${styles["btn-save"]} ${styles["btn-down-2"]}`} onClick={handleCancel}>
+                Cancel{" "}
+              </button>
             </div>
           </div>
           <ToastContainer />

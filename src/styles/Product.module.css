@@ -201,8 +201,8 @@
   background: #6a4029;
   border-radius: 20px;
   border: none;
-  -webkit-transform: scale(1.2);
-  transform: scale(1.2);
+  /* -webkit-transform: scale(1.2); */
+  transform: scale(1.1);
 }
 
 .apply-coupon:hover {
@@ -273,6 +273,9 @@
   top: 169px;
   padding-bottom: 34px !important;
 }
+.contbutton:hover {
+  transform: scale(1.1);
+}
 .btn-pagenull {
   background-color: #a2a2a3;
   color: white;
@@ -309,6 +312,10 @@
   position: relative;
   top: 155px;
 }
+.contbutton2:hover {
+  transform: scale(1.1);
+}
+
 .loading {
   width: 100%;
   padding-top: 40%;

@@ -71,6 +71,14 @@ function Profile() {
       });
   };
 
+  const toEditPwd = () => {
+    navigate("/profile/edit-password");
+    window.scrollTo({
+      top: 100,
+      left: 100,
+    });
+  };
+
   useEffect(() => {
     getProfileUser();
     dataHistory();
@@ -80,6 +88,7 @@ function Profile() {
 
   // editData => fungsi untuk memasukan data kedalam database ketika di click button save change
   const editData = (e) => {
+    setLoading(true);
     const token = localStorage.getItem("token");
     e.preventDefault();
     let formdata = new FormData();
@@ -98,7 +107,7 @@ function Profile() {
       .patch(`https://coffee-gayoe.vercel.app/api/v1/users/profile`, formdata, { headers: { "x-access-token": token, "Content-Type": "multipart/form-data" } })
       .then(() => {
         SuccessMessage();
-        setLoading(true);
+        setLoading(false);
         setEdit(true);
         window.scrollTo({
           top: 0,
@@ -146,22 +155,15 @@ function Profile() {
     setGender(e.target.value);
   };
 
-  // const onEditContacts = () => {
-  //   set(isEditContact: false });
-  // };
-
   const handleImage = (e) => {
     setImage(e.target.files[0]);
     setImgPrev(URL.createObjectURL(e.target.files[0]));
   };
-  const selectImage = () => {
-    if (!image) return profile.image;
-    return URL.createObjectURL(image);
-  };
-  const inputImage = (event) => {
-    if (event.target.files && event.target.files[0]) {
-      setImage(URL.createObjectURL(event.target.files[0]));
-    }
+  // handleFile => memndapatkan value inputan dari gambar yang telah di choose file
+  const handleFile = (e) => {
+    e.preventDefault();
+    let file = e.target.files[0];
+    setImage(file);
   };
 
   // SuccessMessage, LogoutMessage => notifikasi sukses dan gagal
@@ -196,6 +198,15 @@ function Profile() {
   };
   const handleShowModal = () => {
     setShowModal(true);
+  };
+
+  const handleCancel = () => {
+    setImage(profile.image);
+    setDeliveryAddress(profile.addres);
+    setDisplayName(profile.display_name);
+    setPhone_number(profile.phone_number);
+    setFirstName(profile.firstname);
+    setLastName(profile.lastname);
   };
 
   const handleImages = () => {
@@ -393,10 +404,10 @@ function Profile() {
                   " Save Change "
                 )}
               </button>
-              <button type="button" className={`btn ${styles["btn-2"]} ${styles["btn-size"]}`}>
+              <button type="button" className={`btn ${styles["btn-2"]} ${styles["btn-size"]}`} onClick={handleCancel}>
                 Cancel
               </button>
-              <button type="button" className={`btn ${styles["btn-size"]} ${styles["btn-3"]}`}>
+              <button type="button" className={`btn ${styles["btn-size"]} ${styles["btn-3"]}`} onClick={toEditPwd}>
                 Edit Password
               </button>
               <button

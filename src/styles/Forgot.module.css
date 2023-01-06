@@ -21,6 +21,97 @@ body {
   color: #6a4029;
   font-weight: 700;
 }
+.form {
+  position: relative;
+  top: 160px;
+  left: 9rem;
+}
+
+/* Start Loading */
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  top: 4px;
+  left: 22px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  left: -70px;
+  top: 0px;
+  width: 30px;
+  height: 30px;
+  margin: 8px;
+  border: 5px solid #ffba33;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #ffba33 transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loading-text {
+  position: relative;
+  top: -74px;
+  left: 18px;
+  font-size: 20px !important;
+}
+/* End Loading */
+
+.inputatas {
+  position: relative;
+  top: -28px;
+  display: flex;
+  flex-direction: column;
+  left: -126px;
+  gap: 12px;
+}
+.shows {
+  width: 30px;
+}
+.conteyes {
+  width: 40px;
+  position: relative;
+  left: 52.5rem;
+}
+.conteyes2 {
+  width: 40px;
+  position: relative;
+  left: 52.5rem;
+  top: 2rem;
+}
+.show {
+  width: 30px;
+}
+.none {
+  display: none;
+}
+.inputbawah {
+  position: relative;
+  top: -6px;
+}
+.change {
+  position: relative;
+  top: -13rem;
+  left: -8rem;
+}
 .form-control {
   height: 50px;
   width: 400px;

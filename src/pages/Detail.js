@@ -218,11 +218,24 @@ const Detail = ({ route }) => {
             </h1>
           </div>
           <div className={`container ${styles.buttongroup}`}>
-            <button className={`btn btn-warning ${styles["btn-cart"]}`} onClick={handleRedux}>
-              Add to Cart
-            </button>
+            {role === "admin" ? (
+              ""
+            ) : (
+              <button className={`btn btn-warning ${styles["btn-cart"]}`} onClick={handleRedux}>
+                Add to Cart
+              </button>
+            )}
+
             {/* <br /> */}
-            <button className={`btn btn-success ${styles["btn-staff"]}`}>{role === "user" ? "Ask a Staff" : "Edit Product"}</button>
+            <button
+              className={`btn btn-success ${styles["btn-staff"]}`}
+              onClick={() => {
+                navigate("edit-product");
+                window.scrollTo(100, 100);
+              }}
+            >
+              {role === "user" ? "Ask a Staff" : "Edit Product"}
+            </button>
             <button
               className={role === "admin" ? `btn ${styles["btn-delete"]}` : `${styles.none}`}
               onClick={() => {
@@ -232,51 +245,61 @@ const Detail = ({ route }) => {
               Delete Menu
             </button>
           </div>
-          <div className={`container ${styles["cont-card"]}`}>
-            <div className={`card ${styles["card-down"]} d-flex`}>
-              <div className="col-lg-6">
-                <img className={styles["image-coffee"]} src={product.image} alt="coffee" />
-                <div>
-                  <h1 className={styles["title-coffee"]}>{product.product_name}</h1>
-                  <p className={styles["size-coffee"]}>
-                    {" "}
-                    x {quantity} ({size})
-                  </p>
+          {role === "admin" ? (
+            ""
+          ) : (
+            <div className={`container ${styles["cont-card"]}`}>
+              <div className={`card ${styles["card-down"]} d-flex`}>
+                <div className="col-lg-6">
+                  <img className={styles["image-coffee"]} src={product.image} alt="coffee" />
+                  <div>
+                    <h1 className={styles["title-coffee"]}>{product.product_name}</h1>
+                    <p className={styles["size-coffee"]}>
+                      {" "}
+                      x {quantity} ({size})
+                    </p>
+                  </div>
                 </div>
+                <nav className={`${styles.cursors} col-lg-6`}>
+                  <ul className="pagination pagination-sm">
+                    <li className={`page-item white ${styles.box}`}>
+                      <span className={`page-link ${styles["blacks"]}`} onClick={min}>
+                        -
+                      </span>
+                    </li>
+                    <li className={`page-item white ${styles.box}`}>
+                      <span className={`page-link ${styles["blacks"]}`}>{quantity}</span>
+                    </li>
+                    <li className={`page-item white ${styles.box}`}>
+                      <span className={`page-link ${styles["blacks"]}`} onClick={max}>
+                        +
+                      </span>
+                    </li>
+                  </ul>
+                </nav>
               </div>
-              <nav className={`${styles.cursors} col-lg-6`}>
-                <ul className="pagination pagination-sm">
-                  <li className={`page-item white ${styles.box}`}>
-                    <span className={`page-link ${styles["blacks"]}`} onClick={min}>
-                      -
-                    </span>
-                  </li>
-                  <li className={`page-item white ${styles.box}`}>
-                    <span className={`page-link ${styles["blacks"]}`}>{quantity}</span>
-                  </li>
-                  <li className={`page-item white ${styles.box}`}>
-                    <span className={`page-link ${styles["blacks"]}`} onClick={max}>
-                      +
-                    </span>
-                  </li>
-                </ul>
-              </nav>
-            </div>
 
-            <button className={`btn btn-warning ${styles["btn-checkout"]}`} onClick={handleRedux}>
-              Checkout
-            </button>
-          </div>
+              <button className={`btn btn-warning ${styles["btn-checkout"]}`} onClick={handleRedux}>
+                Checkout
+              </button>
+            </div>
+          )}
+
           <ToastContainer />
           <Modal show={showModal} onHide={handleCloseModal} backdrop="static" keyboard={false}>
             <Modal.Header closeButton>
               <Modal.Title>confirmation</Modal.Title>
             </Modal.Header>
-            <Modal.Body>are you sure you want Delete this Product ?</Modal.Body>
+            <Modal.Body>
+              are you sure you want <strong style={{ color: "red" }}>Delete</strong> this Product ?
+            </Modal.Body>
             <Modal.Footer>
+              <Button variant="secondary" className="fw-bold text-bg-secondary text-white" onClick={handleCloseModal}>
+                No
+              </Button>
               <Button
-                variant="secondary"
-                className="fw-bold text-bg-secondary text-white"
+                variant="success"
+                className="fw-bold text-bg-success text-white"
                 onClick={() => {
                   deleteProductByid();
                   toast.success("Delete Product Success", {
@@ -295,9 +318,6 @@ const Detail = ({ route }) => {
                 }}
               >
                 Yes
-              </Button>
-              <Button variant="success" className="fw-bold text-bg-success text-white" onClick={handleCloseModal}>
-                No
               </Button>
             </Modal.Footer>
           </Modal>

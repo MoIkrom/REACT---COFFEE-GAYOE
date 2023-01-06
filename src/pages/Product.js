@@ -235,7 +235,7 @@ function Product() {
             </div>
           </div>
 
-          <button className={`${styles["apply-coupon"]} mt-5 rounded-5`}>Apply Coupon</button>
+          <button className={`${styles["apply-coupon"]} mt-5 rounded-5`}>{role === "admin" ? "Edit Coupon" : "Apply Coupon"}</button>
           <div className={`${styles["noted"]} d-flex flex-column my-5`}>
             <span className="py-3">Terms and Condition</span>
             <p>1. You can only apply 1 coupon per day</p>
@@ -480,14 +480,40 @@ function Product() {
               ""
             ) : (
               <div className={role === "admin" ? `d-flex justify-content-center ${styles.contbutton}` : `${styles.none}`}>
-                <button className={`${styles.addproduct}`}> Add New Product</button>
+                <button
+                  className={`${styles.addproduct}`}
+                  onClick={() => {
+                    navigate("/new-product");
+                    window.scrollTo({
+                      top: 100,
+                      left: 100,
+                      behavior: "smooth",
+                    });
+                  }}
+                >
+                  {" "}
+                  Add New Product
+                </button>
               </div>
             )}
             {loading ? (
               ""
             ) : (
               <div className={role === "admin" ? `d-flex justify-content-center ${styles.contbutton2}` : `${styles.none}`}>
-                <button className={`${styles.addproduct}`}> Add New Promo</button>
+                <button
+                  className={`${styles.addproduct}`}
+                  onClick={() => {
+                    navigate("/new-promo");
+                    window.scrollTo({
+                      top: 100,
+                      left: 100,
+                      behavior: "smooth",
+                    });
+                  }}
+                >
+                  {" "}
+                  Add New Promo
+                </button>
               </div>
             )}
           </section>

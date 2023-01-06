@@ -20,9 +20,9 @@ function List_Product(props) {
         className={role === "admin" ? `col-md-2 p-4 position-relative text-wrap ${styles["content-productsadmin"]}` : `col-md-2 p-4 position-relative text-wrap ${styles["content-product"]}`}
       >
         <img className={styles["list-product-image"]} src={props.image} alt="image_product" />
-        <div className={styles["label-promo"]}>
+        {/* <div className={styles["label-promo"]}>
           <p>{props.discount}</p>
-        </div>
+        </div> */}
         <p className={`${styles.title} col-12`}>{props.title}</p>
         <p className={`${styles.price} col-12`}>{props.price}</p>
         {params?.id}

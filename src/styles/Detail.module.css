@@ -240,6 +240,23 @@ body {
   position: relative;
   left: 60px;
 }
+.btn-cart:hover {
+  height: 56px;
+  border-radius: 10px;
+  width: 290px;
+  background-color: #6a4029;
+  font-family: Poppins;
+  font-style: medium;
+  font-size: 19px;
+  line-height: 25px;
+  font-weight: 400;
+  line-height: 139%;
+  vertical-align: Top;
+  color: #ffffff;
+  border-color: #6a4029;
+
+  transform: scale(1.1);
+}
 .btn-cart {
   height: 56px;
   border-radius: 10px;
@@ -270,6 +287,22 @@ body {
   color: #ffffff;
   border-color: #6a4029;
 }
+.btn-delete:hover {
+  height: 56px;
+  border-radius: 10px;
+  width: 290px;
+  background-color: #000000;
+  font-family: Poppins;
+  font-style: medium;
+  font-size: 19px;
+  line-height: 25px;
+  font-weight: 400;
+  line-height: 139%;
+  vertical-align: Top;
+  color: #ffffff;
+  border-color: #6a4029;
+  transform: scale(1.1);
+}
 .btn-staff {
   height: 56px;
   border-radius: 10px;
@@ -284,6 +317,23 @@ body {
   color: #6a4029;
   background-color: #ffba33;
   border-color: #ffba33;
+}
+.btn-staff:hover {
+  height: 56px;
+  border-radius: 10px;
+  width: 290px;
+  font-family: Poppins;
+  font-style: medium;
+  font-size: 19px;
+  line-height: 25px;
+  font-weight: 400;
+  line-height: 139%;
+  vertical-align: Top;
+  color: #6a4029;
+  background-color: #ffba33;
+  border-color: #ffba33;
+
+  transform: scale(1.1);
 }
 .methode-dev {
   width: 470px;
