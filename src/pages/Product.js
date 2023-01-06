@@ -53,7 +53,7 @@ function Product() {
   const [type, setType] = useState("");
   const [meta, setMeta] = useState({});
 
-  const [searchParams, setSearchParams] = useSearchParams({ category: category, search: search, sort: "name", page: page, limit: 4 });
+  const [searchParams, setSearchParams] = useSearchParams({ category: category, search: search, sort: "name", page: page, limit: 12 });
   const params = useParams();
   const navigate = useNavigate();
 
@@ -103,12 +103,12 @@ function Product() {
   };
   const toDetailProduct = () => {
     navigate("/detail-product");
-    console.log("masuk coy");
+    // console.log("masuk coy");
   };
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`https://coffee-gayoe.vercel.app/api/v1/product?category=${category}&sort=${sort}&page=${page}&limit=4&search=${search}`)
+      .get(`https://coffee-gayoe.vercel.app/api/v1/product?category=${category}&sort=${sort}&page=${page}&limit=12&search=${search}`)
       .then((res) => {
         setProduct(res.data.data);
         setNotfound(search);
@@ -228,7 +228,7 @@ function Product() {
               className={category === "favorite" ? `${styles["cursor"]} ${styles["border"]}` : `${styles["cursor"]} ${styles["nonborder "]}`}
               onClick={(e) => {
                 setCategory("favorite");
-                setSearchParams({ category: "favorite", search: `${search}`, sort: `${sort}`, page: `${page}`, limit: 4 });
+                setSearchParams({ category: "favorite", search: `${search}`, sort: `${sort}`, page: `${page}`, limit: 12 });
                 nav1();
                 setPage(1);
               }}
@@ -239,7 +239,7 @@ function Product() {
               className={category === "coffee" ? `${styles["cursor"]} ${styles["border"]}` : `${styles["cursor"]} ${styles["nonborder "]}`}
               onClick={(e) => {
                 setCategory("coffee");
-                setSearchParams({ category: "coffee", search: `${search}`, sort: `${sort}`, page: `${page}`, limit: 4 });
+                setSearchParams({ category: "coffee", search: `${search}`, sort: `${sort}`, page: `${page}`, limit: 12 });
                 nav2();
                 setPage(1);
               }}
@@ -250,7 +250,7 @@ function Product() {
               className={category === "non-coffee" ? `${styles["cursor"]} ${styles["border"]}` : `${styles["cursor"]} ${styles["nonborder "]}`}
               onClick={(e) => {
                 setCategory("non-coffee");
-                setSearchParams({ category: "non-coffee", search: `${search}`, sort: `${sort}`, page: `${page}`, limit: 4 });
+                setSearchParams({ category: "non-coffee", search: `${search}`, sort: `${sort}`, page: `${page}`, limit: 12 });
                 nav3();
                 setPage(1);
               }}
@@ -261,7 +261,7 @@ function Product() {
               className={category === "food" ? `${styles["cursor"]} ${styles["border"]}` : `${styles["cursor"]}  ${styles["nonborder "]}`}
               onClick={(e) => {
                 setCategory("food");
-                setSearchParams({ category: "food", search: `${search}`, sort: `${sort}`, page: `${page}`, limit: 4 });
+                setSearchParams({ category: "food", search: `${search}`, sort: `${sort}`, page: `${page}`, limit: 12 });
                 nav4();
                 setPage(1);
               }}
@@ -272,7 +272,7 @@ function Product() {
               className={category === "add-on" ? `${styles["cursor"]} ${styles["border"]}` : `${styles["cursor"]} ${styles["nonborder "]}`}
               onClick={(e) => {
                 setCategory("add-on");
-                setSearchParams({ category: "add-on", search: `${search}`, sort: `${sort}`, page: `${page}`, limit: 4 });
+                setSearchParams({ category: "add-on", search: `${search}`, sort: `${sort}`, page: `${page}`, limit: 12 });
                 nav5();
                 setPage(1);
               }}
@@ -290,11 +290,11 @@ function Product() {
               onChange={(e) => {
                 setType(e.target.value);
                 axios
-                  .get(`https://coffee-gayoe.vercel.app/api/v1/product?category=${category}&search=${search}&sort=${e.target.value}&page=${page}&limit=4`)
+                  .get(`https://coffee-gayoe.vercel.app/api/v1/product?category=${category}&search=${search}&sort=${e.target.value}&page=${page}&limit=12`)
                   .then((res) => {
                     setProduct(res.data.data);
                     setLoading(false);
-                    setSearchParams({ category: category, search: search, sort: e.target.value, page: page, limit: 4 });
+                    setSearchParams({ category: category, search: search, sort: e.target.value, page: page, limit: 12 });
                     setSort(e.target.value);
                     // console.log(res);
                     console.log(page);
@@ -401,7 +401,7 @@ function Product() {
                     onClick={() => {
                       setCategory(category);
                       axios
-                        .get(`https://coffee-gayoe.vercel.app/api/v1/product?category=${category}&sort=${sort}&page=${page - 1}&limit=4`)
+                        .get(`https://coffee-gayoe.vercel.app/api/v1/product?category=${category}&sort=${sort}&page=${page - 1}&limit=12`)
                         .then((res) => {
                           setProduct(res.data.data);
                           setLoading(false);
@@ -429,7 +429,7 @@ function Product() {
                     onClick={() => {
                       setCategory(category);
                       axios
-                        .get(`https://coffee-gayoe.vercel.app/api/v1/product?category=${category}&sort=${sort}&search=${search}&page=${page + 1}&limit=4`)
+                        .get(`https://coffee-gayoe.vercel.app/api/v1/product?category=${category}&sort=${sort}&search=${search}&page=${page + 1}&limit=12`)
                         .then((res) => {
                           setProduct(res.data.data);
                           setLoading(false);
