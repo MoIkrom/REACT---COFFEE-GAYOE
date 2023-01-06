@@ -138,30 +138,6 @@ function NewProduct() {
                     <p className={styles["title-name"]}>Description :</p>
                     <input className={styles["input"]} type="text" placeholder="Describe your product min. 150 characters" onChange={handleDescription} />
                   </div>
-                  {/* <div className={styles["placeholder"]}>
-                    <p className={styles["title-name"]}>Input product size :</p>
-                    <p className={styles["choosesize"]}>Click size you want to use for this product </p>
-                    <div className={styles["box-size"]}>
-                      <img src={bgyel} alt="]}/" />
-                      <p className={styles["size"]}>R</p>
-                      <img src={bgyel} alt="]}/" />
-                      <p className={`${styles["size"]} ${styles["size-2"]}`}>L</p>
-                      <img src={bgyel} alt="]}/" />
-                      <p className={`${styles["size"]} ${styles["size-3"]}`}>XL</p>
-                      <img className={styles["ellips"]} src={grey} alt="]}/" />
-                      <p className={styles["weight"]}>250gr</p>
-                      <img className={styles["ellips"]} src={grey} alt="]}/" />
-                      <p className={`${styles["weight"]} ${styles["weight-2"]}`}>300gr</p>
-                      <img className={styles["ellips"]} src={grey} alt="]}/" />
-                      <p className={`${styles["weight"]} ${styles["weight-3"]}`}>500gr</p>
-                    </div>
-                  </div>
-                  <div className={styles["placeholder"]}>
-                    <p className={styles["title-name"]}>Input delivery methods :</p>
-                    <p className={styles["method"]}>Click methods you want to use for this product</p>
-                    <button className={`btn btn-warning ${styles["btn-checkout"]} ${styles["btn-delivery"]}`}>Home Delivery</button> <button className={`btn btn-warning ${styles["btn-checkout"]} ${styles["btn-delivery"]}`}>Dine in</button>{" "}
-                    <button className={`btn ${styles["btn-checkout"]} ${styles["btn-delivery"]} ${styles["btn-delivery-3"]}`}>Take away</button>
-                  </div> */}
                 </div>
               </div>
             </div>

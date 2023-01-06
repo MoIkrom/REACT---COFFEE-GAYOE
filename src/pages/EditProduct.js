@@ -154,7 +154,7 @@ function NewProduct() {
               </button>
             </div>
 
-            <div className={`${styles["form-group"]} ${styles["stock"]}`}>
+            <div className={`${styles["form-group"]}  ${styles.top} ${styles["stock"]} `}>
               <label className={styles["label"]}>Input stock :</label>
               <input className={`form-control ${styles["hour"]}`} onChange={handleStock} placeholder={product.stock}></input>
             </div>
