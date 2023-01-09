@@ -114,6 +114,7 @@ function Product() {
         setNotfound(search);
         setLoading(false);
         setTotalPage(res.data.meta.totalPage);
+        window.scrollTo({ top: 100, left: 100 });
       })
       .catch((err) => {
         setNotfound(err.response.data.msg);
@@ -191,7 +192,7 @@ function Product() {
       </div>
 
       <hr></hr>
-      <section className="container d-flex flex-row flex-wrap">
+      <section className={role === "admin" ? `container d-flex flex-row flex-wrap ${styles["heightadmin"]}` : `container d-flex flex-row flex-wrap ${styles["heightuser"]}`}>
         <aside className={`${styles["product-left"]} d-flex flex-column align-items-center mb-5`}>
           <span className={`${styles["title-promo"]} text-center mt-4`}>Promo Today</span>
           <span className={`${styles["desc-promo"]} text-center mt-3 px-5`}>Coupons will be updated every weeks. Check them out!</span>

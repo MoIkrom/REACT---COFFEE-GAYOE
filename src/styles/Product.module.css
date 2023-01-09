@@ -21,6 +21,12 @@
   color: #4f5665;
 }
 
+.heightadmin {
+  height: 1520px !important;
+}
+.heightuser {
+  height: 1320px !important;
+}
 .center-nav a:hover {
   transform: scale(1.5);
   color: #9e684b;
