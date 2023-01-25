@@ -14,13 +14,13 @@ import foto from "../assets/images/nofoto.jpg";
 import { Navigate, useNavigate } from "react-router-dom";
 
 function NewProduct() {
-  const [image, setImage] = useState("");
   const [imgPrev, setImgPrev] = useState("");
+  const [image, setImage] = useState("");
   const [product_name, setProduct_name] = useState("");
   const [price, setPrice] = useState("");
-  const [stock, setStock] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
+  const [stock, setStock] = useState("");
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
