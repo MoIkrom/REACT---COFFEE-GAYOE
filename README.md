@@ -54,7 +54,6 @@ _Coffee Gayoe is a authentic coffee from Aceh with natural proccess . A strong a
 ## Related Project
 
 - Backend Repository [`here`](https://github.com/MoIkrom/Coffee-Gayoe)
-- Mobile Apps [`here`](https://bit.ly/gayoeapps)
 - Repository Mobile Apps [`here`](https://github.com/MoIkrom/New-Coffee-Gayoe/tree/master/GayoeApps)
 
 <p align="center"><sub><b>&copy;2022 @Coffee Gayoe☕</b></sub></p>
