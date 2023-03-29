@@ -151,6 +151,11 @@
   transform: scale(1.1) !important;
 }
 
+@media only screen and (min-width: 1439px) {
+  .gaps{
+  gap: 565px;
+}
+}
 @media only screen and (max-width: 768px) {
   .header {
     max-width: 1440px;
