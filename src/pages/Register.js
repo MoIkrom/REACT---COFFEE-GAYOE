@@ -21,7 +21,7 @@ import google from "../assets/images/google-logo.png";
 function Register() {
   TabTitle("Register - Coffee Gayoe");
   const navigate = useNavigate();
-  const [ID, setID] = useState("");
+  const [id, setID] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -48,12 +48,13 @@ function Register() {
         username,
       })
       .then((response) => {
+        console.log(response.data.result);
         setID(response.data.result.data[0].id);
         toast.success("Register Success", {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 2000,
         });
-        setTimeout(() => navigate(`/verify/${ID}`), 3000);
+        setTimeout(() => navigate(`/verify/:${id}`), 3000);
         setLoading(false);
       })
       .catch((err) => {
