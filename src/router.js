@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Register from "./pages/Register";
+import Verify from "./pages/Verify";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Product from "./pages/Product";
@@ -32,6 +33,14 @@ const router = createBrowserRouter([
     element: (
       <BackRoutes>
         <Register />
+      </BackRoutes>
+    ),
+  },
+  {
+    path: "/verify/:id",
+    element: (
+      <BackRoutes>
+        <Verify />
       </BackRoutes>
     ),
   },

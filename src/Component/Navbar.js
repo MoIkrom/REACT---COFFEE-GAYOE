@@ -87,25 +87,21 @@ function Navbars() {
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="white" variant="light">
-        <Container className="d-flex align-items-center justify-content-between gaps">
+        <Container className="container-fluid d-flex  align-items-center justify-content-between gaps">
           <div className="d-flex justify-content-center align-items-center gap-3">
             <img src={icon_coffee} alt="" widht="27px" height="27px" />
-            <Navbar.Brand href="#home">Coffee Gayoe </Navbar.Brand>
+            <Navbar.Brand className="h5 mb-0" href="#home">
+              Coffee Gayoe
+            </Navbar.Brand>
           </div>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
+          <Navbar.Collapse className=" gap-5 font justify-content-end" id="responsive-navbar-nav">
             <div className="d-flex justify-content-center align-items-center ">
-              <Nav className="me-auto">
+              <Nav className="me-auto h5">
                 <Nav.Link onClick={toHome}>Home</Nav.Link>
-                <Nav.Link onClick={toProduct}>
-                  Product
-                </Nav.Link>
-                <Nav.Link onClick={token === null ? toasted : toDetailProduct}>
-                  Your Cart
-                </Nav.Link>
-                <Nav.Link onClick={token === null ? toasted : toHistory}>
-                  History
-                </Nav.Link>
+                <Nav.Link onClick={toProduct}>Product</Nav.Link>
+                <Nav.Link onClick={token === null ? toasted : toDetailProduct}>Your Cart</Nav.Link>
+                <Nav.Link onClick={token === null ? toasted : toHistory}>History</Nav.Link>
               </Nav>
             </div>
             {token === null ? (
@@ -119,17 +115,8 @@ function Navbars() {
               </div>
             ) : (
               <div className={`${styles["right-nav"]} d-flex`}>
-                {/* <a className="nav-link" href="/">
-                <img clasName={styles.icon} src={icon_search} alt="" widht="27px" height="27px" />
-              </a> */}
                 <a className="nav-link" href="/">
-                  <img
-                    clasName={styles.icon}
-                    src={icon_chat}
-                    alt=""
-                    widht="27px"
-                    height="27px"
-                  />
+                  <img clasName={styles.icon} src={icon_chat} alt="" widht="27px" height="27px" />
                 </a>
 
                 {role === "admin" ? (
@@ -145,19 +132,8 @@ function Navbars() {
                     </button>
                   </div>
                 ) : (
-                  <Link
-                    className={styles["no-underlinenavbar"]}
-                    to={role === "user" ? "/profile" : "/"}
-                  >
-                    <img
-                      className="rounded-circle"
-                      src={
-                        profile.image === null ? icon_profile : profile.image
-                      }
-                      alt=""
-                      width="50px"
-                      height="50px"
-                    />
+                  <Link className={styles["no-underlinenavbar"]} to={role === "user" ? "/profile" : "/"}>
+                    <img className="rounded-circle" src={profile.image === null ? icon_profile : profile.image} alt="" width="50px" height="50px" />
                   </Link>
                 )}
               </div>
@@ -165,12 +141,7 @@ function Navbars() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Modal
-        show={showModal}
-        onHide={handleCloseModal}
-        backdrop="static"
-        keyboard={false}
-      >
+      <Modal show={showModal} onHide={handleCloseModal} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>confirmation</Modal.Title>
         </Modal.Header>
@@ -191,11 +162,7 @@ function Navbars() {
           >
             Yes
           </Button>
-          <Button
-            variant="success"
-            className="fw-bold text-bg-success text-white"
-            onClick={handleCloseModal}
-          >
+          <Button variant="success" className="fw-bold text-bg-success text-white" onClick={handleCloseModal}>
             No
           </Button>
         </Modal.Footer>

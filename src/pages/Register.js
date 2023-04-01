@@ -1,33 +1,31 @@
-import React, { useState, Fragment } from "react";
-import styles from "../styles/Register.module.css";
+import React, { useState } from "react";
+import "../styles/Login.css";
 import Footer from "../Component/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
-import withNavigate from "../utils/withNavigate";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { TabTitle } from "../utils/General-funct.js";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Card from "react-bootstrap/Card";
 
 // Import Images
 
 import eyeslash from "../assets/images/eyeslash2.png";
 import eye from "../assets/images/eye2.png";
 import background from "../assets/images/login-bg-1.png";
-import logo from "../assets/images/coffee-logo.png";
-import google from "../assets/images/google-logo-png-suite-everything-you-need-know-about-google-newest-0 2.png";
+import google from "../assets/images/google-logo.png";
 
-// const Register = () => {
-//   TabTitle("Register - Coffee Gayoe");
-
-// class Register extends Component {
-function Register({ navigate }) {
+function Register() {
   TabTitle("Register - Coffee Gayoe");
+  const navigate = useNavigate();
+  const [ID, setID] = useState("");
   const [email, setEmail] = useState("");
-  const [phone_number, setphone_number] = useState("");
+  const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [isPwdShown, setIsPwdShown] = useState(false);
-
   const [loading, setLoading] = useState(false);
 
   const handleEmail = (e) => {
@@ -36,24 +34,26 @@ function Register({ navigate }) {
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
-  const handlePhoneNumber = (e) => {
-    setphone_number(e.target.value);
+  const handleUserName = (e) => {
+    setUserName(e.target.value);
   };
 
   const handleApi = (e) => {
     e.preventDefault();
+    setLoading(true);
     axios
-      .post(`${process.env.REACT_APP_BACKEND_HOST}api/v1/users`, {
+      .post(`https://coffee-gayoe.vercel.app/api/v1/users`, {
         email,
         password,
-        phone_number,
+        username,
       })
       .then((response) => {
-        toast.success("Sign Up success", {
+        setID(response.data.result.data[0].id);
+        toast.success("Register Success", {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 2000,
         });
-        setTimeout(() => navigate("/login"), 3000);
+        setTimeout(() => navigate(`/verify/${ID}`), 3000);
         setLoading(false);
       })
       .catch((err) => {
@@ -70,8 +70,62 @@ function Register({ navigate }) {
   };
 
   return (
-    <Fragment>
-      <main className={styles["main-content"]}>
+    <>
+      <div>
+        <div className=" row img-bg">
+          <div className="col-lg-6 p-0">
+            <img className="col-12 bgs" src={background} alt="background" />
+          </div>
+          <div className="col-lg-6 mt-5">
+            <div>
+              <div className=" d-flex align-items-center justify-content-center mt-5 mb-md-5 mb-hp">
+                <Card className="col-md-8 col-lg-8 mb-md-5">
+                  <Card.Body>
+                    <Form onSubmit={handleApi}>
+                      <div className="login d-flex align-items-center justify-content-center mt-4 mb-5">
+                        <u>COFFEE GAYOE</u>
+                      </div>
+                      <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label className="pops">Username</Form.Label>
+                        <Form.Control className="pops2" type="text" require placeholder=" Enter Username" onChange={handleUserName} />
+                      </Form.Group>
+                      <Form.Group className="mb-3 " controlId="formBasicEmail">
+                        <Form.Label className="pops">Email </Form.Label>
+                        <Form.Control className="pops2" type="email" require placeholder="Enter Your Email" onChange={handleEmail} />
+                      </Form.Group>
+                      <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label className="pops">Password</Form.Label>
+                        <Form.Control className="pops2" type={isPwdShown ? "text" : "Password"} require placeholder=" Enter Your Password" onChange={handlePassword} />
+                        <div className="d-flex justify-content-end align-items-center gap-2 my-2 ">
+                          <p className="m-0"> Show Password</p>
+                          <img onClick={() => setIsPwdShown(!isPwdShown)} src={isPwdShown === true ? eye : eyeslash} alt="/" className="pwd" />
+                        </div>
+                      </Form.Group>
+                      <div className="d-flex flex-column gap-3 my-5">
+                        <Button className="pops heightz" disabled={email && password === "" ? true : false} variant="warning" type="submit">
+                          {loading === true ? "Loading . . ." : "Register"}
+                        </Button>
+                        <Button className="pops border d-flex justify-content-center align-items-center gap-3" variant="light" type="submit">
+                          <img src={google} Alt="/" />
+                          Register with Google
+                        </Button>
+                      </div>
+                      <div className="dont d-flex justify-content-center align-items-center mb-4">
+                        Already Have Account ? Login &nbsp;<Link to={"/login"}> &nbsp;Here</Link>
+                      </div>
+                    </Form>
+                  </Card.Body>
+                </Card>
+              </div>
+            </div>
+          </div>
+          <ToastContainer />
+        </div>
+      </div>
+      <footer>
+        <Footer onClick={() => onClickHandler("/")} />
+      </footer>
+      {/* <main className={styles["main-content"]}>
         <div className={styles["cont-main"]}>
           <div className={styles["side-images"]}>
             <div className="col">
@@ -161,11 +215,10 @@ function Register({ navigate }) {
 
       <footer className={styles["footer-login"]}>
         <Footer onClick={() => onClickHandler("/")} />
-      </footer>
-    </Fragment>
+      </footer> */}
+    </>
   );
   // }
 }
-const componentRegister = withNavigate(Register);
 
-export default componentRegister;
+export default Register;

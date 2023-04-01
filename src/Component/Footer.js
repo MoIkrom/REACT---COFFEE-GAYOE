@@ -4,59 +4,100 @@ import styles from "../styles/Footer.module.css";
 import icon_instagram from "../assets/images/Instagram.png";
 import icon_facebook from "../assets/images/Facebook.png";
 import icon_twitter from "../assets/images/Twitter.png";
-import icon_coffee from "../assets/images/coffee-logo.png";
 
 function Footer() {
   return (
     <>
-      <footer className={`container ${styles["cont-footer"]}`}>
-        <div className={`container d-flex  py-5 ${styles.footer1}`}>
-          <aside className={styles["footer-left"]}>
-            <img src={icon_coffee} alt="icon_coffee" />
-            <span className={styles["footer-title-left"]}>Coffee Gayoe</span>
-            <p id={styles["preview"]}>Coffee Shop is a store that sells some good meals, and especially coffee. We provide high quality beans</p>
-            <div className={styles["icon-footer"]}>
-              <a href="/">
-                <img src={icon_facebook} alt="facebook" />
-              </a>
-              <a href="/">
-                <img src={icon_twitter} alt="twitter" />
-              </a>
-              <a href="/">
-                <img src={icon_instagram} alt="instagram" />
-              </a>
-            </div>
-            <span className={styles["copyright"]}>©2020CoffeeStore</span>
-          </aside>
+      <div>
+        <footer className=" text-center text-lg-start bg-light text-muted">
+          <section className="p-4 pb-4 bg-white">
+            <div className="container text-center text-md-start mt-5">
+              <div className="row justify-content-evenly mt-3">
+                <div className="col-md-3 col-lg-4 col-xl-3 ms-0 mb-4">
+                  <h6 className="text-uppercase fw-bold mb-4 ">Coffee Gayoe</h6>
+                  <p>Coffee Shop is a store that sells some good meals, and especially coffee. We provide high quality beans</p>
+                  <div className="mt-3">
+                    <a href=" " className="me-md-2 me-3 text-reset">
+                      <img className={`${styles["icon"]}`} src={icon_facebook} alt="/" />
+                    </a>
+                    <a href=" " className="me-md-2 me-3 text-reset">
+                      <img className={`${styles["icon"]}`} src={icon_twitter} alt="/" />
+                    </a>
+                    <a href=" " className="me-md-2 me-3 text-reset">
+                      <img className={`${styles["icon"]}`} src={icon_instagram} alt="/" />
+                    </a>
+                  </div>
+                  <p>©2023CoffeeStore</p>
+                </div>
 
-          <aside className="container d-flex flex-row" id={styles["cont-footer-right"]}>
-            <div className={`d-flex flex-column me-5 ${styles["fr"]}`}>
-              <div className={`${styles["footer-right"]} d-flex flex-row mt-2 mb-3`}>
-                <span>Product</span>
-              </div>
-              <div className={`${styles["footer-right-link"]} d-flex flex-column`}>
-                <span id={styles["list-footer"]}>Download</span>
-                <span id={styles["list-footer"]}>Pricing</span>
-                <span id={styles["list-footer"]}>Locations</span>
-                <span id={styles["list-footer"]}>Countries</span>
-                <span id={styles["list-footer"]}>Blog</span>
+                <div className="col-md-3 col-lg-2 col-xl-2 mt-md-1 mx-md-0 px-md-0 mx-auto mb-4">
+                  <h6 className={`text-uppercase fw-bold mb-4 ${styles["title-footer"]}`}>COMPANY</h6>
+                  <p className={`mb-4`}>
+                    <a href="#!" className={`text-reset text-decoration-none ${styles["li"]}`}>
+                      ABOUT US
+                    </a>
+                  </p>
+                  <p className={`mb-4`}>
+                    <a href="#!" className={`text-reset text-decoration-none ${styles["li"]}`}>
+                      HELP CENTER
+                    </a>
+                  </p>
+                  <p className={`mb-4`}>
+                    <a href="#!" className={`text-reset text-decoration-none ${styles["li"]}`}>
+                      LICENSES
+                    </a>
+                  </p>
+                  <p className={`mb-4`}>
+                    <a href="#!" className={`text-reset text-decoration-none ${styles["li"]}`}>
+                      SITE MAP
+                    </a>
+                  </p>
+                </div>
+                <div className="col-md-3 col-lg-2 col-xl-2 mt-md-1 mx-md-0 px-md-0 mx-auto mb-4">
+                  <h6 className="text-uppercase fw-bold mb-4">USERFUL</h6>
+                  <p className={`mb-4`}>
+                    <a href="#!" className={`text-reset text-decoration-none `}>
+                      COLLECTIONS
+                    </a>
+                  </p>
+                  <p className={`mb-4`}>
+                    <a href="#!" className={`text-reset text-decoration-none`}>
+                      SIZE GUIDE
+                    </a>
+                  </p>
+                  <p className={`mb-4`}>
+                    <a href="#!" className={`text-reset text-decoration-none`}>
+                      LOOKBOOK
+                    </a>
+                  </p>
+                  <p className={`mb-4`}>
+                    <a href="#!" className="text-reset text-decoration-none">
+                      INSTAGRAM SHOP
+                    </a>
+                  </p>
+                </div>
+
+                <div className="  col-md-12 col-lg-3 col-xl-3 mx-lg-0 p-lg-0 mt-lg-0 ms-md-5 ps-md-4 mt-md-5 mx-auto mb-md-0 mb-4 ">
+                  <h6 className="text-uppercase fw-bold mb-4 ">Contact us</h6>
+                  <div className="d-flex  me-3 mb-3 gap-3 align-items-center">
+                    {/* <img className={`${styles["img-right"]}`} src={email} alt="/" /> */}
+                    <p>info@coffeeGayoe.com</p>
+                  </div>
+                  <div className="d-flex me-3 mb-3 gap-3 align-items-center">
+                    {/* <img className={`${styles["img-right"]}`} src={phone} alt="/" /> */}
+                    <p>+44.954.954.86</p>
+                  </div>
+                  <div className="d-flex me-3 mb-3 gap-3 align-items-center">
+                    {/* <img className={`${styles["img-right"]}`} src={time} alt="/" /> */}
+                    <p>9:00am - 19:00pm Monday - Sunday</p>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className={`d-flex flex-column me-5 ${styles["fr"]}`}>
-              <div className={`${styles["footer-right"]}  ${styles.engage} d-flex flex-row mt-2 mb-3`}>
-                <span id={styles["list-footer"]}>Engage</span>
-              </div>
-              <div className={`${styles["footer-right-link"]}  ${styles.listfooter} d-flex flex-column`}>
-                <span id={styles["list-footer"]}>Coffee Shop?</span>
-                <span id={styles["list-footer"]}>FAQ</span>
-                <span id={styles["list-footer"]}>About Us</span>
-                <span id={styles["list-footer"]}>Privacy Policy</span>
-                <span id={styles["list-footer"]}>Terms of Service</span>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </footer>
+            <div className={`text-center pt-4 `}>© 2023 COFFEE GAYOE STORE ALL RIGHT RESERVED</div>
+          </section>
+        </footer>
+      </div>
     </>
   );
 }
