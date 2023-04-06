@@ -96,7 +96,7 @@ function Navbars() {
           </div>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse className=" gap-5 font justify-content-end" id="responsive-navbar-nav">
-            <div className="d-flex justify-content-center align-items-center ">
+            <div className="d-flex justify-content-center mt-3 ms-4 ps-3 mb-4  mt-md-3 ms-md-4 ps-md-3 align-items-center ">
               <Nav className="me-auto h5">
                 <Nav.Link onClick={toHome}>Home</Nav.Link>
                 <Nav.Link onClick={toProduct}>Product</Nav.Link>

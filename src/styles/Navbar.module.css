@@ -81,6 +81,11 @@
   transform: scale(1.5);
   color: #9e684b;
 }
+.collapse .show {
+  width: 30px;
+  height: 194px;
+  cursor: pointer;
+}
 .login {
   background-color: #ffba33;
   border: none;

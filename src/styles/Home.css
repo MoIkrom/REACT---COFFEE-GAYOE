@@ -1,0 +1,683 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Rubik:wght@400;500;700&display=swap");
+
+*,
+html,
+body {
+  margin: 0;
+  padding: 0;
+  /* background-color: #f8f8f8; */
+}
+#huge-global {
+  width: 100%;
+}
+.header {
+  max-width: 1440px;
+  margin: 10px;
+}
+.main-content {
+  justify-content: center;
+  background-image: url(../assets/images/home.png);
+  background-size: cover;
+  height: 565px;
+  width: 100%;
+}
+/* .comment-user */
+.btn {
+  border-radius: 10px;
+  width: 120px;
+  height: 45px;
+  text-align: center;
+}
+/* Start main */
+.display-4 {
+  font-family: Rubik;
+  font-style: bold;
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 70px;
+  line-height: 100%;
+  vertical-align: Top;
+  color: #ffffff;
+  margin-top: 30px;
+}
+.lead {
+  font-family: Rubik;
+  font-style: bold;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+  line-height: 127%;
+  vertical-align: Top;
+  color: #ffffff;
+  margin-top: 30px;
+}
+.card-text {
+  font-family: Rubik;
+  font-style: bold;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 30px;
+  line-height: 127%;
+  vertical-align: Top;
+  color: #0b132a;
+  text-align: center;
+}
+.vertical_line {
+  height: 100px;
+  border-left: 1px solid black;
+  margin-right: 20px;
+}
+.text-card {
+  font-family: Rubik;
+  font-style: Regular;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  line-height: 127%;
+  vertical-align: Top;
+  color: #4f5665;
+  text-align: center;
+}
+.staff {
+  width: 100%;
+  height: 200px;
+  box-shadow: 0px 15px 20px rgb(119 119 119);
+  border-radius: 14px;
+  position: relative;
+  top: -100px;
+  background-color: #f8f8f8;
+}
+#get-started {
+  font-family: Rubik;
+  font-style: bold;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 30px;
+  line-height: 127%;
+  vertical-align: Top;
+  color: #6a4029;
+  margin-top: 30px;
+  width: 250px;
+  height: 60px;
+}
+#user-vector {
+  height: 23px;
+  width: 20px;
+}
+#location-vector {
+  height: 23px;
+  width: 20px;
+  margin-right: 10px;
+}
+#location-border {
+  border-left: 2px solid rgb(228, 223, 223);
+  border-right: 2px solid rgb(228, 223, 223);
+}
+#love-vector {
+  height: 23px;
+  width: 27px;
+  margin-right: 10px;
+}
+#nav-login {
+  font-family: Rubik;
+  font-style: Medium;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  line-height: 100%;
+  vertical-align: Top #0b132a;
+}
+#nav-sign-up {
+  font-family: Rubik;
+  font-style: Medium;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  line-height: 100%;
+  vertical-align: Top;
+  color: #6a4029;
+  border-radius: 30px;
+}
+#search {
+  font-family: Poppins;
+  font-style: black;
+  font-weight: 900;
+  font-size: 17px;
+  line-height: 26px;
+  vertical-align: Top;
+  color: #6e6e6e;
+  border-radius: 30px;
+  background-color: #efeeee;
+  width: 300px;
+  position: absolute;
+  margin-left: 147px;
+  margin-top: 40px;
+}
+#search-button {
+  width: 25px;
+  height: 25px;
+  margin-left: -179px;
+}
+#text-search {
+  margin-left: 10px;
+}
+
+/* End main */
+
+/* Start Section review */
+.review {
+  padding-top: 100px;
+  max-width: 1440px;
+}
+#review-cont {
+  margin-top: 90px;
+}
+#teamwork {
+  height: 457px;
+  width: 573px;
+}
+
+#section-prove {
+  margin-top: 40px;
+  max-width: 1440px;
+}
+#proved {
+  font-family: Rubik;
+  font-style: medium;
+  font-weight: 500;
+  font-size: 35px;
+  line-height: 50px;
+  line-height: 121%;
+  vertical-align: Top;
+  text-align: left;
+  color: #0b132a;
+  padding: 5px;
+  width: 458px;
+}
+#explore {
+  font-family: Rubik;
+  font-style: Regular;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+  line-height: 158%;
+  vertical-align: Top;
+  text-align: left;
+  color: #4f5665;
+  padding: 5px;
+  width: 420px;
+}
+
+.col-6 ol li {
+  list-style: none;
+  font-family: Rubik;
+  font-style: Regular;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 30px;
+  vertical-align: Top;
+  text-align: left;
+  color: #4f5665;
+  padding: 5px;
+}
+.list-prove {
+  font-size: 13px;
+}
+
+#cheklist {
+  width: 17px;
+  height: 17px;
+}
+/* END Section review */
+
+/* section Favorite Menu */
+.col-prove {
+  position: relative;
+  top: 70px;
+  left: 100px;
+}
+#section-prove {
+  background-color: hsl(0, 0%, 98%);
+  margin-top: 50px;
+  height: 100px;
+  height: 500px;
+}
+
+#title-favorite {
+  font-family: Rubik;
+  font-style: medium;
+  font-weight: 500;
+  font-size: 35px;
+  line-height: 50px;
+  line-height: 121%;
+  vertical-align: Top;
+  text-align: center;
+  color: #0b132a;
+}
+#title-favorite p {
+  font-family: Rubik;
+  font-style: Regular;
+  font-weight: 400;
+  font-size: 16px;
+}
+.card-menu {
+  height: 525px;
+}
+.favorite-menu p {
+  font-family: Rubik;
+  font-style: Regular;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+  line-height: 158%;
+  vertical-align: Top;
+  text-align: center;
+  color: #4f5665;
+  padding: 5px;
+}
+.favorite-menu ol li {
+  list-style: none;
+  text-align: left;
+  font-family: Rubik;
+  font-style: Regular;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 30px;
+  line-height: 181%;
+  vertical-align: Top;
+  text-align: left;
+  color: #4f5665;
+  padding: 8px;
+  margin-left: 30px;
+}
+.font_menu {
+  font-family: Rubik;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+#ingredient {
+  font-size: small;
+  left: 30px;
+  top: 10px;
+  position: relative;
+}
+.image-menu {
+  width: 140px;
+  height: 139px;
+  border-radius: 141px;
+  margin: 30px auto;
+}
+
+#title-menu {
+  text-align: center;
+  font-family: Rubik;
+  font-style: Medium;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 30px;
+  line-height: 141%;
+  vertical-align: Top;
+  color: #0b132a;
+  padding: 5px;
+}
+
+#price-1 {
+  text-align: center;
+  font-family: Rubik;
+  font-style: Medium;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 30px;
+  line-height: 101%;
+  vertical-align: Top;
+  color: #0b132a;
+}
+
+#order-now {
+  border-radius: 20px;
+  width: 155px;
+  height: 46px;
+  text-align: center;
+  font-family: Rubik;
+  font-style: bold;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  line-height: 100%;
+  vertical-align: Top;
+  color: #6a4029;
+}
+/* End Section Fav-Menu */
+
+/* Start Section visit-us */
+
+.h-img {
+  height: 50px;
+}
+#visit-us {
+  text-align: center;
+}
+#see-you {
+  text-align: center;
+}
+
+.image-sponsored {
+  align-items: center;
+  justify-items: center;
+}
+.netflix {
+  height: 80px;
+  top: -47px;
+  left: -75px;
+}
+
+.reddit {
+  height: 48px;
+  top: 18px;
+  left: -41px;
+  width: 151px;
+  position: relative;
+}
+.amazon {
+  position: relative;
+  top: -50px;
+  left: -112px;
+}
+.discord {
+  position: relative;
+  top: 15px;
+  left: -45px;
+}
+.spotify {
+  position: relative;
+  top: 20px;
+  left: -30px;
+  height: 50px;
+}
+.partner {
+  justify-content: center;
+}
+.partnership {
+  top: -90px;
+  justify-content: space-evenly;
+}
+/* End Section visit-us */
+
+/* Start Loved by Costumer */
+
+.story-cost {
+  text-align: center;
+}
+#row-loved-cost {
+  justify-content: center;
+}
+/* End Loved by Costumer */
+
+/* Start Profile */
+.overflows_card {
+  overflow-y: overlay;
+}
+.height_card {
+  height: 230px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.parker {
+  border-radius: 30px;
+  width: 50px;
+  height: 50px;
+}
+.name_profile {
+  text-align: center;
+  font-family: Rubik;
+  font-style: Medium;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 30px;
+  line-height: 141%;
+  vertical-align: Top;
+  color: #0b132a;
+  margin: 0px;
+}
+
+/* End Profile */
+
+/* Start Jumbotron Promo */
+.promo {
+  border-radius: 20px;
+  box-shadow: 0px 15px 20px rgb(119 119 119);
+}
+
+#deals {
+  font-family: Rubik;
+  font-style: Regular;
+  font-size: 16px;
+  line-height: 30px;
+  line-height: 158%;
+  vertical-align: Center;
+  padding: 5px;
+  color: #4f5665;
+  margin: 0px;
+}
+#see-promo {
+  text-align: center;
+  font-family: Rubik;
+  font-style: bold;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 25px;
+  line-height: 132%;
+  vertical-align: Top;
+  color: #6a4029;
+}
+
+/* End Jumbotron Promo  */
+
+/*  Start Footer */
+
+#jum-footer {
+  background-color: #f8f8f8;
+
+  background-image: none;
+  margin-top: -92px;
+}
+
+#review-coffee {
+  margin-top: 25px;
+  width: 63%;
+  text-align: left;
+  font-family: Rubik;
+  font-style: Medium;
+  font-size: 16px;
+  line-height: 30px;
+  line-height: 158%;
+  align-content: flex-start;
+  font-weight: 500;
+  vertical-align: Top;
+  color: #4f5665;
+}
+#image-icon {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 15px;
+  margin-left: -12px;
+}
+#copyright {
+  color: #afb5c0;
+
+  margin-left: -366px;
+}
+
+#head-footer-right {
+  text-align: left;
+  font-family: Rubik;
+  font-style: Medium;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 30px;
+  line-height: 141%;
+  padding: 5px;
+  color: #0b132a;
+  margin-left: -10px;
+}
+#list {
+  margin-left: -19%;
+  list-style: none;
+  text-align: left;
+  font-family: Rubik;
+  font-style: Regular;
+  font-size: 16px;
+  line-height: 50px;
+  line-height: 245%;
+  word-spacing: 5px;
+
+  color: #4f5665;
+}
+/* End Footer */
+
+/* --------------------------------------------------------- */
+/* Responsive Breakpoint */
+
+/* /* sceen laptop */
+@media only screen and (max-width: 1024px) {
+  #teamwork {
+    height: 319px;
+    width: 321px;
+  }
+  .card-profile {
+    width: 299px;
+    border-radius: 10px;
+    height: 185px;
+  }
+
+  .rating-kim {
+    width: 38px;
+    position: relative;
+    left: 245px;
+    top: -99px;
+  }
+
+  .col-prove {
+    width: 0%;
+    position: relative;
+    top: 0px;
+    left: 0px;
+  }
+
+  .review {
+    padding: 0px;
+    position: relative;
+    top: 118px;
+  }
+
+  #section-prove {
+    position: relative;
+    top: 100px;
+  }
+
+  .cont-love {
+    position: relative;
+    left: -4rem;
+  }
+}
+
+/* =============================================== */
+@media only screen and (min-width: 1024px) {
+  .h-img {
+    height: 90px;
+  }
+  .promo {
+    height: 200px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .main-content {
+    justify-content: center;
+    background-size: cover;
+    height: 640px;
+  }
+
+  .proved {
+    font-family: Rubik;
+    font-style: medium;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 50px;
+    line-height: 121%;
+    vertical-align: Top;
+    color: #0b132a;
+  }
+
+  .explore {
+    font-family: Rubik;
+    font-style: Regular;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    line-height: 158%;
+    color: #4f5665;
+  }
+
+  .list-prove {
+    font-size: 12px;
+    padding-left: 20px;
+  }
+  .h-img {
+    height: 90px !important;
+  }
+  .promo {
+    height: 200px;
+  }
+}
+
+@media only screen and (min-width: 375px) and (max-width: 424px) {
+  .main-content {
+    height: 550px;
+  }
+  #teamwork {
+    width: 300px;
+    height: 300px;
+    margin: 0px;
+    left: 0px;
+  }
+  #huge-global {
+    width: 100%;
+  }
+  .list_menu {
+    font-size: 12px;
+  }
+
+  .list-prove {
+    font-size: 10.5px;
+  }
+  .h-img {
+    height: 40px;
+  }
+}
+@media only screen and (max-width: 425px) {
+  #teamwork {
+    width: 300px;
+    height: 300px;
+    margin: 0px;
+    left: 0px;
+  }
+  #huge-global {
+    width: 100%;
+  }
+  .main-content {
+    height: 500px;
+  }
+  .h-img {
+    height: 50px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .borderz {
+    border: none !important;
+  }
+}

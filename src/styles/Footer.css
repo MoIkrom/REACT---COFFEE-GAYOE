@@ -2,8 +2,6 @@
 
 footer {
   background: #f8f8f8;
-  /* padding-top: 100px; */
-  max-width: 1440px;
 }
 
 .cont-footer {
@@ -175,5 +173,11 @@ footer {
     position: relative;
     left: -253px;
     top: -32px;
+  }
+}
+
+@media only screen and (min-width: 375px) and (max-with: 767) {
+  .show_hp {
+    display: none !important;
   }
 }
