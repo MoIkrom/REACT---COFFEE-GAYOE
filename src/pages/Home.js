@@ -311,7 +311,7 @@ function Home() {
             </h1>
           </div>
           <div className="col-6 col-md-4">
-            <button type="button" className="btn btn-warning" id="see-promo">
+            <button type="button" className="btn-promo" id="see-promo">
               See Promo
             </button>
           </div>

@@ -22,10 +22,12 @@ body {
   width: 100%;
 }
 /* .comment-user */
-.btn {
+.btn-promo {
   border-radius: 10px;
   width: 120px;
   height: 45px;
+  border: none;
+  background-color: rgb(255, 201, 84);
   text-align: center;
 }
 /* Start main */
