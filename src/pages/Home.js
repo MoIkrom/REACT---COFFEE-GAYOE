@@ -3,7 +3,7 @@ import React, { Fragment, useEffect } from "react";
 import "../styles/Home.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../Component/Navbar";
-import Footer from "../Component/Footer";
+import Footer from "../Component/Footer_Home";
 import { TabTitle } from "../utils/General-funct.js";
 
 // Import Image

@@ -69,7 +69,7 @@ function Login() {
           <div className="col-lg-6 p-0">
             <img className="col-12 bgs" src={background} alt="background" />
           </div>
-          <div className="col-lg-6 mt-5">
+          <div className="col-lg-6 mt-5 p-0">
             <div>
               <div className=" d-flex align-items-center justify-content-center mt-5 mb-md-5 mb-hp">
                 <Card className="col-md-8 col-lg-8 mb-md-5">
@@ -108,13 +108,11 @@ function Login() {
               </div>
             </div>
           </div>
-          <ToastContainer />
         </div>
+        <ToastContainer />
       </div>
 
-      <footer>
-        <Footer onClick={() => onClickHandler("/")} />
-      </footer>
+      <Footer onClick={() => onClickHandler("/")} />
     </>
   );
 }

@@ -9,6 +9,17 @@
   line-height: 24px;
   color: #0b132a;
 }
+.searching_img {
+  width: 20px;
+  height: 20px;
+}
+.searching {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  padding: 0px !important;
+}
 .navs {
   padding: 10px;
 }
@@ -21,12 +32,6 @@
   color: #4f5665;
 }
 
-.heightadmin {
-  height: 1520px !important;
-}
-.heightuser {
-  height: 1320px !important;
-}
 .center-nav a:hover {
   transform: scale(1.5);
   color: #9e684b;
@@ -55,18 +60,11 @@
 }
 
 .nav-product span:hover {
-  transform: scale(1.3);
+  /* transform: scale(1.1); */
   color: #6a4029;
-  border-bottom: 2px solid #6a4029;
+  /* border-bottom: 1px solid #6a4029; */
 }
 
-.product-left {
-  width: 30%;
-}
-
-.product-right {
-  width: 70%;
-}
 .cursor {
   cursor: pointer;
 }
@@ -79,13 +77,12 @@
   color: #6a4029;
 }
 
-.desc-promo {
+.desc_promo {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 18px;
-  text-align: center;
   color: #000000;
 }
 
@@ -108,29 +105,23 @@
   padding-top: 3px;
 }
 
-.promo-one {
-  width: 335px;
-  height: 500px;
-  background: #88b788;
-  border-radius: 20px;
-}
-.coupon-card {
+.coupon_card {
   background-color: #ffcb65;
   border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  width: 300px;
-  position: relative;
-  top: 25px;
 }
 
 .beef {
   border-radius: 67px;
-  position: relative;
-  top: 30px;
+  width: 100px;
+}
+.terms {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: #000000;
+  text-decoration: underline;
 }
 .beef:hover {
   border-radius: 67px;
@@ -143,47 +134,16 @@
   /* width: 150px; */
 }
 
-.off {
-  width: 245px;
-  text-align: center;
-  position: relative;
-  top: 10px;
-}
-.card-text-1 {
+.card_text {
   font-family: Poppins;
   font-style: Bold;
   font-weight: 700;
   font-size: 22px;
   color: #000000;
-  text-align: center;
-  position: relative;
-  top: 30px;
-  margin: 30px;
-}
-.cont-promos {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-}
-.promo-two {
-  width: 335px;
-  height: 109px;
-  background: #f5c361;
-  border-radius: 20px;
-}
-
-.promo-four {
-  width: 335px;
-  height: 109px;
-  background: #c59378;
-  border-radius: 20px;
 }
 
 .apply-coupon {
-  width: 85%;
+  width: 100%;
   height: 50px;
   font-family: "Poppins";
   font-style: normal;
@@ -196,7 +156,7 @@
   border: none;
 }
 .apply-coupon:hover {
-  width: 85%;
+  /* width: 85%; */
   height: 50px;
   font-family: "Poppins";
   font-style: normal;
@@ -215,24 +175,10 @@
   background-color: #805742;
 }
 
-.noted span {
-  font-family: "Rubik";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 14px;
-  color: #4f5665;
-}
-
 .form-select {
-  width: 157px;
-  /* position: relative; */
   font-family: "poppins";
   font-style: normal;
   color: #4f5665;
-  /* left: 40px;
-  top: 18px; */
-  /* background: rgb(248, 248, 248); */
 }
 .font-opt {
   font-family: "rubik";
@@ -250,18 +196,15 @@
   padding-right: 35px;
   gap: 200px;
 }
-.page {
-  position: relative;
-  top: 1rem;
-  display: flex;
-  left: 50px;
-}
+/* .page {
+ font-family: ;
+} */
 .none {
   display: none;
 }
 .addproduct {
   height: 50px;
-  width: 400px;
+  /* width: 400px; */
   border-radius: 10px;
   font-family: "Poppins";
   font-style: normal;
@@ -294,8 +237,6 @@
   font-size: 17px;
   border: none;
   margin: auto 60px;
-  position: relative;
-  left: 40px;
   cursor: not-allowed;
 }
 .btn-pagenull:hover {
@@ -310,8 +251,6 @@
   font-size: 17px;
   border: none;
   margin: auto 60px;
-  position: relative;
-  left: 40px;
   cursor: not-allowed;
 }
 .contbutton2 {
@@ -348,8 +287,6 @@ hr {
   border: none;
   background-color: #f5c361;
   margin: auto 60px;
-  position: relative;
-  left: 40px;
 }
 .btn-page:hover {
   -webkit-transform: scale(1.1);
@@ -358,8 +295,6 @@ hr {
 .text-page {
   margin: 0px;
   font-size: 19px;
-  position: relative;
-  top: 7px;
   left: 45px;
   font-family: "Poppins";
 }
@@ -373,11 +308,11 @@ hr {
   color: #4f5665;
 }
 
-.list-content {
+/* .list-content {
   margin-top: 120px !important;
   margin-block: -10%;
   gap: 5%;
-}
+} */
 .code-text-2 {
   font-family: Poppins;
   font-style: Regular;
@@ -386,7 +321,6 @@ hr {
   line-height: 101%;
   vertical-align: Top;
   color: #000000;
-  margin-bottom: 30px;
 }
 .code-text-1 {
   font-family: Poppins;
@@ -397,41 +331,38 @@ hr {
   line-height: 101%;
   vertical-align: Top;
   color: #000000;
-  margin-bottom: 30px;
 }
 
 /* start Loading */
 
-.lds-ring {
+.lds_ring_product {
   display: inline-block;
-  position: relative;
+  position: absolute;
   width: 80px;
   height: 80px;
 }
-.lds-ring div {
+.lds_ring_product div {
   box-sizing: border-box;
   display: block;
   position: absolute;
-  left: 21rem;
-  top: 10rem;
   width: 64px;
   height: 64px;
   margin: 8px;
   border: 8px solid #ffcb65;
   border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  animation: lds_ring_product 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   border-color: #ffcb65 transparent transparent transparent;
 }
-.lds-ring div:nth-child(1) {
+.lds_ring_product div:nth-child(1) {
   animation-delay: -0.45s;
 }
-.lds-ring div:nth-child(2) {
+.lds_ring_product div:nth-child(2) {
   animation-delay: -0.3s;
 }
-.lds-ring div:nth-child(3) {
+.lds_ring_product div:nth-child(3) {
   animation-delay: -0.15s;
 }
-@keyframes lds-ring {
+@keyframes lds_ring_product {
   0% {
     transform: rotate(0deg);
   }
@@ -439,14 +370,13 @@ hr {
     transform: rotate(360deg);
   }
 }
-.loading-text {
+.loading_text {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 700;
   font-size: 17px;
   line-height: 26px;
-  position: relative;
-  top: 10rem;
+  margin: 0px;
 }
 /* End Loading */
 .notfound-text {
@@ -458,93 +388,8 @@ hr {
   position: relative;
   top: 10rem;
 }
-/* CSS Footer */
-footer {
-  background: #f8f8f8;
-}
-
-.footer-left img {
-  width: 20px;
-  height: 20px;
-  margin-top: -5px;
-  margin-right: 5px;
-}
-
-.footer-title-left {
-  font-family: "Rubik";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 24px;
-  color: #0b132a;
-}
-
-.footer-left p {
-  margin: 15px 100px 0px 0px;
-  text-align: justify;
-  font-family: "Rubik";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 30px;
-  color: #4f5665;
-}
-
-.footer-left .copyright {
-  font-family: "Rubik";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 30px;
-  text-align: center;
-  color: #afb5c0;
-}
-
-.icon-footer a {
-  margin: 0px 15px 0px 0px;
-}
-
-.icon-footer img {
-  width: 35px;
-  height: 35px;
-  margin-top: 15px;
-  margin-bottom: 20px;
-  background-color: #6a4029;
-  border-radius: 20px;
-}
-
-.footer-right span {
-  font-family: "Rubik";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 30px;
-  color: #0b132a;
-}
-
-.footer-right-link span {
-  font-family: "Rubik";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 30px;
-  color: #4f5665;
-}
 
 @media only screen and (max-width: 768px) {
-  .coupon-card {
-    position: relative;
-    width: 200px;
-  }
-  .desc-promo {
-    padding: 0px !important;
-  }
-  .off {
-    width: 185px;
-  }
-  .garis {
-    font-size: 12px;
-  }
   .code-text-1 {
     font-size: 28px;
   }
@@ -563,9 +408,6 @@ footer {
   }
   .contsection {
     padding-left: 72px !important;
-  }
-  .lds-ring {
-    left: -161px;
   }
   .btn-pagenull {
     margin: 0px !important;
@@ -590,5 +432,29 @@ footer {
     position: relative;
     top: 93px;
     left: -29px;
+  }
+}
+@media only screen and (min-width: 375px) and (max-width: 767px) {
+  .nav-product span {
+    font-size: 12px;
+  }
+  .form-select {
+    width: 130px;
+    font-size: 12px;
+  }
+  .tx_search {
+    font-size: 12px;
+  }
+  .product-right {
+    min-height: 300px;
+  }
+  .text-page {
+    font-size: 14px;
+  }
+  .btn-page {
+    width: 85px;
+  }
+  .btn-pagenull {
+    width: 85px;
   }
 }

@@ -11,8 +11,8 @@ function Footer() {
       <div>
         <footer className=" text-center text-lg-start bg-light text-muted">
           <section className="p-4 pt-0 px-md-0 bg-light">
-            <div className="container text-center text-md-start">
-              <div className="row justify-content-evenly ">
+            <div className="container text-center text-md-start mt-5">
+              <div className="row justify-content-evenly mt-3">
                 <div className="col-md-5 col-lg-4 col-xl-3 ms-0 mt-4 border-bottom borderz mb-5">
                   <h6 className="text-uppercase fw-bold mb-4 ">Coffee Gayoe</h6>
                   <p>Coffee Shop is a store that sells some good meals, and especially coffee. We provide high quality beans</p>
@@ -65,7 +65,7 @@ function Footer() {
               </div>
             </div>
             <div className="text-center pt-4">
-              <u className="copyright">© 2023 COFFEE GAYOE STORE ALL RIGHT RESERVED</u>
+              <u>© 2023 COFFEE GAYOE STORE ALL RIGHT RESERVED</u>
             </div>
           </section>
         </footer>
