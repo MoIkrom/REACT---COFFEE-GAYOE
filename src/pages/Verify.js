@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "../styles/Login.css";
 import Footer from "../Component/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+// import { useNavigate, useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
@@ -19,7 +20,7 @@ import background from "../assets/images/login-bg-1.png";
 function Verify() {
   TabTitle("Verify Account - Coffee Gayoe");
   const navigate = useNavigate();
-  const params = useParams();
+  // const params = useParams();
   const [pin, setPin] = useState({
     pin1: "",
     pin2: "",
@@ -28,7 +29,7 @@ function Verify() {
     pin5: "",
     pin6: "",
   });
-  const isAllFormFilled = Object.keys(pin).every((el) => pin[el]);
+  // const isAllFormFilled = Object.keys(pin).every((el) => pin[el]);
   const [loading, setLoading] = useState(false);
 
   const submitHandler = (e) => {

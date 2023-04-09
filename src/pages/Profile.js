@@ -4,16 +4,20 @@ import { TabTitle } from "../utils/General-funct.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import DatePicker from "react-date-picker";
+import "react-date-picker/dist/DatePicker.css";
+import "react-calendar/dist/Calendar.css";
 import { useNavigate } from "react-router-dom";
 import { getProfile } from "../utils/api";
-import styles from "../styles/Profile.module.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/Profile.css";
+import Card from "react-bootstrap/Card";
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
 import axios from "axios";
 
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
 
 // Import Image
 import icon_edit from "../assets/images/icon_editpencil.png";
@@ -46,6 +50,7 @@ function Profile() {
   const [saved, setSaved] = useState(false);
   const [deliveryAddress, setDeliveryAddress] = useState(profile.addres);
   const [historiedData, setHistoriedData] = useState("");
+  const [value, onChange] = useState(new Date());
 
   const getProfileUser = () => {
     const token = localStorage.getItem("token");
@@ -103,7 +108,6 @@ function Profile() {
     //   console.log(pair[0] + " - " + pair[1]);
     // }
     axios
-      // .patch(`http://localhost:8080/api/v1/users/profile`, formdata, { headers: { "x-access-token": token, "Content-Type": "multipart/form-data" } })
       .patch(`https://coffee-gayoe.vercel.app/api/v1/users/profile`, formdata, { headers: { "x-access-token": token, "Content-Type": "multipart/form-data" } })
       .then(() => {
         SuccessMessage();
@@ -124,11 +128,11 @@ function Profile() {
       });
   };
   const handleAddress = (e) => {
-    // setBody({ ...body, delivery_address: e.target.value });
+    // setBody( ..body, delivery_address: e.target.value });
     setDeliveryAddress(e.target.value);
   };
   // const handlelastname= (e) => {
-  //   // setBody({ ...body, delivery_address: e.target.value });
+  //   // setBody( ..body, delivery_address: e.target.value });
   //   setDeliveryAddress(e.target.value);
   // };
 
@@ -222,72 +226,172 @@ function Profile() {
 
   return (
     <>
-      <header className={styles["header"]}>
-        <Navbar />
-      </header>
-      <main className={styles["jumbotron"]}>
-        <div className={`container ${styles.usertitle}`}>
-          <h1 className={styles["text-user"]}>User Profile</h1>
+      <Navbar />
+
+      <main className="jumbotron">
+        <div className="container d-flex text center justify-content-center ">
+          <h1 className="text-user my-4">User Profile</h1>
         </div>
-        <div className={` container d-flex ${styles["cont-one"]} `}>
-          <section className={`container ${styles["cont-card"]}`}>
-            <div className={`card ${styles["card-body"]}`}>
+        <div className="cont-kontak container d-flex align-items-center flex-column flex-md-row flex-lg-row flex-xl-row">
+          <div className="Image-Profile  col-lg-6 d-flex justify-content-center">
+            <Card className="card_images  p-lg-5 col-lg-8 ">
+              <div className="image d-flex justify-content-center mt-3 mt-lg-5">
+                <Card.Img className="card_image" variant="top" src={icon_profile} />
+              </div>
+              <Card.Body className="text-center">
+                <Card.Text>Messi</Card.Text>
+                <Card.Text>Messi@gmail.com</Card.Text>
+                <Card.Title> Has been ordered {historiedData.length} products</Card.Title>
+              </Card.Body>
+            </Card>
+          </div>
+          <div className="contacts col-lg-6 container mt-5 mt-md-0 ">
+            <Card className="card_contact px-md-3 py-lg-5 px-lg-4">
+              <Card.Text className="mt-3 my-md-2">
+                <u>Contacts</u>
+              </Card.Text>
+              <div className="container">
+                <Form>
+                  <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Email </Form.Label>
+                    <Form.Control type="email" placeholder="Enter Your Email" />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Phone Number</Form.Label>
+                    <Form.Control type="number" placeholder="Enter Your Phone Number" />
+                  </Form.Group>
+
+                  <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                    <Form.Label>Delivery Address</Form.Label>
+                    <Form.Control as="textarea" rows={3} />
+                  </Form.Group>
+                </Form>
+              </div>
+            </Card>
+          </div>
+        </div>
+        <div className="cont-detail container d-flex flex-column flex-md-row flex-lg-row flex-xl-row align-items-center">
+          <div className="details col-12 col-md-8 col-lg-8 col-xl-8 container mt-5 ps-lg-2 pb-5 px-md-0 d-flex justify-content-center align-items-center">
+            <Card className="px-md-3 p-lg-4 col-12 col-lg-10 ">
+              <Card.Text className="mt-3">
+                <u>Details</u>
+              </Card.Text>
+              <div className="container mb-4">
+                <Form>
+                  <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Display Name</Form.Label>
+                    <Form.Control type="text" placeholder="Enter Your Display Name" />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>First Name</Form.Label>
+                    <Form.Control type="text" placeholder="Enter Your First Name" />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Last Name</Form.Label>
+                    <Form.Control type="text" placeholder="Enter Your Last Name" />
+                  </Form.Group>
+                  {/* <div>
+                  <div class="form-check ">
+                    <input class="form-check-input " type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
+                    <label class="form-check-label " for="flexRadioDefault1">
+                      Male
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      Female
+                    </label>
+                  </div>
+                </div> */}
+                  {/* <div>
+                  Date of Birth
+                  <div>
+                    <DatePicker onChange={onChange} value={value} />
+                  </div>
+                </div> */}
+                </Form>
+              </div>
+            </Card>
+          </div>
+          <div className=" panel-button container col-12 col-md-4 col-lg-3 col-xl-3 d-flex flex-column gap-3 justify-content-center text-center pb-5 pb-md-0">
+            <h5 className="bg-warning">Do you want to save the change?</h5>
+            <div className=" tombol container d-flex flex-md-column flex-lg-column flex-wrap flex-xl-column gap-2 justify-content-between gap-md-3 ">
+              <Button className=" col-6 col-md-12" variant="warning">
+                Save Change
+              </Button>
+              <Button className=" col-4 col-md-12" variant="warning">
+                Cancel
+              </Button>
+              <Button className=" col-6 col-md-12" variant="warning">
+                Change Password
+              </Button>
+              <Button className=" col-4 col-md-12" variant="warning">
+                Log Out
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* <div className="cont-one container d-flex">
+          <section className="cont-card container ">
+            <div className="card-body card">
               <img
-                className={styles["card-img-top"]}
+                className="card-img-top"
                 // src={profile.image === null ? icon_profile : imgPrev !== "" ? imgPrev : profile.image}
                 src={!image ? profile.image : imgPrev}
                 alt=""
               />
-              <label className={styles.editicon} htmlFor="files" id="lable_file">
-                <img className={`${styles["cursor"]}  ${styles.pencils}`} src={icon_edit} alt="icon_edit" />
+              <label className="editicon" htmlFor="files" id="lable_file">
+                <img className="pencils cursor" src={icon_edit} alt="icon_edit" />
               </label>
-              <input id="files" type="file" name="file" onChange={handleImage} className={styles.hidden} />
-              <div className={`container ${styles["detail-image"]}`}>
-                <p className={styles["card-name"]}>{profile.display_name}</p>
-                <p className={styles["card-email"]}>{profile.email}</p>
+              <input id="files" type="file" name="file" onChange={handleImage} className="hidden" />
+              <div className="detail-image container ">
+                <p className="card-name ">{profile.display_name}</p>
+                <p className="card-email">{profile.email}</p>
               </div>
-              <p className={styles["ordered"]}>Has been ordered {historiedData.length} products</p>
+              <p className="ordered">Has been ordered {historiedData.length} products</p>
             </div>
-            <div className={`card ${styles["card-address"]}`}>
-              <div className={styles["title-contactone"]}>
-                <h2 className={show === true ? styles["display-5"] : styles["contactshowone"]}>contacts</h2>
+            <div className="card-address  card ">
+              <div className="title-contactone">
+                <h2 className={show === true ? "display-5" : "contactshowone"}>contacts</h2>
                 <div
-                  className={`${styles.contedit}`}
+                  className="contedit"
                   onClick={(e) => {
                     setShow(false);
                     e.preventDefault();
                     setIsEdit(!isEdit);
                   }}
                 >
-                  <img className={show === true ? `${styles["editicon-right"]} ${styles["cursor"]}` : `${styles.none}`} src={icon_edit} alt="icon_edit" />
+                  <img className={show === true ? "editicon-right cursor " : "none"} src={icon_edit} alt="icon_edit" />
 
-                  <p className={show === true ? `${styles.edits} ${styles["cursor"]}` : `${styles.none}`}>Edit</p>
+                  <p className={show === true ? "edits cursor" : "none"}>Edit</p>
                 </div>
               </div>
 
-              <form className={`container col-12 d-flex ${styles.contform}`}>
-                <div className={`container col-6 ${styles.contemailform} `}>
-                  <label className={styles.genderone} htmlFor="email">
+              <form className="container col-12 d-flex  contform">
+                <div className="container col-6  contemailform">
+                  <label className="genderone" htmlFor="email">
                     Email address :
                   </label>
-                  <input className={`${styles.emailinput}`} type="email" disabled value={profile.email} />
+                  <input className="emailinput" type="email" disabled value={profile.email} />
                 </div>
 
-                <div className={`container ${styles["cont-label"]}`}>
-                  <label className={styles.genderone} htmlFor="phone_number">
+                <div className="container cont-label">
+                  <label className="genderone" htmlFor="phone_number">
                     Mobile Number :
                   </label>
-                  <input className={`${styles.emailinput}`} type="tel" disabled value={profile.phone_number} />
+                  <input className="emailinput" type="tel" disabled value={profile.phone_number} />
                 </div>
               </form>
 
-              <div className={`container ${styles["cont-email"]}`}>
-                <div className={`container ${styles["cont-address"]}`}>
-                  <label className={styles.genderone} htmlFor="phone_number">
+              <div className="container cont-email">
+                <div className="container cont-address">
+                  <label className="genderone" htmlFor="phone_number">
                     Delivery Address :
                   </label>
                   <input
-                    className={show === true ? styles["street"] : styles["streetoneshow"]}
+                    className={show === true ? "street" : "streetoneshow"}
                     type="text"
                     onChange={handleAddress}
                     placeholder={show === true ? profile.addres : ""}
@@ -297,7 +401,7 @@ function Profile() {
                 </div>
               </div>
               <p
-                className={show === true ? `${styles.none}` : `${styles["tombolsaveone"]} ${styles["cursor"]}`}
+                className={show === true ? "none" : "tombolsaveone  cursor"}
                 onClick={(e) => {
                   e.preventDefault();
                   setIsEdit(!isEdit);
@@ -308,75 +412,74 @@ function Profile() {
               </p>
             </div>
           </section>
-          <div className={`${styles.contTwo}`}>
-            <div className={`card col-8 ${styles.displaynames}`}>
-              <div className={styles["title-contact"]}>
-                <h2 className={show2 === true ? styles["display-5"] : styles["contactshow"]}>Details</h2>
+          {/* <div className="contTwo">
+            <div className="card col-8  displaynames">
+              <div className="title-contact ">
+                <h2 className={show2 === true ? "display-5" : "contactshow"}>Details</h2>
                 <div
-                  className={`${styles.contedit}`}
+                  className="contedit"
                   onClick={(e) => {
                     setShow2(false);
                     e.preventDefault();
                     setIsEdit2(!isEdit2);
                   }}
                 >
-                  <img className={show2 === true ? `${styles["editicon-right"]} ${styles["cursor"]}` : `${styles.none}`} src={icon_edit} alt="icon_edit" />
+                  <img className={show2 === true ? "editicon-right cursor " : "none"} src={icon_edit} alt="icon_edit" />
 
-                  <p className={show2 === true ? `${styles.edits} ${styles["cursor"]}` : `${styles.none}`}>Edit</p>
+                  <p className={show2 === true ? "edits cursor" : "none"}>Edit</p>
                 </div>
               </div>
-              <div className={`d-flex gap-5 ${styles.fleks}`}>
-                <div className={`col-7 ${styles.col7}`}>
-                  <div className={`container ${styles[""]}`}>
-                    <div className={`container  ${styles["cont-display"]}`}>
-                      <label className={styles.gender} htmlFor="phone_number">
+              <div className="d-flex gap-5  fleks">
+                <div className="col-7  col7">
+                  <div className="container">
+                    <div className="container  cont-display">
+                      <label className="gender" htmlFor="phone_number">
                         Display Name :
                       </label>
-                      <input className={show2 === true ? styles["streetshow"] : styles["streetshow"]} type="text" onChange={valueDisplayname} disabled={isEdit2} value={displayName} />
+                      <input className={show2 === true ? "streetshow" : "streetshow"} type="text" onChange={valueDisplayname} disabled={isEdit2} value={displayName} />
                     </div>
                   </div>
-                  <div className={`container ${styles[""]}`}>
-                    <div className={`container ${styles["cont-display"]}`}>
-                      <label className={styles.gender} htmlFor="phone_number">
+                  <div className="container">
+                    <div className="container cont-display">
+                      <label className="gender" htmlFor="phone_number">
                         First Name :
                       </label>
-                      <input className={show2 === true ? styles["streetshow"] : styles["streetshow"]} type="text" onChange={valueFirstname} disabled={isEdit2} value={firstName} />
+                      <input className={show2 === true ? "streetshow" : "streetshow"} type="text" onChange={valueFirstname} disabled={isEdit2} value={firstName} />
                     </div>
                   </div>
-                  <div className={`container ${styles[""]}`}>
-                    <div className={`container ${styles["cont-display"]}`}>
-                      <label className={styles.gender} htmlFor="phone_number">
+                  <div className="container">
+                    <div className="container cont-display">
+                      <label className="gender" htmlFor="phone_number">
                         Last Name :
                       </label>
-                      <input className={show2 === true ? styles["streetshow"] : styles["streetshow"]} type="text" onChange={valueLastname} disabled={isEdit2} placeholder={show === true ? profile.lastName : ""} value={lastName} />
+                      <input className={show2 === true ? "streetshow" : "streetshow"} type="text" onChange={valueLastname} disabled={isEdit2} placeholder={show === true ? profile.lastName : ""} value={lastName} />
                     </div>
                   </div>
                 </div>
 
-                <div className={`${styles.divgender}`}>
-                  <p className={`${styles.gender}`}> Gender : </p>
+                <div className="divgender">
+                  <p className="gender"> Gender : </p>
                   <form
-                    className={`${styles["radio-payment"]} ${styles["cursor"]}`}
+                    className="radio-payment cursor"
                     onChange={(e) => {
                       valueGender(e.target.value);
                     }}
                   >
-                    <div className={`form-check d-flex flex-row align-items-center ${styles["styling-data-radio"]}`}>
-                      <input className={`form-check-input ${styles.cursor}`} type="radio" value="Male" name="flexRadioDefault" />
+                    <div className="form-check d-flex flex-row align-items-center styling-data-radio">
+                      <input className="form-check-input  cursor " type="radio" value="Male" name="flexRadioDefault" />
                       <label className="form-check-label" for="flexRadioDefault1"></label>
-                      <span className={`${styles.spans}`}>Male</span>
+                      <span className="spans">Male</span>
                     </div>
-                    <div className={`form-check d-flex flex-row align-items-center ${styles["styling-data-radio"]}`}>
-                      <input className={`form-check-input ${styles.cursor}`} value="Female" type="radio" name="flexRadioDefault" />
+                    <div className="form-check d-flex flex-row align-items-center styling-data-radio">
+                      <input className="form-check-input cursor" value="Female" type="radio" name="flexRadioDefault" />
                       <label className="form-check-label" for="flexRadioDefault1"></label>
-                      <span className={`${styles.spans}`}>Female</span>
+                      <span className="spans">Female</span>
                     </div>
                   </form>
                 </div>
               </div>
-
               <p
-                className={show2 === true ? `${styles.none}` : `${styles["tombolsave"]} ${styles["cursor"]}`}
+                className={show2 === true ? "none" : "tombolsave cursor"}
                 onClick={(e) => {
                   e.preventDefault();
                   setIsEdit2(!isEdit2);
@@ -386,33 +489,32 @@ function Profile() {
                 Save
               </p>
             </div>
-
-            <div className={`container ${styles["cont-btn"]}`}>
-              <h1 className={styles["save-btn"]}>Do you want to save the change?</h1>
-              <button type="button" className={`btn ${styles["btn-1"]}  ${styles["btn-size"]}`} onClick={editData}>
+            <div className="container cont-btn">
+              <h1 className="save-btn">Do you want to save the change?</h1>
+              <button type="button" className="btn btn-1 btn-size" onClick={editData}>
                 {loading ? (
                   <>
-                    <div className={styles["lds-ring"]}>
+                    <div className="lds-ring ">
                       <div></div>
                       <div></div>
                       <div></div>
                       <div></div>
                     </div>
-                    <p className={styles["loading-text"]}>Loading . . .</p>
+                    <p className="loading-text">Loading . . .</p>
                   </>
                 ) : (
                   " Save Change "
                 )}
               </button>
-              <button type="button" className={`btn ${styles["btn-2"]} ${styles["btn-size"]}`} onClick={handleCancel}>
+              <button type="button" className="btn btn-2  btn-size " onClick={handleCancel}>
                 Cancel
               </button>
-              <button type="button" className={`btn ${styles["btn-size"]} ${styles["btn-3"]}`} onClick={toEditPwd}>
+              <button type="button" className="btn btn-size  btn-3 " onClick={toEditPwd}>
                 Edit Password
               </button>
               <button
                 type="button"
-                className={`btn ${styles["btn-size"]} ${styles["btn-3"]}`}
+                className="btn btn-size  btn-3 "
                 onClick={() => {
                   handleShowModal();
                 }}
@@ -420,8 +522,8 @@ function Profile() {
                 Log Out
               </button>
             </div>
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
 
         {/* </div>  */}
         <Modal show={showModal} onHide={handleCloseModal} backdrop="static" keyboard={false}>
@@ -454,9 +556,7 @@ function Profile() {
         </Modal>
       </main>
 
-      <footer className={styles["footer-cont"]}>
-        <Footer />
-      </footer>
+      <Footer />
       <ToastContainer />
     </>
   );

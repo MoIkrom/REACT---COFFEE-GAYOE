@@ -114,7 +114,7 @@ function Navbars() {
                 </Button>
               </div>
             ) : (
-              <div className={`${styles["right-nav"]} d-flex`}>
+              <div className="right-navd-flex">
                 <a className="nav-link" href="/">
                   <img clasName={styles.icon} src={icon_chat} alt="" widht="27px" height="27px" />
                 </a>
@@ -123,7 +123,7 @@ function Navbars() {
                   <div>
                     <button
                       type="button"
-                      className={`btn ${styles["btn-size"]} ${styles["btn-3"]}`}
+                      className="btn btn-size btn-3"
                       onClick={() => {
                         handleShowModal();
                       }}

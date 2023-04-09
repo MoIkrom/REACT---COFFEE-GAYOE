@@ -7,15 +7,14 @@ body {
   /* background-color: #f8f8f8; */
 }
 
-.header {
-  max-width: 1440px;
+.card_image {
+  width: 150px;
+  height: 150px;
+  border-radius: 100px;
 }
-.container {
-  max-width: 1440px;
-}
-.cont-one {
-  flex-direction: column;
-}
+
+/* ======================================================== */
+
 .contTwo {
   display: flex;
   position: relative;
@@ -68,8 +67,6 @@ body {
 .jumbotron {
   background-image: url(../assets/images/background-Coffee.png);
   background-size: cover;
-  height: 1024px;
-  max-width: 1440px;
 }
 .cont-display {
   display: flex;
@@ -94,17 +91,6 @@ body {
   flex-direction: column;
 }
 
-.card {
-  position: absolute;
-  margin-top: 150px;
-}
-.cont-card {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  position: relative;
-  top: 100px;
-}
 .card-down {
   position: relative;
   top: 270px;
@@ -312,17 +298,10 @@ body {
   top: 70px;
   height: 200px;
 }
-.card-body {
-  width: 310px;
-  height: 350px;
-}
+
 .contact {
   position: relative;
   left: 20px;
-}
-.card-address {
-  width: 700px;
-  height: 350px;
 }
 
 .display-profile {
@@ -332,14 +311,6 @@ body {
   top: 50px;
 }
 
-.card-img-top {
-  border-radius: 100px;
-  height: 125px;
-  width: 125px;
-  position: relative;
-  left: 89px;
-  top: 25px;
-}
 .ellips {
   height: 35px;
   width: 35px;
@@ -383,8 +354,6 @@ body {
   font-weight: 700;
   vertical-align: Top;
   color: #000000;
-  margin-top: 27px;
-  margin-left: 45px;
 }
 .card-email {
   font-family: Rubik;
@@ -394,19 +363,8 @@ body {
   font-weight: 400;
   vertical-align: Top;
   color: #4f5665;
-  position: relative;
-  left: 92px;
-  top: -5px;
 }
 
-.card-name {
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  top: 10px;
-  left: 41px;
-}
 .ordered {
   font-family: Rubik;
   font-style: Regular;
@@ -416,8 +374,6 @@ body {
   font-weight: 400;
   vertical-align: Top;
   color: #4f5665;
-  position: relative;
-  left: 48px;
   width: 210px;
 }
 
@@ -439,7 +395,6 @@ body {
   align-content: left;
   font-weight: 700;
   color: #4f5665;
-  margin-bottom: 20px;
 }
 .lead-2 {
   font-family: Poppins;
@@ -492,14 +447,6 @@ body {
 .hidden {
   display: none;
 }
-.title-contactone {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  gap: 420px;
-  align-items: center;
-  padding-top: 20px;
-}
 .title-contact {
   display: flex;
   flex-direction: row;
@@ -516,9 +463,6 @@ body {
   align-content: left;
   font-weight: 700;
   color: #4f5665;
-  margin-bottom: 20px;
-  position: relative;
-  left: -9px;
 }
 .contactshow {
   font-family: Poppins;
@@ -543,9 +487,6 @@ body {
   display: flex;
   justify-content: center;
   z-index: 1;
-  margin-left: 5rem;
-  position: relative;
-  top: -15px;
 }
 .cursor {
   cursor: pointer;
@@ -561,13 +502,6 @@ body {
 }
 #background-jumbotron {
   background-image: none;
-}
-.contedit {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
 }
 .none {
   display: none;
@@ -629,8 +563,6 @@ body {
   line-height: 27px;
   line-height: 100%;
   color: #ffffff;
-  position: relative;
-  top: 70px;
 }
 
 #detail-jumbotron {
@@ -852,36 +784,12 @@ body {
     top: 50px;
     left: 15px;
   }
-  .pencils {
-    width: 35px;
-    position: relative;
-    top: 10px;
-    left: -10px;
-  }
+
   .cont-btn {
     position: relative;
     top: -45px;
   }
-  .detail-image {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .card-img-top {
-    border-radius: 100px;
-    height: 92px;
-    width: 91px;
-    position: relative;
-    left: 70px;
-    top: 25px;
-  }
 
-  .card-body {
-    width: 310px;
-    /* gap: 34px; */
-    height: 287px;
-  }
   .contform {
     padding: 0px;
     display: flex !important;
@@ -922,9 +830,6 @@ body {
     font-weight: 400;
     vertical-align: Top;
     color: #4f5665;
-    position: relative;
-    left: 60px;
-    top: -5px;
   }
 
   .ordered {
@@ -936,20 +841,7 @@ body {
     font-weight: 400;
     vertical-align: Top;
     color: #4f5665;
-    position: relative;
-    left: 32px;
-    top: 34px;
     width: 210px;
-  }
-  .card-body {
-    width: 237px;
-    /* gap: 34px; */
-    height: 287px;
-  }
-
-  .card-address {
-    width: 423px;
-    height: 288px;
   }
 
   .footer-cont {
@@ -960,25 +852,6 @@ body {
     border-radius: 100px;
     height: 92px;
     width: 92px;
-    position: relative;
-    left: 64px;
-    top: 25px;
-  }
-
-  .card-name {
-    margin: 0px;
-    position: relative;
-    top: 0px;
-    left: 0px;
-  }
-  .card-email {
-    top: 0px;
-    left: 0px;
-  }
-  .title-contactone {
-    gap: 214px;
-    align-items: center;
-    padding-top: 10px;
   }
   .cont-email {
     font-size: 13px;
@@ -1032,35 +905,6 @@ body {
 }
 
 @media only screen and (max-width: 425px) {
-  .card-body {
-    height: 220px;
-  }
-  .card-name {
-    margin: 0px;
-    position: relative;
-    top: -10px;
-  }
-  .usertitle {
-    padding-top: 20px;
-  }
-  .detail-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-  .ordered {
-    top: -10px;
-  }
-  .card-email {
-    margin: 0px auto;
-    position: relative;
-    left: 0px;
-  }
-  .cont-one {
-    position: relative;
-    top: -26px;
-  }
   .text-user {
     top: 0px;
   }
@@ -1072,15 +916,6 @@ body {
     width: 340px;
     font-size: 16px;
     padding-bottom: 7px;
-  }
-  .cont-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    top: 30px;
-    gap: 50px;
   }
   .contTwo {
     left: 11px;
@@ -1138,11 +973,6 @@ body {
     position: relative;
     left: 13px;
   }
-  .card-address {
-    width: 380px;
-    height: 288px;
-    padding-left: 2px;
-  }
   .contform {
     display: flex !important;
     flex-direction: column;
@@ -1161,11 +991,6 @@ body {
     padding-bottom: 1px;
     padding-top: 10px;
     font-size: 15px;
-  }
-  .title-contactone {
-    gap: 180px;
-    align-items: center;
-    padding-top: 15px;
   }
   .usertitle {
     display: flex;
