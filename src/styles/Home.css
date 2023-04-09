@@ -31,7 +31,7 @@ body {
   text-align: center;
 }
 /* Start main */
-.display-4 {
+.display_start {
   font-family: Rubik;
   font-style: bold;
   font-weight: 500;
@@ -40,7 +40,6 @@ body {
   line-height: 100%;
   vertical-align: Top;
   color: #ffffff;
-  margin-top: 30px;
 }
 .lead {
   font-family: Rubik;
@@ -627,10 +626,10 @@ body {
 
   .list-prove {
     font-size: 12px;
-    padding-left: 20px;
+    padding-left: 12px;
   }
   .h-img {
-    height: 90px !important;
+    height: 75px !important;
   }
   .promo {
     height: 200px;
@@ -658,10 +657,13 @@ body {
     font-size: 10.5px;
   }
   .h-img {
-    height: 40px;
+    height: 35px !important;
   }
 }
 @media only screen and (max-width: 425px) {
+  .h-img {
+    height: 35px !important;
+  }
   #teamwork {
     width: 300px;
     height: 300px;

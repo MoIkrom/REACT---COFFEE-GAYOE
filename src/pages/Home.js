@@ -37,18 +37,19 @@ function Home() {
     <>
       <Navbar />
       <main className="main-content">
-        <div className="jumbotron">
+        <div className="jumbotrons">
           <div className="container">
-            <div className="row">
-              <div className="col-12 col-md-6 col-lg-6 d-flex flex-column align-items-center align-items-md-start">
-                <h1 className="display-4">Start Your Day with Coffee and Good Meals</h1>
+            <div className="set_started d-flex flex-row p-md-3">
+              <div className="texts mt-5 text-center">
+                {/* <div className="mt-0 col-12 col-md-6 col-lg-6 d-flex flex-column align-items-center align-items-md-start">  */}
+                <h1 className="display_start ">Start Your Day with Coffee and Good Meals</h1>
                 <p className="lead">We provide high quality beans, good taste, and healthy meals made by love just for you. Start your day with us for a bigger smile!.</p>
                 <button type="button" className="btn btn-warning" id="get-started">
                   Get Started
                 </button>
               </div>
-              <div className="d-none d-md-flex mb-1 col-12 col-md-6 col-lg-6 d-flex justify-content-center align-items-start mt-4">
-                <form class="form-inline col-12 d-flex  my-2 my-lg-0 gap-md-3 ">
+              <div className="d-none d-md-flex mb-1 col-12 col-md-6 col-lg-6 d-flex justify-content-center align-items-start mt-5">
+                <form class="form-inline col-12 col-xl-8 d-flex  my-2 my-lg-0 gap-md-3 ">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
                   <button class="btn btn-warning   my-2 my-sm-0" type="submit">
                     Search
@@ -60,7 +61,7 @@ function Home() {
         </div>
       </main>
       <div className="container">
-        <section className="d-none container d-md-flex jumbotron staff">
+        <section className="d-none container d-md-flex jumbotrons staff">
           <div className="container d-flex justify-content-evenly align-items-center ">
             <div className="d-flex justify-content-evenly align-items-center ">
               <div className="col-md-12 d-flex flex-column gap-1">
@@ -92,27 +93,47 @@ function Home() {
           </div>
         </section>
       </div>
-      <div className="container mt-2 mt-md-0 p-md-0">
-        <div className="row ">
-          <div className="d-flex flex-column flex-md-row justify-content-center align-items-center col-md-6 col-12 my-3 mt-md-0 p-md-0">
+      <div className="teams_image container mt-2 mt-md-0 p-md-0">
+        <div className="cont_teams d-flex justify-content-center align-items-center  flex-md-row flex-column ">
+          <div className=" teams_image d-flex flex-column flex-md-row justify-content-center align-items-center col-md-6 col-12 my-3 mt-md-0 p-md-0">
             <img id="teamwork" src={teamwork} alt="team-work" />
           </div>
-          <div className="container col-md-6 p-md-0">
-            <div className="col-12 ">
-              <h1 className="text-center proved">We Provide Good Coffee and Healthy Meals</h1>
+          <div className="cont_provide_hp container m-0   col-12 d-md-none ps-2">
+            <div>
+              <h1 className="text-start text-md-center proved">We Provide Good Coffee and Healthy Meals</h1>
               <p className="p-3 ps-md-1 m-0 explore">You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
               <ol className="list-prove">
-                <li style={{ padding: "6px" }}>
+                <li style={{ padding: "4px" }}>
                   <img id="cheklist" src={checklist} alt="checklist" /> &nbsp; High quality beans
                 </li>
-                <li style={{ padding: "6px" }}>
+                <li style={{ padding: "4px" }}>
                   <img id="cheklist" src={checklist} alt="checklist" /> &nbsp; Healthy meals, you can request the ingredients
                 </li>
-                <li style={{ padding: "6px" }}>
+                <li style={{ padding: "4px" }}>
                   <img id="cheklist" src={checklist} alt="checklist" /> &nbsp; Chat with our staff to get better experience for ordering
                 </li>
-                <li style={{ padding: "6px" }}>
+                <li style={{ padding: "4px" }}>
                   <img id="cheklist" src={checklist} alt="checklist" /> &nbsp; Free member card with a minimum purchase of Rp 200.000 .
+                </li>
+              </ol>
+            </div>
+          </div>
+          <div className="cont_provide container m-0   d-none d-md-flex col-md-6 p-md-0">
+            <div>
+              <h1 className="text-start text-md-center proved">We Provide Good Coffee and Healthy Meals</h1>
+              <p className="p-3 ps-md-1 m-0 explore">You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
+              <ol className="list-prove">
+                <li style={{ padding: "2px" }}>
+                  <img id="cheklist" src={checklist} alt="checklist" /> &nbsp; High quality beans
+                </li>
+                <li style={{ padding: "2px" }}>
+                  <img id="cheklist" src={checklist} alt="checklist" /> &nbsp; Healthy meals, you can request the ingredients
+                </li>
+                <li style={{ padding: "2px" }}>
+                  <img id="cheklist" src={checklist} alt="checklist" /> &nbsp; Chat with our staff to get better experience for ordering
+                </li>
+                <li style={{ padding: "2px" }}>
+                  <img id="cheklist" src={checklist} alt="checklist" /> &nbsp; Free member card with a minimum purchase of Rp 200.000
                 </li>
               </ol>
             </div>
@@ -120,7 +141,7 @@ function Home() {
         </div>
       </div>
       <section>
-        <div className="jumbotron my-5">
+        <div className="jumbotrons my-5">
           <div className="container" id="title-favorite">
             <h1>Here is People’s Favorite</h1>
             <p className="p-3 m-0 explore ">Let’s choose and have a bit taste of poeple’s favorite. It might be yours too!</p>
@@ -225,12 +246,20 @@ function Home() {
 
           <div className="container mt-5 mb-md-5 text-center">
             <h1>Our Partner</h1>
-            <div className="container gap-2">
+            <div className="sponsor_hp d-flex d-md-none container gap-2">
               <div className="row justify-content-evenly mt-4 ">
-                <img className="col-5 col-md-6 mt-md-4 h-img" src={netflix} alt="netflix" />
-                <img className="col-5 col-md-6 mt-md-4 h-img" src={reddit} alt="reddit" />
-                <img className="col-5 col-md-6 mt-3 mt-md-5 h-img" src={discord} alt="discord" />
-                <img className="col-5 col-md-6 mt-3 mt-md-5 h-img" src={spotify} alt="spotify" />
+                <img className="col-5 mt-md-4 h-img" src={netflix} alt="netflix" />
+                <img className="col-5 mt-md-4 h-img" src={reddit} alt="reddit" />
+                <img className="col-5 mt-3 mt-md-5 h-img" src={discord} alt="discord" />
+                <img className="col-5 mt-3 mt-md-5 h-img" src={spotify} alt="spotify" />
+              </div>
+            </div>
+            <div className="sponsor container d-none d-md-flex justify-content-center gap-2">
+              <div className="row d-flex gap-2 justify-content-evenly mt-4 ">
+                <img className="col-5 col-lg-4 col-lg-4 mt-md-4 h-img" src={netflix} alt="netflix" />
+                <img className="col-5 col-lg-4 mt-md-4 h-img" src={reddit} alt="reddit" />
+                <img className="col-5 col-lg-4 mt-3 mt-md-5 h-img" src={discord} alt="discord" />
+                <img className="col-5 col-lg-4 mt-3 mt-md-5 h-img" src={spotify} alt="spotify" />
               </div>
             </div>
           </div>
@@ -243,8 +272,64 @@ function Home() {
         </div>
       </section>
       <section className="container">
-        <div className="container my-4">
-          <div className="d-flex gap-3 gap-lg-5 overflows_card">
+        <div className="cont_comment container my-4">
+          <div className="coments d-flex d-md-none gap-3 gap-lg-5 overflows_card">
+            <div className="col-12 ">
+              <div className="card gap-3 p-3 height_card">
+                <div className="d-flex justify-content-between">
+                  <div className="d-flex gap-3">
+                    <img src={vlezh} alt="Flezh-Robert" />
+                    <div className="d-flex flex-column">
+                      <h1 className="name_profile">Viezh Robert</h1>
+                      <p className="m-0">Warsaw, Poland</p>
+                    </div>
+                  </div>
+                  <div className="d-flex justify-content-center align-items-center gap-1">
+                    <p className="m-0">4.5</p>
+                    <img src={star} alt="Yellow-Star" />
+                  </div>
+                </div>
+                <p className="m-0">“Wow... I am very happy to spend my whole day here. the Wi-fi is good, and the coffee and meals tho. I like it here!! Very recommended!"</p>
+              </div>
+            </div>
+            <div className="col-12 ">
+              <div className="card gap-3 p-3 height_card">
+                <div className="d-flex justify-content-between">
+                  <div className="d-flex gap-3">
+                    <img className="parker" src={parker} alt="Flezh-Robert" />
+                    <div className="d-flex flex-column">
+                      <h1 className="name_profile">Putra Parker</h1>
+                      <p className="m-0">Shanxi, China</p>
+                    </div>
+                  </div>
+                  <div className="d-flex justify-content-center align-items-center gap-1">
+                    <p className="m-0">4.5</p>
+                    <img src={star} alt="Yellow-Star" />
+                  </div>
+                </div>
+                <p className="m-0">“I like it because I like to travel far and still can make my day better just by drinking their Hazelnut Latte"</p>
+              </div>
+            </div>
+            <div className="col-12 ">
+              <div className="card gap-3 p-3 height_card">
+                <div className="d-flex justify-content-between">
+                  <div className="d-flex gap-3">
+                    <img src={kim} alt="Flezh-Robert" />
+                    <div className="d-flex flex-column">
+                      <h1 className="name_profile"> Kim Young Jou</h1>
+                      <p className="m-0">Seoul, South Korea</p>
+                    </div>
+                  </div>
+                  <div className="d-flex justify-content-center align-items-center gap-1">
+                    <p className="m-0">4.5</p>
+                    <img src={star} alt="Yellow-Star" />
+                  </div>
+                </div>
+                <p className="m-0">“This is very unusual for my taste, I haven’t liked coffee before but their coffee is the best! and yup, you have to order the chicken wings, the best in town!"</p>
+              </div>
+            </div>
+          </div>
+          <div className="coments d-none d-md-flex gap-3 gap-lg-5 overflows_card">
             <div className="col-12 col-lg-4 col-md-6">
               <div className="card gap-3 p-3 height_card">
                 <div className="d-flex justify-content-between">
