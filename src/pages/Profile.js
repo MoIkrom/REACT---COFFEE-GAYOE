@@ -315,18 +315,14 @@ function Profile() {
             </Card>
           </div>
           <div className=" panel-button container col-12 col-md-4 col-lg-3 col-xl-3 d-flex flex-column gap-3 justify-content-center text-center pb-5 pb-md-0">
-            <h5 className="bg-warning">Do you want to save the change?</h5>
+            <h5 className="doyou">Do you want to save the change?</h5>
             <div className=" tombol container d-flex flex-md-column flex-lg-column flex-wrap flex-xl-column gap-2 justify-content-between gap-md-3 ">
-              <Button className=" col-6 col-md-12" variant="warning">
-                Save Change
-              </Button>
-              <Button className=" col-4 col-md-12" variant="warning">
+              <Button className=" font_saved savess col-6 col-md-12 ">Save Change</Button>
+              <Button className=" font_saved col-4 col-md-12" variant="warning">
                 Cancel
               </Button>
-              <Button className=" col-6 col-md-12" variant="warning">
-                Change Password
-              </Button>
-              <Button className=" col-4 col-md-12" variant="warning">
+              <Button className=" font_saved col-6 col-md-12 savess">Change Password</Button>
+              <Button className=" font_saved col-4 col-md-12" variant="warning">
                 Log Out
               </Button>
             </div>

@@ -49,18 +49,6 @@
   gap: 2rem;
 }
 
-.no-underlinenavbar {
-  text-decoration: none;
-  position: relative;
-  border: none;
-  background-color: #ffffff;
-  padding: 10px 20px;
-  font-family: "Rubik";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-}
-
 .no-underline {
   text-decoration: none;
   position: relative;
@@ -177,6 +165,11 @@
     line-height: 19px;
     color: #6a4029;
     height: 37px;
+  }
+  .navs_name {
+    font-family: Poppins;
+    color: #6a4029;
+    text-decoration: none !important;
   }
 
   .py {

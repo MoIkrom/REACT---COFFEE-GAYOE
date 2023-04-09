@@ -54,11 +54,17 @@ function Register() {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 2000,
         });
-        setTimeout(() => navigate("/login"), 3000);
+        setTimeout(() => {
+          navigate("/login");
+          window.scrollTo({
+            top: 50,
+            left: 100,
+          });
+        }, 3000);
         setLoading(false);
       })
       .catch((err) => {
-        toast.error("Invalid Email/Phone Number", {
+        toast.error("Invalid Email", {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 2000,
         });

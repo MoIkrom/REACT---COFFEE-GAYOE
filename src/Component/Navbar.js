@@ -114,11 +114,7 @@ function Navbars() {
                 </Button>
               </div>
             ) : (
-              <div className="right-navd-flex">
-                <a className="nav-link" href="/">
-                  <img clasName={styles.icon} src={icon_chat} alt="" widht="27px" height="27px" />
-                </a>
-
+              <div className="d-flex flex-column ms-4">
                 {role === "admin" ? (
                   <div>
                     <button
@@ -132,9 +128,13 @@ function Navbars() {
                     </button>
                   </div>
                 ) : (
-                  <Link className={styles["no-underlinenavbar"]} to={role === "user" ? "/profile" : "/"}>
-                    <img className="rounded-circle" src={profile.image === null ? icon_profile : profile.image} alt="" width="50px" height="50px" />
-                  </Link>
+                  <div className="d-flex align-items-center p-lg-0 ps-md-2">
+                    <Link className="cont_profile d-flex flex-column align-items-center text-decoration-none" to={role === "user" ? "/profile" : "/"}>
+                      {/* <img className="rounded-circle" src={profile.image === null ? icon_profile : profile.image} alt="" width="50px" height="50px" /> */}
+                      <img className="rounded-circle" src={icon_profile} alt="" width="50px" height="50px" />
+                      <p className={`d-flex d-lg-none ${styles["navs_name"]}`}>{profile.username}</p>
+                    </Link>
+                  </div>
                 )}
               </div>
             )}

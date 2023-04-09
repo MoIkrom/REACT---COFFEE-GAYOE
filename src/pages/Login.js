@@ -50,7 +50,12 @@ function Login() {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 2000,
         });
-        setTimeout(() => navigate("/"), 3000);
+        setTimeout(() => {
+          navigate("/");
+          window.scrollTo({
+            top: 0,
+          });
+        }, 3000);
         setLoading(false);
       })
       .catch((err) => {
