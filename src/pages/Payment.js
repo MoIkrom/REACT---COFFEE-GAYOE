@@ -123,7 +123,7 @@ const Payment = () => {
       qty: products.qty,
       shiping: products.shiping,
       tax: getTax(),
-      total: getTotal(),
+      total: parseInt(getTotal()),
       payment: form,
       status: statusPaid,
     })
