@@ -186,7 +186,7 @@ const Payment = () => {
                   </div>
                   <div className={styles["subtotal-payment"]}>
                     <p>TOTAL</p>
-                    <p>{getTotal()}</p>
+                    <p>{` Rp ${costing(getTotal())} `}</p>
                   </div>
                 </div>
               </div>

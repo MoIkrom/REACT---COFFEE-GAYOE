@@ -23,6 +23,11 @@ const History = () => {
         console.log(err);
       });
   };
+  const costing = (price) => {
+    return parseFloat(price)
+      .toFixed()
+      .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+  };
 
   useEffect(() => {
     getHistory();
@@ -57,7 +62,7 @@ const History = () => {
                     <p className={styles["loading-text"]}>Loading</p>
                   </>
                 ) : (
-                  historied.map((e) => <Card key={e.id} title={e.product_name} price={e.total} image={e.image} status={e.status} />)
+                  historied.map((e) => <Card key={e.id} title={e.product_name} price={`Rp ${costing(e.total)}`} image={e.image} status={e.status} />)
                 )}
               </div>
             </div>
