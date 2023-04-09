@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
-import styles from "../styles/Detail.module.css";
+import "../styles/Detail.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
@@ -12,8 +12,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import Card from "react-bootstrap/Card";
 
-// IMport Images
+// Import Images
 import image from "../assets/images/detail-image.png";
 
 const Detail = ({ route }) => {
@@ -115,120 +116,120 @@ const Detail = ({ route }) => {
 
   return (
     <>
-      <div className={`${styles["navs"]}`}>
-        <Navbar />
-      </div>
+      <Navbar />
 
-      {loading ? (
+      {/* {loading ? (
         <>
-          <div className={styles["lds-ring"]}>
+          <div className="lds-ring">
             <div></div>
             <div></div>
             <div></div>
             <div></div>
           </div>
-          <p className={styles["loading-text"]}>Loading</p>
+          <p className="loading-text">Loading</p>
         </>
-      ) : (
-        <>
-          <section className={`container ${styles["cold-brew"]}`}>
-            <div>
-              <p>
-                Favorite & Promo <strong> &gt; {product.product_name}</strong>
-              </p>
-              <img className={styles["image"]} src={product.image} alt="/" />
-            </div>
-
-            <div className={`card ${styles["delivery-time"]}`}>
-              <p className={styles["text-delivery"]}>
-                Delivery only <strong> on Monday to friday</strong> at <strong>1 - 7 pm </strong>
-              </p>
-              <p className={styles["text-delivery"]}>{product.description}</p>
-              <p className={styles["choose"]}>Choose a size</p>
-              <div className={`container ${styles["size"]}`}>
-                <div
-                  className={size === "Regular" ? styles["cont-sizes"] : styles["cont-size"]}
-                  onClick={() => {
-                    setSize("Regular");
-                  }}
-                >
-                  <p className={styles["regular"]}>R</p>
-                </div>
-                <div
-                  className={size === "Large" ? styles["cont-sizes"] : styles["cont-size"]}
-                  onClick={() => {
-                    setSize("Large");
-                  }}
-                >
-                  <p className={styles["large"]}>L</p>
-                </div>
-                <div
-                  className={size === "Extra Large" ? styles["cont-sizes"] : styles["cont-size"]}
-                  onClick={() => {
-                    setSize("Extra Large");
-                  }}
-                >
-                  <p className={styles["xl"]}>XL</p>
-                </div>
+      ) : ( */}
+      <>
+        <div className="cont_1 container">
+          <p>
+            Favorite & Promo <strong> &gt; {product.product_name}</strong>
+          </p>
+          <div className="container d-flex flex-column flex-md-row justify-content-center align-items-center">
+            <div className="cont_product container d-flex flex-column justify-content-center align-items-center text-center gap-3 mt-5 mt-md-0 col-md-4">
+              <div className="cont_img d-flex justify-content-center align-items-center ">
+                <img className="image" src={product.image} alt="/" />
               </div>
-              <div className={`container ${styles["methode-dev"]}`}>
-                <h1 className={styles["text-dev"]}>Choose Delivery Methods</h1>
-                <div className="container">
-                  <button
-                    className={value === "1" ? `btn btn-outline-secondary ${styles["btn-dels"]}` : `btn btn-outline-secondary ${styles["btn-del"]}`}
-                    onClick={() => {
-                      setValue("1");
-                    }}
-                  >
-                    Dine in
-                  </button>
-                  <span>
+              <div className="cont_price container">
+                <h1 className="desc-brew">
+                  {product.product_name}
+                  <p className="price">Rp {costing(product.price)}</p>
+                </h1>
+              </div>
+            </div>
+            <div className="cont_card col-md-8 container delivery-time mb-5 ps-md-5 ">
+              <Card className=" cardss container font_card p-3">
+                <p className="text-center ftz">
+                  Delivery only <strong> on Monday to Friday</strong> at <strong>1 - 7 pm </strong>
+                </p>
+                <div className="mb-5 mt-md-5">
+                  <h6 className="title_desc m-0 text-decoration-underline ">Description Product : </h6>
+                  <p className="desc my-1 text-decoration-none ">{product.description}</p>
+                </div>
+
+                <div className="Cont_choose mb-5">
+                  <p className="choose text-center">Choose a size</p>
+                  <div className="container size">
+                    <div
+                      className={size === "Regular" ? "cont-sizes" : "cont-size"}
+                      onClick={() => {
+                        setSize("Regular");
+                      }}
+                    >
+                      <p className="regular">R</p>
+                    </div>
+                    <div
+                      className={size === "Large" ? "cont-sizes" : "cont-size"}
+                      onClick={() => {
+                        setSize("Large");
+                      }}
+                    >
+                      <p className="large">L</p>
+                    </div>
+                    <div
+                      className={size === "Extra Large" ? "cont-sizes" : "cont-size"}
+                      onClick={() => {
+                        setSize("Extra Large");
+                      }}
+                    >
+                      <p className="xl">XL</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="container methode-dev mb-4">
+                  <h1 className="text-dev mb-3">Choose Delivery Methods</h1>
+                  <div className="cont_delivery p-0 container d-flex justify-content-between">
                     <button
-                      className={value === "2" ? `btn btn-outline-secondary ${styles["btn-dels"]}` : `btn btn-outline-secondary ${styles["btn-del"]}`}
+                      className={value === "1" ? "btn btn-outline-secondary btn-dels" : "btn btn-outline-secondary btn-del"}
+                      onClick={() => {
+                        setValue("1");
+                      }}
+                    >
+                      Dine in
+                    </button>
+                    <button
+                      className={value === "2" ? "btn btn-outline-secondary   btn-dels" : "btn btn-outline-secondary   btn-del"}
                       onClick={() => {
                         setValue("2");
                       }}
                     >
-                      Door Delivery
+                      Delivery
                     </button>
                     <button
-                      className={value === "3" ? `btn btn-outline-secondary ${styles["btn-dels"]}` : `btn btn-outline-secondary ${styles["btn-del"]}`}
+                      className={value === "3" ? "btn btn-outline-secondary   btn-dels" : "btn btn-outline-secondary   btn-del"}
                       onClick={() => {
                         setValue("3");
                       }}
                     >
-                      {" "}
                       Pick Up
                     </button>
-                  </span>
-                  {/* <p className={styles["set-time"]}>
-                    Set time :
-                    <span>
-                      <input className={styles["input-time"]} type="text" placeholder="Enter the time you’ll arrived" />
-                    </span>
-                  </p> */}
+                  </div>
                 </div>
-              </div>
+              </Card>
             </div>
-          </section>
-          <div className="container">
-            <h1 className={styles["desc-brew"]}>
-              {product.product_name}
-              <p className={styles["price"]}>{`${"Rp"} ${costing(product.price)}`}</p>
-            </h1>
           </div>
-          <div className={`container ${styles.buttongroup}`}>
+        </div>
+        <div className="cont_btn_ck container d-flex flex-column flex-md-row ">
+          <div className="buttongroup container d-flex justify-content-center align-items-md-start align-items-center mb-5 ">
             {role === "admin" ? (
               ""
             ) : (
-              <button className={`btn btn-warning ${styles["btn-cart"]}`} onClick={handleRedux}>
+              <button className="btn btn-warning btn-cart" onClick={handleRedux}>
                 Add to Cart
               </button>
             )}
-
-            {/* <br /> */}
             <button
-              className={`btn btn-success ${styles["btn-staff"]}`}
+              className="btn btn-success btn-staff "
               onClick={() => {
                 navigate("edit-product");
                 window.scrollTo(100, 100);
@@ -237,7 +238,7 @@ const Detail = ({ route }) => {
               {role === "user" ? "Ask a Staff" : "Edit Product"}
             </button>
             <button
-              className={role === "admin" ? `btn ${styles["btn-delete"]}` : `${styles.none}`}
+              className={role === "admin" ? "btn btn-delete" : "none"}
               onClick={() => {
                 handleShowModal();
               }}
@@ -248,83 +249,86 @@ const Detail = ({ route }) => {
           {role === "admin" ? (
             ""
           ) : (
-            <div className={`container ${styles["cont-card"]}`}>
-              <div className={`card ${styles["card-down"]} d-flex`}>
-                <div className="col-lg-6">
-                  <img className={styles["image-coffee"]} src={product.image} alt="coffee" />
-                  <div>
-                    <h1 className={styles["title-coffee"]}>{product.product_name}</h1>
-                    <p className={styles["size-coffee"]}>
-                      {" "}
-                      x {quantity} ({size})
-                    </p>
-                  </div>
+            <div className="cont-checkOut container mb-5 ">
+              <Card className="card_down d-flex ">
+                <div className="cont_card_ck d-flex justify-content-evenly align-items-center">
+                  <div className="cont_coffee d-flex flex-column  justify-content-center align-items-center p-3">
+                    <img className="image-coffee" src={product.image} alt="coffee" />
+                    <div>
+                      <h1 className="title-coffee">{product.product_name}</h1>
+                      <p className="size-coffee">
+                        x {quantity} ({size})
+                      </p>
+                    </div>
+                  </div>{" "}
+                  <nav className="cursors col-lg-6">
+                    <ul className="pagination pagination-sm m-0">
+                      <li className="page-item white box">
+                        <span className=" page-link   blacks" onClick={min}>
+                          -
+                        </span>
+                      </li>
+                      <li className="page-item white box">
+                        <span className="page-link blacks">{quantity}</span>
+                      </li>
+                      <li className="page-item white box">
+                        <span className="page-link   blacks" onClick={max}>
+                          +
+                        </span>
+                      </li>
+                    </ul>
+                  </nav>
                 </div>
-                <nav className={`${styles.cursors} col-lg-6`}>
-                  <ul className="pagination pagination-sm">
-                    <li className={`page-item white ${styles.box}`}>
-                      <span className={`page-link ${styles["blacks"]}`} onClick={min}>
-                        -
-                      </span>
-                    </li>
-                    <li className={`page-item white ${styles.box}`}>
-                      <span className={`page-link ${styles["blacks"]}`}>{quantity}</span>
-                    </li>
-                    <li className={`page-item white ${styles.box}`}>
-                      <span className={`page-link ${styles["blacks"]}`} onClick={max}>
-                        +
-                      </span>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-
-              <button className={`btn btn-warning ${styles["btn-checkout"]}`} onClick={handleRedux}>
-                Checkout
-              </button>
+                <div className="buts_ck mb-4 d-flex  justify-content-center align-items-center ">
+                  <button className=" btn btn-warning   btn-checkout" onClick={handleRedux}>
+                    Checkout
+                  </button>
+                </div>
+              </Card>
             </div>
           )}
+        </div>
 
-          <ToastContainer />
-          <Modal show={showModal} onHide={handleCloseModal} backdrop="static" keyboard={false}>
-            <Modal.Header closeButton>
-              <Modal.Title>confirmation</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              are you sure you want <strong style={{ color: "red" }}>Delete</strong> this Product ?
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" className="fw-bold text-bg-secondary text-white" onClick={handleCloseModal}>
-                No
-              </Button>
-              <Button
-                variant="success"
-                className="fw-bold text-bg-success text-white"
-                onClick={() => {
-                  deleteProductByid();
-                  toast.success("Delete Product Success", {
-                    position: toast.POSITION.TOP_CENTER,
-                    autoClose: 3000,
+        <ToastContainer />
+        <Modal show={showModal} onHide={handleCloseModal} backdrop="static" keyboard={false}>
+          <Modal.Header closeButton>
+            <Modal.Title>confirmation</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            are you sure you want <strong style={{ color: "red" }}>Delete</strong> this Product ?
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" className="fw-bold text-bg-secondary text-white" onClick={handleCloseModal}>
+              No
+            </Button>
+            <Button
+              variant="success"
+              className="fw-bold text-bg-success text-white"
+              onClick={() => {
+                deleteProductByid();
+                toast.success("Delete Product Success", {
+                  position: toast.POSITION.TOP_CENTER,
+                  autoClose: 3000,
+                });
+                handleCloseModal();
+                setTimeout(() => {
+                  navigate("/product");
+                  window.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: "smooth",
                   });
-                  handleCloseModal();
-                  setTimeout(() => {
-                    navigate("/product");
-                    window.scrollTo({
-                      top: 0,
-                      left: 0,
-                      behavior: "smooth",
-                    });
-                  }, 2000);
-                }}
-              >
-                Yes
-              </Button>
-            </Modal.Footer>
-          </Modal>
-        </>
-      )}
+                }, 2000);
+              }}
+            >
+              Yes
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </>
+      {/* // )} */}
 
-      <footer className={`container ${styles["footer"]}`}>
+      <footer className="container footer">
         <Footer />
       </footer>
     </>

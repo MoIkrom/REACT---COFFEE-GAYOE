@@ -11,7 +11,7 @@ body {
 
 .lds-ring {
   display: inline-block;
-  position: relative;
+
   width: 80px;
   height: 80px;
 }
@@ -19,7 +19,7 @@ body {
   box-sizing: border-box;
   display: block;
   position: absolute;
-  left: 646px;
+
   width: 64px;
   height: 64px;
   margin: 8px;
@@ -72,24 +72,15 @@ body {
 .none {
   display: none;
 }
+
 .image {
   border-radius: 200px;
   width: 300px;
   height: 300px;
-  position: relative;
-  top: 15px;
 }
-.text-delivery {
-  width: 300px;
-}
+
 .delivery-time {
-  position: relative;
-  left: -40px;
-  top: 50px;
-  width: 410px;
   border-radius: 10px;
-  padding: 50px;
-  height: 500px;
   font-family: Poppins;
   font-style: Regular;
   font-size: 18px;
@@ -109,6 +100,7 @@ body {
   height: 50px;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 .cont-size:hover {
   background-color: #6a4029;
@@ -175,20 +167,17 @@ body {
 .regular {
   font-size: 23px;
   font-weight: 700;
-  position: relative;
-  top: 8px;
+  margin: 0px;
 }
 .large {
   font-size: 23px;
   font-weight: 700;
-  position: relative;
-  top: 8px;
+  margin: 0px;
 }
 .xl {
   font-size: 23px;
   font-weight: 700;
-  position: relative;
-  top: 8px;
+  margin: 0px;
 }
 .choose {
   font-family: Poppins;
@@ -199,18 +188,11 @@ body {
   vertical-align: Top;
   color: #000000;
   font-weight: 700;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  top: 45px;
 }
 .size {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  position: relative;
-  top: 40px;
 }
 
 /*  desc */
@@ -224,9 +206,6 @@ body {
   vertical-align: Top;
   color: #000000;
   font-weight: 900;
-  position: relative;
-  top: -130px;
-  left: 30px;
 }
 .price {
   font-family: Poppins;
@@ -237,13 +216,11 @@ body {
   line-height: 139%;
   vertical-align: Top;
   color: #000000;
-  position: relative;
-  left: 60px;
 }
 .btn-cart:hover {
   height: 56px;
   border-radius: 10px;
-  width: 290px;
+  /* width: 290px; */
   background-color: #6a4029;
   font-family: Poppins;
   font-style: medium;
@@ -260,7 +237,7 @@ body {
 .btn-cart {
   height: 56px;
   border-radius: 10px;
-  width: 290px;
+  /* width: 290px; */
   background-color: #6a4029;
   font-family: Poppins;
   font-style: medium;
@@ -275,7 +252,7 @@ body {
 .btn-delete {
   height: 56px;
   border-radius: 10px;
-  width: 290px;
+  /* width: 290px; */
   background-color: #000000;
   font-family: Poppins;
   font-style: medium;
@@ -290,7 +267,7 @@ body {
 .btn-delete:hover {
   height: 56px;
   border-radius: 10px;
-  width: 290px;
+  /* width: 290px; */
   background-color: #000000;
   font-family: Poppins;
   font-style: medium;
@@ -306,7 +283,7 @@ body {
 .btn-staff {
   height: 56px;
   border-radius: 10px;
-  width: 290px;
+  /* width: 290px; */
   font-family: Poppins;
   font-style: medium;
   font-size: 19px;
@@ -321,7 +298,7 @@ body {
 .btn-staff:hover {
   height: 56px;
   border-radius: 10px;
-  width: 290px;
+  /* width: 290px; */
   font-family: Poppins;
   font-style: medium;
   font-size: 19px;
@@ -335,22 +312,17 @@ body {
 
   transform: scale(1.1);
 }
-.methode-dev {
-  width: 470px;
-  position: relative;
-  left: -25px;
-  top: 110px;
+.font_card {
+  font-family: Rubik;
 }
 .text-dev {
   font-family: poppins;
   font-style: bold;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 24px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 139%;
   vertical-align: Top;
-  position: relative;
-  left: 32px;
 }
 
 .btn-D {
@@ -431,8 +403,7 @@ body {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  position: relative;
-  top: -100px;
+
   gap: 20px;
 }
 .btn-P {
@@ -455,34 +426,7 @@ body {
   vertical-align: Top;
   background-color: #6a4029;
 }
-.set-time {
-  font-family: rubik;
-  font-style: Regular;
-  font-size: 22px;
-  line-height: 30px;
-  font-weight: 400;
-  line-height: 139%;
-  vertical-align: Top;
-  color: #000000;
-  position: relative;
-  top: 10px;
-  left: -9px;
-  width: 700px;
-}
-.input-time {
-  border: none;
-  width: 400px;
-  text-decoration: underline;
-  padding: 10px;
-  font-size: 18px;
-}
 
-.cont-card {
-  width: 700px;
-  position: relative;
-  top: 70px;
-  left: -130px;
-}
 .card-down {
   border-radius: 30px;
   display: flex;
@@ -493,9 +437,6 @@ body {
   border-radius: 70px;
   width: 100px;
   height: 100px;
-  position: relative;
-  top: 40px;
-  left: 50px;
 }
 
 .title-coffee {
@@ -507,9 +448,6 @@ body {
   line-height: 139%;
   vertical-align: Top;
   color: #000000;
-  position: relative;
-  left: 180px;
-  top: -60px;
 }
 .size-coffee {
   font-family: poppins;
@@ -520,19 +458,13 @@ body {
   line-height: 139%;
   vertical-align: Top;
   color: #000000;
-  position: relative;
-  left: 180px;
-  top: -60px;
+
   margin-bottom: 5px;
 }
 
 .btn-checkout {
-  width: 200px;
-  height: 100px;
-  border-radius: 20px;
-  position: relative;
-  top: -150px;
-  left: 750px;
+  width: 150px;
+  height: 50px;
   font-family: poppins;
   font-style: medium;
   font-size: 20px;
@@ -541,4 +473,46 @@ body {
   line-height: 139%;
   vertical-align: Top;
   color: #000000;
+}
+@media only screen and (min-width: 768px) {
+  .image {
+    border-radius: 116px;
+    width: 230px;
+    height: 230px;
+  }
+  .desc-brew {
+    font-size: 31px;
+  }
+
+  .ftz {
+    font-size: 21px;
+  }
+}
+@media only screen and (min-width: 375px) and (max-width: 424px) {
+  .font_card {
+    font-size: 12px;
+  }
+  .btn-dels {
+    font-size: 12px;
+  }
+  .btn-del {
+    font-size: 10px;
+  }
+  .cont-size {
+    width: 40px;
+    height: 40px;
+  }
+  .cont-sizes {
+    width: 40px;
+    height: 40px;
+  }
+  .regular {
+    font-size: 20px;
+  }
+  .large {
+    font-size: 20px;
+  }
+  .xl {
+    font-size: 20px;
+  }
 }
