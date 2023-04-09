@@ -54,7 +54,7 @@ const Payment = () => {
     let taxes = (products.price * products.qty) / 10;
     let shipping = products.shiping === 2 ? 10000 : 0;
     let total = price + taxes + shipping;
-    return costing(total);
+    return parseInt(total);
   };
 
   // const handleForm = () => {
@@ -100,18 +100,15 @@ const Payment = () => {
       .get(`https://coffee-gayoe.vercel.app/api/v1/users/profile`, { headers: { "x-access-token": token } })
       .then((res) => {
         setProfile(res.data.result.result[0]);
-        console.log(`ini adalah method : ${form}`);
-        console.log(`ini adalah status : ${statusPaid}`);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [form, statusPaid]);
+  }, []);
 
   const handleTransactions = () => {
     setLoading(true);
     const getToken = localStorage.getItem("token");
-    // console.log(getToken);
     console.log(statusPaid);
     transactions(getToken, {
       user_id: profile.id,
@@ -120,12 +117,11 @@ const Payment = () => {
       qty: products.qty,
       shiping: products.shiping,
       tax: getTax(),
-      total: parseInt(getTotal()),
+      total: getTotal(),
       payment: form,
       status: statusPaid,
     })
       .then((res) => {
-        console.log(res);
         handleRemoveRedux();
         setLoading(false);
         toast.success("Payment Success", {
