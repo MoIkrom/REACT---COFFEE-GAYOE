@@ -32,12 +32,9 @@ const Payment = () => {
   const navigate = useNavigate();
 
   const costing = (price) => {
-    return (
-      "Rp " +
-      parseFloat(price)
-        .toFixed()
-        .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
-    );
+    return parseFloat(price)
+      .toFixed()
+      .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
   };
 
   const getItemTotal = () => {
