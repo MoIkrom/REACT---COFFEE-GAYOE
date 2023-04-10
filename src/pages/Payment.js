@@ -128,12 +128,14 @@ const Payment = () => {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 2000,
         });
-        setTimeout(() => navigate("/history"), 3000);
-        window.scrollTo({
-          top: 100,
-          left: 100,
-          behavior: "smooth",
-        });
+        setTimeout(() => {
+          navigate("/history");
+          window.scrollTo({
+            top: 100,
+            left: 100,
+            behavior: "smooth",
+          });
+        }, 3000);
       })
 
       .catch((err) => {
