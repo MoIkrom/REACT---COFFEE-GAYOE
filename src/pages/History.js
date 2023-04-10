@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "../styles/History.module.css";
+import "../styles/History.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
@@ -37,42 +37,30 @@ const History = () => {
 
   return (
     <>
-      <div className={`${styles["navs"]}`}>
-        <Navbar />
-      </div>
-      <main className={styles["main-content"]}>
-        <div className={`jumbotron ${styles["jumb-title"]}`}>
-          <div className={`container ${styles["cont-title"]}`}>
-            <h1 className={styles["title"]}>Let’s see what you have bought!</h1>
-            <p className={styles["sub-title"]}>Long press to delete item</p>
-          </div>
+      <Navbar />
+      <div className="jumb-title">
+        <div className="container d-flex flex-column cont-title pt-5 ">
+          <h1 className="title ">Let’s see what you have bought!</h1>
         </div>
-        <section className={`container  ${styles["cont-sec"]}`}>
-          <div>
-            <div className={` row ${styles.contHist} d-flex align-items-center justify-content-center`}>
-              <div className="col-4">
-                {loading ? (
-                  <>
-                    <div className={styles["lds-ring"]}>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                    </div>
-                    <p className={styles["loading-text"]}>Loading</p>
-                  </>
-                ) : (
-                  historied.map((e) => <Card key={e.id} title={e.product_name} price={`Rp ${costing(e.total)}`} image={e.image} status={e.status} />)
-                )}
+        <section className="container cont-sec">
+          <div className=" d-flex my-5 flex-wrap list-content gap-3 justify-content-around  ">
+            {loading ? (
+              <div>
+                <div className="lds-ring">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <p className="loading-text">Loading</p>
               </div>
-            </div>
+            ) : (
+              historied.map((e) => <Card className="d-flex " key={e.id} title={e.product_name} price={"Rp" + costing(e.total)} image={e.image} status={e.status} />)
+            )}
           </div>
         </section>
-      </main>
-
-      <footer className={styles["footer"]}>
-        <Footer />
-      </footer>
+      </div>
+      <Footer />
     </>
   );
 };

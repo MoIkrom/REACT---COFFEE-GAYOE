@@ -126,7 +126,7 @@ const Payment = () => {
         setLoading(false);
         toast.success("Payment Success", {
           position: toast.POSITION.TOP_CENTER,
-          autoClose: 2000,
+          autoClose: 1000,
         });
         setTimeout(() => {
           navigate("/history");
@@ -135,11 +135,15 @@ const Payment = () => {
             left: 100,
             behavior: "smooth",
           });
-        }, 3000);
+        }, 1000);
       })
 
       .catch((err) => {
-        console.log(err.response.data.msg);
+        toast.error(statusPaid === "" ? "Please Choose Payment Methode" : "Payment Failed", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 2000,
+        });
+        setLoading(false);
       });
   };
 

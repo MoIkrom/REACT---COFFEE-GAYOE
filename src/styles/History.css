@@ -7,22 +7,15 @@ body {
   padding: 0;
 }
 
-.main-content {
-  height: 900px;
-}
 .jumb-title {
   background-image: url(../assets/images/history-bg.png);
   background-size: cover;
-  height: 900px;
 }
 .navs {
   padding: 10px;
 }
-
-.cont-title {
-  position: relative;
-  align-items: center;
-  top: 100px;
+.overflowss {
+  overflow-y: overlay;
 }
 
 .title {
@@ -87,10 +80,6 @@ body {
 
 /* end Loading */
 
-.contHist {
-  overflow-x: hidden;
-  height: 575px;
-}
 .sub-title {
   font-family: rubik;
   font-style: regular;
@@ -101,16 +90,10 @@ body {
   vertical-align: Top;
   color: #ffffff;
   text-align: center;
-  position: relative;
-  top: 5px;
 }
 /* End Main */
 
 /* star Card */
-.cont-sec {
-  position: relative;
-  top: -660px;
-}
 
 /* Footer */
 .footer {
