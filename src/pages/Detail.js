@@ -135,7 +135,7 @@ const Detail = ({ route }) => {
             Favorite & Promo <strong> &gt; {product.product_name}</strong>
           </p>
           <div className="container d-flex flex-column flex-md-row justify-content-center align-items-center">
-            <div className="cont_product container d-flex flex-column justify-content-center align-items-center text-center gap-3 mt-5 mt-md-0 col-md-4">
+            <div className="cont_product container d-flex flex-column justify-content-center align-items-center text-center gap-3 mt-5 mt-md-0 col-md-4 col-lg-6">
               <div className="cont_img d-flex justify-content-center align-items-center ">
                 <img className="image" src={product.image} alt="/" />
               </div>
@@ -146,8 +146,8 @@ const Detail = ({ route }) => {
                 </h1>
               </div>
             </div>
-            <div className="cont_card col-md-8 container delivery-time mb-5 ps-md-5 ">
-              <Card className=" cardss container font_card p-3">
+            <div className="cont_card col-md-8 col-lg-6 container delivery-time mb-5 ps-md-5 ps-lg-0">
+              <Card className=" cardss container font_card p-3 p-lg-5">
                 <p className="text-center ftz">
                   Delivery only <strong> on Monday to Friday</strong> at <strong>1 - 7 pm </strong>
                 </p>
@@ -156,7 +156,7 @@ const Detail = ({ route }) => {
                   <p className="desc my-1 text-decoration-none ">{product.description}</p>
                 </div>
 
-                <div className="Cont_choose mb-5">
+                <div className="Cont_choose mb-5 px-lg-5">
                   <p className="choose text-center">Choose a size</p>
                   <div className="container size">
                     <div
@@ -186,9 +186,9 @@ const Detail = ({ route }) => {
                   </div>
                 </div>
 
-                <div className="container methode-dev mb-4">
-                  <h1 className="text-dev mb-3">Choose Delivery Methods</h1>
-                  <div className="cont_delivery p-0 container d-flex justify-content-between">
+                <div className="container methode-dev mb-4 px-lg-5">
+                  <h1 className="text-dev mb-3 text-lg-center">Choose Delivery Methods</h1>
+                  <div className="cont_delivery p-0 container d-flex justify-content-between justify-content-lg-evenly">
                     <button
                       className={value === "1" ? "btn btn-outline-secondary btn-dels" : "btn btn-outline-secondary btn-del"}
                       onClick={() => {
@@ -220,7 +220,7 @@ const Detail = ({ route }) => {
           </div>
         </div>
         <div className="cont_btn_ck container d-flex flex-column flex-md-row ">
-          <div className="buttongroup container d-flex justify-content-center align-items-md-start align-items-center mb-5 ">
+          <div className="buttongroup container d-flex justify-content-center align-items-md-start align-items-lg-center  mb-5 col-md-5 col-lg-6  ">
             {role === "admin" ? (
               ""
             ) : (
@@ -249,7 +249,7 @@ const Detail = ({ route }) => {
           {role === "admin" ? (
             ""
           ) : (
-            <div className="cont-checkOut container mb-5 ">
+            <div className="cont-checkOut container ps-md-0  pe-md-4  mb-5 ">
               <Card className="card_down d-flex ">
                 <div className="cont_card_ck d-flex justify-content-evenly align-items-center">
                   <div className="cont_coffee d-flex flex-column  justify-content-center align-items-center p-3">

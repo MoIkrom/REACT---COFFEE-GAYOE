@@ -13,7 +13,7 @@ import Navbar from "../Component/Navbar.js";
 import Footer from "../Component/Footer.js";
 
 // import Css
-import styles from "../styles/Payment.module.css";
+import "../styles/Payment.css";
 
 // import image
 import icon_card from "../assets/images/card-py.png";
@@ -148,115 +148,116 @@ const Payment = () => {
       {/* <!-- End Navbar --> */}
 
       <main>
-        <div className={`container-fluid ${styles["background-payment"]}`}>
-          <div className={`container ${styles["title-payment"]}`}>
-            <h3>
+        <div className="container-fluid  background-payment">
+          <div className="container  title-payment ">
+            <h3 className="text-lg-center">
               Checkout your <br></br> item now!
             </h3>
-            <div className="row d-flex justify-content-between gap-5">
-              <div className={`${styles["content-left-payment"]} col-md-5 col-sm-12 bg-white rounded-5`}>
-                <div className={styles["box-left"]}>
-                  <p>Order Summary</p>
-                  {/* payment 1 */}
-                  <div className={styles["payment-content"]}>
-                    <img src={products.image === null ? foto : products.image} alt="Payment1" width="100px" height="100px"></img>
-                    <div className={styles["payment-center"]}>
-                      <p>{products.product_name}</p>
-                      <p>x {products.qty}</p>
-                      <p>{products.size}</p>
+            <div className="d-flex flex-column flex-md-row justify-content-between gap-5 gap-md-0">
+              <div className="orderzz container col-12 col-md-7">
+                <div className=" content-left-payment   bg-white rounded-5 ">
+                  <div className="box-left ">
+                    <p>Order Summary</p>
+                    {/* payment 1 */}
+                    <div className="container payment-content">
+                      <div className="d-flex gap-3">
+                        <img src={products.image === null ? foto : products.image} alt="Payment1" width="100px" height="100px" />
+                        <div className="payment-center">
+                          <p className="mb-0">{products.product_name}</p>
+                          <p className="mb-0">x {products.qty}</p>
+                          <p className="mb-0">{products.size}</p>
+                        </div>
+                      </div>
                     </div>
-                    <div className={styles["payment-idr"]}>
-                      <p>{costing(products.price)}</p>
-                    </div>
-                  </div>
 
-                  {/* subtotal */}
-                  <hr className="mx-5 my-4"></hr>
-                  <div className={styles["total-payment"]}>
-                    <div className={styles["total-payment-left"]}>
-                      <p>SUBTOTAL</p>
-                      <p>TAX ( 10%) </p>
-                      <p>SHIPPING</p>
+                    {/* subtotal */}
+                    <hr className=" my-4 mx-3"></hr>
+                    <div className="total-payment d-flex justify-content-between px-3">
+                      <div className=" total-payment-left ">
+                        <p>SUBTOTAL</p>
+                        <p>TAX ( 10%) </p>
+                        <p>SHIPPING</p>
+                      </div>
+                      <div className="total-payment-right">
+                        <p>{"Rp " + getItemTotal()}</p>
+                        <p>{"Rp " + getTax()}</p>
+                        <p> {"Rp " + getShipping()} </p>
+                      </div>
                     </div>
-                    <div className={styles["total-payment-right"]}>
-                      <p>{getItemTotal()}</p>
-                      <p>{getTax()}</p>
-                      <p> {getShipping()} </p>
+                    <div className="subtotal-payment p-4">
+                      <p>TOTAL</p>
+                      <p> Rp {costing(getTotal())} </p>
                     </div>
-                  </div>
-                  <div className={styles["subtotal-payment"]}>
-                    <p>TOTAL</p>
-                    <p>{` Rp ${costing(getTotal())} `}</p>
                   </div>
                 </div>
               </div>
 
-              <div className="col-md-5 col-sm-12 d-flex flex-column mb-5">
+              <div className="rightsz d-flex flex-column mb-5 ps-md-4">
                 <div className="row d-flex flex-column">
-                  <div className={` col-12 ${styles.atas}`}>
-                    <div className={styles["address-detail"]}>
+                  <div className="col-12 p-md-0 atas">
+                    <div className="address-detail">
                       <h2>Address</h2>
                       <p>edit</p>
                     </div>
-                    <div className={styles["box-address"]}>
+                    <div className="box-address">
                       <h5>
                         Delivery to : <b className="me-1"> &nbsp; {profile.display_name}</b>
                       </h5>
-                      <p className={styles["address-column"]}> {profile.addres}</p>
+                      <p className="address-column"> {profile.addres}</p>
                       <p> {profile.phone_number}</p>
                     </div>
                   </div>
-                  <div className={` col-12 ${styles.bawah}`}>
-                    <div className={styles["payment-method"]}>
+                  <div className="col-12 mt-5 mt-md-2 bawah p-md-0">
+                    <div className=" payment-method">
                       <h2>Payment Method</h2>
                     </div>
-                    <div className={styles["choose-payment"]}>
+                    <div className="choose-payment">
                       <form
-                        className={`${styles["radio-payment"]} ${styles["cursor"]}`}
+                        className="radio-payments d-flex flex-column cursor"
                         onChange={(e) => {
                           setForm(e.target.value);
                           setStatusPaid(e.target.value === "Cash On Delivery" ? "Pending" : "Paid");
                         }}
                       >
-                        <div className={`form-check d-flex flex-row align-items-center ${styles["styling-data-radio"]}`}>
-                          <input className={`form-check-input ${styles.cursor}`} type="radio" value="Card" name="flexRadioDefault" />
+                        <div className="form-check d-flex flex-row align-items-center  styling-data-radio">
+                          <input className="form-check-input cursor" type="radio" value="Card" name="flexRadioDefault" />
                           <label className="form-check-label" for="flexRadioDefault1"></label>
-                          <div className={styles["data-content-payment"]}>
-                            <img src={icon_card} alt="icon-card" width="40px" className={`rounded-2 mx-3 ${styles["icon_card"]}`}></img>
+                          <div className="data-content-payment">
+                            <img src={icon_card} alt="icon-card" width="40px" className="rounded-2 mx-3  icon_card" />
                           </div>
-                          <span className={`${styles.spans}`}>Card</span>
+                          <span className="spanz">Card</span>
                         </div>
-                        <div className={`form-check d-flex flex-row align-items-center ${styles["styling-data-radio"]}`}>
-                          <input className={`form-check-input ${styles.cursor}`} value="Bank" type="radio" name="flexRadioDefault" />
+                        <div className=" form-check d-flex flex-row align-items-center  styling-data-radio">
+                          <input className="form-check-input cursor" value="Bank" type="radio" name="flexRadioDefault" />
                           <label className="form-check-label" for="flexRadioDefault1"></label>
-                          <div className={styles["data-content-payment2"]}>
-                            <img src={icon_bank} alt="icon-bank" width="40px" className={`rounded-2 mx-3 ${styles["icon_bank"]}`}></img>
+                          <div className="data-content-payment2">
+                            <img src={icon_bank} alt="icon-bank" width="40px" className="rounded-2 mx-3  icon_bank" />
                           </div>
-                          <span className={`${styles.spans}`}>Bank</span>
+                          <span className="spanz">Bank</span>
                         </div>
-                        <div className={`form-check d-flex flex-row align-items-center ${styles["styling-data-radio"]}`}>
-                          <input className={`form-check-input ${styles.cursor}`} type="radio" value="Cash On Delivery" name="flexRadioDefault" />
+                        <div className="form-check d-flex flex-row align-items-center  styling-data-radio">
+                          <input className="form-check-input cursor" type="radio" value="Cash On Delivery" name="flexRadioDefault" />
                           <label className="form-check-label" for="flexRadioDefault1"></label>
-                          <div className={styles["data-content-payment3"]}>
-                            <img src={icon_cod} alt="icon-cod" width="40px" className={`rounded-2 mx-3 ${styles["icon_cod"]}`}></img>
+                          <div className="data-content-payment3">
+                            <img src={icon_cod} alt="icon-cod" width="40px" className=" rounded-2 mx-3  icon_cod " />
                           </div>
-                          <span className={`${styles.spans}`}>Cash On Delivery</span>
+                          <span className="spanz">Cash On Delivery</span>
                         </div>
                       </form>
                     </div>
                   </div>
-                  <div className={styles["confirm-pay"]}>
+                  <div className="container col-10 col-md-12  col-lg-12 mt-5 mt-md-4 confirm-pay">
                     <button onClick={handleTransactions}>
                       <span>
                         {loading ? (
                           <>
-                            <div className={styles["lds-ring"]}>
+                            <div className="lds-ring">
                               <div></div>
                               <div></div>
                               <div></div>
                               <div></div>
                             </div>
-                            <p className={styles["loading-text"]}>Payment on process . . . </p>
+                            <p className="loading-text ">Payment on process . . . </p>
                           </>
                         ) : (
                           "Confirm and Pay"

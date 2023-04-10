@@ -233,9 +233,9 @@ function Profile() {
           <h1 className="text-user my-4">User Profile</h1>
         </div>
         <div className="cont-kontak container d-flex align-items-center flex-column flex-md-row flex-lg-row flex-xl-row">
-          <div className="Image-Profile  col-lg-6 d-flex justify-content-center">
-            <Card className="card_images  p-lg-5 col-lg-8 ">
-              <div className="image d-flex justify-content-center mt-3 mt-lg-5">
+          <div className="Image-Profile col-lg-6 d-flex justify-content-center">
+            <Card className="card_images d-flex justify-content-center align-items-center  p-lg-5 col-lg-8 ">
+              <div className="imagez d-flex justify-content-center align-items-center mt-3 mt-lg-5">
                 <Card.Img className="card_image" variant="top" src={icon_profile} />
               </div>
               <Card.Body className="text-center">
@@ -258,7 +258,7 @@ function Profile() {
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Phone Number</Form.Label>
-                    <Form.Control type="number" placeholder="Enter Your Phone Number" />
+                    <Form.Control type="text" placeholder="Enter Your Phone Number" />
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
