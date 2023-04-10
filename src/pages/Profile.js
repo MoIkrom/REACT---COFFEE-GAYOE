@@ -322,7 +322,13 @@ function Profile() {
                 Cancel
               </Button>
               <Button className=" font_saved col-6 col-md-12 savess">Change Password</Button>
-              <Button className=" font_saved col-4 col-md-12" variant="warning">
+              <Button
+                className=" font_saved col-4 col-md-12"
+                variant="warning"
+                onClick={() => {
+                  handleShowModal();
+                }}
+              >
                 Log Out
               </Button>
             </div>
