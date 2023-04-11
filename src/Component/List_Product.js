@@ -19,7 +19,7 @@ function List_Product(props) {
         {/* <div className={ ["label-promo"]}>
           <p>{props.discount}</p>
         </div> */}
-        <p className="title mb-0 text-center col-12">{props.title}</p>
+        <p className="titlezz mb-0 text-center col-12">{props.title}</p>
         <p className="price text-center col-12">{props.price}</p>
         {params?.id}
         <div>

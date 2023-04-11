@@ -304,7 +304,7 @@ function Product() {
               onChange={(e) => {
                 setType(e.target.value);
                 axios
-                  .get(`https://coffee-gayoe.vercel.app/api/v1/product?category=${category}&search=${search}&sort=${e.target.value}&page=${page}&limit=12`)
+                  .get(`https://coffee-gayoe.vercel.app/api/v1/product?category=${category}&search=${search}&sort=${e.target.value}&page=${page}&limit=8`)
                   .then((res) => {
                     setProduct(res.data.data);
                     setLoading(false);
@@ -416,7 +416,7 @@ function Product() {
                     onClick={() => {
                       setCategory(category);
                       axios
-                        .get(`https://coffee-gayoe.vercel.app/api/v1/product?category=${category}&sort=${sort}&page=${page - 1}&limit=12`)
+                        .get(`https://coffee-gayoe.vercel.app/api/v1/product?category=${category}&sort=${sort}&page=${page - 1}&limit=8`)
                         .then((res) => {
                           setProduct(res.data.data);
                           setLoading(false);
@@ -436,15 +436,15 @@ function Product() {
                     Prev
                   </button>
                   <p className="text-page">
-                    {" "}
                     Page {page} of {totalPage}
                   </p>
                   <button
                     className={next === null || page === totalPage ? "btn-pagenull" : "btn-page"}
                     onClick={() => {
+                      console.log("masuk");
                       setCategory(category);
                       axios
-                        .get(`https://coffee-gayoe.vercel.app/api/v1/product?category=${category}&sort=${sort}&search=${search}&page=${page + 1}&limit=12`)
+                        .get(`https://coffee-gayoe.vercel.app/api/v1/product?category=${category}&sort=${sort}&page=${page + 1}&limit=8`)
                         .then((res) => {
                           setProduct(res.data.data);
                           setLoading(false);

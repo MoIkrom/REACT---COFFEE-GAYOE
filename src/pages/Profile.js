@@ -21,6 +21,7 @@ import Form from "react-bootstrap/Form";
 
 // Import Image
 import icon_edit from "../assets/images/icon_editpencil.png";
+import editzz from "../assets/images/edit.png";
 
 import icon_profile from "../assets/images/default-img.png";
 
@@ -31,26 +32,35 @@ function Profile() {
 
   const [profile, setProfile] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [image, setImage] = useState("");
+  const [display, setDisplay] = useState(profile.image);
+  const [email, setEmail] = useState(profile.email);
+  const [phone_number, setPhone_number] = useState(profile.phone_number);
+  const [addres, setAddres] = useState(profile.addres);
+  const [username, setUserName] = useState(profile.username);
+  const [firstname, setFirstName] = useState(profile.firstname);
+  const [lastname, setLastName] = useState(profile.lastname);
   const [show, setShow] = useState(true);
   const [show2, setShow2] = useState(true);
-  const [firstName, setFirstName] = useState(profile.firstname);
-  const [lastName, setLastName] = useState(profile.lastname);
-  const [phone_number, setPhone_number] = useState(profile.phone_number);
-  const [displayName, setDisplayName] = useState(profile.display_name);
-  const [gender, setGender] = useState(profile.gender);
-  const [email, setEmail] = useState(profile.email);
-  const [image, setImage] = useState("");
   const [edit, setEdit] = useState(false);
   const [deps, setDeps] = useState("");
   const [loading, setLoading] = useState(true);
   const [imgPrev, setImgPrev] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [showbtn, sethowbtn] = useState(true);
+  const [btnsv, setBtnsv] = useState(false);
+  const [form, setForm] = useState({});
 
-  const [isEdit, setIsEdit] = useState(true);
-  const [isEdit2, setIsEdit2] = useState(true);
+  const [isEdit, setIsEdit] = useState(false);
+  const [isEdit2, setIsEdit2] = useState(false);
   const [saved, setSaved] = useState(false);
   const [deliveryAddress, setDeliveryAddress] = useState(profile.addres);
   const [historiedData, setHistoriedData] = useState("");
   const [value, onChange] = useState(new Date());
+
+  const handleChangeForm = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const getProfileUser = () => {
     const token = localStorage.getItem("token");
@@ -69,7 +79,6 @@ function Profile() {
       .then((res) => {
         setHistoriedData(res.data.result.data);
         console.log(res.data.result.data);
-        // console.log(`ini adalah data history: ${historiedData}`);
       })
       .catch((err) => {
         console.log(err);
@@ -88,31 +97,56 @@ function Profile() {
     getProfileUser();
     dataHistory();
     setLoading(false);
-    // console.log(profile.image);
-  }, []);
+  }, [username]);
 
   // editData => fungsi untuk memasukan data kedalam database ketika di click button save change
   const editData = (e) => {
     setLoading(true);
     const token = localStorage.getItem("token");
     e.preventDefault();
-    let formdata = new FormData();
-    if (image) formdata.append("image", image);
-    if (deliveryAddress) formdata.append("addres", deliveryAddress);
-    if (displayName) formdata.append("display_name", displayName);
-    if (phone_number) formdata.append("phone_number", phone_number);
-    if (firstName) formdata.append("firstname", firstName);
-    if (lastName) formdata.append("lastname", lastName);
-    if (gender) formdata.append("gender", gender);
-    // for (var pair of formdata.entries()) {
-    //   console.log(pair[0] + " - " + pair[1]);
-    // }
+    const formData = new FormData();
+    if (username) {
+      formData.append("username", username);
+    } else {
+      formData.append("username", profile.username);
+    }
+    if (firstname) {
+      formData.append("firstname", firstname);
+    } else {
+      formData.append("firstname", profile.firstname);
+    }
+    if (lastname) {
+      formData.append("lastname", lastname);
+    } else {
+      formData.append("lastname", profile.lastname);
+    }
+    if (phone_number) {
+      formData.append("phone_number", phone_number);
+    } else {
+      formData.append("phone_number", profile.phone_number);
+    }
+    if (email) {
+      formData.append("email", email);
+    } else {
+      formData.append("email", profile.email);
+    }
+    if (addres) {
+      formData.append("addres", addres);
+    } else {
+      formData.append("addres", profile.addres);
+    }
+    if (image) {
+      formData.append("image", image);
+    }
     axios
-      .patch(`https://coffee-gayoe.vercel.app/api/v1/users/profile`, formdata, { headers: { "x-access-token": token, "Content-Type": "multipart/form-data" } })
+      .patch(`https://coffee-gayoe.vercel.app/api/v1/users/profile`, formData, { headers: { "x-access-token": token, "Content-Type": "multipart/form-data" } })
       .then(() => {
         SuccessMessage();
         setLoading(false);
         setEdit(true);
+        setBtnsv(false);
+        setIsEdit(false);
+        setIsEdit2(false);
         window.scrollTo({
           top: 0,
           left: 0,
@@ -121,6 +155,7 @@ function Profile() {
         window.location.reload();
       })
       .catch((err) => {
+        setLoading(false);
         console.log(err.response.data.msg);
         toast.error(err, {
           position: toast.POSITION.TOP_RIGHT,
@@ -146,22 +181,29 @@ function Profile() {
   const valuePhone_number = (e) => {
     setPhone_number(e.target.value);
   };
-  const valueDisplayname = (e) => {
-    setDisplayName(e.target.value);
-  };
+
   const valueFirstname = (e) => {
     setFirstName(e.target.value);
   };
   const valueLastname = (e) => {
     setLastName(e.target.value);
   };
-  const valueGender = (e) => {
-    setGender(e.target.value);
+
+  const handleFileInputChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+  const selectImage = () => {
+    if (!image) return display === null ? icon_profile : display;
+    return URL.createObjectURL(image);
   };
 
   const handleImage = (e) => {
     setImage(e.target.files[0]);
     setImgPrev(URL.createObjectURL(e.target.files[0]));
+  };
+  const handleImageChange = (event) => {
+    setImage(event.target.files[0]);
+    setImgPrev(URL.createObjectURL(event.target.files[0]));
   };
   // handleFile => memndapatkan value inputan dari gambar yang telah di choose file
   const handleFile = (e) => {
@@ -177,23 +219,6 @@ function Profile() {
       autoClose: 1000,
     });
   };
-  const LogoutMessage = () => {
-    toast.success("Logout Success !", {
-      position: toast.POSITION.TOP_RIGHT,
-      autoClose: 1000,
-    });
-  };
-
-  // const handleLogout = () => {
-  //   axios
-  //     .delete(urlLogout, { headers: { "x-access-token": this.state.token } })
-  //     .then((response) => {
-  //       console.log(response.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
   const deleteToken = () => {
     localStorage.clear();
   };
@@ -207,21 +232,9 @@ function Profile() {
   const handleCancel = () => {
     setImage(profile.image);
     setDeliveryAddress(profile.addres);
-    setDisplayName(profile.display_name);
     setPhone_number(profile.phone_number);
     setFirstName(profile.firstname);
     setLastName(profile.lastname);
-  };
-
-  const handleImages = () => {
-    if (profile.image !== null) {
-      return profile.image;
-    }
-
-    if (imgPrev !== "") {
-      return imgPrev;
-    }
-    return profile.image;
   };
 
   return (
@@ -234,36 +247,100 @@ function Profile() {
         </div>
         <div className="cont-kontak container d-flex align-items-center flex-column flex-md-row flex-lg-row flex-xl-row">
           <div className="Image-Profile col-lg-6 d-flex justify-content-center">
-            <Card className="card_images d-flex justify-content-center align-items-center  p-lg-5 col-lg-8 ">
-              <div className="imagez d-flex justify-content-center align-items-center mt-3 mt-lg-5">
-                <Card.Img className="card_image" variant="top" src={icon_profile} />
+            <Card className="card_images d-flex justify-content-center align-items-center  p-lg-4 col-lg-8 ">
+              <div className="imagez d-flex flex-column justify-content-center align-items-center gap-2 mt-5 mt-lg-5">
+                <Card.Img className="card_image" variant="top" src={!image ? (profile.image === null ? icon_profile : profile.image) : imgPrev} />
+                <label className={showbtn ? "editicon d-flex justify-content-center align-items-center" : "editicon d-flex flex-column justify-content-center align-items-center mt-3 ps-5"} for="lable_file">
+                  <input type="file" id="files" name="file" onChange={handleImageChange} className={showbtn === false ? "d-flex justify-content-center" : "hidden"} />
+                  <div className={showbtn ? "mt-3" : "hidden"}>
+                    <Button
+                      className={showbtn ? "d-flex justify-content-center butzzz" : "hidden"}
+                      size="sm"
+                      variant="warning"
+                      onClick={() => {
+                        sethowbtn(false);
+                        setBtnsv(true);
+                      }}
+                    >
+                      Edit
+                    </Button>
+                  </div>
+                  <div className={showbtn === false ? "pe-5 mt-3" : "hidden"}>
+                    <Button
+                      className={showbtn === false ? "d-flex justify-content-center butzzz" : "hidden"}
+                      size="sm"
+                      variant="primary"
+                      onClick={() => {
+                        sethowbtn(true);
+                      }}
+                    >
+                      Save
+                    </Button>
+                  </div>
+                </label>
               </div>
               <Card.Body className="text-center">
-                <Card.Text>Messi</Card.Text>
-                <Card.Text>Messi@gmail.com</Card.Text>
+                <Card.Text>{profile.username}</Card.Text>
+                <Card.Text>{profile.email}</Card.Text>
                 <Card.Title> Has been ordered {historiedData.length} products</Card.Title>
               </Card.Body>
             </Card>
           </div>
           <div className="contacts col-lg-6 container mt-5 mt-md-0 ">
             <Card className="card_contact px-md-3 py-lg-5 px-lg-4">
-              <Card.Text className="mt-3 my-md-2">
-                <u>Contacts</u>
-              </Card.Text>
+              <div className="d-flex justify-content-between align-items-center">
+                <Card.Text className="ps-5 mt-3 my-md-2 col-10 ">
+                  <u>Contacts</u>
+                </Card.Text>
+                <div
+                  className={isEdit === false ? "d-flex flex-column justify-content-center align-items-center col-2 mt-3" : "hidden"}
+                  onClick={() => {
+                    setBtnsv(true);
+                    setIsEdit(true);
+                  }}
+                  name="image"
+                  onChange={handleChangeForm}
+                >
+                  <img className="editzz" src={editzz} alt="/" />
+                  <p className="m-0 pe-1 ed">Edit</p>
+                </div>
+              </div>
               <div className="container">
                 <Form>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email </Form.Label>
-                    <Form.Control type="email" placeholder="Enter Your Email" />
+                    <Form.Control
+                      disabled={isEdit === false ? true : false}
+                      type="email"
+                      placeholder={profile.email === null ? "Enter Your Email" : profile.email}
+                      name="email"
+                      value={email}
+                      onChange={(event) => setEmail(event.target.value)}
+                    />
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Phone Number</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Your Phone Number" />
+                    <Form.Control
+                      disabled={isEdit === false ? true : false}
+                      type="text"
+                      placeholder={profile.phone_number === null ? "Enter Your Phone Number" : profile.phone_number}
+                      name="phone_number"
+                      value={phone_number}
+                      onChange={(event) => setPhone_number(event.target.value)}
+                    />
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label>Delivery Address</Form.Label>
-                    <Form.Control as="textarea" rows={3} />
+                    <Form.Control
+                      disabled={isEdit === false ? true : false}
+                      as="textarea"
+                      rows={3}
+                      placeholder={profile.addres === null ? "Enter Your Address Here " : profile.addres}
+                      name="addres"
+                      value={addres}
+                      onChange={(event) => setAddres(event.target.value)}
+                    />
                   </Form.Group>
                 </Form>
               </div>
@@ -273,57 +350,91 @@ function Profile() {
         <div className="cont-detail container d-flex flex-column flex-md-row flex-lg-row flex-xl-row align-items-center">
           <div className="details col-12 col-md-8 col-lg-8 col-xl-8 container mt-5 ps-lg-2 pb-5 px-md-0 d-flex justify-content-center align-items-center">
             <Card className="px-md-3 p-lg-4 col-12 col-lg-10 ">
-              <Card.Text className="mt-3">
-                <u>Details</u>
-              </Card.Text>
+              <div className="d-flex justify-content-between align-items-center">
+                <Card.Text className="ps-5 mt-3 my-md-2 col-10 ">
+                  <u>Details</u>
+                </Card.Text>
+                <div
+                  className={isEdit2 === false ? "d-flex flex-column justify-content-center align-items-center col-2 mt-3" : "hidden"}
+                  onClick={() => {
+                    setBtnsv(true);
+                    setIsEdit2(true);
+                  }}
+                >
+                  <img className="editzz" src={editzz} alt="/" />
+                  <p className="m-0 pe-1 ed">Edit</p>
+                </div>
+              </div>
               <div className="container mb-4">
                 <Form>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Display Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Your Display Name" />
+                    <Form.Control
+                      disabled={isEdit2 === false ? true : false}
+                      type="text"
+                      placeholder={profile.username === null ? "Enter Your Display Name" : profile.username}
+                      name="username"
+                      value={username}
+                      onChange={(event) => setUserName(event.target.value)}
+                    />
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>First Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Your First Name" />
+                    <Form.Control
+                      disabled={isEdit2 === false ? true : false}
+                      type="text"
+                      placeholder={profile.firstname === null ? "Enter Your First Name" : profile.firstname}
+                      name="firstname"
+                      value={firstname}
+                      onChange={(event) => setFirstName(event.target.value)}
+                    />
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Last Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Your Last Name" />
+                    <Form.Control
+                      disabled={isEdit2 === false ? true : false}
+                      type="text"
+                      placeholder={profile.lastname === null ? "Enter Your Last Name" : profile.lastname}
+                      name="lastname"
+                      value={lastname}
+                      onChange={(event) => setLastName(event.target.value)}
+                    />
                   </Form.Group>
-                  {/* <div>
-                  <div class="form-check ">
-                    <input class="form-check-input " type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-                    <label class="form-check-label " for="flexRadioDefault1">
-                      Male
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
-                    <label class="form-check-label" for="flexRadioDefault2">
-                      Female
-                    </label>
-                  </div>
-                </div> */}
-                  {/* <div>
-                  Date of Birth
-                  <div>
-                    <DatePicker onChange={onChange} value={value} />
-                  </div>
-                </div> */}
                 </Form>
               </div>
             </Card>
           </div>
           <div className=" panel-button container col-12 col-md-4 col-lg-3 col-xl-3 d-flex flex-column gap-3 justify-content-center text-center pb-5 pb-md-0">
-            <h5 className="doyou">Do you want to save the change?</h5>
+            <h5 className={btnsv === false ? "hidden" : "doyou"}>Do you want to save the change?</h5>
             <div className=" tombol container d-flex flex-md-column flex-lg-column flex-wrap flex-xl-column gap-2 justify-content-between gap-md-3 ">
-              <Button className=" font_saved savess col-6 col-md-12 ">Save Change</Button>
-              <Button className=" font_saved col-4 col-md-12" variant="warning">
+              <Button className={btnsv === false ? "hidden" : " font_saved savess col-6 col-md-12 "} onClick={editData}>
+                {" "}
+                {loading === true ? (
+                  <div className="d-flex gap-2 justify-content-center align-items-center">
+                    <div class="spinner-border spinner-border-sm text-dark" role="status"></div>
+                    <div>Loading . . .</div>
+                  </div>
+                ) : (
+                  "  Save Change"
+                )}
+              </Button>
+              <Button
+                className={btnsv === false ? "hidden" : " font_saved col-4 col-md-12"}
+                variant="warning"
+                onClick={() => {
+                  setBtnsv(false);
+                  setIsEdit(false);
+                  setIsEdit2(false);
+                  setForm({});
+                }}
+              >
                 Cancel
               </Button>
-              <Button className=" font_saved col-6 col-md-12 savess">Change Password</Button>
+              <Button className={btnsv === true ? "hidden" : " font_saved col-6 col-md-12 savess"} onClick={toEditPwd}>
+                Change Password
+              </Button>
               <Button
-                className=" font_saved col-4 col-md-12"
+                className={btnsv === true ? "hidden" : " font_saved col-4 col-md-12"}
                 variant="warning"
                 onClick={() => {
                   handleShowModal();
@@ -535,8 +646,8 @@ function Profile() {
           <Modal.Body>are you sure you want to log out?</Modal.Body>
           <Modal.Footer>
             <Button
-              variant="secondary"
-              className="fw-bold text-bg-secondary text-white"
+              variant="success"
+              className="fw-bold text-bg-success text-white"
               onClick={() => {
                 deleteToken();
                 setTimeout(() => {
@@ -551,7 +662,7 @@ function Profile() {
             >
               Yes
             </Button>
-            <Button variant="success" className="fw-bold text-bg-success text-white" onClick={handleCloseModal}>
+            <Button variant="danger" className="fw-bold text-bg-danger text-white" onClick={handleCloseModal}>
               No
             </Button>
           </Modal.Footer>

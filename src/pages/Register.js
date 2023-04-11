@@ -110,7 +110,14 @@ function Register() {
                       </Form.Group>
                       <div className="d-flex flex-column gap-3 my-5">
                         <Button className="pops heightz" disabled={email && password === "" ? true : false} variant="warning" type="submit">
-                          {loading === true ? "Loading . . ." : "Register"}
+                          {loading === true ? (
+                            <div className="d-flex gap-2 justify-content-center align-items-center">
+                              <div class="spinner-border spinner-border-sm text-dark" role="status"></div>
+                              <div>Loading . . .</div>
+                            </div>
+                          ) : (
+                            "Register"
+                          )}
                         </Button>
                         <Button className="pops border d-flex justify-content-center align-items-center gap-3" variant="light" type="submit">
                           <img src={google} Alt="/" />

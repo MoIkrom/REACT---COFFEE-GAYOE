@@ -256,15 +256,10 @@ const Payment = () => {
                     <button onClick={handleTransactions}>
                       <span>
                         {loading ? (
-                          <>
-                            <div className="lds-ring">
-                              <div></div>
-                              <div></div>
-                              <div></div>
-                              <div></div>
-                            </div>
-                            <p className="loading-text ">Payment on process . . . </p>
-                          </>
+                          <div className="d-flex gap-3 justify-content-center align-items-center">
+                            <div class="spinner-border text-warning" role="status"></div>
+                            <div className="text-warning">Loading . . .</div>
+                          </div>
                         ) : (
                           "Confirm and Pay"
                         )}
