@@ -139,7 +139,13 @@ function Profile() {
       formData.append("image", image);
     }
     axios
-      .patch(`https://coffee-gayoe.vercel.app/api/v1/users/profile`, formData, { headers: { "x-access-token": token, "Content-Type": "multipart/form-data" } })
+      .patch(`https://coffee-gayoe.vercel.app/api/v1/users/profile`, formData, {
+        headers: {
+          //  "x-access-token": token,
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then(() => {
         SuccessMessage();
         setLoading(false);
