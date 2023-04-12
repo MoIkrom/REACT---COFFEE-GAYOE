@@ -20,9 +20,7 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 
 // Import Image
-import icon_edit from "../assets/images/icon_editpencil.png";
 import editzz from "../assets/images/edit.png";
-
 import icon_profile from "../assets/images/default-img.png";
 
 function Profile() {
@@ -33,30 +31,23 @@ function Profile() {
   const [profile, setProfile] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [image, setImage] = useState("");
-  const [display, setDisplay] = useState(profile.image);
+  const [saveImage, setSaveImage] = useState(null);
   const [email, setEmail] = useState(profile.email);
   const [phone_number, setPhone_number] = useState(profile.phone_number);
   const [addres, setAddres] = useState(profile.addres);
   const [username, setUserName] = useState(profile.username);
   const [firstname, setFirstName] = useState(profile.firstname);
   const [lastname, setLastName] = useState(profile.lastname);
-  const [show, setShow] = useState(true);
-  const [show2, setShow2] = useState(true);
   const [edit, setEdit] = useState(false);
-  const [deps, setDeps] = useState("");
   const [loading, setLoading] = useState(true);
   const [imgPrev, setImgPrev] = useState(null);
-  const [selectedFile, setSelectedFile] = useState(null);
   const [showbtn, sethowbtn] = useState(true);
   const [btnsv, setBtnsv] = useState(false);
   const [form, setForm] = useState({});
 
   const [isEdit, setIsEdit] = useState(false);
   const [isEdit2, setIsEdit2] = useState(false);
-  const [saved, setSaved] = useState(false);
-  const [deliveryAddress, setDeliveryAddress] = useState(profile.addres);
   const [historiedData, setHistoriedData] = useState("");
-  const [value, onChange] = useState(new Date());
 
   const handleChangeForm = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -67,6 +58,7 @@ function Profile() {
     getProfile(token)
       .then((res) => {
         setProfile(res.data.result.result[0]);
+        console.log(res.data.result.result[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -136,13 +128,12 @@ function Profile() {
       formData.append("addres", profile.addres);
     }
     if (image) {
-      formData.append("image", image);
+      formData.append("image", saveImage);
     }
     axios
-      .patch(`https://coffee-gayoe.vercel.app/api/v1/users/profile`, formData, {
+      .patch(`https://coffee-gayoe.vercel.app/api/v1/users`, formData, {
         headers: {
-          //  "x-access-token": token,
-          Authorization: `Bearer ${token}`,
+          "x-access-token": token,
           "Content-Type": "multipart/form-data",
         },
       })
@@ -168,59 +159,15 @@ function Profile() {
         });
       });
   };
-  const handleAddress = (e) => {
-    // setBody( ..body, delivery_address: e.target.value });
-    setDeliveryAddress(e.target.value);
-  };
-  // const handlelastname= (e) => {
-  //   // setBody( ..body, delivery_address: e.target.value });
-  //   setDeliveryAddress(e.target.value);
-  // };
 
-  // get value input
-  const valueEmail = (e) => {
-    setEmail(e.target.value);
-  };
-  // const valueAddress = (e) => {
-  //   setAddress(e.target.value);
-  // };
-  const valuePhone_number = (e) => {
-    setPhone_number(e.target.value);
-  };
-
-  const valueFirstname = (e) => {
-    setFirstName(e.target.value);
-  };
-  const valueLastname = (e) => {
-    setLastName(e.target.value);
-  };
-
-  const handleFileInputChange = (event) => {
-    setSelectedFile(event.target.files[0]);
-  };
-  const selectImage = () => {
-    if (!image) return display === null ? icon_profile : display;
-    return URL.createObjectURL(image);
-  };
-
-  const handleImage = (e) => {
-    setImage(e.target.files[0]);
-    setImgPrev(URL.createObjectURL(e.target.files[0]));
-  };
   const handleImageChange = (event) => {
-    setImage(event.target.files[0]);
-    setImgPrev(URL.createObjectURL(event.target.files[0]));
-  };
-  // handleFile => memndapatkan value inputan dari gambar yang telah di choose file
-  const handleFile = (e) => {
-    e.preventDefault();
-    let file = e.target.files[0];
-    setImage(file);
+    setImage(URL.createObjectURL(event.target.files[0]));
+    setSaveImage(event.target.files[0]);
   };
 
   // SuccessMessage, LogoutMessage => notifikasi sukses dan gagal
   const SuccessMessage = () => {
-    toast.success("Data Save Change !", {
+    toast.success("Success Change Data !", {
       position: toast.POSITION.TOP_RIGHT,
       autoClose: 1000,
     });
@@ -236,11 +183,12 @@ function Profile() {
   };
 
   const handleCancel = () => {
-    setImage(profile.image);
-    setDeliveryAddress(profile.addres);
+    setImage(profile.image === null ? icon_profile : profile.image);
     setPhone_number(profile.phone_number);
     setFirstName(profile.firstname);
     setLastName(profile.lastname);
+    setAddres(profile.addres);
+    setEmail(profile.email);
   };
 
   return (
@@ -255,12 +203,13 @@ function Profile() {
           <div className="Image-Profile col-lg-6 d-flex justify-content-center">
             <Card className="card_images d-flex justify-content-center align-items-center  p-lg-4 col-lg-8 ">
               <div className="imagez d-flex flex-column justify-content-center align-items-center gap-2 mt-5 mt-lg-5">
-                <Card.Img className="card_image" variant="top" src={!image ? (profile.image === null ? icon_profile : profile.image) : imgPrev} />
+                <Card.Img className="card_image" variant="top" src={image !== "" && image !== profile.image && image !== icon_profile ? image : profile.image === null ? icon_profile : profile.image} />
+
                 <label className={showbtn ? "editicon d-flex justify-content-center align-items-center" : "editicon d-flex flex-column justify-content-center align-items-center mt-3 ps-5"} for="lable_file">
                   <input type="file" id="files" name="file" onChange={handleImageChange} className={showbtn === false ? "d-flex justify-content-center" : "hidden"} />
-                  <div className={showbtn ? "mt-3" : "hidden"}>
+                  <div className={showbtn === true ? "mt-3" : "hidden"}>
                     <Button
-                      className={showbtn ? "d-flex justify-content-center butzzz" : "hidden"}
+                      className={showbtn === true ? "d-flex justify-content-center butzzz" : "hidden"}
                       size="sm"
                       variant="warning"
                       onClick={() => {
@@ -414,7 +363,6 @@ function Profile() {
             <h5 className={btnsv === false ? "hidden" : "doyou"}>Do you want to save the change?</h5>
             <div className=" tombol container d-flex flex-md-column flex-lg-column flex-wrap flex-xl-column gap-2 justify-content-between gap-md-3 ">
               <Button className={btnsv === false ? "hidden" : " font_saved savess col-6 col-md-12 "} onClick={editData}>
-                {" "}
                 {loading === true ? (
                   <div className="d-flex gap-2 justify-content-center align-items-center">
                     <div class="spinner-border spinner-border-sm text-dark" role="status"></div>
@@ -431,7 +379,8 @@ function Profile() {
                   setBtnsv(false);
                   setIsEdit(false);
                   setIsEdit2(false);
-                  setForm({});
+                  handleCancel();
+                  sethowbtn(true);
                 }}
               >
                 Cancel
@@ -452,199 +401,6 @@ function Profile() {
           </div>
         </div>
 
-        {/* <div className="cont-one container d-flex">
-          <section className="cont-card container ">
-            <div className="card-body card">
-              <img
-                className="card-img-top"
-                // src={profile.image === null ? icon_profile : imgPrev !== "" ? imgPrev : profile.image}
-                src={!image ? profile.image : imgPrev}
-                alt=""
-              />
-              <label className="editicon" htmlFor="files" id="lable_file">
-                <img className="pencils cursor" src={icon_edit} alt="icon_edit" />
-              </label>
-              <input id="files" type="file" name="file" onChange={handleImage} className="hidden" />
-              <div className="detail-image container ">
-                <p className="card-name ">{profile.display_name}</p>
-                <p className="card-email">{profile.email}</p>
-              </div>
-              <p className="ordered">Has been ordered {historiedData.length} products</p>
-            </div>
-            <div className="card-address  card ">
-              <div className="title-contactone">
-                <h2 className={show === true ? "display-5" : "contactshowone"}>contacts</h2>
-                <div
-                  className="contedit"
-                  onClick={(e) => {
-                    setShow(false);
-                    e.preventDefault();
-                    setIsEdit(!isEdit);
-                  }}
-                >
-                  <img className={show === true ? "editicon-right cursor " : "none"} src={icon_edit} alt="icon_edit" />
-
-                  <p className={show === true ? "edits cursor" : "none"}>Edit</p>
-                </div>
-              </div>
-
-              <form className="container col-12 d-flex  contform">
-                <div className="container col-6  contemailform">
-                  <label className="genderone" htmlFor="email">
-                    Email address :
-                  </label>
-                  <input className="emailinput" type="email" disabled value={profile.email} />
-                </div>
-
-                <div className="container cont-label">
-                  <label className="genderone" htmlFor="phone_number">
-                    Mobile Number :
-                  </label>
-                  <input className="emailinput" type="tel" disabled value={profile.phone_number} />
-                </div>
-              </form>
-
-              <div className="container cont-email">
-                <div className="container cont-address">
-                  <label className="genderone" htmlFor="phone_number">
-                    Delivery Address :
-                  </label>
-                  <input
-                    className={show === true ? "street" : "streetoneshow"}
-                    type="text"
-                    onChange={handleAddress}
-                    placeholder={show === true ? profile.addres : ""}
-                    // value={show === true ? profile.addres : }
-                    disabled={isEdit}
-                  />
-                </div>
-              </div>
-              <p
-                className={show === true ? "none" : "tombolsaveone  cursor"}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsEdit(!isEdit);
-                  setShow(true);
-                }}
-              >
-                Save
-              </p>
-            </div>
-          </section>
-          {/* <div className="contTwo">
-            <div className="card col-8  displaynames">
-              <div className="title-contact ">
-                <h2 className={show2 === true ? "display-5" : "contactshow"}>Details</h2>
-                <div
-                  className="contedit"
-                  onClick={(e) => {
-                    setShow2(false);
-                    e.preventDefault();
-                    setIsEdit2(!isEdit2);
-                  }}
-                >
-                  <img className={show2 === true ? "editicon-right cursor " : "none"} src={icon_edit} alt="icon_edit" />
-
-                  <p className={show2 === true ? "edits cursor" : "none"}>Edit</p>
-                </div>
-              </div>
-              <div className="d-flex gap-5  fleks">
-                <div className="col-7  col7">
-                  <div className="container">
-                    <div className="container  cont-display">
-                      <label className="gender" htmlFor="phone_number">
-                        Display Name :
-                      </label>
-                      <input className={show2 === true ? "streetshow" : "streetshow"} type="text" onChange={valueDisplayname} disabled={isEdit2} value={displayName} />
-                    </div>
-                  </div>
-                  <div className="container">
-                    <div className="container cont-display">
-                      <label className="gender" htmlFor="phone_number">
-                        First Name :
-                      </label>
-                      <input className={show2 === true ? "streetshow" : "streetshow"} type="text" onChange={valueFirstname} disabled={isEdit2} value={firstName} />
-                    </div>
-                  </div>
-                  <div className="container">
-                    <div className="container cont-display">
-                      <label className="gender" htmlFor="phone_number">
-                        Last Name :
-                      </label>
-                      <input className={show2 === true ? "streetshow" : "streetshow"} type="text" onChange={valueLastname} disabled={isEdit2} placeholder={show === true ? profile.lastName : ""} value={lastName} />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="divgender">
-                  <p className="gender"> Gender : </p>
-                  <form
-                    className="radio-payment cursor"
-                    onChange={(e) => {
-                      valueGender(e.target.value);
-                    }}
-                  >
-                    <div className="form-check d-flex flex-row align-items-center styling-data-radio">
-                      <input className="form-check-input  cursor " type="radio" value="Male" name="flexRadioDefault" />
-                      <label className="form-check-label" for="flexRadioDefault1"></label>
-                      <span className="spans">Male</span>
-                    </div>
-                    <div className="form-check d-flex flex-row align-items-center styling-data-radio">
-                      <input className="form-check-input cursor" value="Female" type="radio" name="flexRadioDefault" />
-                      <label className="form-check-label" for="flexRadioDefault1"></label>
-                      <span className="spans">Female</span>
-                    </div>
-                  </form>
-                </div>
-              </div>
-              <p
-                className={show2 === true ? "none" : "tombolsave cursor"}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsEdit2(!isEdit2);
-                  setShow2(true);
-                }}
-              >
-                Save
-              </p>
-            </div>
-            <div className="container cont-btn">
-              <h1 className="save-btn">Do you want to save the change?</h1>
-              <button type="button" className="btn btn-1 btn-size" onClick={editData}>
-                {loading ? (
-                  <>
-                    <div className="lds-ring ">
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                    </div>
-                    <p className="loading-text">Loading . . .</p>
-                  </>
-                ) : (
-                  " Save Change "
-                )}
-              </button>
-              <button type="button" className="btn btn-2  btn-size " onClick={handleCancel}>
-                Cancel
-              </button>
-              <button type="button" className="btn btn-size  btn-3 " onClick={toEditPwd}>
-                Edit Password
-              </button>
-              <button
-                type="button"
-                className="btn btn-size  btn-3 "
-                onClick={() => {
-                  handleShowModal();
-                }}
-              >
-                Log Out
-              </button>
-            </div>
-          </div> */}
-        {/* </div> */}
-
-        {/* </div>  */}
         <Modal show={showModal} onHide={handleCloseModal} backdrop="static" keyboard={false}>
           <Modal.Header closeButton>
             <Modal.Title>confirmation</Modal.Title>
