@@ -57,27 +57,6 @@ const Payment = () => {
     return parseInt(total);
   };
 
-  // const handleForm = () => {
-  //   if (form === "1") return 5000;
-  //   return 0;
-  // };
-
-  // const deliveryMethodHandler = () => {
-  //   const data = {
-  //     id: products.id,
-  //     image: products.image,
-  //     product_name: products.product_name,
-  //     price: products.price,
-  //     size: products.size,
-  //     qty: products.qty,
-  //     subTotal: products.total,
-  //     total: getTotal(),
-  //     shiping: getShipping(),
-  //   };
-  //   dispatch(authAction.productThunk(data));
-  //   navigate("/product");
-  // };
-
   const handleRemoveRedux = () => {
     dispatch(
       authAction.productThunk({
@@ -149,10 +128,7 @@ const Payment = () => {
 
   return (
     <>
-      {/* <!-- Start Navbar --> */}
       <Navbar />
-      {/* <!-- End Navbar --> */}
-
       <main>
         <div className="container-fluid  background-payment">
           <div className="container  title-payment ">
@@ -207,7 +183,7 @@ const Payment = () => {
                     </div>
                     <div className="box-address">
                       <h5>
-                        Delivery to : <b className="me-1"> &nbsp; {profile.display_name}</b>
+                        Delivery to : <b className="me-1"> &nbsp; {profile.username}</b>
                       </h5>
                       <p className="address-column"> {profile.addres}</p>
                       <p> {profile.phone_number}</p>
@@ -274,9 +250,7 @@ const Payment = () => {
         <ToastContainer />
       </main>
 
-      {/* <!-- Start Footer --> */}
       <Footer />
-      {/* <!-- End Footer --> */}
     </>
   );
 };
