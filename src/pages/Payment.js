@@ -56,6 +56,10 @@ const Payment = () => {
     let total = price + taxes + shipping;
     return parseInt(total);
   };
+  const openInNewTab = (url) => {
+    const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+    if (newWindow) newWindow.opener = null;
+  };
 
   const handleRemoveRedux = () => {
     dispatch(
@@ -88,7 +92,6 @@ const Payment = () => {
   const handleTransactions = () => {
     setLoading(true);
     const getToken = localStorage.getItem("token");
-    console.log(statusPaid);
     transactions(getToken, {
       user_id: profile.id,
       product_id: products.id,
@@ -101,6 +104,8 @@ const Payment = () => {
       status: statusPaid,
     })
       .then((res) => {
+        // console.log(res.data.result);
+        openInNewTab(res.data.result.redirect_url);
         handleRemoveRedux();
         setLoading(false);
         toast.success("Payment Success", {
@@ -118,6 +123,7 @@ const Payment = () => {
       })
 
       .catch((err) => {
+        console.log(err);
         toast.error(statusPaid === "" ? "Please Choose Payment Methode" : "Payment Failed", {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 2000,
