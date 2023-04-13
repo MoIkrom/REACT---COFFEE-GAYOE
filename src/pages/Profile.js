@@ -58,7 +58,6 @@ function Profile() {
     getProfile(token)
       .then((res) => {
         setProfile(res.data.result.result[0]);
-        console.log(res.data.result.result[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -414,12 +413,12 @@ function Profile() {
                 deleteToken();
                 setTimeout(() => {
                   navigate("/");
+                  window.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: "smooth",
+                  });
                 }, 1000);
-                window.scrollTo({
-                  top: 0,
-                  left: 0,
-                  behavior: "smooth",
-                });
               }}
             >
               Yes

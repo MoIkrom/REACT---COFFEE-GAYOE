@@ -60,7 +60,6 @@ function Navbars() {
     getProfile(token)
       .then((res) => {
         setProfile(res.data.result.result[0]);
-        console.log(res.data.result.result[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -131,7 +130,7 @@ function Navbars() {
                   <div className="d-flex align-items-center p-lg-0 ps-md-2">
                     <Link className="cont_profile d-flex flex-column align-items-center text-decoration-none" to={role === "user" ? "/profile" : "/"}>
                       {/* <img className="rounded-circle" src={profile.image === null ? icon_profile : profile.image} alt="" width="50px" height="50px" /> */}
-                      <img className="rounded-circle" src={icon_profile} alt="" width="50px" height="50px" />
+                      <img className="rounded-circle" src={profile.image === null ? icon_profile : profile.image} alt="" width="50px" height="50px" />
                       <p className={`d-flex d-lg-none ${styles["navs_name"]}`}>{profile.username}</p>
                     </Link>
                   </div>
