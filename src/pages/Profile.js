@@ -403,9 +403,9 @@ function Profile() {
 
         <Modal show={showModal} onHide={handleCloseModal} backdrop="static" keyboard={false}>
           <Modal.Header closeButton>
-            <Modal.Title>confirmation</Modal.Title>
+            <Modal.Title>Logout Confirmation</Modal.Title>
           </Modal.Header>
-          <Modal.Body>are you sure you want to log out?</Modal.Body>
+          <Modal.Body>Are you sure you want to log out ?</Modal.Body>
           <Modal.Footer>
             <Button
               variant="success"
