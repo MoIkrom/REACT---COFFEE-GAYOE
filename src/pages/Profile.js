@@ -430,9 +430,9 @@ function Profile() {
           </Modal.Footer>
         </Modal>
       </main>
+      <ToastContainer />
 
       <Footer />
-      <ToastContainer />
     </>
   );
 }

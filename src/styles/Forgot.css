@@ -71,20 +71,7 @@ body {
 .shows {
   width: 30px;
 }
-.conteyes {
-  width: 40px;
-  position: relative;
-  left: 52.5rem;
-}
-.conteyes2 {
-  width: 40px;
-  position: relative;
-  left: 52.5rem;
-  top: 2rem;
-}
-.show {
-  width: 30px;
-}
+
 .none {
   display: none;
 }
