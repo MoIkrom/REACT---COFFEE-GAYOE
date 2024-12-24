@@ -325,7 +325,7 @@ function Profile() {
                     boxShadow: "0px 0px 1px #4f5665",
                     borderRadius: "20px",
                   }}
-                  className=" d-flex col-12 p-lg-5 "
+                  className=" d-flex col-12 p-lg-5 p-3 "
                 >
                   <div className="d-flex justify-content-between align-items-center me-3">
                     <p
