@@ -347,8 +347,8 @@ function Product() {
               </Button>
             </InputGroup>
           </div>
-          <section className="container-fluid text-center ms-3 border-2 border-start">
-            <div className="row list-content justify-content-around ms-2  mt-5 gap-2">
+          <section className="container-fluid text-center ms-lg-3 border-lg-2 border-lg-start">
+            <div className="row list-content justify-content-around ms-lg-2  mt-5 gap-2">
               {notfound === "Internal server Error" ? (
                 <p className="notfound-text">Product Not Found</p>
               ) : loading ? (
