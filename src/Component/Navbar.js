@@ -83,7 +83,7 @@ function Navbars() {
   );
 
   const renderNavLinks = () => (
-    <div className="d-flex justify-content-center bg-white mt-3 ms-4 ps-3 mb-4  mt-md-3 ms-md-4 ps-md-3 align-items-center">
+    <div className="d-flex justify-content-center bg-white  mt-3 ms-4 m-lg-0 ps-3 mt-md-3 ms-md-4 ps-md-3 align-items-center">
       <Nav className="me-auto p-0">
         <Nav.Link onClick={() => handleNavigate("/")}>Home</Nav.Link>
         <Nav.Link onClick={() => handleNavigate("/product")}>Product</Nav.Link>
@@ -134,14 +134,15 @@ function Navbars() {
           </div>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse
-            className="gap-5 font bg-white justify-content-end"
+            className="gap-5 font bg-white justify-content-end position-relative"
             id="responsive-navbar-nav"
+            style={{ zIndex: "10" }}
           >
             {renderNavLinks()}
             {token ? (
-              <div className="d-flex align-items-center p-lg-0 ps-md-2 gap-3">
+              <div className="ms-4 d-flex flex-column flex-lg-row gap-lg-3 pb-3 align-items-start p-lg-0 ps-md-2">
                 <Link
-                  className="cont_profile d-flex flex-column align-items-center text-decoration-none"
+                  className=" ms-4 mt-2 m-lg-0 d-flex flex-column align-items-center "
                   to={role === "user" ? "/profile" : "/"}
                 >
                   <img
@@ -156,7 +157,12 @@ function Navbars() {
                   </p>
                 </Link>
                 <button
-                  className="btn btn-warning rounded"
+                  className="btn p-0 px-2 btn-warning rounded "
+                  style={{
+                    height: "35px",
+                    fontFamily: "Rubik",
+                    fontSize: "16px",
+                  }}
                   onClick={() => {
                     deleteToken();
                   }}
@@ -165,7 +171,7 @@ function Navbars() {
                 </button>
               </div>
             ) : (
-              <div className="d-flex justify-content-start bg-white mt-3 ms-4 ps-3 mb-4 gap-3 mt-md-3 ms-md-4 ps-md-3 align-items-center">
+              <div className="d-flex position-relative z-10 justify-content-start bg-white mt-3 ms-4 ps-3 mb-4 gap-3 mt-md-3 ms-md-4 ps-md-3 align-items-center">
                 <Button
                   className={styles["login"]}
                   onClick={() => handleNavigate("/login")}

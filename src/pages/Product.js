@@ -110,7 +110,7 @@ function Product() {
         }
       >
         <aside className=" d-flex flex-column mb-5 col-md-3">
-          <div className="d-flex flex-column justify-content-center align-items-center mb-5">
+          <div className="d-flex flex-column justify-content-center align-items-center mb-4 mb-lg-5">
             <p className="title-promo mt-4">Promo Today</p>
             <p className="desc_promo m-0">
               Coupons will be updated every weeks
@@ -119,7 +119,7 @@ function Product() {
           </div>
 
           <div className="d-flex flex-md-column justify-content-md-between">
-            <div className="kupon d-flex flex-column align-items-center col-3 col-md-12">
+            <div className="kupon d-flex flex-column align-items-center col-md-12">
               <div className=" container d-flex align-items-center card coupon_card">
                 <div className="d-flex flex-column align-items-center mt-4 gap-2">
                   <img className="beef" src={beef} alt="coupon" />
