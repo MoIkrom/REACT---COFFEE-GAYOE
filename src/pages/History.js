@@ -53,7 +53,7 @@ const History = () => {
         </div>
         <section className="container cont-sec py-5">
           <div
-            className=" card d-flex p-5"
+            className=" card d-flex p-3 p-lg-5"
             style={{
               borderRadius: "20px",
             }}

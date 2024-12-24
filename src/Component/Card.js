@@ -30,7 +30,7 @@ function Card({ date, detailhistory, total }) {
           <div className="d-flex justify-content-between align-items-center">
             <div className=" pt-4 pb-2 ps-3">
               <h5
-                className="text-decoration-underline text-success"
+                className="text-decoration-underline text-success text-mobile"
                 style={{
                   fontFamily: "Poppins",
                 }}
@@ -38,7 +38,7 @@ function Card({ date, detailhistory, total }) {
                 {formatDate(date)}
               </h5>
             </div>
-            <div className="pe-4 pt-2">
+            <div className="pe-4 pt-2 text-mobile">
               <p
                 className="m-0 text-success"
                 style={{
@@ -48,7 +48,7 @@ function Card({ date, detailhistory, total }) {
                 TOTAL : {`Rp ${costing(total)}`}
               </p>
               <p
-                className="text-danger m-0"
+                className="text-danger m-0 "
                 style={{
                   fontFamily: "Rubik",
                   fontSize: "10px",
@@ -75,9 +75,9 @@ function Card({ date, detailhistory, total }) {
                     src={`${process.env.REACT_APP_BACKEND_HOST}/${e.products.image}`}
                     alt="Product_Image"
                   />
-                  <div className="">
+                  <div className="text-mobile">
                     <p
-                      className="m-0"
+                      className="m-0 "
                       style={{
                         fontFamily: "Poppins",
                       }}
@@ -85,10 +85,9 @@ function Card({ date, detailhistory, total }) {
                       {e.products.product_name}
                     </p>
                     <p
-                      className="m-0"
+                      className="m-0 text-mobile"
                       style={{
                         fontFamily: "Rubik",
-                        fontSize: "16px",
                       }}
                     >
                       Rp {costing(e.products.price)}

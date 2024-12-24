@@ -148,17 +148,17 @@ const Payment = () => {
       <div className=" background-payment">
         <div className="  ">
           <div className=" d-flex ">
-            <div className=" d-flex col-6 justify-content-center align-items-center title-payment ">
-              <h3 className="text-lg-center me-3 pb-4">
-                Checkout your <br></br> item now!
+            <div className=" d-flex col-lg-6 col-12 justify-content-center align-items-center mt-5 mt-lg-0">
+              <h3 className="text-lg-center me-3 pb-4 text-white">
+                Checkout your <br className="d-none d-lg-flex"></br> item now!
               </h3>
             </div>
-            <div className="col-6"></div>
+            <div className="d-none d-lg-flex col-6"></div>
           </div>
 
-          <div className="d-flex pb-5">
-            <div className="d-flex justify-content-center alig-items-center col-6">
-              <div className="col-8 bg-white rounded-5 ">
+          <div className="d-flex pb-5 flex-lg-row flex-column">
+            <div className="d-flex justify-content-center alig-items-center col-lg-6">
+              <div className="col-lg-12 col-10 bg-white rounded-5 ">
                 <div>
                   <div className="text-center p-4">
                     <h2
@@ -184,34 +184,32 @@ const Payment = () => {
                           key={products.id}
                           className="d-flex mb-4 border border-2 border-warning rounded p-4 mx-3"
                         >
-                          <div className="col-4">
+                          <div className="col-lg-4 col-3 d-flex justify-content-lg-center align-items-center">
                             <img
-                              className="rounded"
+                              className="rounded img-cart"
                               src={
                                 products.image === null
                                   ? foto
                                   : `${Host}/${products.image}`
                               }
                               alt="product-img"
-                              width="100px"
-                              height="100px"
                             />
                           </div>
-                          <div className="d-flex col-8 justify-content-between align-items-center">
-                            <div className="payment-center col-7">
+                          <div className="d-flex col-12 col-lg-8 gap-4 gap-lg-0 flex-col-lg-8 justify-content-lg-between align-items-center">
+                            <div className="payment-center col-4 col-lg-7 text-mobile">
                               <p className="mb-0">{products.product_name}</p>
                               <p className="mb-0">( {products.quantity} x )</p>
                               <p className="mb-0">
                                 {`${"Rp"} ${costing(products.price)}`}
                               </p>
                             </div>
-                            <div className="d-flex flex-column justify-content-center align-items-center">
-                              <p className="mb-0 payment-center">
+                            <div className="d-flex flex-column justify-content-center align-items-center ">
+                              <p className="mb-0 payment-center text-mobile">
                                 {`${"Rp"} ${costing(
                                   products.price * products.quantity
                                 )}`}
                               </p>
-                              <nav className="">
+                              <nav className=" text-mobile">
                                 <ul className="pagination  m-0 ">
                                   <li className="page-item white">
                                     <span
@@ -314,10 +312,10 @@ const Payment = () => {
                 </div>
               </div>
             </div>
-            <div className=" d-flex justify-content-center alig-items-center col-6 ">
-              <div className=" d-flex flex-column">
+            <div className=" d-flex justify-content-center align-items-center col-lg-5 ms-lg-5 ps-lg-5 mt-5 mt-lg-0 ">
+              <div className=" d-flex flex-column justify-content-center  align-items-center">
                 <div className="col-12 p-md-0 atas">
-                  <div className="d-flex justify-content-between align-items-end">
+                  <div className="d-flex ms-2 ms-lg-0 justify-content-between align-items-end">
                     <h2
                       style={{
                         fontfamily: "Poppins",
@@ -381,7 +379,7 @@ const Payment = () => {
                   </div>
                 </div>
                 <div className="col-12 mt-5 mt-md-2 bawah p-md-0">
-                  <div className=" payment-method">
+                  <div className="ms-2 ms-lg-0  payment-method">
                     <h2>Payment Method</h2>
                   </div>
                   <div className="choose-payment">
@@ -462,7 +460,7 @@ const Payment = () => {
                     </form>
                   </div>
                 </div>
-                <div className="p-1 col-10 col-md-12 col-lg-12 mt-5 mt-md-4 confirm-pay ">
+                <div className="p-1 col-12 mt-5 mt-md-4 confirm-pay ">
                   <button className=" rounded" onClick={handleTransactions}>
                     <span>
                       {loading ? (

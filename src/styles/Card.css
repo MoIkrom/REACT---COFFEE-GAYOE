@@ -50,3 +50,8 @@
   line-height: 100%;
   vertical-align: Top;
 }
+@media only screen and (max-width: 768px) {
+  .text-mobile {
+    font-size: 12px;
+  }
+}
