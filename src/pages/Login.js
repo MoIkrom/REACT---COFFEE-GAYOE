@@ -47,8 +47,8 @@ function Login() {
         });
         setTimeout(() => {
           navigate("/");
+          setLoading(false);
         }, 1200);
-        setLoading(false);
       })
       .catch((err) => {
         console.log(err);

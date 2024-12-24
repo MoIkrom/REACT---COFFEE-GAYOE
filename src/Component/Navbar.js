@@ -19,6 +19,7 @@ function Navbars() {
   const totalUniqueItems = useSelector((state) => state.cart.totalUniqueItems);
   const [profile, setProfile] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role");
@@ -48,6 +49,7 @@ function Navbars() {
   const Host = process.env.REACT_APP_BACKEND_HOST;
   const deleteToken = () => {
     const token = localStorage.getItem("token");
+    setLoading(true);
     axios
       .delete(`${Host}/api/v1/auth`, {
         headers: { "x-access-token": token },
@@ -61,9 +63,11 @@ function Navbars() {
         setTimeout(() => {
           navigate("/");
         }, 1200);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
       });
   };
 
@@ -167,7 +171,17 @@ function Navbars() {
                     deleteToken();
                   }}
                 >
-                  Logout
+                  {loading ? (
+                    <div className="d-flex gap-2 justify-content-center align-items-center">
+                      <div
+                        class="spinner-border spinner-border-sm text-dark"
+                        role="status"
+                      ></div>
+                      <div>Loading . . .</div>
+                    </div>
+                  ) : (
+                    "Logout"
+                  )}
                 </button>
               </div>
             ) : (

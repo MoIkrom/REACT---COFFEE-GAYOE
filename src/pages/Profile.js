@@ -204,14 +204,14 @@ function Profile() {
       <Navbar />
 
       <main className="jumbotron">
-        <div className="p-5 mx-5">
-          <h1 className="text-user  ">User Profile</h1>
+        <div className="p-lg-5 mx-lg-5 mx-3 pb-5">
+          <h1 className="text-user ms-2 py-3  ">User Profile</h1>
           <Card
             style={{ borderRadius: "20px" }}
             className="d-flex justify-content-center align-items-center "
           >
-            <div className="d-flex justify-content-start align-items-start col-12">
-              <div className="d-flex flex-column justify-content-center align-items-center col-4 p-5">
+            <div className="d-flex justify-content-start flex-column flex-lg-row align-items-lg-start align-items-center col-12">
+              <div className="d-flex flex-column justify-content-center align-items-center col-lg-4 p-5">
                 <div className="d-flex flex-column justify-content-center align-items-center mb-3 ">
                   <Card.Img
                     style={{
@@ -319,13 +319,13 @@ function Profile() {
                   </Button>
                 </div>
               </div>
-              <div className="d-flex flex-column justify-content-start align-items-start col-8 py-5 pe-5">
+              <div className="d-flex flex-column col-lg-8 col-12 p-3 py-lg-5 pe-lg-5">
                 <Card
                   style={{
                     boxShadow: "0px 0px 1px #4f5665",
                     borderRadius: "20px",
                   }}
-                  className=" d-flex col-12 p-5 "
+                  className=" d-flex col-12 p-lg-5 "
                 >
                   <div className="d-flex justify-content-between align-items-center me-3">
                     <p
@@ -340,8 +340,8 @@ function Profile() {
                       Contact
                     </p>
                   </div>
-                  <div className="d-flex col-12">
-                    <div className="col-6">
+                  <div className="d-flex col-12 flex-column flex-lg-row">
+                    <div className="col-lg-6 col-12 px-3">
                       <Form>
                         <Form.Group
                           className="mb-3 "
@@ -383,7 +383,7 @@ function Profile() {
                         </Form.Group>
                       </Form>
                     </div>
-                    <div className="col-6 d-flex justify-content-center">
+                    <div className="col-lg-6 col-12 px-3 ">
                       <Form>
                         <Form.Group
                           className="mb-3"
@@ -420,8 +420,8 @@ function Profile() {
                       Details
                     </p>
                   </div>
-                  <div className="d-flex col-12">
-                    <div className="col-6">
+                  <div className="col-lg-6 col-12 px-3 ">
+                    <div className=" col-12">
                       <Form>
                         <Form.Group
                           className="mb-4 "
