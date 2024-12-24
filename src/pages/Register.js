@@ -73,7 +73,7 @@ function Register() {
 
   return (
     <div className="d-flex">
-      <div className="col-6" style={{ height: "750px" }}>
+      <div className="d-none d-md-flex col-6" style={{ height: "750px" }}>
         <img
           className="img-fluid w-100 h-100"
           src={background}
@@ -81,8 +81,8 @@ function Register() {
           style={{ objectFit: "cover" }}
         />
       </div>
-      <div className=" d-flex align-items-center justify-content-center col-6">
-        <div className="col-12 px-5 d-flex align-items-center justify-content-center">
+      <div className=" d-flex align-items-center justify-content-center col-12 col-md-6 bg-mobile register">
+        <div className="col-10 pb-2 d-flex align-items-center justify-content-center">
           <Card className="col-12 mt-3">
             <Card.Body className="p-4">
               <Form onSubmit={handleApi}>
@@ -91,7 +91,7 @@ function Register() {
                 </div>
                 <div>
                   <Row>
-                    <Col>
+                    <Col xs={12} md={6}>
                       <Form.Group
                         className="mb-2"
                         controlId="formBasicPassword"
@@ -176,7 +176,7 @@ function Register() {
                             }}
                           />
                         </div>
-                      </Form.Group>{" "}
+                      </Form.Group>
                       <Form.Group className="mb-2" controlId="formBasicRole">
                         <Form.Label className="pops">Role</Form.Label>
                         <Form.Select
@@ -194,7 +194,7 @@ function Register() {
                         </Form.Select>
                       </Form.Group>
                     </Col>
-                    <Col>
+                    <Col xs={12} md={6}>
                       <Form.Group
                         className="mb-2"
                         controlId="formBasicPassword"
@@ -278,9 +278,9 @@ function Register() {
                     )}
                   </Button>
                 </div>
-                <div className="dont d-flex justify-content-center align-items-center mb-">
-                  Already Have Account ? Login &nbsp;
-                  <Link to={"/login"}> &nbsp;Here</Link>
+                <div className="dont align-items-center col-10">
+                  Already Have an Account ? Login &nbsp;
+                  <Link to={"/login"}>Here</Link>
                 </div>
               </Form>
             </Card.Body>

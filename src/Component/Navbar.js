@@ -70,51 +70,6 @@ function Navbars() {
   const handleModalClose = () => setShowModal(false);
   const handleModalShow = () => setShowModal(true);
 
-  const renderAuthButtons = () => (
-    <div className="d-flex justify-content-center align-items-center gap-3">
-      <Button
-        className={styles["login"]}
-        onClick={() => handleNavigate("/login")}
-      >
-        Login
-      </Button>
-      <Button
-        className={`${styles["sign-up"]}`}
-        onClick={() => handleNavigate("/register")}
-      >
-        Sign Up
-      </Button>
-    </div>
-  );
-
-  const renderProfileButton = () => (
-    <div className="d-flex align-items-center p-lg-0 ps-md-2 gap-3">
-      <Link
-        className="cont_profile d-flex flex-column align-items-center text-decoration-none"
-        to={role === "user" ? "/profile" : "/"}
-      >
-        <img
-          className="rounded-circle"
-          src={profile.image || icon_profile}
-          alt="profile"
-          width="30px"
-          height="30px"
-        />
-        <p className={`d-flex d-lg-none ${styles["navs_name"]}`}>
-          {profile.username}
-        </p>
-      </Link>
-      <button
-        className="btn btn-warning rounded"
-        onClick={() => {
-          deleteToken();
-        }}
-      >
-        Logout
-      </button>
-    </div>
-  );
-
   const renderLogoutButton = () => (
     <div>
       <button
@@ -128,7 +83,7 @@ function Navbars() {
   );
 
   const renderNavLinks = () => (
-    <div className="d-flex justify-content-center mt-3 ms-4 ps-3 mb-4  mt-md-3 ms-md-4 ps-md-3 align-items-center">
+    <div className="d-flex justify-content-center bg-white mt-3 ms-4 ps-3 mb-4  mt-md-3 ms-md-4 ps-md-3 align-items-center">
       <Nav className="me-auto p-0">
         <Nav.Link onClick={() => handleNavigate("/")}>Home</Nav.Link>
         <Nav.Link onClick={() => handleNavigate("/product")}>Product</Nav.Link>
@@ -179,11 +134,52 @@ function Navbars() {
           </div>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse
-            className="gap-5 font justify-content-end"
+            className="gap-5 font bg-white justify-content-end"
             id="responsive-navbar-nav"
           >
             {renderNavLinks()}
-            {token ? renderProfileButton() : renderAuthButtons()}
+            {token ? (
+              <div className="d-flex align-items-center p-lg-0 ps-md-2 gap-3">
+                <Link
+                  className="cont_profile d-flex flex-column align-items-center text-decoration-none"
+                  to={role === "user" ? "/profile" : "/"}
+                >
+                  <img
+                    className="rounded-circle"
+                    src={profile.image || icon_profile}
+                    alt="profile"
+                    width="30px"
+                    height="30px"
+                  />
+                  <p className={`d-flex d-lg-none ${styles["navs_name"]}`}>
+                    {profile.username}
+                  </p>
+                </Link>
+                <button
+                  className="btn btn-warning rounded"
+                  onClick={() => {
+                    deleteToken();
+                  }}
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <div className="d-flex justify-content-start bg-white mt-3 ms-4 ps-3 mb-4 gap-3 mt-md-3 ms-md-4 ps-md-3 align-items-center">
+                <Button
+                  className={styles["login"]}
+                  onClick={() => handleNavigate("/login")}
+                >
+                  Login
+                </Button>
+                <Button
+                  className={`${styles["sign-up"]}`}
+                  onClick={() => handleNavigate("/register")}
+                >
+                  Sign Up
+                </Button>
+              </div>
+            )}
           </Navbar.Collapse>
         </Container>
       </Navbar>

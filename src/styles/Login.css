@@ -282,8 +282,19 @@ body {
   .bgs {
     display: none;
   }
-  .img-bg {
+  .register{
+    height: 1000px !important; 
+  }
+  .bg-mobile {
     background-image: url("../assets/images/login-bg-1.webp");
+    background-size: cover; /* Pastikan gambar menutupi seluruh area */
+    background-repeat: no-repeat; /* Hindari pengulangan gambar */
+    background-position: center; /* Posisikan gambar di tengah */
+    height: 100vh; /* Sesuaikan tinggi elemen dengan tinggi layar */
+    width: 100%; /* Pastikan elemen selebar layar */
+  }
+  .font-mobile {
+    color: #ffffff !important;
   }
 }
 @media only screen and (min-width: 625px) and (max-width: 840px) {

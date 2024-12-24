@@ -63,7 +63,7 @@ function Login() {
 
   return (
     <div className="d-flex">
-      <div className="col-6" style={{ height: "750px" }}>
+      <div className="d-none d-md-flex col-6" style={{ height: "750px" }}>
         <img
           className="img-fluid w-100 h-100"
           src={background}
@@ -71,14 +71,14 @@ function Login() {
           style={{ objectFit: "cover" }}
         />
       </div>
-      <div className=" d-flex  align-items-center justify-content-center col-6">
+      <div className=" d-flex align-items-center justify-content-center col-12 col-md-6 py-5 bg-mobile">
         <div className="col-12 d-flex flex-column align-items-center justify-content-center">
           <div>
-            <h3 style={{ fontFamily: "poppins", color: "#6A4029" }}>
+            <h3 className="font-mobile" style={{ fontFamily: "poppins", color: "#6A4029" }}>
               Welcome to Coffe Gayoe
             </h3>
           </div>
-          <div className="col-8 mt-3">
+          <div className="col-10 col-lg-8 mt-3">
             <Card>
               <Card.Body className="p-4">
                 <Form onSubmit={handleApi}>
@@ -141,9 +141,9 @@ function Login() {
                       )}
                     </Button>
                   </div>
-                  <div className="dont d-flex justify-content-center align-items-center mb-">
+                  <div className="dont align-items-center col-10">
                     Don't Have an Account ? Register &nbsp;
-                    <Link to={"/register"}> &nbsp;Here</Link>
+                    <Link to={"/register"}>Here</Link>
                   </div>
                 </Form>
               </Card.Body>
