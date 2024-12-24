@@ -47,10 +47,6 @@ function Login() {
         });
         setTimeout(() => {
           navigate("/");
-          window.scrollTo({
-            top: 50,
-            left: 100,
-          });
         }, 1200);
         setLoading(false);
       })

@@ -4,6 +4,7 @@ import { toast, ToastContainer } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
 import { getProfile } from "../utils/api";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 import { Navbar, Container, Nav, Button, Modal } from "react-bootstrap";
 
@@ -44,9 +45,26 @@ function Navbars() {
       autoClose: 2000,
     });
 
+  const Host = process.env.REACT_APP_BACKEND_HOST;
   const deleteToken = () => {
-    localStorage.clear();
-    setTimeout(() => navigate("/"), 3000);
+    const token = localStorage.getItem("token");
+    axios
+      .delete(`${Host}/api/v1/auth`, {
+        headers: { "x-access-token": token },
+      })
+      .then((res) => {
+        localStorage.clear();
+        toast.success("Logout Success", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1000,
+        });
+        setTimeout(() => {
+          navigate("/");
+        }, 1200);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleModalClose = () => setShowModal(false);
@@ -70,7 +88,7 @@ function Navbars() {
   );
 
   const renderProfileButton = () => (
-    <div className="d-flex align-items-center p-lg-0 ps-md-2">
+    <div className="d-flex align-items-center p-lg-0 ps-md-2 gap-3">
       <Link
         className="cont_profile d-flex flex-column align-items-center text-decoration-none"
         to={role === "user" ? "/profile" : "/"}
@@ -86,6 +104,14 @@ function Navbars() {
           {profile.username}
         </p>
       </Link>
+      <button
+        className="btn btn-warning rounded"
+        onClick={() => {
+          deleteToken();
+        }}
+      >
+        Logout
+      </button>
     </div>
   );
 
@@ -139,10 +165,12 @@ function Navbars() {
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="white" variant="light">
-        <Container className="container-fluid d-flex align-items-center justify-content-between gaps"
-        style={{
-          height:"40px"
-        }}>
+        <Container
+          className="container-fluid d-flex align-items-center justify-content-between gaps"
+          style={{
+            height: "40px",
+          }}
+        >
           <div className="d-flex justify-content-center align-items-center gap-3">
             <img src={icon_coffee} alt="logo" width="27px" height="27px" />
             <Navbar.Brand className="h5 mb-0" href="#home">
