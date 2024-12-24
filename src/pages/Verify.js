@@ -15,7 +15,7 @@ import PinInput from "../Component/PinInput";
 
 // Import Images
 
-import background from "../assets/images/login-bg-1.png";
+import background from "../assets/images/login-bg-1.webp";
 
 function Verify() {
   TabTitle("Verify Account - Coffee Gayoe");

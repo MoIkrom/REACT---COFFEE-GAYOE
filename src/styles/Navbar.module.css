@@ -4,6 +4,20 @@
   max-width: 1440px;
   margin-bottom: 10px;
 } */
+.notification-badge {
+  position: absolute;
+  top: -5px; /* Geser ke atas */
+  right: -10px; /* Geser ke kanan */
+  font-size: 0.75rem; /* Ukuran teks badge */
+  padding: 0.2rem 0.5rem; /* Padding agar lebih kecil */
+  z-index: 1; /* Memastikan badge muncul di atas elemen lainnya */
+}
+/* CSS untuk efek hover pada link */
+.nav-link:hover {
+  transform: scale(1.5) !important; /* Membuat teks 0,5x lebih besar */
+  color: blue !important; /* Mengubah warna teks menjadi biru */
+  transition: transform 0.3s ease, color 0.3s ease !important; /* Transisi halus */
+}
 
 .fontz {
   font-family: "Rubik" !important;

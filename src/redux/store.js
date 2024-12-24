@@ -1,25 +1,22 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
-import logger from "redux-logger";
-import reducers from "./reducer/index";
-import storage from "redux-persist/lib/storage";
+import storage from "redux-persist/lib/storage"; // Menggunakan localStorage
+import cartReducer from "../features/cart/cartSlice";
 
 const persistConfig = {
-  key: "root",
-  storage: storage,
+  key: "root", // Nama key untuk menyimpan data
+  storage, // Gunakan localStorage
 };
 
-const persistedReducer = persistReducer(persistConfig, reducers);
+const persistedReducer = persistReducer(persistConfig, cartReducer);
 
+// Membuat store dengan persistedReducer
 const store = configureStore({
-  reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      thunk: true,
-      immutableCheck: false,
-      serializableCheck: false,
-    }).concat(logger),
+  reducer: {
+    cart: persistedReducer,
+  },
 });
 
-export const persistedStore = persistStore(store);
-export default store;
+const persistor = persistStore(store); // Persistor untuk melacak penyimpanan
+
+export { store, persistor };

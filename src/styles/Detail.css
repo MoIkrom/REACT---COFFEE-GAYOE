@@ -210,29 +210,12 @@ body {
 .price {
   font-family: Poppins;
   font-style: medium;
-  font-size: 19px;
+  font-size: 14px;
   line-height: 25px;
   font-weight: 400;
   line-height: 139%;
   vertical-align: Top;
   color: #000000;
-}
-.btn-cart:hover {
-  height: 56px;
-  border-radius: 10px;
-  width: 290px;
-  background-color: #6a4029;
-  font-family: Poppins;
-  font-style: medium;
-  font-size: 19px;
-  line-height: 25px;
-  font-weight: 400;
-  line-height: 139%;
-  vertical-align: Top;
-  color: #ffffff;
-  border-color: #6a4029;
-
-  transform: scale(1.1);
 }
 .btn-cart {
   height: 56px;

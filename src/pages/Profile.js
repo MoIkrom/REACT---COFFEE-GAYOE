@@ -5,19 +5,19 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import DatePicker from "react-date-picker";
+import { jwtDecode } from "jwt-decode";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
 import { useNavigate } from "react-router-dom";
 import { getProfile } from "../utils/api";
 import "../styles/Profile.css";
-import Card from "react-bootstrap/Card";
+import { Form, Card } from "react-bootstrap";
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
 import axios from "axios";
 
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import Form from "react-bootstrap/Form";
 
 // Import Image
 import editzz from "../assets/images/edit.png";
@@ -29,6 +29,7 @@ function Profile() {
   const navigate = useNavigate();
 
   const [profile, setProfile] = useState("");
+  const [dataUser, setDataUser] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [image, setImage] = useState("");
   const [saveImage, setSaveImage] = useState(null);
@@ -53,20 +54,13 @@ function Profile() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const getProfileUser = () => {
-    const token = localStorage.getItem("token");
-    getProfile(token)
-      .then((res) => {
-        setProfile(res.data.result.result[0]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
   const dataHistory = () => {
     const token = localStorage.getItem("token");
+    const Host = process.env.REACT_APP_BACKEND_URL;
     axios
-      .get(`https://coffee-gayoe.vercel.app/api/v1/transactions/history`, { headers: { "x-access-token": token } })
+      .get(`${Host}/api/v1/transactions/history`, {
+        headers: { "x-access-token": token },
+      })
       .then((res) => {
         setHistoriedData(res.data.result.data);
         console.log(res.data.result.data);
@@ -83,12 +77,27 @@ function Profile() {
       left: 100,
     });
   };
-
+  const Host = process.env.REACT_APP_BACKEND_HOST;
   useEffect(() => {
-    getProfileUser();
-    dataHistory();
-    setLoading(false);
-  }, [username]);
+    const token = localStorage.getItem("token");
+    if (token) {
+      // Decode token untuk mendapatkan payload
+      const decodedToken = jwtDecode(token);
+      const userId = decodedToken.user_id; // Ambil id dari payload
+
+      axios
+        .get(`${Host}/api/v1/users/${userId}`, {
+          headers: { "x-access-token": token },
+        })
+        .then((res) => {
+          setProfile(res.data.data[0]);
+          setDataUser(res.data.data[0].profile[0]);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [Host]);
 
   // editData => fungsi untuk memasukan data kedalam database ketika di click button save change
   const editData = (e) => {
@@ -195,212 +204,294 @@ function Profile() {
       <Navbar />
 
       <main className="jumbotron">
-        <div className="container d-flex text center justify-content-center ">
-          <h1 className="text-user my-4">User Profile</h1>
-        </div>
-        <div className="cont-kontak container d-flex align-items-center flex-column flex-md-row flex-lg-row flex-xl-row">
-          <div className="Image-Profile col-lg-6 d-flex justify-content-center">
-            <Card className="card_images d-flex justify-content-center align-items-center  p-lg-4 col-lg-8 ">
-              <div className="imagez d-flex flex-column justify-content-center align-items-center gap-2 mt-5 mt-lg-5">
-                <Card.Img className="card_image" variant="top" src={image !== "" && image !== profile.image && image !== icon_profile ? image : profile.image === null ? icon_profile : profile.image} />
-
-                <label className={showbtn ? "editicon d-flex justify-content-center align-items-center" : "editicon d-flex flex-column justify-content-center align-items-center mt-3 ps-5"} for="lable_file">
-                  <input type="file" id="files" name="file" onChange={handleImageChange} className={showbtn === false ? "d-flex justify-content-center" : "hidden"} />
-                  <div className={showbtn === true ? "mt-3" : "hidden"}>
-                    <Button
-                      className={showbtn === true ? "d-flex justify-content-center butzzz" : "hidden"}
-                      size="sm"
-                      variant="warning"
-                      onClick={() => {
-                        sethowbtn(false);
-                        setBtnsv(true);
-                      }}
-                    >
-                      Edit
-                    </Button>
-                  </div>
-                  <div className={showbtn === false ? "pe-5 mt-3" : "hidden"}>
-                    <Button
-                      className={showbtn === false ? "d-flex justify-content-center butzzz" : "hidden"}
-                      size="sm"
-                      variant="primary"
-                      onClick={() => {
-                        sethowbtn(true);
-                      }}
-                    >
-                      Save
-                    </Button>
-                  </div>
-                </label>
-              </div>
-              <Card.Body className="text-center">
-                <Card.Text>{profile.username}</Card.Text>
-                <Card.Text>{profile.email}</Card.Text>
-                <Card.Title> Has been ordered {historiedData.length} products</Card.Title>
-              </Card.Body>
-            </Card>
-          </div>
-          <div className="contacts col-lg-6 container mt-5 mt-md-0 ">
-            <Card className="card_contact px-md-3 py-lg-5 px-lg-4">
-              <div className="d-flex justify-content-between align-items-center">
-                <Card.Text className="ps-5 mt-3 my-md-2 col-10 ">
-                  <u>Contacts</u>
-                </Card.Text>
-                <div
-                  className={isEdit === false ? "d-flex flex-column justify-content-center align-items-center col-2 mt-3" : "hidden"}
-                  onClick={() => {
-                    setBtnsv(true);
-                    setIsEdit(true);
-                  }}
-                  name="image"
-                  onChange={handleChangeForm}
-                >
-                  <img className="editzz" src={editzz} alt="/" />
-                  <p className="m-0 pe-1 ed">Edit</p>
+        <div className="p-5 mx-5">
+          <h1 className="text-user  ">User Profile</h1>
+          <Card
+            style={{ borderRadius: "20px" }}
+            className="d-flex justify-content-center align-items-center "
+          >
+            <div className="d-flex justify-content-start align-items-start col-12">
+              <div className="d-flex flex-column justify-content-center align-items-center col-4 p-5">
+                <div className="d-flex flex-column justify-content-center align-items-center mb-3 ">
+                  <Card.Img
+                    style={{
+                      borderRadius: "50%",
+                      width: "150px",
+                      height: "150px",
+                    }}
+                    src={icon_profile}
+                  />
+                  <Card.Text
+                    className="m-0"
+                    style={{
+                      fontFamily: "Rubik",
+                      fontSize: "20px",
+                    }}
+                  >
+                    {dataUser.firstname} {dataUser.lastname}
+                  </Card.Text>
+                  <p
+                    className="m-0 "
+                    style={{
+                      fontFamily: "Rubik",
+                      fontSize: "14px",
+                    }}
+                  >
+                    {profile.email}
+                  </p>
                 </div>
-              </div>
-              <div className="container">
-                <Form>
-                  <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email </Form.Label>
-                    <Form.Control
-                      disabled={isEdit === false ? true : false}
-                      type="email"
-                      placeholder={profile.email === null ? "Enter Your Email" : profile.email}
-                      name="email"
-                      value={email}
-                      onChange={(event) => setEmail(event.target.value)}
-                    />
-                  </Form.Group>
-                  <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Phone Number</Form.Label>
-                    <Form.Control
-                      disabled={isEdit === false ? true : false}
-                      type="text"
-                      placeholder={profile.phone_number === null ? "Enter Your Phone Number" : profile.phone_number}
-                      name="phone_number"
-                      value={phone_number}
-                      onChange={(event) => setPhone_number(event.target.value)}
-                    />
-                  </Form.Group>
-
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>Delivery Address</Form.Label>
-                    <Form.Control
-                      disabled={isEdit === false ? true : false}
-                      as="textarea"
-                      rows={3}
-                      placeholder={profile.addres === null ? "Enter Your Address Here " : profile.addres}
-                      name="addres"
-                      value={addres}
-                      onChange={(event) => setAddres(event.target.value)}
-                    />
-                  </Form.Group>
-                </Form>
-              </div>
-            </Card>
-          </div>
-        </div>
-        <div className="cont-detail container d-flex flex-column flex-md-row flex-lg-row flex-xl-row align-items-center">
-          <div className="details col-12 col-md-8 col-lg-8 col-xl-8 container mt-5 ps-lg-2 pb-5 px-md-0 d-flex justify-content-center align-items-center">
-            <Card className="px-md-3 p-lg-4 col-12 col-lg-10 ">
-              <div className="d-flex justify-content-between align-items-center">
-                <Card.Text className="ps-5 mt-3 my-md-2 col-10 ">
-                  <u>Details</u>
-                </Card.Text>
-                <div
-                  className={isEdit2 === false ? "d-flex flex-column justify-content-center align-items-center col-2 mt-3" : "hidden"}
-                  onClick={() => {
-                    setBtnsv(true);
-                    setIsEdit2(true);
+                <div className="d-flex flex-column gap-3">
+                  <Button
+                    className="px-5"
+                    style={{
+                      fontFamily: "Poppins",
+                      color: "#6A4029",
+                      borderRadius: "10px",
+                    }}
+                    variant="warning"
+                    onClick={() => {}}
+                  >
+                    Choose Photo
+                  </Button>
+                  <Button
+                    className="px-5"
+                    style={{
+                      fontFamily: "Poppins",
+                      background: "#6A4029",
+                      border: "none",
+                      borderRadius: "10px",
+                    }}
+                    onClick={() => {}}
+                  >
+                    Remove Photo
+                  </Button>
+                </div>
+                <div className="mt-5">
+                  <Button
+                    className="px-5 py-2"
+                    style={{
+                      fontFamily: "Poppins",
+                      background: "#ffffff",
+                      borderColor: "#6A4029",
+                      color: "#6A4029",
+                      borderRadius: "20px",
+                    }}
+                    onClick={() => {}}
+                  >
+                    Edit Password
+                  </Button>
+                </div>
+                <Card.Text
+                  className="mt-5"
+                  style={{
+                    fontFamily: "Poppins",
+                    color: "#6A4029",
+                    fontSize: "20px",
                   }}
                 >
-                  <img className="editzz" src={editzz} alt="/" />
-                  <p className="m-0 pe-1 ed">Edit</p>
+                  Do you want to save the change ?
+                </Card.Text>
+                <div className=" gap-3 d-flex flex-column">
+                  <Button
+                    className="px-5 py-2"
+                    style={{
+                      fontFamily: "Poppins",
+                      background: "#6A4029",
+                      border: "none",
+                      color: "#ffffff",
+                      borderRadius: "20px",
+                    }}
+                    onClick={() => {}}
+                  >
+                    Save Change
+                  </Button>
+                  <Button
+                    style={{
+                      fontFamily: "Poppins",
+                      background: " #FFBA33",
+                      border: "none",
+                      borderRadius: "20px",
+                    }}
+                    className="px-5 py-2"
+                    onClick={() => {}}
+                  >
+                    Cancel
+                  </Button>
                 </div>
               </div>
-              <div className="container mb-4">
-                <Form>
-                  <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Display Name</Form.Label>
-                    <Form.Control
-                      disabled={isEdit2 === false ? true : false}
-                      type="text"
-                      placeholder={profile.username === null ? "Enter Your Display Name" : profile.username}
-                      name="username"
-                      value={username}
-                      onChange={(event) => setUserName(event.target.value)}
-                    />
-                  </Form.Group>
-                  <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>First Name</Form.Label>
-                    <Form.Control
-                      disabled={isEdit2 === false ? true : false}
-                      type="text"
-                      placeholder={profile.firstname === null ? "Enter Your First Name" : profile.firstname}
-                      name="firstname"
-                      value={firstname}
-                      onChange={(event) => setFirstName(event.target.value)}
-                    />
-                  </Form.Group>
-                  <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Last Name</Form.Label>
-                    <Form.Control
-                      disabled={isEdit2 === false ? true : false}
-                      type="text"
-                      placeholder={profile.lastname === null ? "Enter Your Last Name" : profile.lastname}
-                      name="lastname"
-                      value={lastname}
-                      onChange={(event) => setLastName(event.target.value)}
-                    />
-                  </Form.Group>
-                </Form>
-              </div>
-            </Card>
-          </div>
-          <div className=" panel-button container col-12 col-md-4 col-lg-3 col-xl-3 d-flex flex-column gap-3 justify-content-center text-center pb-5 pb-md-0">
-            <h5 className={btnsv === false ? "hidden" : "doyou"}>Do you want to save the change?</h5>
-            <div className=" tombol container d-flex flex-md-column flex-lg-column flex-wrap flex-xl-column gap-2 justify-content-between gap-md-3 ">
-              <Button className={btnsv === false ? "hidden" : " font_saved savess col-6 col-md-12 "} onClick={editData}>
-                {loading === true ? (
-                  <div className="d-flex gap-2 justify-content-center align-items-center">
-                    <div class="spinner-border spinner-border-sm text-dark" role="status"></div>
-                    <div>Loading . . .</div>
+              <div className="d-flex flex-column justify-content-start align-items-start col-8 py-5 pe-5">
+                <Card
+                  style={{
+                    boxShadow: "0px 0px 1px #4f5665",
+                    borderRadius: "20px",
+                  }}
+                  className=" d-flex col-12 p-5 "
+                >
+                  <div className="d-flex justify-content-between align-items-center me-3">
+                    <p
+                      className="text-decoration-underline"
+                      style={{
+                        fontFamily: "Poppins",
+                        fontWeight: "700",
+                        fontSize: "25px",
+                        color: "#4F5665",
+                      }}
+                    >
+                      Contact
+                    </p>
                   </div>
-                ) : (
-                  "  Save Change"
-                )}
-              </Button>
-              <Button
-                className={btnsv === false ? "hidden" : " font_saved col-4 col-md-12"}
-                variant="warning"
-                onClick={() => {
-                  setBtnsv(false);
-                  setIsEdit(false);
-                  setIsEdit2(false);
-                  handleCancel();
-                  sethowbtn(true);
-                }}
-              >
-                Cancel
-              </Button>
-              <Button className={btnsv === true ? "hidden" : " font_saved col-6 col-md-12 savess"} onClick={toEditPwd}>
-                Change Password
-              </Button>
-              <Button
-                className={btnsv === true ? "hidden" : " font_saved col-4 col-md-12"}
-                variant="warning"
-                onClick={() => {
-                  handleShowModal();
-                }}
-              >
-                Log Out
-              </Button>
+                  <div className="d-flex col-12">
+                    <div className="col-6">
+                      <Form>
+                        <Form.Group
+                          className="mb-3 "
+                          controlId="exampleForm.ControlInput1"
+                        >
+                          <Form.Label style={{ fontStyle: "italic" }}>
+                            Email address :
+                          </Form.Label>
+                          <Form.Control
+                            type="email"
+                            className="input-no-outline p-0"
+                            placeholder="name@example.com"
+                            value={profile.email}
+                            style={{
+                              border: "none",
+                              borderBottom: "2px solid #000",
+                              borderRadius: "0",
+                            }}
+                          />
+                        </Form.Group>
+                        <Form.Group
+                          className="mb-3"
+                          controlId="exampleForm.ControlInput1"
+                        >
+                          <Form.Label style={{ fontStyle: "italic" }}>
+                            Delivery adress :
+                          </Form.Label>
+                          <Form.Control
+                            type="email"
+                            className="input-no-outline p-0"
+                            value={dataUser.address}
+                            placeholder="Sout Jakarta , etc."
+                            style={{
+                              border: "none",
+                              borderBottom: "2px solid #000",
+                              borderRadius: "0",
+                            }}
+                          />
+                        </Form.Group>
+                      </Form>
+                    </div>
+                    <div className="col-6 d-flex justify-content-center">
+                      <Form>
+                        <Form.Group
+                          className="mb-3"
+                          controlId="exampleForm.ControlInput1"
+                        >
+                          <Form.Label style={{ fontStyle: "italic" }}>
+                            Phone Number :
+                          </Form.Label>
+                          <Form.Control
+                            type="email"
+                            className="input-no-outline p-0"
+                            value={dataUser.phone_number}
+                            placeholder="name@example.com"
+                            style={{
+                              border: "none",
+                              borderBottom: "2px solid #000",
+                              borderRadius: "0",
+                            }}
+                          />
+                        </Form.Group>
+                      </Form>
+                    </div>
+                  </div>
+                  <div className="d-flex justify-content-between align-items-center mt-5">
+                    <p
+                      className="text-decoration-underline"
+                      style={{
+                        fontFamily: "Poppins",
+                        fontWeight: "700",
+                        fontSize: "25px",
+                        color: "#4F5665",
+                      }}
+                    >
+                      Details
+                    </p>
+                  </div>
+                  <div className="d-flex col-12">
+                    <div className="col-6">
+                      <Form>
+                        <Form.Group
+                          className="mb-4 "
+                          controlId="exampleForm.ControlInput1"
+                        >
+                          <Form.Label style={{ fontStyle: "italic" }}>
+                            Display Name :
+                          </Form.Label>
+                          <Form.Control
+                            type="text"
+                            className="input-no-outline p-0"
+                            value={profile.username}
+                            placeholder="name@example.com"
+                            style={{
+                              border: "none",
+                              borderBottom: "2px solid #000",
+                              borderRadius: "0",
+                            }}
+                          />
+                        </Form.Group>
+                        <Form.Group
+                          className="mb-4"
+                          controlId="exampleForm.ControlInput1"
+                        >
+                          <Form.Label style={{ fontStyle: "italic" }}>
+                            First Name :
+                          </Form.Label>
+                          <Form.Control
+                            type="text"
+                            className="input-no-outline p-0"
+                            placeholder="name@example.com"
+                            value={dataUser.firstname}
+                            style={{
+                              border: "none",
+                              borderBottom: "2px solid #000",
+                              borderRadius: "0",
+                            }}
+                          />
+                        </Form.Group>
+                        <Form.Group controlId="exampleForm.ControlInput1">
+                          <Form.Label style={{ fontStyle: "italic" }}>
+                            Last Name :
+                          </Form.Label>
+                          <Form.Control
+                            type="text"
+                            className="input-no-outline p-0"
+                            value={dataUser.lastname}
+                            placeholder="name@example.com"
+                            style={{
+                              border: "none",
+                              borderBottom: "2px solid #000",
+                              borderRadius: "0",
+                            }}
+                          />
+                        </Form.Group>
+                      </Form>
+                    </div>
+                  </div>
+                </Card>
+              </div>
             </div>
-          </div>
+          </Card>
         </div>
 
-        <Modal show={showModal} onHide={handleCloseModal} backdrop="static" keyboard={false}>
+        <Modal
+          show={showModal}
+          onHide={handleCloseModal}
+          backdrop="static"
+          keyboard={false}
+        >
           <Modal.Header closeButton>
             <Modal.Title>Logout Confirmation</Modal.Title>
           </Modal.Header>
@@ -423,7 +514,11 @@ function Profile() {
             >
               Yes
             </Button>
-            <Button variant="danger" className="fw-bold text-bg-danger text-white" onClick={handleCloseModal}>
+            <Button
+              variant="danger"
+              className="fw-bold text-bg-danger text-white"
+              onClick={handleCloseModal}
+            >
               No
             </Button>
           </Modal.Footer>

@@ -32,7 +32,7 @@ export const signup = (body) => {
 
 // Axios History
 export const historyTransaction = (token) => {
-  return axios.get(`${HOST}api/v1/transactions/history`, {
+  return axios.get(`${HOST}api/v1/transactions/history/${token}`, {
     headers: {
       "x-access-token": token,
     },
@@ -48,14 +48,8 @@ export const transactions = (token, body) => {
 };
 
 export const getProfile = (token) => {
-  const URL = HOST + PREFIKS + "users/profile";
+  const URL = HOST + PREFIKS + `users/${token}`;
   return axios.get(URL, { headers: { "x-access-token": token } });
-
-  // return axios.get(URL, {
-  //   headers: {
-  //     "x-access-token": token,
-  //   },
-  // });
 };
 
 export const editProfile = (body) => {
@@ -93,7 +87,9 @@ export const getProduct = (param) => {
     limit: param.limit ?? "12",
   };
   // const URL = HOST + `product?search=${queryParam.search}&category=${queryParam.category}&order=${queryParam.order}&sort=$
-  const URL = HOST + `product?search=${queryParam.search}&category=${queryParam.category}&sort=${queryParam.sort}&page=${queryParam.page}&limit=${queryParam.limit}`;
+  const URL =
+    HOST +
+    `product?search=${queryParam.search}&category=${queryParam.category}&sort=${queryParam.sort}&page=${queryParam.page}&limit=${queryParam.limit}`;
   return axios.get(URL);
 };
 

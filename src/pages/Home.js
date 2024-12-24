@@ -28,9 +28,8 @@ import kim from "../assets/images/park.png";
 import star from "../assets/images/yellow-star.png";
 
 function Home() {
-  TabTitle(" Welcome to Coffee Gayoe");
-  useEffect(() => {
-    console.log("masuk coy");
+  TabTitle(" Home | Coffee Gayoe");
+  useEffect(() => { 
   }, []);
 
   return (
@@ -41,16 +40,30 @@ function Home() {
           <div className="container">
             <div className="set_started d-flex flex-row p-md-3">
               <div className="texts mt-5 text-center">
-                {/* <div className="mt-0 col-12 col-md-6 col-lg-6 d-flex flex-column align-items-center align-items-md-start">  */}
-                <h1 className="display_start ">Start Your Day with Coffee and Good Meals</h1>
-                <p className="lead">We provide high quality beans, good taste, and healthy meals made by love just for you. Start your day with us for a bigger smile!.</p>
-                <button type="button" className="btn btn-warning" id="get-started">
+                <h1 className="display_start ">
+                  Start Your Day with Coffee and Good Meals
+                </h1>
+                <p className="lead">
+                  We provide high quality beans, good taste, and healthy meals
+                  made by love just for you. Start your day with us for a bigger
+                  smile!.
+                </p>
+                <button
+                  type="button"
+                  className="btn btn-warning"
+                  id="get-started"
+                >
                   Get Started
                 </button>
               </div>
               <div className="d-none d-md-flex mb-1 col-12 col-md-6 col-lg-6 d-flex justify-content-center align-items-start mt-5">
                 <form class="form-inline col-12 col-xl-8 d-flex  my-2 my-lg-0 gap-md-3 ">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                  <input
+                    class="form-control mr-sm-2"
+                    type="search"
+                    placeholder="Search"
+                    aria-label="Search"
+                  />
                   <button class="btn btn-warning   my-2 my-sm-0" type="submit">
                     Search
                   </button>
@@ -100,40 +113,58 @@ function Home() {
           </div>
           <div className="cont_provide_hp container m-0   col-12 d-md-none ps-2">
             <div>
-              <h1 className="text-start text-md-center proved">We Provide Good Coffee and Healthy Meals</h1>
-              <p className="p-3 ps-md-1 m-0 explore">You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
+              <h1 className="text-start text-md-center proved">
+                We Provide Good Coffee and Healthy Meals
+              </h1>
+              <p className="p-3 ps-md-1 m-0 explore">
+                You can explore the menu that we provide with fun and have their
+                own taste and make your day better.
+              </p>
               <ol className="list-prove">
                 <li style={{ padding: "4px" }}>
-                  <img id="cheklist" src={checklist} alt="checklist" /> &nbsp; High quality beans
+                  <img id="cheklist" src={checklist} alt="checklist" /> &nbsp;
+                  High quality beans
                 </li>
                 <li style={{ padding: "4px" }}>
-                  <img id="cheklist" src={checklist} alt="checklist" /> &nbsp; Healthy meals, you can request the ingredients
+                  <img id="cheklist" src={checklist} alt="checklist" /> &nbsp;
+                  Healthy meals, you can request the ingredients
                 </li>
                 <li style={{ padding: "4px" }}>
-                  <img id="cheklist" src={checklist} alt="checklist" /> &nbsp; Chat with our staff to get better experience for ordering
+                  <img id="cheklist" src={checklist} alt="checklist" /> &nbsp;
+                  Chat with our staff to get better experience for ordering
                 </li>
                 <li style={{ padding: "4px" }}>
-                  <img id="cheklist" src={checklist} alt="checklist" /> &nbsp; Free member card with a minimum purchase of Rp 200.000 .
+                  <img id="cheklist" src={checklist} alt="checklist" /> &nbsp;
+                  Free member card with a minimum purchase of Rp 200.000 .
                 </li>
               </ol>
             </div>
           </div>
           <div className="cont_provide container m-0   d-none d-md-flex col-md-6 p-md-0">
             <div>
-              <h1 className="text-start text-md-center proved">We Provide Good Coffee and Healthy Meals</h1>
-              <p className="p-3 ps-md-1 m-0 explore">You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
+              <h1 className="text-start text-md-center proved">
+                We Provide Good Coffee and Healthy Meals
+              </h1>
+              <p className="p-3 ps-md-1 m-0 explore">
+                You can explore the menu that we provide with fun and have their
+                own taste and make your day better.
+              </p>
               <ol className="list-prove">
                 <li style={{ padding: "2px" }}>
-                  <img id="cheklist" src={checklist} alt="checklist" /> &nbsp; High quality beans
+                  <img id="cheklist" src={checklist} alt="checklist" /> &nbsp;
+                  High quality beans
                 </li>
                 <li style={{ padding: "2px" }}>
-                  <img id="cheklist" src={checklist} alt="checklist" /> &nbsp; Healthy meals, you can request the ingredients
+                  <img id="cheklist" src={checklist} alt="checklist" /> &nbsp;
+                  Healthy meals, you can request the ingredients
                 </li>
                 <li style={{ padding: "2px" }}>
-                  <img id="cheklist" src={checklist} alt="checklist" /> &nbsp; Chat with our staff to get better experience for ordering
+                  <img id="cheklist" src={checklist} alt="checklist" /> &nbsp;
+                  Chat with our staff to get better experience for ordering
                 </li>
                 <li style={{ padding: "2px" }}>
-                  <img id="cheklist" src={checklist} alt="checklist" /> &nbsp; Free member card with a minimum purchase of Rp 200.000
+                  <img id="cheklist" src={checklist} alt="checklist" /> &nbsp;
+                  Free member card with a minimum purchase of Rp 200.000
                 </li>
               </ol>
             </div>
@@ -144,35 +175,50 @@ function Home() {
         <div className="jumbotrons my-5">
           <div className="container" id="title-favorite">
             <h1>Here is People’s Favorite</h1>
-            <p className="p-3 m-0 explore ">Let’s choose and have a bit taste of poeple’s favorite. It might be yours too!</p>
+            <p className="p-3 m-0 explore ">
+              Let’s choose and have a bit taste of poeple’s favorite. It might
+              be yours too!
+            </p>
           </div>
 
           <div className="container overflows_card">
             <div className="container d-flex justify-content-lg-center gap-3">
               <div className="col-8 col-lg-3 col-md-5">
                 <div className="card card-menu">
-                  <img className="image-menu" src={hezelnut} alt="Hezelnut-Latte" />
+                  <img
+                    className="image-menu"
+                    src={hezelnut}
+                    alt="Hezelnut-Latte"
+                  />
                   <h1 id="title-menu">Hazelnut Latte</h1>
                   <div className="container font_menu ps-5 pe-0 mb-5">
                     <ol className="m-0 p-0 gap-2 d-flex flex-column list_menu">
                       <li>
-                        <img src={checkorder} alt="checklist-order" /> &nbsp; Hazelnut Syrup
+                        <img src={checkorder} alt="checklist-order" /> &nbsp;
+                        Hazelnut Syrup
                       </li>
                       <li>
-                        <img src={checkorder} alt="checklist-order" /> &nbsp; Wanilla Whipped Cream
+                        <img src={checkorder} alt="checklist-order" /> &nbsp;
+                        Wanilla Whipped Cream
                       </li>
                       <li>
-                        <img src={checkorder} alt="checklist-order" /> &nbsp; Ice / Hot
+                        <img src={checkorder} alt="checklist-order" /> &nbsp;
+                        Ice / Hot
                       </li>
                       <li>
-                        <img src={checkorder} alt="checklist-order" /> &nbsp; Sliced Banana on Top
+                        <img src={checkorder} alt="checklist-order" /> &nbsp;
+                        Sliced Banana on Top
                       </li>
                     </ol>
                   </div>
                   <div className="d-flex flex-column justify-content-center align-items-center">
                     <h1 id="price-1">IDR 25.000</h1>
 
-                    <button type="button" className="btn btn-outline-warning btn-order" id="order-now">
+                    <button
+                      type="button"
+                      className="btn btn-outline-warning btn-order"
+                      id="order-now"
+                    >
                       Order Now
                     </button>
                   </div>
@@ -185,22 +231,31 @@ function Home() {
                   <div className="container font_menu ps-5 pe-0 mb-5">
                     <ol className="m-0 p-0 gap-2 d-flex flex-column list_menu">
                       <li>
-                        <img src={checkorder} alt="checklist-order" /> &nbsp; 1 Shot of Coffee
+                        <img src={checkorder} alt="checklist-order" /> &nbsp; 1
+                        Shot of Coffee
                       </li>
                       <li>
-                        <img src={checkorder} alt="checklist-order" /> &nbsp; Vanilla Whipped Cream
+                        <img src={checkorder} alt="checklist-order" /> &nbsp;
+                        Vanilla Whipped Cream
                       </li>
                       <li>
-                        <img src={checkorder} alt="checklist-order" /> &nbsp; Chocolate Biscuits
+                        <img src={checkorder} alt="checklist-order" /> &nbsp;
+                        Chocolate Biscuits
                       </li>
                       <li>
-                        <img src={checkorder} alt="checklist-order" /> &nbsp; Strawberry Syrup
+                        <img src={checkorder} alt="checklist-order" /> &nbsp;
+                        Strawberry Syrup
                       </li>
                     </ol>
                   </div>
                   <div className="d-flex flex-column justify-content-center align-items-center">
                     <h1 id="price-1">IDR 30.000</h1>
-                    <button button type="button" className="btn btn-outline-warning btn-order" id="order-now">
+                    <button
+                      button
+                      type="button"
+                      className="btn btn-outline-warning btn-order"
+                      id="order-now"
+                    >
                       Select
                     </button>
                   </div>
@@ -213,22 +268,30 @@ function Home() {
                   <div className="container font_menu ps-5 pe-0 mb-5">
                     <ol className="m-0 p-0 gap-2 d-flex flex-column list_menu">
                       <li>
-                        <img src={checkorder} alt="checklist-order" /> &nbsp; Wings
+                        <img src={checkorder} alt="checklist-order" /> &nbsp;
+                        Wings
                       </li>
                       <li>
-                        <img src={checkorder} alt="checklist-order" /> &nbsp; Drum Sticks
+                        <img src={checkorder} alt="checklist-order" /> &nbsp;
+                        Drum Sticks
                       </li>
                       <li>
-                        <img src={checkorder} alt="checklist-order" /> &nbsp; Mayonaise and Lemon
+                        <img src={checkorder} alt="checklist-order" /> &nbsp;
+                        Mayonaise and Lemon
                       </li>
                       <li>
-                        <img src={checkorder} alt="checklist-order" /> &nbsp; Hot Fried
+                        <img src={checkorder} alt="checklist-order" /> &nbsp;
+                        Hot Fried
                       </li>
                     </ol>
                   </div>
                   <div className="d-flex flex-column justify-content-center align-items-center">
                     <h1 id="price-1">IDR 40.000</h1>
-                    <button type="button" className="btn btn-outline-warning btn-order" id="order-now">
+                    <button
+                      type="button"
+                      className="btn btn-outline-warning btn-order"
+                      id="order-now"
+                    >
                       Select
                     </button>
                   </div>
@@ -241,25 +304,60 @@ function Home() {
       <section>
         <div className="container mt-md-5">
           <h1 id="visit-us">Visit Our Store in the Spot on the Map Below</h1>
-          <p id="see-you">See our store in every city on the spot and spen your good day there. See you soon!</p>
+          <p id="see-you">
+            See our store in every city on the spot and spen your good day
+            there. See you soon!
+          </p>
           <img id="huge-global" src={globe} alt="Huge-Global" />
 
           <div className="container mt-5 mb-md-5 text-center">
             <h1>Our Partner</h1>
             <div className="sponsor_hp d-flex d-md-none container gap-2">
               <div className="row justify-content-evenly mt-4 ">
-                <img className="col-5 mt-md-4 h-img" src={netflix} alt="netflix" />
-                <img className="col-5 mt-md-4 h-img" src={reddit} alt="reddit" />
-                <img className="col-5 mt-3 mt-md-5 h-img" src={discord} alt="discord" />
-                <img className="col-5 mt-3 mt-md-5 h-img" src={spotify} alt="spotify" />
+                <img
+                  className="col-5 mt-md-4 h-img"
+                  src={netflix}
+                  alt="netflix"
+                />
+                <img
+                  className="col-5 mt-md-4 h-img"
+                  src={reddit}
+                  alt="reddit"
+                />
+                <img
+                  className="col-5 mt-3 mt-md-5 h-img"
+                  src={discord}
+                  alt="discord"
+                />
+                <img
+                  className="col-5 mt-3 mt-md-5 h-img"
+                  src={spotify}
+                  alt="spotify"
+                />
               </div>
             </div>
             <div className="sponsor container d-none d-md-flex justify-content-center gap-2">
               <div className="row d-flex gap-2 justify-content-evenly mt-4 ">
-                <img className="col-5 col-lg-4 col-lg-4 mt-md-4 h-img" src={netflix} alt="netflix" />
-                <img className="col-5 col-lg-4 mt-md-4 h-img" src={reddit} alt="reddit" />
-                <img className="col-5 col-lg-4 mt-3 mt-md-5 h-img" src={discord} alt="discord" />
-                <img className="col-5 col-lg-4 mt-3 mt-md-5 h-img" src={spotify} alt="spotify" />
+                <img
+                  className="col-5 col-lg-4 col-lg-4 mt-md-4 h-img"
+                  src={netflix}
+                  alt="netflix"
+                />
+                <img
+                  className="col-5 col-lg-4 mt-md-4 h-img"
+                  src={reddit}
+                  alt="reddit"
+                />
+                <img
+                  className="col-5 col-lg-4 mt-3 mt-md-5 h-img"
+                  src={discord}
+                  alt="discord"
+                />
+                <img
+                  className="col-5 col-lg-4 mt-3 mt-md-5 h-img"
+                  src={spotify}
+                  alt="spotify"
+                />
               </div>
             </div>
           </div>
@@ -268,7 +366,10 @@ function Home() {
       <section className="container mt-5 pt-md-5">
         <div className="container d-flex flex-column justify-content-center text-center align-items-center">
           <h1>Loved by Thousands of Happy Customer</h1>
-          <p className="story-cost">These are the stories of our customers who have visited us with great pleasure.</p>
+          <p className="story-cost">
+            These are the stories of our customers who have visited us with
+            great pleasure.
+          </p>
         </div>
       </section>
       <section className="container">
@@ -289,7 +390,11 @@ function Home() {
                     <img src={star} alt="Yellow-Star" />
                   </div>
                 </div>
-                <p className="m-0">“Wow... I am very happy to spend my whole day here. the Wi-fi is good, and the coffee and meals tho. I like it here!! Very recommended!"</p>
+                <p className="m-0">
+                  “Wow... I am very happy to spend my whole day here. the Wi-fi
+                  is good, and the coffee and meals tho. I like it here!! Very
+                  recommended!"
+                </p>
               </div>
             </div>
             <div className="col-12 ">
@@ -307,7 +412,10 @@ function Home() {
                     <img src={star} alt="Yellow-Star" />
                   </div>
                 </div>
-                <p className="m-0">“I like it because I like to travel far and still can make my day better just by drinking their Hazelnut Latte"</p>
+                <p className="m-0">
+                  “I like it because I like to travel far and still can make my
+                  day better just by drinking their Hazelnut Latte"
+                </p>
               </div>
             </div>
             <div className="col-12 ">
@@ -325,7 +433,11 @@ function Home() {
                     <img src={star} alt="Yellow-Star" />
                   </div>
                 </div>
-                <p className="m-0">“This is very unusual for my taste, I haven’t liked coffee before but their coffee is the best! and yup, you have to order the chicken wings, the best in town!"</p>
+                <p className="m-0">
+                  “This is very unusual for my taste, I haven’t liked coffee
+                  before but their coffee is the best! and yup, you have to
+                  order the chicken wings, the best in town!"
+                </p>
               </div>
             </div>
           </div>
@@ -345,7 +457,11 @@ function Home() {
                     <img src={star} alt="Yellow-Star" />
                   </div>
                 </div>
-                <p className="m-0">“Wow... I am very happy to spend my whole day here. the Wi-fi is good, and the coffee and meals tho. I like it here!! Very recommended!"</p>
+                <p className="m-0">
+                  “Wow... I am very happy to spend my whole day here. the Wi-fi
+                  is good, and the coffee and meals tho. I like it here!! Very
+                  recommended!"
+                </p>
               </div>
             </div>
             <div className="col-12  col-lg-4 col-md-6">
@@ -363,7 +479,10 @@ function Home() {
                     <img src={star} alt="Yellow-Star" />
                   </div>
                 </div>
-                <p className="m-0">“I like it because I like to travel far and still can make my day better just by drinking their Hazelnut Latte"</p>
+                <p className="m-0">
+                  “I like it because I like to travel far and still can make my
+                  day better just by drinking their Hazelnut Latte"
+                </p>
               </div>
             </div>
             <div className="col-12  col-lg-4 col-md-6">
@@ -381,7 +500,11 @@ function Home() {
                     <img src={star} alt="Yellow-Star" />
                   </div>
                 </div>
-                <p className="m-0">“This is very unusual for my taste, I haven’t liked coffee before but their coffee is the best! and yup, you have to order the chicken wings, the best in town!"</p>
+                <p className="m-0">
+                  “This is very unusual for my taste, I haven’t liked coffee
+                  before but their coffee is the best! and yup, you have to
+                  order the chicken wings, the best in town!"
+                </p>
               </div>
             </div>
           </div>
