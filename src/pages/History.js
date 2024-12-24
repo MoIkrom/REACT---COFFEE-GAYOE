@@ -11,8 +11,7 @@ import { TabTitle } from "../utils/General-funct.js";
 const History = () => {
   TabTitle("History - Coffee Gayoe");
   const [historied, setHistoried] = useState([]);
-  const [detailhistory, setDetailHistory] = useState([]);
-  const [name, setName] = useState("");
+  const [detailhistory, setDetailHistory] = useState([]); 
   const [loading, setLoading] = useState(false);
 
   const Host = process.env.REACT_APP_BACKEND_HOST;

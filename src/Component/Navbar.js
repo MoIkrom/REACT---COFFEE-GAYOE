@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
 import { getProfile } from "../utils/api";
 import { useSelector } from "react-redux";
 import axios from "axios";
-
-import { Navbar, Container, Nav, Button, Modal } from "react-bootstrap";
+import { Navbar, Container, Nav, Button } from "react-bootstrap";
 
 // import css navbar
 import styles from "../styles/Navbar.module.css";
@@ -18,7 +16,6 @@ import icon_profile from "../assets/images/default-img.png";
 function Navbars() {
   const totalUniqueItems = useSelector((state) => state.cart.totalUniqueItems);
   const [profile, setProfile] = useState("");
-  const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
@@ -70,22 +67,7 @@ function Navbars() {
         setLoading(false);
       });
   };
-
-  const handleModalClose = () => setShowModal(false);
-  const handleModalShow = () => setShowModal(true);
-
-  const renderLogoutButton = () => (
-    <div>
-      <button
-        type="button"
-        className="btn btn-size btn-3"
-        onClick={handleModalShow}
-      >
-        Logout
-      </button>
-    </div>
-  );
-
+ 
   const renderNavLinks = () => (
     <div className="d-flex justify-content-center bg-white  mt-3 ms-4 m-lg-0 ps-3 mt-md-3 ms-md-4 ps-md-3 align-items-center">
       <Nav className="me-auto p-0">
@@ -203,37 +185,6 @@ function Navbars() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-
-      <Modal
-        show={showModal}
-        onHide={handleModalClose}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Confirmation</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Are you sure you want to log out?</Modal.Body>
-        <Modal.Footer>
-          <Button
-            variant="secondary"
-            className="fw-bold text-bg-secondary text-white"
-            onClick={() => {
-              handleModalClose();
-              deleteToken();
-            }}
-          >
-            Yes
-          </Button>
-          <Button
-            variant="success"
-            className="fw-bold text-bg-success text-white"
-            onClick={handleModalClose}
-          >
-            No
-          </Button>
-        </Modal.Footer>
-      </Modal>
 
       <ToastContainer />
     </>

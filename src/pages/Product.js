@@ -3,7 +3,7 @@ import axios from "axios";
 import { useSearchParams, useParams, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { addItemToCart } from "../features/cart/cartSlice";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 
 import Button from "react-bootstrap/Button";
