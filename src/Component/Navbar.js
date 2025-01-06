@@ -47,12 +47,12 @@ function Navbars() {
   const deleteToken = () => {
     const token = localStorage.getItem("token");
     setLoading(true);
+    localStorage.clear();
     axios
       .delete(`${Host}/api/v1/auth`, {
         headers: { "x-access-token": token },
       })
       .then((res) => {
-        localStorage.clear();
         toast.success("Logout Success", {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 1000,
@@ -67,7 +67,7 @@ function Navbars() {
         setLoading(false);
       });
   };
- 
+
   const renderNavLinks = () => (
     <div className="d-flex justify-content-center bg-white  mt-3 ms-4 m-lg-0 ps-3 mt-md-3 ms-md-4 ps-md-3 align-items-center">
       <Nav className="me-auto p-0">
@@ -120,7 +120,7 @@ function Navbars() {
           </div>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse
-            className="gap-5 font bg-white justify-content-end position-relative"
+            className={`${styles["bg-nav"]} gap-5  justify-content-end position-relative`}
             id="responsive-navbar-nav"
             style={{ zIndex: "10" }}
           >
