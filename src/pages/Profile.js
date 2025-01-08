@@ -33,12 +33,11 @@ function Profile() {
   const [showModal, setShowModal] = useState(false);
   const [image, setImage] = useState("");
   const [saveImage, setSaveImage] = useState(null);
-  const [email, setEmail] = useState(profile.email);
-  const [phone_number, setPhone_number] = useState(profile.phone_number);
-  const [addres, setAddres] = useState(profile.addres);
-  const [username, setUserName] = useState(profile.username);
-  const [firstname, setFirstName] = useState(profile.firstname);
-  const [lastname, setLastName] = useState(profile.lastname);
+  const [email, setEmail] = useState(dataUser.email);
+  const [phone_number, setPhone_number] = useState(dataUser.phone_number);
+  const [address, setAddress] = useState(dataUser.addres);
+  const [firstname, setFirstName] = useState(dataUser.firstname);
+  const [lastname, setLastName] = useState(dataUser.lastname);
   const [edit, setEdit] = useState(false);
   const [loading, setLoading] = useState(true);
   const [imgPrev, setImgPrev] = useState(null);
@@ -99,47 +98,51 @@ function Profile() {
     }
   }, [Host]);
 
+  const handleChangePhone = (e) => {
+    setDataUser({ phone_number: e.target.value });
+  };
+
   // editData => fungsi untuk memasukan data kedalam database ketika di click button save change
   const editData = (e) => {
     setLoading(true);
     const token = localStorage.getItem("token");
     e.preventDefault();
     const formData = new FormData();
-    if (username) {
-      formData.append("username", username);
-    } else {
-      formData.append("username", profile.username);
-    }
+    // if (username) {
+    //   formData.append("username", username);
+    // } else {
+    //   formData.append("username", profile.username);
+    // }
     if (firstname) {
       formData.append("firstname", firstname);
     } else {
-      formData.append("firstname", profile.firstname);
+      formData.append("firstname", dataUser.firstname);
     }
     if (lastname) {
       formData.append("lastname", lastname);
     } else {
-      formData.append("lastname", profile.lastname);
+      formData.append("lastname", dataUser.lastname);
     }
     if (phone_number) {
       formData.append("phone_number", phone_number);
     } else {
-      formData.append("phone_number", profile.phone_number);
+      formData.append("phone_number", dataUser.phone_number);
     }
     if (email) {
       formData.append("email", email);
     } else {
       formData.append("email", profile.email);
     }
-    if (addres) {
-      formData.append("addres", addres);
+    if (address) {
+      formData.append("address", address);
     } else {
-      formData.append("addres", profile.addres);
+      formData.append("address", dataUser.address);
     }
     if (image) {
       formData.append("image", saveImage);
     }
     axios
-      .patch(`https://coffee-gayoe.vercel.app/api/v1/users`, formData, {
+      .patch(` ${process.env.REACT_APP_BACKEND_HOST}/api/v1/users`, formData, {
         headers: {
           "x-access-token": token,
           "Content-Type": "multipart/form-data",
@@ -191,12 +194,12 @@ function Profile() {
   };
 
   const handleCancel = () => {
-    setImage(profile.image === null ? icon_profile : profile.image);
-    setPhone_number(profile.phone_number);
-    setFirstName(profile.firstname);
-    setLastName(profile.lastname);
-    setAddres(profile.addres);
-    setEmail(profile.email);
+    // setImage(profile.image === null ? icon_profile : profile.image);
+    setPhone_number(dataUser.phone_number);
+    setFirstName(dataUser.firstname);
+    setLastName(dataUser.lastname);
+    setAddress(dataUser.address);
+    setEmail(dataUser.email);
   };
 
   return (
@@ -301,7 +304,7 @@ function Profile() {
                       color: "#ffffff",
                       borderRadius: "20px",
                     }}
-                    onClick={() => {}}
+                    onClick={(e) => editData(e)}
                   >
                     Save Change
                   </Button>
@@ -313,7 +316,7 @@ function Profile() {
                       borderRadius: "20px",
                     }}
                     className="px-5 py-2"
-                    onClick={() => {}}
+                    onClick={handleCancel}
                   >
                     Cancel
                   </Button>
@@ -393,10 +396,11 @@ function Profile() {
                             Phone Number :
                           </Form.Label>
                           <Form.Control
-                            type="email"
+                            type="text"
                             className="input-no-outline p-0"
                             value={dataUser.phone_number}
-                            placeholder="name@example.com"
+                            onChange={handleChangePhone}
+                            placeholder="081-012-000"
                             style={{
                               border: "none",
                               borderBottom: "2px solid #000",

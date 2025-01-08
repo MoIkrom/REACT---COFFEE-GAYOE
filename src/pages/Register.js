@@ -34,6 +34,7 @@ function Register() {
     lastname: "",
     address: "",
     phone_number: "",
+    date_of_birth: "",
   });
 
   // Handle Input Change
@@ -237,6 +238,21 @@ function Register() {
                           name="phone_number"
                           placeholder=" Enter Phone Number"
                           value={formData.phone_number}
+                          onChange={handleChange}
+                        />
+                      </Form.Group>
+                      <Form.Group
+                        className="mb-2"
+                        controlId="formBasicPassword"
+                      >
+                        <Form.Label className="pops">Date Of Birth</Form.Label>
+                        <Form.Control
+                          className="pops2"
+                          type="date"
+                          require
+                          name="date_of_birth"
+                          placeholder=" Enter date of Birth"
+                          value={formData.date_of_birth}
                           onChange={handleChange}
                         />
                       </Form.Group>
