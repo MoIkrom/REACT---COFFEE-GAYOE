@@ -131,7 +131,7 @@ function Login() {
                       {loading === true ? (
                         <div className="d-flex gap-2 justify-content-center align-items-center">
                           <div
-                            class="spinner-border spinner-border-sm text-dark"
+                            className="spinner-border spinner-border-sm text-dark"
                             role="status"
                           ></div>
                           <div>Loading . . .</div>

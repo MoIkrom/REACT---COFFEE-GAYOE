@@ -96,7 +96,7 @@ const editPwd = () => {
                     <Button disabled={old_password || new_password === "" ? true : false} variant="warning" type="submit">
                       {loading === true ? (
                         <div className="d-flex gap-2 justify-content-center align-items-center">
-                          <div class="spinner-border spinner-border-sm text-dark" role="status"></div>
+                          <div className="spinner-border spinner-border-sm text-dark" role="status"></div>
                           <div>Loading . . .</div>
                         </div>
                       ) : (

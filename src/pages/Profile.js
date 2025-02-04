@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import { TabTitle } from "../utils/General-funct.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+import { useSelector, useDispatch } from "react-redux";
 
 import DatePicker from "react-date-picker";
-import { jwtDecode } from "jwt-decode";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
 import { useNavigate } from "react-router-dom";
@@ -14,43 +16,140 @@ import "../styles/Profile.css";
 import { Form, Card } from "react-bootstrap";
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
-import axios from "axios";
 
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 // Import Image
-import editzz from "../assets/images/edit.png";
+import editIcone from "../assets/images/edit.png";
 import icon_profile from "../assets/images/default-img.png";
 
 function Profile() {
   TabTitle("Profile - Coffee Gayoe");
 
   const navigate = useNavigate();
-
-  const [profile, setProfile] = useState("");
-  const [dataUser, setDataUser] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [image, setImage] = useState("");
-  const [saveImage, setSaveImage] = useState(null);
-  const [email, setEmail] = useState(dataUser.email);
-  const [phone_number, setPhone_number] = useState(dataUser.phone_number);
-  const [address, setAddress] = useState(dataUser.addres);
-  const [firstname, setFirstName] = useState(dataUser.firstname);
-  const [lastname, setLastName] = useState(dataUser.lastname);
-  const [edit, setEdit] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [imgPrev, setImgPrev] = useState(null);
-  const [showbtn, sethowbtn] = useState(true);
-  const [btnsv, setBtnsv] = useState(false);
-  const [form, setForm] = useState({});
 
   const [isEdit, setIsEdit] = useState(false);
-  const [isEdit2, setIsEdit2] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [profile, setProfile] = useState({});
   const [historiedData, setHistoriedData] = useState("");
+  const [updatedData, setUpdatedData] = useState("");
 
-  const handleChangeForm = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const [form, setForm] = useState(profile);
+
+  const Host = process.env.REACT_APP_BACKEND_HOST;
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      // Decode token untuk mendapatkan payload
+      const decodedToken = jwtDecode(token);
+      const userId = decodedToken.user_id; // Ambil id dari payload
+
+      axios
+        .get(`${Host}/api/v1/users/${userId}`, {
+          headers: { "x-access-token": token },
+        })
+        .then((res) => {
+          setProfile(res.data.data[0]);
+          setForm(res.data.data[0]);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [Host]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prevState) => ({
+      ...prevState,
+      profile: prevState.profile
+        ? prevState.profile.map((item, index) =>
+            index === 0
+              ? { ...item, [name]: value } // Perbarui field dalam item pertama
+              : item
+          )
+        : [{ [name]: value }], // Jika profile belum ada, buat array baru
+    }));
+  };
+  const LoadingSpinner = () => (
+    <div className="d-flex gap-2 justify-content-center align-items-center">
+      <div
+        className="spinner-border spinner-border-sm text-dark"
+        role="status"
+      ></div>
+      <div>Loading . . .</div>
+    </div>
+  );
+
+  const handleProfileUpdate = () => {
+    const token = localStorage.getItem("token");
+    const host = process.env.REACT_APP_BACKEND_HOST;
+
+    setIsLoading(true);
+    setIsEdit(true);
+
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token);
+        const userId = decodedToken.user_id;
+        console.log(form);
+        // Data yang akan diupdate
+        const formData = new FormData();
+        formData.append("email", form.email);
+        formData.append("username", form.username);
+        formData.append("firstname", form.profile?.[0].firstname);
+        formData.append("lastname", form.profile?.[0].lastname);
+        formData.append("phone_number", form.profile?.[0].phone_number);
+        formData.append("address", form.profile?.[0].address);
+
+        // Tetap gunakan gambar lama jika tidak ada gambar baru
+        // if (updatedData.image instanceof File) {
+        //   formData.append("image", updatedData.image);
+        // } else {
+        //   formData.append("image", data.profile?.[0].image); // Gunakan gambar lama
+        // }
+
+        // Kirim request ke server untuk update data
+        axios
+          .patch(
+            `${host}/api/v1/users/profile/${userId}`,
+            formData, // Data yang akan diupdate
+            {
+              headers: {
+                "x-access-token": token,
+                "Content-Type": "multipart/form-data",
+              }, // Header dengan token
+            }
+          )
+          .then((res) => {
+            toast.success("Success Update Data", {
+              position: toast.POSITION.TOP_CENTER,
+              autoClose: 1000,
+            });
+            setIsEdit(false);
+            setIsLoading(false);
+          })
+          .catch((err) => {
+            console.error("Error updating profile:", err);
+            toast.error("Failed to update profile", {
+              position: toast.POSITION.TOP_CENTER,
+              autoClose: 1000,
+            });
+            setIsLoading(false);
+          });
+      } catch (error) {
+        console.error("Token decode error:", error);
+        setIsLoading(false);
+      }
+    } else {
+      toast.error("No token found. Please log in again.", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 1000,
+      });
+      setIsLoading(false);
+    }
   };
 
   const dataHistory = () => {
@@ -67,113 +166,6 @@ function Profile() {
       .catch((err) => {
         console.log(err);
       });
-  };
-
-  const toEditPwd = () => {
-    navigate("/profile/edit-password");
-    window.scrollTo({
-      top: 100,
-      left: 100,
-    });
-  };
-  const Host = process.env.REACT_APP_BACKEND_HOST;
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      // Decode token untuk mendapatkan payload
-      const decodedToken = jwtDecode(token);
-      const userId = decodedToken.user_id; // Ambil id dari payload
-
-      axios
-        .get(`${Host}/api/v1/users/${userId}`, {
-          headers: { "x-access-token": token },
-        })
-        .then((res) => {
-          setProfile(res.data.data[0]);
-          setDataUser(res.data.data[0].profile[0]);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [Host]);
-
-  const handleChangePhone = (e) => {
-    setDataUser({ phone_number: e.target.value });
-  };
-
-  // editData => fungsi untuk memasukan data kedalam database ketika di click button save change
-  const editData = (e) => {
-    setLoading(true);
-    const token = localStorage.getItem("token");
-    e.preventDefault();
-    const formData = new FormData();
-    // if (username) {
-    //   formData.append("username", username);
-    // } else {
-    //   formData.append("username", profile.username);
-    // }
-    if (firstname) {
-      formData.append("firstname", firstname);
-    } else {
-      formData.append("firstname", dataUser.firstname);
-    }
-    if (lastname) {
-      formData.append("lastname", lastname);
-    } else {
-      formData.append("lastname", dataUser.lastname);
-    }
-    if (phone_number) {
-      formData.append("phone_number", phone_number);
-    } else {
-      formData.append("phone_number", dataUser.phone_number);
-    }
-    if (email) {
-      formData.append("email", email);
-    } else {
-      formData.append("email", profile.email);
-    }
-    if (address) {
-      formData.append("address", address);
-    } else {
-      formData.append("address", dataUser.address);
-    }
-    if (image) {
-      formData.append("image", saveImage);
-    }
-    axios
-      .patch(` ${process.env.REACT_APP_BACKEND_HOST}/api/v1/users`, formData, {
-        headers: {
-          "x-access-token": token,
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then(() => {
-        SuccessMessage();
-        setLoading(false);
-        setEdit(true);
-        setBtnsv(false);
-        setIsEdit(false);
-        setIsEdit2(false);
-        window.scrollTo({
-          top: 0,
-          left: 0,
-          behavior: "smooth",
-        });
-        window.location.reload();
-      })
-      .catch((err) => {
-        setLoading(false);
-        console.log(err.response.data.msg);
-        toast.error(err, {
-          position: toast.POSITION.TOP_RIGHT,
-        });
-      });
-  };
-
-  const handleImageChange = (event) => {
-    setImage(URL.createObjectURL(event.target.files[0]));
-    setSaveImage(event.target.files[0]);
   };
 
   // SuccessMessage, LogoutMessage => notifikasi sukses dan gagal
@@ -193,19 +185,11 @@ function Profile() {
     setShowModal(true);
   };
 
-  const handleCancel = () => {
-    // setImage(profile.image === null ? icon_profile : profile.image);
-    setPhone_number(dataUser.phone_number);
-    setFirstName(dataUser.firstname);
-    setLastName(dataUser.lastname);
-    setAddress(dataUser.address);
-    setEmail(dataUser.email);
-  };
+  const imageSrc = profile[0]?.image || icon_profile;
 
   return (
     <>
       <Navbar />
-
       <main className="jumbotron">
         <div className="p-lg-5 mx-lg-5 mx-3 pb-5">
           <h1 className="text-user ms-2 py-3  ">User Profile</h1>
@@ -222,7 +206,7 @@ function Profile() {
                       width: "150px",
                       height: "150px",
                     }}
-                    src={icon_profile}
+                    src={imageSrc}
                   />
                   <Card.Text
                     className="m-0"
@@ -231,7 +215,8 @@ function Profile() {
                       fontSize: "20px",
                     }}
                   >
-                    {dataUser.firstname} {dataUser.lastname}
+                    {profile.profile?.[0].firstname} &nbsp;
+                    {profile.profile?.[0].lastname}
                   </Card.Text>
                   <p
                     className="m-0 "
@@ -284,43 +269,48 @@ function Profile() {
                     Edit Password
                   </Button>
                 </div>
-                <Card.Text
-                  className="mt-5"
-                  style={{
-                    fontFamily: "Poppins",
-                    color: "#6A4029",
-                    fontSize: "20px",
-                  }}
-                >
-                  Do you want to save the change ?
-                </Card.Text>
-                <div className=" gap-3 d-flex flex-column">
-                  <Button
-                    className="px-5 py-2"
-                    style={{
-                      fontFamily: "Poppins",
-                      background: "#6A4029",
-                      border: "none",
-                      color: "#ffffff",
-                      borderRadius: "20px",
-                    }}
-                    onClick={(e) => editData(e)}
-                  >
-                    Save Change
-                  </Button>
-                  <Button
-                    style={{
-                      fontFamily: "Poppins",
-                      background: " #FFBA33",
-                      border: "none",
-                      borderRadius: "20px",
-                    }}
-                    className="px-5 py-2"
-                    onClick={handleCancel}
-                  >
-                    Cancel
-                  </Button>
-                </div>
+                {isEdit && (
+                  <div>
+                    <Card.Text
+                      className="mt-5"
+                      style={{
+                        fontFamily: "Poppins",
+                        color: "#6A4029",
+                        fontSize: "20px",
+                      }}
+                    >
+                      Do you want to save the change ?
+                    </Card.Text>
+                    <div className=" gap-3 d-flex flex-column">
+                      <Button
+                        className="px-5 py-2"
+                        style={{
+                          fontFamily: "Poppins",
+                          background: "#6A4029",
+                          border: "none",
+                          color: "#ffffff",
+                          borderRadius: "20px",
+                        }}
+                        onClick={handleProfileUpdate}
+                      >
+                        {isLoading ? <LoadingSpinner /> : "Save Change"}
+                      </Button>
+                      <Button
+                        style={{
+                          fontFamily: "Poppins",
+                          background: " #FFBA33",
+                          border: "none",
+                          borderRadius: "20px",
+                        }}
+                        className="px-5 py-2"
+                        // onClick={handleCancel}
+                        onClick={() => setIsEdit(false)}
+                      >
+                        Cancel
+                      </Button>
+                    </div>
+                  </div>
+                )}
               </div>
               <div className="d-flex flex-column col-lg-8 col-12 p-3 py-lg-5 pe-lg-5">
                 <Card
@@ -328,8 +318,37 @@ function Profile() {
                     boxShadow: "0px 0px 1px #4f5665",
                     borderRadius: "20px",
                   }}
-                  className=" d-flex col-12 p-lg-5 p-3 "
+                  className=" d-flex col-12 px-lg-5 pb-lg-5 p-3 "
                 >
+                  {!isEdit && (
+                    <div className="d-flex justify-content-end ">
+                      <div
+                        className="d-flex justify-content-center align-items-center gap-2 btn p-0 border-0"
+                        onClick={() => {
+                          setIsEdit(true);
+                        }}
+                      >
+                        <p
+                          className="m-0 pt-1"
+                          style={{
+                            fontFamily: "Poppins",
+                            fontWeight: "700",
+                            fontSize: "15px",
+                            color: "#4F5665",
+                          }}
+                        >
+                          Edit
+                        </p>
+                        <img
+                          src={editIcone}
+                          alt="edit_icon"
+                          width="20px"
+                          height="20px"
+                        />
+                      </div>
+                    </div>
+                  )}
+
                   <div className="d-flex justify-content-between align-items-center me-3">
                     <p
                       className="text-decoration-underline"
@@ -355,13 +374,17 @@ function Profile() {
                           </Form.Label>
                           <Form.Control
                             type="email"
+                            name="email"
                             className="input-no-outline p-0"
                             placeholder="name@example.com"
-                            value={profile.email}
+                            value={form.email}
+                            disabled={!isEdit}
+                            onChange={handleChange}
                             style={{
                               border: "none",
                               borderBottom: "2px solid #000",
                               borderRadius: "0",
+                              backgroundColor: "white",
                             }}
                           />
                         </Form.Group>
@@ -373,14 +396,18 @@ function Profile() {
                             Delivery adress :
                           </Form.Label>
                           <Form.Control
-                            type="email"
+                            type="text"
+                            name="address"
                             className="input-no-outline p-0"
-                            value={dataUser.address}
+                            value={form.profile?.[0].address}
+                            disabled={!isEdit}
+                            onChange={handleChange}
                             placeholder="Sout Jakarta , etc."
                             style={{
                               border: "none",
                               borderBottom: "2px solid #000",
                               borderRadius: "0",
+                              backgroundColor: "white",
                             }}
                           />
                         </Form.Group>
@@ -397,14 +424,17 @@ function Profile() {
                           </Form.Label>
                           <Form.Control
                             type="text"
+                            name="phone_number"
+                            disabled={!isEdit}
+                            onChange={handleChange}
                             className="input-no-outline p-0"
-                            value={dataUser.phone_number}
-                            onChange={handleChangePhone}
+                            value={form.profile?.[0].phone_number}
                             placeholder="081-012-000"
                             style={{
                               border: "none",
                               borderBottom: "2px solid #000",
                               borderRadius: "0",
+                              backgroundColor: "white",
                             }}
                           />
                         </Form.Group>
@@ -435,14 +465,18 @@ function Profile() {
                             Display Name :
                           </Form.Label>
                           <Form.Control
+                            disabled={!isEdit}
+                            onChange={handleChange}
                             type="text"
+                            name="username"
                             className="input-no-outline p-0"
-                            value={profile.username}
-                            placeholder="name@example.com"
+                            value={form.username}
+                            placeholder="input username"
                             style={{
                               border: "none",
                               borderBottom: "2px solid #000",
                               borderRadius: "0",
+                              backgroundColor: "white",
                             }}
                           />
                         </Form.Group>
@@ -454,14 +488,18 @@ function Profile() {
                             First Name :
                           </Form.Label>
                           <Form.Control
+                            disabled={!isEdit}
+                            name="firstname"
+                            onChange={handleChange}
                             type="text"
                             className="input-no-outline p-0"
-                            placeholder="name@example.com"
-                            value={dataUser.firstname}
+                            placeholder="input your first name"
+                            value={form.profile?.[0].firstname}
                             style={{
                               border: "none",
                               borderBottom: "2px solid #000",
                               borderRadius: "0",
+                              backgroundColor: "white",
                             }}
                           />
                         </Form.Group>
@@ -470,14 +508,18 @@ function Profile() {
                             Last Name :
                           </Form.Label>
                           <Form.Control
+                            disabled={!isEdit}
+                            onChange={handleChange}
                             type="text"
+                            name="lastname"
                             className="input-no-outline p-0"
-                            value={dataUser.lastname}
-                            placeholder="name@example.com"
+                            value={form.profile?.[0].lastname}
+                            placeholder="input your lastname"
                             style={{
                               border: "none",
                               borderBottom: "2px solid #000",
                               borderRadius: "0",
+                              backgroundColor: "white",
                             }}
                           />
                         </Form.Group>
